@@ -1,4 +1,6 @@
 node_modules
+dist
+build
 
 # Large video files
 src/assets/*.mp4
