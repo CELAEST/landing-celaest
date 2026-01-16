@@ -2,6 +2,5 @@ node_modules
 dist
 build
 
-# Large video files
+# Large video files - exclude MP4 only
 src/assets/*.mp4
-src/assets/*.webm
