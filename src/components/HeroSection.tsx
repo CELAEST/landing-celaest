@@ -1,7 +1,6 @@
 import { ArrowRight, Play } from 'lucide-react';
 import { useTranslation } from '../context/LanguageContext';
 import videoBackgroundWebM from '@/assets/background1.webm';
-import videoBackgroundMp4 from '@/assets/background1.mp4';
 
 export function HeroSection() {
   const { t } = useTranslation();
@@ -30,7 +29,6 @@ export function HeroSection() {
           poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E"
         >
           <source src={videoBackgroundWebM} type="video/webm" />
-          <source src={videoBackgroundMp4} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-[#0F172A]/30 via-[#0F172A]/50 to-[#0F172A]" />
