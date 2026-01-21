@@ -127,13 +127,12 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
   return (
     <html lang={locale} className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <head>
-        {/* Preload critical resources */}
-        <link rel="preload" href="/videos/background.webm" as="video" type="video/webm" />
         {/* Preconnect to external resources */}
-        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
-        {/* Disable scroll restoration */}
-        <script dangerouslySetInnerHTML={{ __html: `if (history.scrollRestoration) { history.scrollRestoration = 'manual'; }` }} />
+        {/* Preconnect to Google Fonts (used by next/font) */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className="font-sans antialiased" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>

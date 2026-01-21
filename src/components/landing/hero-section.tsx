@@ -16,31 +16,25 @@ export function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0F172A]" style={{ minHeight: '100vh' }}>
-      {/* Video Background */}
-      <div className="absolute inset-0" style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}>
+      {/* Video Background - Lazy loaded for performance */}
+      <div className="absolute inset-0">
         <video
           autoPlay
           loop
           muted
           playsInline
-          preload="metadata"
-          className="w-full h-full object-cover"
+          preload="none"
+          className="absolute inset-0 w-full h-full object-cover"
           style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            position: 'absolute',
-            top: 0,
-            left: 0,
             opacity: 0.65,
             maskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)'
+            WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)',
+            contentVisibility: 'auto',
           }}
-          poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E"
+          poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1' style='background:%230F172A'/%3E"
           suppressHydrationWarning
         >
           <source src="/videos/background.webm" type="video/webm" />
-          Your browser does not support the video tag.
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-[#0F172A]/5 via-[#0F172A]/30 to-[#0F172A]" />
 
