@@ -32,7 +32,6 @@ export function LanguageSelector() {
     // Use React transition for smooth navigation without blocking UI
     startTransition(() => {
       router.replace(
-        // @ts-expect-error - pathname is valid
         { pathname },
         { locale: newLocale }
       );
