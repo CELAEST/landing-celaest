@@ -1,21 +1,24 @@
-'use client';
+"use client";
 
-import { useTranslations } from 'next-intl';
-import { ArrowRight, Play } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useTranslations } from "next-intl";
+import { ArrowRight, Play } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function HeroSection() {
-  const t = useTranslations('hero');
+  const t = useTranslations("hero");
 
   const stats = [
-    { value: '500+', label: t('stats.assets') },
-    { value: '10K+', label: t('stats.users') },
-    { value: '99.9%', label: t('stats.uptime') },
-    { value: '24/7', label: t('stats.support') },
+    { value: "500+", label: t("stats.assets") },
+    { value: "10K+", label: t("stats.users") },
+    { value: "99.9%", label: t("stats.uptime") },
+    { value: "24/7", label: t("stats.support") },
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0F172A]" style={{ minHeight: '100vh' }}>
+    <section
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0F172A]"
+      style={{ minHeight: "100vh" }}
+    >
       {/* Video Background - Lazy loaded for performance */}
       <div className="absolute inset-0">
         <video
@@ -27,9 +30,11 @@ export function HeroSection() {
           className="absolute inset-0 w-full h-full object-cover"
           style={{
             opacity: 0.65,
-            maskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)',
-            contentVisibility: 'auto',
+            maskImage:
+              "linear-gradient(to bottom, black 0%, black 70%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, black 0%, black 70%, transparent 100%)",
+            contentVisibility: "auto",
           }}
           poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1' style='background:%230F172A'/%3E"
           suppressHydrationWarning
@@ -49,36 +54,50 @@ export function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-32 text-center" style={{ minHeight: '80vh' }}>
+      <div
+        className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-32 text-center"
+        style={{ minHeight: "80vh" }}
+      >
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#334155]/40 border border-[#10B981]/20 rounded-full mb-8 backdrop-blur-sm hero-animate">
           <div className="w-2 h-2 bg-[#10B981] rounded-full animate-pulse" />
-          <span className="text-sm text-[#E2E8F0]">{t('badge')}</span>
+          <span className="text-sm text-[#E2E8F0]">{t("badge")}</span>
         </div>
 
         {/* Main Headline */}
-        <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold text-[#F8FAFC] mb-6 tracking-tight hero-animate delay-100" style={{ minHeight: '280px' }}>
-          {t('headline1')}
+        <h1
+          className="text-7xl md:text-8xl lg:text-9xl font-bold text-[#F8FAFC] mb-6 tracking-tight hero-animate delay-100"
+          style={{ minHeight: "280px" }}
+        >
+          {t("headline1")}
           <br />
-          <span className="bg-gradient-to-r from-[#10B981] to-[#059669] bg-clip-text text-transparent">{t('headline2')}</span>
+          <span className="bg-gradient-to-r from-[#10B981] to-[#059669] bg-clip-text text-transparent">
+            {t("headline2")}
+          </span>
         </h1>
 
         {/* Subheadline */}
-        <p className="text-xl md:text-2xl text-[#E2E8F0] max-w-3xl mx-auto mb-12 leading-relaxed hero-animate delay-200" style={{ minHeight: '120px' }}>
-          {t('subheadline1')}
+        <p
+          className="text-xl md:text-2xl text-[#E2E8F0] max-w-3xl mx-auto mb-12 leading-relaxed hero-animate delay-200"
+          style={{ minHeight: "120px" }}
+        >
+          {t("subheadline1")}
           <br />
-          {t('subheadline2')}
+          {t("subheadline2")}
         </p>
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 hero-animate delay-300">
-          <button className="group px-8 py-4 bg-[#10B981] text-white font-bold rounded-lg hover:bg-[#059669] transition-all hover:shadow-xl hover:shadow-[#10B981]/30 hover:scale-105 flex items-center gap-3">
-            {t('browseCTA')}
+          <a
+            href="https://celaest-dashboard.vercel.app/?tab=marketplace"
+            className="group px-8 py-4 bg-[#10B981] text-white font-bold rounded-lg hover:bg-[#059669] transition-all hover:shadow-xl hover:shadow-[#10B981]/30 hover:scale-105 flex items-center gap-3"
+          >
+            {t("browseCTA")}
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
+          </a>
           <button className="group px-8 py-4 bg-transparent border-2 border-[#334155] text-[#F8FAFC] font-bold rounded-lg hover:border-[#10B981] hover:bg-[#10B981]/5 transition-all flex items-center gap-3">
             <Play className="w-5 h-5" />
-            {t('watchDemo')}
+            {t("watchDemo")}
           </button>
         </div>
 
@@ -86,8 +105,12 @@ export function HeroSection() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto hero-animate delay-400">
           {stats.map((stat) => (
             <div key={stat.label} className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-[#10B981] mb-2">{stat.value}</div>
-              <div className="text-sm text-white uppercase tracking-wider">{stat.label}</div>
+              <div className="text-4xl md:text-5xl font-bold text-[#10B981] mb-2">
+                {stat.value}
+              </div>
+              <div className="text-sm text-white uppercase tracking-wider">
+                {stat.label}
+              </div>
             </div>
           ))}
         </div>
