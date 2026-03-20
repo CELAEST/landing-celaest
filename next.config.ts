@@ -27,7 +27,6 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizeCss: true,
     optimizePackageImports: [
-      'lucide-react',
       'next-intl',
       '@radix-ui/react-accordion',
       '@radix-ui/react-dialog',

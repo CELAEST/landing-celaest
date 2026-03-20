@@ -50,9 +50,34 @@
       "instant": {
         "title": "Entrega Instantánea",
         "description": "Descarga inmediatamente después de la compra con acceso de por vida y actualizaciones gratuitas para todos los productos."
+      },
+      "macros": {
+        "title": "Macros Empresariales",
+        "description": "Macros de Excel y herramientas de automatización de datos de grado empresarial con soporte VBA avanzado."
       }
     },
     "exploreCTA": "Explorar Todos los Productos"
+  },
+  "platform": {
+    "title": "Potencia tu Flujo de Trabajo",
+    "subtitle": "Infraestructura de nivel empresarial diseñada para la eficiencia, seguridad y escalabilidad sin límites.",
+    "cards": {
+      "ecosystem": {
+        "title": "Ecosistema de Activos",
+        "tag": "MARKETPLACE",
+        "description": "Explora cientos de macros y scripts verificados listos para integrarse en tu empresa."
+      },
+      "workflow": {
+        "title": "Pipeline de Automatización",
+        "tag": "ADAPTATIVO",
+        "description": "Flujos de trabajo que se adaptan a tus necesidades, desde la idea hasta la producción masiva."
+      },
+      "management": {
+        "title": "Gestión Centralizada",
+        "tag": "CONTROL",
+        "description": "Administra licencias, miembros y versiones desde un dashboard unificado y potente."
+      }
+    }
   },
   "pricing": {
     "title1": "Precios Simples",
@@ -109,13 +134,51 @@
     "contactSales": "Contactar Ventas",
     "guarantee": "Todos los planes incluyen una garantía de devolución de dinero de 30 días. Sin preguntas."
   },
+  "security": {
+    "title1": "Seguridad de",
+    "title2": "Nivel Empresarial",
+    "description": "Protección integral para tus activos digitales con cifrado avanzado, licencias verificadas e infraestructura de alta disponibilidad.",
+    "features": {
+      "verified": {
+        "title": "Licencias Verificadas",
+        "description": "Cada licencia es validada criptográficamente con binding de IP y control de activaciones para prevenir uso no autorizado."
+      },
+      "encryption": {
+        "title": "Cifrado End-to-End",
+        "description": "Datos en tránsito y en reposo protegidos con AES-256 y TLS 1.3. Cumplimiento GDPR y SOC 2 Type II."
+      },
+      "infrastructure": {
+        "title": "Infraestructura Resiliente",
+        "description": "Multi-región con 99.99% uptime garantizado, backups automáticos y failover instantáneo."
+      }
+    }
+  },
   "about": {
-    "title1": "Creado por Devs,",
-    "title2": "Para Devs",
-    "description1": "Somos un equipo de desarrolladores e ingenieros de automatización experimentados que hemos pasado años creando soluciones para empresas Fortune 500. Ahora estamos haciendo que esas mismas herramientas estén disponibles para profesionales en todo el mundo.",
-    "description2": "Nuestra misión es simple: proporcionar herramientas de automatización verificadas y de alta calidad que ahorren tiempo, reduzcan errores y entreguen un ROI medible. Cada producto en nuestro mercado está construido con los mismos estándares que usamos para clientes empresariales.",
+    "title1": "Marketplace",
+    "title2": "Empresarial",
+    "description": "Distribuya, licencie y monetice sus productos digitales con la plataforma B2B más completa del mercado.",
+    "description1": "Somos un equipo de desarrolladores e ingenieros de automatización experimentados que hemos pasado años creando soluciones para empresas Fortune 500.",
+    "description2": "Nuestra misión es proporcionar herramientas de automatización verificadas y de alta calidad que ahorren tiempo, reduzcan errores y entreguen un ROI medible.",
     "badge": "Experiencia en la Industria",
     "badgeYears": "5+",
+    "features": {
+      "vendors": {
+        "title": "Multi-Vendedor",
+        "description": "Soporte para múltiples vendedores con perfiles públicos, catálogos independientes y sistema de reseñas."
+      },
+      "quality": {
+        "title": "Calidad Garantizada",
+        "description": "Cada activo es rigurosamente probado y verificado por nuestro equipo antes de su publicación."
+      },
+      "instant": {
+        "title": "Entrega Instantánea",
+        "description": "Checkout seguro con entrega automática de licencias y acceso inmediato al producto."
+      },
+      "global": {
+        "title": "Alcance Global",
+        "description": "Plataforma multi-idioma con soporte de monedas internacionales y distribución CDN global."
+      }
+    },
     "values": {
       "devFirst": {
         "title": "Enfoque en Desarrolladores",

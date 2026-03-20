@@ -66,23 +66,23 @@ export function Navigation() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         isScrolled
-          ? "bg-brand-deep/95 backdrop-blur-md shadow-lg"
+          ? "bg-brand-deep/95 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.5)] border-b border-white/5"
           : "bg-transparent",
       )}
     >
-      <div className="section-container">
-        <div className="flex items-center justify-between h-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20 lg:h-24">
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2 group"
+            className="flex items-center gap-2 group w-32"
             onClick={handleLogoClick}
           >
-            <div className="w-8 h-8 flex items-center justify-center transition-transform group-hover:scale-110">
-              <Logo color="white" />
+            <div className="w-8 h-8 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
+              <Logo color="#e2e8f0" />
             </div>
             <span
-              className="text-2xl font-black text-brand-ice tracking-tighter notranslate"
+              className="text-2xl font-black bg-gradient-to-r from-white via-brand-ice to-brand-slate-light bg-clip-text text-transparent tracking-tighter notranslate transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
               translate="no"
               style={{
                 fontFamily: "var(--font-display)",
@@ -94,13 +94,16 @@ export function Navigation() {
           </Link>
 
           {/* Navigation Links */}
-          <div className="hidden md:flex items-center gap-8">
+          <div 
+            className="hidden md:flex items-center flex-1 justify-center"
+            style={{ gap: "3.5rem" }}
+          >
             {navLinks.map((link) => (
               <a
                 key={link.id}
                 href={link.href}
                 onClick={(e) => handleSmoothScroll(e, link.id)}
-                className="text-white hover:text-brand-mint transition-colors duration-300 font-medium"
+                className="text-[#94A3B8] hover:text-white transition-all duration-300 font-semibold text-base tracking-wide"
               >
                 {link.label}
               </a>
@@ -112,11 +115,11 @@ export function Navigation() {
             <LanguageSelector />
             <a
               href="https://celaest-dashboard.vercel.app/?mode=signin"
-              className="hidden md:block text-white hover:text-brand-mint transition-colors"
+              className="hidden md:block text-brand-slate-light hover:text-white transition-colors text-sm font-medium"
             >
               {t("signIn")}
             </a>
-            <Button size="default" asChild>
+            <Button size="default" className="bg-brand-neon text-brand-dark hover:bg-brand-ice shadow-[0_0_15px_rgba(34,211,238,0.3)] hover:shadow-[0_0_25px_rgba(34,211,238,0.5)] transition-all font-bold tracking-wide" asChild>
               <a href="https://celaest-dashboard.vercel.app/?mode=signup">
                 {t("getStarted")}
               </a>

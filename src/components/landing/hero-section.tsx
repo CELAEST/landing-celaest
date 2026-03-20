@@ -1,10 +1,10 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { ArrowRight, Play } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
-export function HeroSection() {
+export function HeroSection({ splineBackground }: { splineBackground?: React.ReactNode }) {
   const t = useTranslations("hero");
 
   const stats = [
@@ -15,111 +15,96 @@ export function HeroSection() {
   ];
 
   return (
-    <section
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0F172A]"
-      style={{ minHeight: "100vh" }}
-    >
-      {/* Video Background - Lazy loaded for performance */}
-      <div className="absolute inset-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="none"
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{
-            opacity: 0.65,
-            maskImage:
-              "linear-gradient(to bottom, black 0%, black 70%, transparent 100%)",
-            WebkitMaskImage:
-              "linear-gradient(to bottom, black 0%, black 70%, transparent 100%)",
-            contentVisibility: "auto",
-          }}
-          poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1' style='background:%230F172A'/%3E"
-          suppressHydrationWarning
-        >
-          <source src="/videos/background.webm" type="video/webm" />
-        </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0F172A]/5 via-[#0F172A]/30 to-[#0F172A]" />
+    <section className="relative min-h-screen flex flex-col justify-end lg:justify-center overflow-hidden bg-brand-dark pt-24 sm:pt-32 pb-6 sm:pb-10 lg:pb-16 cursor-default">
+      {/* Spline 3D Background — injected via Server Component Composition */}
+      {splineBackground}
 
-        {/* Bottom blur overlay for smooth fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#0F172A] via-[#0F172A]/95 to-transparent backdrop-blur-sm" />
-
-        {/* Animated grid overlay - subtle mint accent */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.02)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
-
-        {/* Subtle gradient accent top right */}
-        <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-[#10B981]/5 to-transparent" />
+      {/* Responsive gradient overlays */}
+      <div className="absolute inset-0 z-[1] pointer-events-none">
+        {/* Mobile: bottom-heavy gradient so robot shows at top */}
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/70 to-brand-dark/20 lg:hidden" />
+        {/* Desktop: left-to-right gradient */}
+        <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-brand-dark/80 via-brand-dark/30 to-transparent" />
+        {/* Bottom fade for stats */}
+        <div className="absolute bottom-0 left-0 right-0 h-1/4 bg-gradient-to-t from-brand-dark/70 to-transparent" />
+        {/* Subtle neon glows */}
+        <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-brand-neon/5 to-transparent blur-[100px] sm:blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-brand-neon-blue/5 to-transparent blur-[100px] sm:blur-[120px]" />
       </div>
 
-      {/* Content */}
-      <div
-        className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-32 text-center"
-        style={{ minHeight: "80vh" }}
-      >
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#334155]/40 border border-[#10B981]/20 rounded-full mb-8 backdrop-blur-sm hero-animate">
-          <div className="w-2 h-2 bg-[#10B981] rounded-full animate-pulse" />
-          <span className="text-sm text-[#E2E8F0]">{t("badge")}</span>
-        </div>
+      {/* Content — pointer-events-none lets mouse pass through to Spline */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pointer-events-none">
 
-        {/* Main Headline */}
-        <h1
-          className="text-7xl md:text-8xl lg:text-9xl font-bold text-[#F8FAFC] mb-6 tracking-tight hero-animate delay-100"
-          style={{ minHeight: "280px" }}
-        >
-          {t("headline1")}
-          <br />
-          <span className="bg-gradient-to-r from-[#10B981] to-[#059669] bg-clip-text text-transparent">
-            {t("headline2")}
-          </span>
-        </h1>
-
-        {/* Subheadline */}
-        <p
-          className="text-xl md:text-2xl text-[#E2E8F0] max-w-3xl mx-auto mb-12 leading-relaxed hero-animate delay-200"
-          style={{ minHeight: "120px" }}
-        >
-          {t("subheadline1")}
-          <br />
-          {t("subheadline2")}
-        </p>
-
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 hero-animate delay-300">
-          <a
-            href="https://celaest-dashboard.vercel.app/?tab=marketplace"
-            className="group px-8 py-4 bg-[#10B981] text-white font-bold rounded-lg hover:bg-[#059669] transition-all hover:shadow-xl hover:shadow-[#10B981]/30 hover:scale-105 flex items-center gap-3"
+        {/* Text Content */}
+        <div className="max-w-2xl mb-8 sm:mb-12 lg:mb-16 pt-4 sm:pt-10 lg:pt-0 text-center lg:text-left mx-auto lg:mx-0">
+          {/* Badge */}
+          <div
+            className="animate-fade-up inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-brand-gray/40 border border-brand-neon/20 rounded-full mb-6 sm:mb-8 backdrop-blur-md"
           >
-            {t("browseCTA")}
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </a>
-          <button className="group px-8 py-4 bg-transparent border-2 border-[#334155] text-[#F8FAFC] font-bold rounded-lg hover:border-[#10B981] hover:bg-[#10B981]/5 transition-all flex items-center gap-3">
-            <Play className="w-5 h-5" />
-            {t("watchDemo")}
-          </button>
+            <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-brand-neon rounded-full animate-pulse shadow-[0_0_10px_rgba(34,211,238,0.6)]" />
+            <span className="text-xs sm:text-sm font-medium text-brand-soft tracking-wide">{t("badge")}</span>
+          </div>
+
+          {/* Main Headline */}
+          <h1
+            className="animate-fade-up delay-100 text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] xl:text-[4.5rem] font-black mb-4 sm:mb-6 tracking-[-0.02em] leading-[1.05]"
+          >
+             <span className="text-[#D1D5DB] drop-shadow-md">
+              {t("headline1")}
+             </span>{" "}
+            <span className="bg-gradient-to-r from-brand-neon to-brand-neon-blue bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(34,211,238,0.2)]">
+              <br className="hidden sm:block" /> {t("headline2")}
+            </span>
+          </h1>
+
+          {/* Subheadline */}
+          <p
+            className="animate-fade-up delay-200 text-base sm:text-lg md:text-xl text-brand-slate-light max-w-xl mb-8 sm:mb-10 lg:mb-12 leading-relaxed mx-auto lg:mx-0"
+          >
+            {t("subheadline1")} {t("subheadline2")}
+          </p>
+
+          {/* CTA Buttons */}
+          <div
+            className="animate-fade-up delay-300 flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-3 sm:gap-4"
+          >
+            <a
+              href="https://celaest-dashboard.vercel.app/?tab=marketplace"
+              className="pointer-events-auto group relative w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-brand-neon text-brand-dark font-bold rounded-xl overflow-hidden shadow-[0_0_40px_rgba(34,211,238,0.2)] hover:shadow-[0_0_60px_rgba(34,211,238,0.4)] transition-all flex items-center justify-center gap-3 text-sm sm:text-base"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-brand-neon to-brand-neon-blue opacity-0 group-hover:opacity-100 transition-opacity" />
+              <span className="relative z-10 flex items-center gap-2">
+                {t("browseCTA")}
+                <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </a>
+            <button className="pointer-events-auto group w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-transparent border-2 border-brand-slate text-brand-ice font-bold rounded-xl hover:border-brand-neon hover:bg-brand-neon/5 transition-all flex items-center justify-center gap-3 text-sm sm:text-base">
+              <Play className="w-4 sm:w-5 h-4 sm:h-5" />
+              {t("watchDemo")}
+            </button>
+          </div>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto hero-animate delay-400">
-          {stats.map((stat) => (
-            <div key={stat.label} className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-[#10B981] mb-2">
-                {stat.value}
-              </div>
-              <div className="text-sm text-white uppercase tracking-wider">
-                {stat.label}
-              </div>
+        <div
+          className="animate-fade-up delay-400 w-full relative mt-4 sm:mt-8 lg:mt-16"
+        >
+          <div className="pointer-events-auto relative z-10 w-full mx-auto rounded-2xl sm:rounded-3xl border border-white/10 bg-brand-gray/30 backdrop-blur-md p-4 sm:p-6 lg:p-8 shadow-2xl overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-neon/50 to-transparent" />
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+              {stats.map((stat, i) => (
+                <div key={stat.label} className="text-center relative">
+                  {i !== 0 && <div className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 w-px h-12 bg-white/10" />}
+                  <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-b from-white to-brand-slate-light bg-clip-text text-transparent mb-1 sm:mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-[10px] sm:text-xs text-brand-neon font-mono uppercase tracking-widest">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-[#475569] rounded-full flex items-start justify-center p-2">
-          <div className="w-1 h-3 bg-[#10B981] rounded-full" />
+          </div>
         </div>
       </div>
     </section>

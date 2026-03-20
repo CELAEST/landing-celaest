@@ -1,0 +1,26 @@
+▲ Next.js 16.1.4 (Turbopack)
+- Local:         http://localhost:3008
+- Network:       http://192.168.1.6:3008
+- Experiments (use with caution):
+  ✓ optimizeCss
+  · optimizePackageImports
+
+✓ Starting...
+✓ Ready in 1933ms
+○ Compiling /[locale] ...
+ GET /es 200 in 6.5s (compile: 5.9s, proxy.ts: 185ms, generate-params: 640ms, render: 462ms)
+ GET /es 200 in 468ms (compile: 171ms, proxy.ts: 11ms, generate-params: 10ms, render: 285ms)
+ GET /es 200 in 156ms (compile: 18ms, proxy.ts: 8ms, generate-params: 9ms, render: 130ms)
+ GET /es 200 in 148ms (compile: 18ms, proxy.ts: 8ms, generate-params: 7ms, render: 122ms)
+ GET /es 200 in 170ms (compile: 19ms, proxy.ts: 7ms, generate-params: 7ms, render: 144ms)
+ GET /es 200 in 149ms (compile: 13ms, proxy.ts: 6ms, generate-params: 6ms, render: 130ms)
+ GET /es 200 in 139ms (compile: 16ms, proxy.ts: 4ms, generate-params: 5ms, render: 119ms)
+ GET /es 200 in 217ms (compile: 39ms, proxy.ts: 33ms, generate-params: 9ms, render: 145ms)
+ GET /es 200 in 231ms (compile: 40ms, proxy.ts: 21ms, generate-params: 12ms, render: 170ms)
+
+C:\Users\user\Music\landing-celaest>
+
+C:\Users\user\Music\landing-celaest>"d" no se reconoce como un comando interno o externo,
+programa o archivo por lotes ejecutable.
+
+C:\Users\user\Music\landing-celaest>

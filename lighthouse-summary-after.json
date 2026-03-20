@@ -1,0 +1,67 @@
+{
+  "scores": {
+    "performance": 51,
+    "accessibility": 100,
+    "best-practices": 79,
+    "seo": 100
+  },
+  "metrics": {
+    "LCP": "7.5 s",
+    "FCP": "1.2 s",
+    "TBT": "1,010 ms",
+    "CLS": "0",
+    "SpeedIndex": "4.4 s"
+  },
+  "network": [
+    {
+      "url": "node_modules_%40splinetool_runtime_build_runtime_5cafa62e.js",
+      "sizeKB": 638,
+      "timeMs": null
+    },
+    {
+      "url": "node_modules_next_dist_compiled_next-devtools_index_1dd7fb59.js",
+      "sizeKB": 219,
+      "timeMs": null
+    },
+    {
+      "url": "node_modules_next_dist_compiled_react-dom_1e674e59._.js",
+      "sizeKB": 178,
+      "timeMs": null
+    },
+    {
+      "url": "node_modules_51233e66._.js",
+      "sizeKB": 170,
+      "timeMs": null
+    },
+    {
+      "url": "node_modules_next_dist_client_17643121._.js",
+      "sizeKB": 120,
+      "timeMs": null
+    },
+    {
+      "url": "83afe278b6a6bb3c-s.p.3a6ba036.woff2",
+      "sizeKB": 48,
+      "timeMs": null
+    },
+    {
+      "url": "node_modules_next_dist_f3530cac._.js",
+      "sizeKB": 39,
+      "timeMs": null
+    },
+    {
+      "url": "node_modules_3c1060d5._.js",
+      "sizeKB": 38,
+      "timeMs": null
+    },
+    {
+      "url": "node_modules_next_dist_compiled_react-server-dom-turbopack_9212ccad._.js",
+      "sizeKB": 31,
+      "timeMs": null
+    },
+    {
+      "url": "node_modules_next_dist_compiled_a0e4c7b4._.js",
+      "sizeKB": 28,
+      "timeMs": null
+    }
+  ]
+}
