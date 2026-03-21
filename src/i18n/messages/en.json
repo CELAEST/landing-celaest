@@ -1,8 +1,9 @@
 {
   "nav": {
+    "platform": "Platform",
     "products": "Products",
+    "security": "Security",
     "pricing": "Pricing",
-    "about": "About",
     "faq": "FAQ",
     "signIn": "Sign In",
     "getStarted": "Get Started"

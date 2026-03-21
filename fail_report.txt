@@ -1,13 +1,9 @@
-=== FAILING AUDITS BY CATEGORY ===
+=== FAILING METRICS & SCORES ===
 
+Category: ACCESSIBILITY (100.0)
 
-Category: ACCESSIBILITY (100)
+Category: BEST-PRACTICES (100.0)
 
-
-Category: BEST-PRACTICES (100)
-
-
-Category: SEO (92)
+Category: SEO (92.0)
   - Audit: canonical [Score: 0]
     Title: Document does not have a valid `rel=canonical`
-    Explanation: Points to another `hreflang` location (https://landing-celaest.vercel.app/es)

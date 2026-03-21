@@ -68,8 +68,8 @@ export const EnterpriseLicenseIcon = ({ active }: { active: boolean }) => (
 
     {/* Validation Pulses (Authentication Success) */}
     {active && (
-       <motion.circle cx="50" cy="50" r="10" fill="none" stroke="#22d3ee" strokeWidth="2"
-         animate={{ r: [10, 45], opacity: [0.8, 0] }} transition={{ duration: 1.2, repeat: Infinity, ease: "easeOut" }} />
+       <motion.circle cx="50" cy="50" r="10" fill="none" stroke="#22d3ee" strokeWidth="2" style={{ transformOrigin: "center" }}
+         animate={{ scale: [1, 4.5], opacity: [0.8, 0] }} transition={{ duration: 1.2, repeat: Infinity, ease: "easeOut" }} />
     )}
   </svg>
 );
@@ -103,9 +103,9 @@ export const EnterpriseStatusBadge = ({ active }: { active: boolean }) => (
     )}
     <svg viewBox="0 0 100 100" className="w-2.5 h-2.5 shrink-0 relative z-10">
       <circle cx="50" cy="50" r="16" fill="#10b981" className={`${active ? "shadow-[0_0_8px_#10b981]" : ""}`} />
-      <motion.circle cx="50" cy="50" r="40" fill="none" stroke="#10b981" strokeWidth="12"
+      <motion.circle cx="50" cy="50" r="40" fill="none" stroke="#10b981" strokeWidth="12" style={{ transformOrigin: "center" }}
         animate={active ? { scale: [0.3, 1], opacity: [1, 0] } : { scale: 0.3, opacity: 0 }} transition={{ duration: 1.5, repeat: Infinity }} />
-      <motion.circle cx="50" cy="50" r="40" fill="none" stroke="#10b981" strokeWidth="8"
+      <motion.circle cx="50" cy="50" r="40" fill="none" stroke="#10b981" strokeWidth="8" style={{ transformOrigin: "center" }}
         animate={active ? { scale: [0.3, 1], opacity: [1, 0] } : { scale: 0.3, opacity: 0 }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.75 }} />
     </svg>
     <span className={`text-[9px] font-mono tracking-wider font-bold relative z-10 transition-colors duration-300 ${active ? "text-emerald-400 drop-shadow-[0_0_4px_rgba(16,185,129,0.5)]" : "text-emerald-600"}`}>

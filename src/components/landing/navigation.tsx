@@ -55,9 +55,10 @@ export function Navigation() {
   };
 
   const navLinks = [
+    { href: "#platform", label: t("platform"), id: "platform" },
     { href: "#products", label: t("products"), id: "products" },
+    { href: "#security", label: t("security"), id: "security" },
     { href: "#pricing", label: t("pricing"), id: "pricing" },
-    { href: "#about", label: t("about"), id: "about" },
     { href: "#faq", label: t("faq"), id: "faq" },
   ];
 
@@ -94,10 +95,7 @@ export function Navigation() {
           </Link>
 
           {/* Navigation Links */}
-          <div 
-            className="hidden md:flex items-center flex-1 justify-center"
-            style={{ gap: "3.5rem" }}
-          >
+          <div className="hidden md:flex items-center flex-1 justify-center gap-4 lg:gap-8 xl:gap-14">
             {navLinks.map((link) => (
               <a
                 key={link.id}
