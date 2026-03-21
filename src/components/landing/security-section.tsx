@@ -32,7 +32,7 @@ export function SecuritySection() {
   const isAnyActive = hoveredNode !== null;
 
   return (
-    <section className="py-16 sm:py-24 bg-brand-dark relative overflow-hidden">
+    <section id="security" className="py-16 sm:py-24 bg-brand-dark relative overflow-hidden">
       {/* Background Ambience */}
       <div className="absolute inset-0 bg-brand-deep pointer-events-none" />
       {/* Permanent subtle aura from Robot */}

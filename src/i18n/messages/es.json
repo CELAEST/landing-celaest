@@ -1,8 +1,9 @@
 {
   "nav": {
+    "platform": "Plataforma",
     "products": "Productos",
+    "security": "Seguridad",
     "pricing": "Precios",
-    "about": "Nosotros",
     "faq": "Preguntas",
     "signIn": "Iniciar Sesión",
     "getStarted": "Comenzar"
