@@ -13,4 +13,4 @@ Category: BEST-PRACTICES (81)
 Category: SEO (92)
   - Audit: canonical [Score: 0]
     Title: Document does not have a valid `rel=canonical`
-    Explanation: Points to another `hreflang` location (http://localhost:3008/es)
+    Explanation: Points to another `hreflang` location (https://landing-celaest.vercel.app/es)
