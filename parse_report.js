@@ -1,5 +1,5 @@
 const fs = require('fs');
-const report = JSON.parse(fs.readFileSync('C:\\Users\\user\\AppData\\Local\\Temp\\chrome-devtools-mcp-3TNwlr\\report.json', 'utf8'));
+const report = JSON.parse(fs.readFileSync('C:\\Users\\user\\AppData\\Local\\Temp\\chrome-devtools-mcp-QHjiia\\report.json', 'utf8'));
 
 let out = "=== FAILING AUDITS BY CATEGORY ===\n";
 for (const [catKey, cat] of Object.entries(report.categories)) {

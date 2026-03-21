@@ -4,10 +4,7 @@
 Category: ACCESSIBILITY (100)
 
 
-Category: BEST-PRACTICES (81)
-  - Audit: deprecations [Score: 0]
-    Title: Uses deprecated APIs
-    Value: 2 warnings found
+Category: BEST-PRACTICES (100)
 
 
 Category: SEO (92)

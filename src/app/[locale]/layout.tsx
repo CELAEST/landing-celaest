@@ -35,8 +35,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://celaest.com');
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://landing-celaest.vercel.app';
 
   const titles = {
     en: "Celeast - Premium Digital Asset Marketplace",

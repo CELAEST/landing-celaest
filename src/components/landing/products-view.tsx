@@ -434,7 +434,7 @@ export function ProductsSection() {
               </div>
 
               {/* Minimal floating tech accent */}
-              <div className="absolute bottom-5 right-5 flex items-center gap-1.5 opacity-50 z-20 pointer-events-none hidden md:flex">
+              <div className="absolute bottom-5 right-5 flex items-center gap-1.5 opacity-50 z-20 pointer-events-none md:flex">
                 <div className="w-1 h-1 rounded-full bg-brand-neon" />
                 <span className="text-[9px] font-mono tracking-[0.2em] text-zinc-400 uppercase">
                   System Optimized
