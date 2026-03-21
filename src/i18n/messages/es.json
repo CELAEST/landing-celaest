@@ -82,7 +82,7 @@
   "pricing": {
     "title1": "Precios Simples",
     "title2": "y Transparentes",
-    "subtitle": "Elige el plan que se ajuste a tus necesidades. Todos los planes incluyen acceso de por vida a los activos adquiridos.",
+    "subtitle": "Elige el plan que se ajuste a la escala de tu empresa. Todos los planes incluyen infraestructura en la nube, protección continua y gestión centralizada de licencias y APIs.",
     "perMonth": "/mes",
     "plans": {
       "starter": {
@@ -259,7 +259,7 @@
       },
       {
         "question": "¿Cómo funciona el licenciamiento?",
-        "answer": "Cada compra incluye una licencia comercial para el número de usuarios especificado en tu plan. Obtienes acceso de por vida al activo adquirido, incluidas todas las actualizaciones futuras. Los planes empresariales ofrecen opciones de licenciamiento personalizadas que incluyen derechos de marca blanca y licencias de usuario ilimitadas."
+        "answer": "Cada compra o suscripción activa incluye una licencia comercial para el número de usuarios especificado en tu plan. Obtienes acceso continuo al repositorio del activo, gestión centralizada desde tu dashboard, integración API y todas las actualizaciones futuras. Los planes empresariales ofrecen opciones de licenciamiento personalizadas que incluyen derechos de marca blanca y licencias de usuario ilimitadas."
       },
       {
         "question": "¿Puedo obtener un reembolso si el producto no me funciona?",

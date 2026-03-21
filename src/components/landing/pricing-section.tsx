@@ -19,29 +19,75 @@ export function PricingSection() {
   const t = useTranslations("pricing");
 
   return (
-    <section id="pricing" className="py-24 sm:py-32 bg-[#030303] relative overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-neon/20 to-transparent" />
-      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-brand-neon-blue/[0.04] rounded-full blur-[150px] translate-x-1/2 pointer-events-none" />
+    <section id="pricing" className="py-16 sm:py-24 bg-black relative overflow-hidden">
+      {/* High-Performance Animated Background (No Video) */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        {/* Vercel-style subtle grid background starting behind cards */}
+        <div
+          className="absolute inset-x-0 top-[10%] bottom-0 z-0 opacity-[0.15] mix-blend-screen"
+          style={{
+            backgroundImage: `linear-gradient(to right, rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,1) 1px, transparent 1px)`,
+            backgroundSize: "40px 40px",
+            maskImage:
+              "radial-gradient(ellipse 60% 80% at 50% 50%, black 10%, transparent 100%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse 60% 80% at 50% 50%, black 10%, transparent 100%)",
+          }}
+        />
+
+        {/* Animated Aurora / Plasma Orbs */}
+        <motion.div
+          animate={{
+            scale: [1, 1.15, 1],
+            opacity: [0.15, 0.3, 0.15],
+            x: ["-5%", "5%", "-5%"],
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[20%] left-[10%] w-[600px] h-[600px] bg-brand-neon/30 rounded-full blur-[140px] mix-blend-screen"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.25, 1],
+            opacity: [0.1, 0.25, 0.1],
+            x: ["5%", "-5%", "5%"],
+            y: ["5%", "-5%", "5%"],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2,
+          }}
+          className="absolute top-[10%] right-[10%] w-[700px] h-[700px] bg-brand-neon-blue/20 rounded-full blur-[160px] mix-blend-screen"
+        />
+        <motion.div
+           animate={{
+            scale: [1, 1.1, 1],
+            opacity: [0.1, 0.2, 0.1],
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute bottom-[-10%] left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-emerald-500/15 rounded-full blur-[150px] mix-blend-screen"
+        />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-14 sm:mb-20"
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-5 tracking-tight">
-            {t("title1")}{" "}
-            <span className="bg-gradient-to-r from-brand-neon to-brand-neon-blue bg-clip-text text-transparent">
-              {t("title2")}
-            </span>
-          </h2>
-          <p className="text-brand-slate-light text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-            {t("subtitle")}
-          </p>
-        </motion.div>
+        {/* Header - Stacked layout matching the upper sections and aligned with cards */}
+        <div className="max-w-5xl mx-auto w-full mb-14 sm:mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col gap-2 text-left"
+          >
+            <h2 className="text-4xl sm:text-5xl lg:text-[56px] tracking-tight leading-[1.1] text-white font-semibold flex flex-col sm:inline-block">
+              <span>{t("title1")} </span>
+              <span className="text-brand-slate-light font-medium">{t("title2")}</span>
+            </h2>
+            <p className="text-brand-slate-light text-xl sm:text-2xl md:text-3xl lg:text-[32px] font-medium tracking-tight leading-[1.25] max-w-4xl mt-3">
+              {t("subtitle")}
+            </p>
+          </motion.div>
+        </div>
 
         {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 max-w-5xl mx-auto items-stretch">
@@ -56,18 +102,19 @@ export function PricingSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="relative group"
+                whileHover={{ y: -8 }}
+                className="relative group cursor-pointer"
               >
                 {/* Glow ring for popular */}
                 {plan.popular && (
-                  <div className="absolute -inset-[1px] bg-gradient-to-b from-brand-neon/50 via-brand-neon-blue/30 to-brand-neon/50 rounded-[25px] blur-[2px]" />
+                  <div className="absolute -inset-[1px] bg-gradient-to-b from-brand-neon/50 via-brand-neon-blue/30 to-brand-neon/50 rounded-[25px] blur-[2px] transition-all duration-500 group-hover:blur-[6px] group-hover:opacity-80 opacity-60" />
                 )}
 
                 <div
                   className={`relative h-full rounded-3xl p-7 sm:p-8 flex flex-col transition-all duration-500 ${
                     plan.popular
-                      ? "bg-[#0a0a0a] border border-brand-neon/30 shadow-xl shadow-brand-neon/5"
-                      : "bg-[#080808] border border-white/5 hover:border-white/10 hover:shadow-lg hover:shadow-brand-neon/5"
+                      ? "bg-brand-gray border border-brand-neon/30 shadow-[0_0_30px_rgba(34,211,238,0.05)] group-hover:shadow-[0_0_50px_rgba(34,211,238,0.2)] group-hover:border-brand-neon/60 group-hover:bg-brand-surface-alt"
+                      : "bg-brand-surface-alt border border-white/5 shadow-xl shadow-black/50 group-hover:bg-brand-surface-alt group-hover:border-white/20 group-hover:shadow-[0_0_40px_rgba(255,255,255,0.04)]"
                   }`}
                 >
                   {plan.popular && (

@@ -3,6 +3,11 @@ import type { Locale } from "@/i18n/routing";
 import { Navigation } from "@/components/landing/navigation";
 import { HeroSection } from "@/components/landing/hero-section";
 import dynamic from "next/dynamic";
+import {
+  generateOrganizationSchema,
+  generateWebSiteSchema,
+  generateSoftwareSchema,
+} from "@/lib/structured-data";
 
 import { SplineBackground } from "@/components/landing/spline-minimal-loader";
 
@@ -13,7 +18,7 @@ const ProductsSection = dynamic(
       default: mod.ProductsSection,
     })),
   {
-    loading: () => <div className="py-24 bg-[#020202]" />,
+    loading: () => <div className="py-24 bg-brand-deep" />,
   },
 );
 const PricingSection = dynamic(
@@ -22,34 +27,26 @@ const PricingSection = dynamic(
       default: mod.PricingSection,
     })),
   {
-    loading: () => <div className="py-24 bg-[#030303]" />,
+    loading: () => <div className="py-24 bg-brand-deep" />,
   },
 );
-const ReviewsSection = dynamic(
+const SecuritySection = dynamic(
   () =>
-    import("@/components/landing/reviews-section").then((mod) => ({
-      default: mod.ReviewsSection,
+    import("@/components/landing/security-section").then((mod) => ({
+      default: mod.SecuritySection,
     })),
   {
-    loading: () => <div className="py-24 bg-[#020202]" />,
+    loading: () => <div className="py-24 bg-brand-deep" />,
   },
 );
-const AboutSection = dynamic(
-  () =>
-    import("@/components/landing/about-section").then((mod) => ({
-      default: mod.AboutSection,
-    })),
-  {
-    loading: () => <div className="py-24 bg-[#020202]" />,
-  },
-);
+
 const PlatformSection = dynamic(
   () =>
     import("@/components/landing/platform-section").then((mod) => ({
       default: mod.PlatformSection,
     })),
   {
-    loading: () => <div className="py-24 bg-[#020202]" />,
+    loading: () => <div className="py-24 bg-brand-deep" />,
   },
 );
 const FAQSection = dynamic(
@@ -58,7 +55,7 @@ const FAQSection = dynamic(
       default: mod.FAQSection,
     })),
   {
-    loading: () => <div className="py-24 bg-[#030303]" />,
+    loading: () => <div className="py-24 bg-brand-deep" />,
   },
 );
 const Footer = dynamic(
@@ -67,7 +64,7 @@ const Footer = dynamic(
       default: mod.Footer,
     })),
   {
-    loading: () => <div className="py-12 bg-[#0F172A]" />,
+    loading: () => <div className="py-12 bg-slate-900" />,
   },
 );
 
@@ -86,6 +83,19 @@ export default async function HomePage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-brand-dark">
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateOrganizationSchema()) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateWebSiteSchema()) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateSoftwareSchema()) }}
+      />
       <Navigation />
       <main>
         <HeroSection
@@ -97,9 +107,9 @@ export default async function HomePage({ params }: PageProps) {
         />
         <PlatformSection />
         <ProductsSection />
+        <SecuritySection />
         <PricingSection />
-        <ReviewsSection />
-        <AboutSection />
+
         <FAQSection />
       </main>
       <Footer />

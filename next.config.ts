@@ -58,6 +58,22 @@ const nextConfig: NextConfig = {
             key: 'Referrer-Policy',
             value: 'origin-when-cross-origin',
           },
+          {
+            key: 'Content-Security-Policy',
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-eval' 'unsafe-inline' https: http: blob: data:",
+              "style-src 'self' 'unsafe-inline' https: http:",
+              "img-src 'self' https: http: data: blob:",
+              "font-src 'self' https: http: data:",
+              "connect-src 'self' https: http: wss: ws: blob: data:",
+              "worker-src 'self' blob: data:",
+              "frame-src 'self' https: http:",
+              "object-src 'none'",
+              "base-uri 'self'",
+              "form-action 'self'",
+            ].join('; '),
+          },
         ],
       },
       {

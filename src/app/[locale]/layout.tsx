@@ -3,6 +3,8 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Inter, Space_Grotesk } from "next/font/google";
+import { Partytown } from '@builder.io/partytown/react';
+import { Analytics } from "@/components/analytics";
 import { routing } from "@/i18n/routing";
 import "@/styles/globals.css";
 
@@ -33,6 +35,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://celaest.com';
 
   const titles = {
     en: "Celeast - Premium Digital Asset Marketplace",
@@ -44,12 +47,48 @@ export async function generateMetadata({
     es: "Activos digitales premium y verificados para profesionales serios. Macros Excel, scripts Python y software empresarial con ROI instantáneo.",
   };
 
+  const title = titles[locale as keyof typeof titles];
+  const description = descriptions[locale as keyof typeof descriptions];
+
   return {
     title: {
-      default: titles[locale as keyof typeof titles],
+      default: title,
       template: "%s | Celeast",
     },
-    description: descriptions[locale as keyof typeof descriptions],
+    description,
+    metadataBase: new URL(baseUrl),
+    alternates: {
+      canonical: `${baseUrl}/${locale}`,
+      languages: {
+        en: `${baseUrl}/en`,
+        es: `${baseUrl}/es`,
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url: `${baseUrl}/${locale}`,
+      siteName: 'CELAEST',
+      locale: locale === 'es' ? 'es_ES' : 'en_US',
+      type: 'website',
+      images: [
+        {
+          url: '/robot1.webp',
+          width: 1200,
+          height: 630,
+          alt: 'CELAEST Platform',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/robot1.webp'],
+    },
+    icons: {
+      icon: '/icon.svg',
+    },
   };
 }
 
@@ -77,9 +116,18 @@ export default async function RootLayout({
       lang={locale}
       className={`${inter.variable} ${spaceGrotesk.variable}`}
     >
+      <head>
+        <script 
+          dangerouslySetInnerHTML={{
+            __html: `window.partytown = { exclude: ['SharedStorage', 'sharedStorage', 'AttributionReporting', 'attributionReporting'] };`
+          }}
+        />
+        <Partytown debug={false} forward={['dataLayer.push']} />
+      </head>
       <body className="font-sans antialiased" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           {children}
+          <Analytics />
         </NextIntlClientProvider>
       </body>
     </html>

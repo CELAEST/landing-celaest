@@ -2,32 +2,73 @@
 
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect, useCallback, useState } from "react";
 
 const PLATFORM_CARDS = [
   {
     id: "management",
-    image: "/sesion/1.webp",
     video: "/sesion/1.mp4",
+    accentColor: "rgba(34,211,238,1)",
+    glowColor: "rgba(34,211,238,0.15)",
   },
   {
     id: "workflow",
-    image: "/sesion/2.webp",
     video: "/sesion/2.mp4",
+    accentColor: "rgba(34,211,238,1)",
+    glowColor: "rgba(34,211,238,0.12)",
   },
   {
     id: "ecosystem",
-    image: "/sesion/3.webp",
     video: "/sesion/3.mp4",
-    videoClassName: "object-[80%_center]", // Shifts the image viewport horizontally so the 3D element moves left
+    videoClassName: "object-[80%_center]",
+    accentColor: "rgba(34,211,238,1)",
+    glowColor: "rgba(34,211,238,0.10)",
   },
 ];
 
 export function PlatformSection() {
   const t = useTranslations("platform");
+  const sectionRef = useRef<HTMLElement>(null);
+  const videoRefs = useRef<HTMLVideoElement[]>([]);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const registerVideo = useCallback((el: HTMLVideoElement | null) => {
+    if (el && !videoRefs.current.includes(el)) {
+      videoRefs.current.push(el);
+    }
+  }, []);
+
+  // Pause videos when section out of viewport (saves GPU),
+  // resume when back in view (instant hover again)
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+        videoRefs.current.forEach((vid, i) => {
+          if (entry.isIntersecting) {
+            // Stagger decoder initialization to prevent a massive GPU spike on direct page reload
+            setTimeout(() => {
+              vid.play().catch(() => {});
+            }, i * 150);
+          } else {
+            vid.pause();
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section className="py-24 sm:py-32 bg-brand-dark relative overflow-hidden">
+    <section ref={sectionRef} className="py-16 sm:py-24 bg-brand-dark relative overflow-hidden">
       {/* Background ambient glows */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-gradient-to-r from-transparent via-brand-neon/50 to-transparent opacity-50" />
       <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-brand-neon/5 rounded-full blur-[120px] pointer-events-none" />
@@ -57,14 +98,14 @@ export function PlatformSection() {
             className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] tracking-tight leading-[1.15]"
           >
             <span className="text-white font-semibold">{t("title")}. </span>
-            <span className="text-[#888] font-medium">{t("subtitle")}</span>
+            <span className="text-brand-slate-light font-medium">{t("subtitle")}</span>
           </motion.h2>
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-7">
           {PLATFORM_CARDS.map((card, index) => (
-            <PlatformCard key={card.id} card={card} index={index} />
+            <PlatformCard key={card.id} card={card} index={index} registerVideo={registerVideo} isVisible={isVisible} />
           ))}
         </div>
       </div>
@@ -75,113 +116,99 @@ export function PlatformSection() {
 function PlatformCard({
   card,
   index,
+  registerVideo,
+  isVisible,
 }: {
   card: (typeof PLATFORM_CARDS)[0];
   index: number;
+  registerVideo: (el: HTMLVideoElement | null) => void;
+  isVisible: boolean;
 }) {
   const t = useTranslations(`platform.cards.${card.id}`);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  const handleMouseEnter = () => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(() => {});
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (videoRef.current) {
-      videoRef.current.pause();
-      // Regresar al frame inicial al terminar el hover
-      videoRef.current.currentTime = 0;
-    }
-  };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: 0.1 * (index + 2), duration: 0.5 }}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      className="group relative flex flex-col h-full rounded-[2rem] border border-white/[0.05] bg-[#050505] overflow-hidden hover:border-white/10 hover:bg-[#0A0A0A] hover:shadow-[0_8px_32px_-12px_rgba(255,255,255,0.05)] transition-all duration-500 cursor-pointer"
+    <div
+      className={`group relative flex flex-col rounded-2xl border border-white/[0.06] bg-brand-surface-alt overflow-hidden cursor-pointer transition-[border-color,box-shadow,transform,opacity] duration-700 ease-out hover:border-white/[0.14] hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.9)] ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+      }`}
+      style={{ transitionDelay: `${index * 150}ms` }}
     >
-      {/* Decorative Glow completely outside the video */}
-      <div className="absolute -top-12 -right-12 w-32 h-32 bg-brand-neon/20 blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none will-change-opacity" />
+      {/* Top cyan glow line — visible on hover only (GPU: opacity) */}
+      <div
+        className="absolute top-0 left-0 right-0 h-px z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        style={{ background: `linear-gradient(to right, transparent, ${card.accentColor}, transparent)` }}
+      />
 
-      {/* Media Container: Unaltered video element per instructions */}
-      <div className="relative aspect-[16/10] overflow-hidden rounded-t-[2rem] bg-[#0A0A0A] border-b border-white/[0.04]">
-        {/* Un solo video sin imágenes extra. El navegador extrae su propio primer frame. */}
+      {/* Corner ambient glow — Zero-cost radial gradient (no blur filter) */}
+      <div
+        className="absolute -top-32 -right-32 w-64 h-64 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        style={{ 
+          background: `radial-gradient(circle at center, ${card.glowColor} 0%, transparent 70%)` 
+        }}
+      />
+
+      {/* ── VIDEO ZONE ───────────────────────────────────── */}
+      <div className="relative aspect-[16/10] overflow-hidden rounded-t-2xl bg-brand-gray">
+        {/* Video driven purely by IntersectionObserver (no autoPlay on SSR = no hydration mismatch) */}
         <video
-          ref={videoRef}
+          ref={registerVideo}
           src={card.video}
           preload="auto"
           muted
           loop
           playsInline
           disablePictureInPicture
-          className={`absolute inset-0 w-full h-full object-cover transform-gpu ${card.videoClassName || ""}`}
-        />
-
-        {/* Minimal gradient strictly at bottom edge to blend into dark card gracefully */}
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#050505] to-transparent z-10 transition-colors duration-300 opacity-60" />
+          suppressHydrationWarning
+          className={`absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${card.videoClassName || ""}`}
+        >
+          <track kind="captions" src="data:text/vtt," label="no-captions" />
+        </video>
+        {/* Bottom fade into card body */}
+        <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-brand-surface-alt to-transparent z-10 pointer-events-none" />
+        {/* Side vignettes for depth */}
+        <div className="absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-brand-surface-alt to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-brand-surface-alt to-transparent z-10 pointer-events-none" />
       </div>
 
-      {/* Content Area styled explicitly to match the uploaded reference image */}
-      <div className="relative p-6 sm:p-8 flex flex-col flex-1 z-10">
-        <div className="mb-6 flex items-center justify-between">
-          {/* Tag Pill (Gray with cyan dot as in reference) */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.05]">
-            <div className="w-1.5 h-1.5 bg-brand-neon rounded-full animate-pulse shadow-[0_0_8px_rgba(34,211,238,0.5)]" />
-            <span className="text-[10px] font-bold tracking-widest text-[#888] group-hover:text-[#ccc] transition-colors duration-300 uppercase">
+      {/* ── CONTENT ZONE ─────────────────────────────────── */}
+      <div className="flex flex-col flex-1 px-5 pt-4 pb-6">
+
+        {/* Tag + Arrow row */}
+        <div className="flex items-center justify-between mb-5">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.05]">
+            <div className="w-1.5 h-1.5 bg-brand-neon rounded-full shadow-[0_0_6px_rgba(34,211,238,0.6)]" />
+            <span className="text-[10px] font-bold tracking-[0.14em] text-zinc-500 group-hover:text-zinc-400 transition-colors duration-300 uppercase">
               {t("tag")}
             </span>
           </div>
 
-          {/* Interactive Arrow from the reference design layout */}
-          <div className="w-8 h-8 rounded-full border border-white/[0.05] flex items-center justify-center bg-white/[0.02] group-hover:bg-brand-neon group-hover:border-brand-neon transition-all duration-300 transform -rotate-45 group-hover:rotate-0 group-hover:scale-110">
-            <svg
-              className="w-3.5 h-3.5 text-[#888] group-hover:text-black transition-colors"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2.5}
-                d="M14 5l7 7m0 0l-7 7m7-7H3"
-              />
+          {/* Arrow button */}
+          <div className="w-7 h-7 rounded-full border border-white/[0.05] flex items-center justify-center bg-white/[0.02] group-hover:bg-brand-neon group-hover:border-transparent transition-all duration-300 -rotate-45 group-hover:rotate-0">
+            <svg className="w-3 h-3 text-neutral-500 group-hover:text-black transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
           </div>
         </div>
 
-        <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight mb-3 group-hover:text-brand-neon transition-colors duration-400">
+        {/* Title */}
+        <h3 className="text-[22px] sm:text-[24px] font-bold text-white tracking-tight mb-3 group-hover:text-brand-neon transition-colors duration-300 leading-snug">
           {t("title")}
         </h3>
 
-        <p className="text-brand-slate-light text-sm sm:text-base leading-relaxed line-clamp-3">
+        {/* Description */}
+        <p className="text-zinc-400 text-sm sm:text-[15px] leading-[1.7] line-clamp-3 mb-auto">
           {t("description")}
         </p>
 
-        {/* Explorar -> Bottom layout link */}
-        <div className="flex items-center gap-1.5 text-[#555] group-hover:text-brand-neon transition-colors duration-300 text-[13px] font-semibold mt-auto border-t border-white/[0.03] pt-4">
+        {/* Explorar link */}
+        <div className="mt-5 pt-4 border-t border-white/[0.05] flex items-center gap-2 text-zinc-400 group-hover:text-brand-neon transition-colors duration-300 text-[13px] font-semibold tracking-wide">
           <span>Explorar</span>
-          <svg
-            className="w-3.5 h-3.5 translate-x-0 group-hover:translate-x-1 transition-transform duration-300"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2.5}
-              d="M14 5l7 7m0 0l-7 7m7-7H3"
-            />
+          <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
           </svg>
         </div>
       </div>
-    </motion.div>
+
+    </div>
   );
 }

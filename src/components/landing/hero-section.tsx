@@ -47,19 +47,23 @@ export function HeroSection({ splineBackground }: { splineBackground?: React.Rea
 
           {/* Main Headline */}
           <h1
-            className="animate-fade-up delay-100 text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] xl:text-[4.5rem] font-black mb-4 sm:mb-6 tracking-[-0.02em] leading-[1.05]"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] xl:text-[4.5rem] font-black mb-4 sm:mb-6 leading-[1.05]"
+            style={{
+              fontFamily: "var(--font-display)",
+              letterSpacing: "-0.05em",
+            }}
           >
-             <span className="text-[#D1D5DB] drop-shadow-md">
+             <span className="text-gray-300 drop-shadow-md">
               {t("headline1")}
              </span>{" "}
             <span className="bg-gradient-to-r from-brand-neon to-brand-neon-blue bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(34,211,238,0.2)]">
-              <br className="hidden sm:block" /> {t("headline2")}
+               <br className="hidden sm:block" /> {t("headline2")}
             </span>
           </h1>
 
           {/* Subheadline */}
           <p
-            className="animate-fade-up delay-200 text-base sm:text-lg md:text-xl text-brand-slate-light max-w-xl mb-8 sm:mb-10 lg:mb-12 leading-relaxed mx-auto lg:mx-0"
+            className="text-base sm:text-lg md:text-xl text-brand-slate-light max-w-xl mb-8 sm:mb-10 lg:mb-12 leading-relaxed mx-auto lg:mx-0"
           >
             {t("subheadline1")} {t("subheadline2")}
           </p>

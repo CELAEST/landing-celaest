@@ -47,7 +47,7 @@ export function LanguageSelector() {
           "flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/10 transition-all duration-300 group",
           isPending && "opacity-70 cursor-wait"
         )}
-        aria-label="Select language"
+        aria-label={`Language: ${localeCodes[locale]}`}
         aria-expanded={isOpen}
       >
         {isPending ? (

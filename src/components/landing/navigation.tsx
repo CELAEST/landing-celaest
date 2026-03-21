@@ -103,7 +103,7 @@ export function Navigation() {
                 key={link.id}
                 href={link.href}
                 onClick={(e) => handleSmoothScroll(e, link.id)}
-                className="text-[#94A3B8] hover:text-white transition-all duration-300 font-semibold text-base tracking-wide"
+                className="text-slate-400 hover:text-white transition-all duration-300 font-semibold text-base tracking-wide"
               >
                 {link.label}
               </a>
