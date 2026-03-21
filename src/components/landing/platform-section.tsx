@@ -148,7 +148,7 @@ function PlatformCard({
         <video
           ref={videoRef}
           src={`${card.video}#t=0.01`}
-          preload="metadata"
+          preload="auto"
           muted
           loop
           playsInline
