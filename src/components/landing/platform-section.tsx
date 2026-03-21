@@ -29,17 +29,9 @@ const PLATFORM_CARDS = [
 export function PlatformSection() {
   const t = useTranslations("platform");
   const sectionRef = useRef<HTMLElement>(null);
-  const videoRefs = useRef<HTMLVideoElement[]>([]);
   const [isVisible, setIsVisible] = useState(false);
 
-  const registerVideo = useCallback((el: HTMLVideoElement | null) => {
-    if (el && !videoRefs.current.includes(el)) {
-      videoRefs.current.push(el);
-    }
-  }, []);
-
-  // Pause videos when section out of viewport (saves GPU),
-  // resume when back in view (instant hover again)
+  // Mark section as visible when scrolled into view
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
@@ -49,16 +41,6 @@ export function PlatformSection() {
         if (entry.isIntersecting) {
           setIsVisible(true);
         }
-        videoRefs.current.forEach((vid, i) => {
-          if (entry.isIntersecting) {
-            // Stagger decoder initialization to prevent a massive GPU spike on direct page reload
-            setTimeout(() => {
-              vid.play().catch(() => {});
-            }, i * 150);
-          } else {
-            vid.pause();
-          }
-        });
       },
       { threshold: 0.1 }
     );
@@ -105,7 +87,7 @@ export function PlatformSection() {
         {/* Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-7">
           {PLATFORM_CARDS.map((card, index) => (
-            <PlatformCard key={card.id} card={card} index={index} registerVideo={registerVideo} isVisible={isVisible} />
+            <PlatformCard key={card.id} card={card} index={index} isVisible={isVisible} />
           ))}
         </div>
       </div>
@@ -116,18 +98,31 @@ export function PlatformSection() {
 function PlatformCard({
   card,
   index,
-  registerVideo,
   isVisible,
 }: {
   card: (typeof PLATFORM_CARDS)[0];
   index: number;
-  registerVideo: (el: HTMLVideoElement | null) => void;
   isVisible: boolean;
 }) {
   const t = useTranslations(`platform.cards.${card.id}`);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleMouseEnter = () => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+  };
 
   return (
     <div
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       className={`group relative flex flex-col rounded-2xl border border-white/[0.06] bg-brand-surface-alt overflow-hidden cursor-pointer transition-[border-color,box-shadow,transform,opacity] duration-700 ease-out hover:border-white/[0.14] hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.9)] ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       }`}
@@ -148,18 +143,18 @@ function PlatformCard({
       />
 
       {/* ── VIDEO ZONE ───────────────────────────────────── */}
-      <div className="relative aspect-[16/10] overflow-hidden rounded-t-2xl bg-brand-gray">
-        {/* Video driven purely by IntersectionObserver (no autoPlay on SSR = no hydration mismatch) */}
+      <div className="relative aspect-[16/10] overflow-hidden rounded-t-2xl bg-[#0a0f14]">
+        {/* Video natively renders first frame on load. Played explicitly on hover to maintain 100/100 performance without GPU tax. */}
         <video
-          ref={registerVideo}
-          src={card.video}
-          preload="auto"
+          ref={videoRef}
+          src={`${card.video}#t=0.01`}
+          preload="metadata"
           muted
           loop
           playsInline
           disablePictureInPicture
           suppressHydrationWarning
-          className={`absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${card.videoClassName || ""}`}
+          className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${card.videoClassName || ""}`}
         >
           <track kind="captions" src="data:text/vtt," label="no-captions" />
         </video>
@@ -171,7 +166,7 @@ function PlatformCard({
       </div>
 
       {/* ── CONTENT ZONE ─────────────────────────────────── */}
-      <div className="flex flex-col flex-1 px-5 pt-4 pb-6">
+      <div className="flex flex-col flex-1 px-5 pt-4 pb-6 relative z-20">
 
         {/* Tag + Arrow row */}
         <div className="flex items-center justify-between mb-5">
