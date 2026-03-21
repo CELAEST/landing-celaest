@@ -21,12 +21,12 @@ export function SecuritySection() {
   // Path definitions for central alignment to the 40x40 robot ears and trunk
   // SVG ViewBox is 1000x650. Center shifted UP to Top-[40%] (Y:260)
   const paths = {
-    // Left ear is approx X:420, Y:245
-    verified: "M 220 98 C 350 98, 300 245, 420 245",
-    // Right ear is approx X:580, Y:245
-    encryption: "M 780 98 C 650 98, 700 245, 580 245",
-    // Bottom trunk is approx X:500, Y:315 (from bottom node at Y:487)
-    infrastructure: "M 500 487 C 500 420, 500 370, 500 315"
+    // Left ear is approx X:412, Y:245 (To stop at edge of robot)
+    verified: "M 380 120 C 395 120, 380 245, 412 245",
+    // Right ear is approx X:588, Y:245
+    encryption: "M 620 120 C 605 120, 620 245, 588 245",
+    // Bottom trunk is approx X:500, Y:323
+    infrastructure: "M 500 412 C 500 370, 500 370, 500 323"
   };
 
   const isAnyActive = hoveredNode !== null;
@@ -89,7 +89,7 @@ export function SecuritySection() {
             {/* ACTIVE GLOWING PATHS (Node Specific) */}
             <g filter="url(#blur-glow)">
               {/* Verified Path */}
-              <path d={paths.verified} fill="none" stroke="url(#neon-glow)" strokeWidth="2" 
+              <path d={paths.verified} fill="none" stroke="#22d3ee" strokeWidth="2" 
                 className={`transition-opacity duration-500 ${hoveredNode === "verified" || hoveredNode === "all" ? "opacity-100" : (isAnyActive ? "opacity-10" : "opacity-0")}`} />
               <motion.path d={paths.verified} fill="none" stroke="#fff" strokeWidth="3" strokeDasharray="50 1000" strokeLinecap="round"
                 animate={{ strokeDashoffset: hoveredNode === "verified" || hoveredNode === "all" ? [1050, -50] : 1050 }}
@@ -97,7 +97,7 @@ export function SecuritySection() {
                 className={hoveredNode === "verified" || hoveredNode === "all" ? "opacity-100" : "opacity-0"} />
 
               {/* Encryption Path */}
-              <path d={paths.encryption} fill="none" stroke="url(#neon-glow)" strokeWidth="2" 
+              <path d={paths.encryption} fill="none" stroke="#22d3ee" strokeWidth="2" 
                 className={`transition-opacity duration-500 ${hoveredNode === "encryption" || hoveredNode === "all" ? "opacity-100" : (isAnyActive ? "opacity-10" : "opacity-0")}`} />
               <motion.path d={paths.encryption} fill="none" stroke="#fff" strokeWidth="3" strokeDasharray="50 1000" strokeLinecap="round"
                 animate={{ strokeDashoffset: hoveredNode === "encryption" || hoveredNode === "all" ? [1050, -50] : 1050 }}
@@ -120,7 +120,7 @@ export function SecuritySection() {
           <div className="flex flex-col md:block w-full h-full gap-6 px-4 md:px-0 relative">
             
             {/* NODE 1: Licencias Verificadas */}
-            <div className="md:absolute top-[15%] left-[22%] md:-translate-x-1/2 md:-translate-y-1/2 w-full md:w-[320px] z-20">
+            <div className="md:absolute top-[15%] left-[22%] md:-translate-x-1/2 md:-translate-y-1/2 w-full md:w-[32%] z-20">
               <MagneticCard 
                 onHoverStart={() => setHoveredNode("verified")}
                 className={hoveredNode && hoveredNode !== "verified" && hoveredNode !== "all" ? "md:opacity-40" : "opacity-100"}
@@ -140,7 +140,7 @@ export function SecuritySection() {
             </div>
 
             {/* NODE 2: Cifrado End-to-End */}
-            <div className="md:absolute top-[15%] left-[78%] md:-translate-x-1/2 md:-translate-y-1/2 w-full md:w-[320px] z-20">
+            <div className="md:absolute top-[15%] left-[78%] md:-translate-x-1/2 md:-translate-y-1/2 w-full md:w-[32%] z-20">
               <MagneticCard 
                 onHoverStart={() => setHoveredNode("encryption")}
                 className={hoveredNode && hoveredNode !== "encryption" && hoveredNode !== "all" ? "md:opacity-40" : "opacity-100"}
@@ -169,7 +169,7 @@ export function SecuritySection() {
             </div>
 
             {/* NODE 3: Infraestructura Resiliente */}
-            <div className="md:absolute top-[75%] left-[50%] md:-translate-x-1/2 md:-translate-y-1/2 w-full md:w-[360px] z-20">
+            <div className="md:absolute top-[75%] left-[50%] md:-translate-x-1/2 md:-translate-y-1/2 w-full md:w-[36%] z-20">
               <MagneticCard 
                 onHoverStart={() => setHoveredNode("infrastructure")}
                 className={hoveredNode && hoveredNode !== "infrastructure" && hoveredNode !== "all" ? "md:opacity-40" : "opacity-100"}
