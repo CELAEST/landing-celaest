@@ -1,0 +1,16 @@
+=== FAILING AUDITS BY CATEGORY ===
+
+
+Category: ACCESSIBILITY (100)
+
+
+Category: BEST-PRACTICES (81)
+  - Audit: deprecations [Score: 0]
+    Title: Uses deprecated APIs
+    Value: 2 warnings found
+
+
+Category: SEO (92)
+  - Audit: canonical [Score: 0]
+    Title: Document does not have a valid `rel=canonical`
+    Explanation: Points to another `hreflang` location (http://localhost:3008/es)
