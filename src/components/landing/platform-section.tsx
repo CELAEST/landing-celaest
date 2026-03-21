@@ -154,7 +154,7 @@ function PlatformCard({
           playsInline
           disablePictureInPicture
           suppressHydrationWarning
-          className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${card.videoClassName || ""}`}
+          className={`absolute inset-0 w-full h-full object-cover ${card.videoClassName || ""}`}
         >
           <track kind="captions" src="data:text/vtt," label="no-captions" />
         </video>
