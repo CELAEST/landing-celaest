@@ -3,7 +3,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Inter, Space_Grotesk } from "next/font/google";
-import { Partytown } from '@builder.io/partytown/react';
+
 import { Analytics } from "@/components/analytics";
 import { routing } from "@/i18n/routing";
 import "@/styles/globals.css";
@@ -117,14 +117,7 @@ export default async function RootLayout({
       lang={locale}
       className={`${inter.variable} ${spaceGrotesk.variable}`}
     >
-      <head>
-        <script 
-          dangerouslySetInnerHTML={{
-            __html: `window.partytown = { exclude: ['SharedStorage', 'sharedStorage', 'AttributionReporting', 'attributionReporting'] };`
-          }}
-        />
-        <Partytown debug={false} forward={['dataLayer.push']} />
-      </head>
+      <head />
       <body className="font-sans antialiased" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           {children}

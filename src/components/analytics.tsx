@@ -9,12 +9,12 @@ export function Analytics() {
         leaving the main thread 100% free for React UI rendering.
       */}
       <Script
-        type="text/partytown"
         src={`https://www.googletagmanager.com/gtag/js?id=G-ENTERPRISE-ID`}
+        strategy="afterInteractive"
       />
       <Script
-        type="text/partytown"
         id="google-analytics"
+        strategy="afterInteractive"
       >
         {`
           window.dataLayer = window.dataLayer || [];
