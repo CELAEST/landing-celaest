@@ -12,6 +12,9 @@ export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const t = useTranslations("nav");
 
+  // Resolvemos la URL de forma segura para evitar Hydration Mismatch (.env en Server vs Client)
+  const dashboardUrl = process.env.NEXT_PUBLIC_SAAS_DASHBOARD_URL || "https://app.celaest.com";
+
   useEffect(() => {
     let ticking = false;
 
@@ -55,8 +58,8 @@ export function Navigation() {
   };
 
   const navLinks = [
-    { href: "#platform", label: t("platform"), id: "platform" },
     { href: "#products", label: t("products"), id: "products" },
+    { href: "#platform", label: t("platform"), id: "platform" },
     { href: "#security", label: t("security"), id: "security" },
     { href: "#pricing", label: t("pricing"), id: "pricing" },
     { href: "#faq", label: t("faq"), id: "faq" },
@@ -112,13 +115,13 @@ export function Navigation() {
           <div className="flex items-center gap-4">
             <LanguageSelector />
             <a
-              href="https://celaest-dashboard.vercel.app/?mode=signin"
+              href={`${dashboardUrl}?mode=signin`}
               className="hidden md:block text-brand-slate-light hover:text-white transition-colors text-sm font-medium"
             >
               {t("signIn")}
             </a>
             <Button size="default" className="bg-brand-neon text-brand-dark hover:bg-brand-ice shadow-[0_0_15px_rgba(34,211,238,0.3)] hover:shadow-[0_0_25px_rgba(34,211,238,0.5)] transition-all font-bold tracking-wide" asChild>
-              <a href="https://celaest-dashboard.vercel.app/?mode=signup">
+              <a href={`${dashboardUrl}?mode=signup`}>
                 {t("getStarted")}
               </a>
             </Button>

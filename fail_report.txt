@@ -1,9 +1,0 @@
-=== FAILING METRICS & SCORES ===
-
-Category: ACCESSIBILITY (100.0)
-
-Category: BEST-PRACTICES (100.0)
-
-Category: SEO (92.0)
-  - Audit: canonical [Score: 0]
-    Title: Document does not have a valid `rel=canonical`

@@ -51,10 +51,7 @@ export function PlatformSection() {
 
   return (
     <section id="platform" ref={sectionRef} className="py-16 sm:py-24 bg-brand-dark relative overflow-hidden">
-      {/* Background ambient glows */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-gradient-to-r from-transparent via-brand-neon/50 to-transparent opacity-50" />
-      <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-brand-neon/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[0%] right-[0%] w-[40%] h-[40%] bg-brand-neon-blue/5 rounded-full blur-[120px] pointer-events-none" />
+
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header (Linear Style Typography + AI Badge) */}
@@ -116,6 +113,7 @@ function PlatformCard({
   const handleMouseLeave = () => {
     if (videoRef.current) {
       videoRef.current.pause();
+      videoRef.current.currentTime = 0.01; // Resetea la vista al primer frame
     }
   };
 

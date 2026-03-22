@@ -73,15 +73,15 @@ export function LanguageSelector() {
               key={code}
               onClick={() => handleSelect(code)}
               className={cn(
-                'w-full px-4 py-3 text-left flex items-center gap-3 transition-all duration-200',
+                'w-full px-4 py-3 text-left flex items-center gap-3 transition-all duration-200 first:rounded-t-lg last:rounded-b-lg',
                 locale === code
-                  ? 'bg-brand-mint/10 text-brand-mint font-semibold'
-                  : 'text-brand-slate-medium hover:bg-brand-ice hover:text-brand-mint'
+                  ? 'bg-sky-50 text-sky-700 font-semibold'
+                  : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
               )}
             >
-              <Globe className="w-4 h-4" />
+              <Globe className={cn("w-4 h-4", locale === code ? "text-sky-500" : "text-gray-400")} />
               <span className="flex-1 text-sm">{localeNames[code]}</span>
-              {locale === code && <Check className="w-4 h-4 text-brand-mint" />}
+              {locale === code && <Check className="w-4 h-4 text-sky-500" />}
             </button>
           ))}
         </div>

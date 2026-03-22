@@ -105,8 +105,8 @@ export default async function HomePage({ params }: PageProps) {
             </div>
           }
         />
-        <PlatformSection />
         <ProductsSection />
+        <PlatformSection />
         <SecuritySection />
         <PricingSection />
 

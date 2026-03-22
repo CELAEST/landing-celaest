@@ -18,19 +18,8 @@ export function SplineBackground() {
   useEffect(() => {
     // 1. Mobile constraint: never load Spline on phones
     if (window.innerWidth >= 1024) {
-      // Montamos automáticamente en el primer momento en que el navegador esté inactivo (idle),
-      // balanceando un rendimiento óptimo con una experiencia de carga sin pausas.
-      const handle = 'requestIdleCallback' in window 
-        ? window.requestIdleCallback(() => setIsDesktop(true))
-        : setTimeout(() => setIsDesktop(true), 1000);
-
-      return () => {
-        if ('requestIdleCallback' in window) {
-          window.cancelIdleCallback(handle as number);
-        } else {
-          clearTimeout(handle as any);
-        }
-      };
+      // Montamos inmediatamente para aprovechar el caché del Service Worker (0ms de red)
+      setIsDesktop(true);
     }
   }, []);
 
@@ -87,7 +76,8 @@ export function SplineBackground() {
             style={{ width: "100%", height: "100%" }}
             onLoad={(app) => {
               splineAppRef.current = app;
-              setTimeout(() => setIsLoaded(true), 300);
+              // Mantener la imagen estática 1000ms más para asegurar que WebGL dibuje el frame
+              setTimeout(() => setIsLoaded(true), 1000);
             }}
           />
         </div>
@@ -108,14 +98,18 @@ export function SplineBackground() {
           pointerEvents: isLoaded ? "none" : "auto",
         }}
       >
-        {/* FALLBACK CSS — Pesa 0 KB, asegura LCP instantáneo (Puntaje 100) */}
-        <div 
-          className="absolute inset-0 w-full h-full flex items-center justify-center bg-brand-dark"
-          style={{
-            background: "radial-gradient(circle at 50% 50%, rgba(34,211,238,0.08) 0%, rgba(0,0,0,1) 50%)"
-          }}
-        >
-          <div className="w-16 h-16 rounded-full border border-brand-neon/20 border-t-brand-neon animate-spin" />
+        {/* FALLBACK IMAGE: La imagen ultra-comprimida a 3KB. 
+            Cubre todo con un gradiente negro para disimular la compresión, dando 
+            la sensación de "estar cargando en la oscuridad" orgánicamente. */}
+        <div className="absolute inset-0 w-full h-full bg-brand-dark">
+          <img 
+            src="/images/hero-3d-poster.webp" 
+            alt="Hero Platform Model Loading"
+            className="absolute inset-0 w-full h-full object-cover blur-[2px] opacity-60"
+          />
+          {/* Capa de Gradiente Oscuro tipo viñeta para integrar con el fondo */}
+          <div className="absolute inset-0 w-full h-full bg-[radial-gradient(circle_at_center,transparent_0%,#050505_80%)]" />
+          <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-brand-dark via-brand-dark/20 to-brand-dark/80" />
         </div>
       </div>
     </div>

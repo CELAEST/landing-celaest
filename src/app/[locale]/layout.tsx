@@ -122,6 +122,18 @@ export default async function RootLayout({
           {children}
           <Analytics />
         </NextIntlClientProvider>
+        {/* Service Worker: Caché de assets 3D de Spline para recargas instantáneas */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js').catch(function() {});
+                });
+              }
+            `,
+          }}
+        />
       </body>
     </html>
   );

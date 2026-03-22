@@ -141,16 +141,24 @@ export function Footer() {
                   {t(`links.${group}.title`)}
                 </h4>
                 <ul className="space-y-2.5">
-                  {items.map((item) => (
-                    <li key={item}>
-                      <Link
-                        href="#"
-                        className="text-brand-slate-light hover:text-brand-neon transition-colors text-sm"
-                      >
-                        {item}
-                      </Link>
-                    </li>
-                  ))}
+                  {items.map((item, index) => {
+                    let href = "#";
+                    if (group === "legal") {
+                      if (index === 0) href = "/legal/privacy";
+                      if (index === 1) href = "/legal/terms";
+                    }
+
+                    return (
+                      <li key={item}>
+                        <Link
+                          href={href}
+                          className="text-brand-slate-light hover:text-brand-neon transition-colors text-sm"
+                        >
+                          {item}
+                        </Link>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             );

@@ -30,8 +30,9 @@ export function ProductsSection() {
   return (
     <section id="products" className="py-16 sm:py-24 bg-brand-deep relative overflow-hidden">
       {/* Background Glows (Subtle, professional) */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-neon/[0.03] rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-500/[0.02] rounded-full blur-[120px] translate-y-1/4 -translate-x-1/4 pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-gradient-to-r from-transparent via-brand-neon/50 to-transparent opacity-50" />
+      <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-brand-neon/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[0%] right-[0%] w-[40%] h-[40%] bg-brand-neon-blue/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col xl:flex-row items-center gap-12 xl:gap-14">

@@ -320,5 +320,17 @@
       }
     },
     "copyright": "All rights reserved."
+  },
+  "legal": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "description": "How we manage and protect your enterprise data.",
+      "lastUpdated": "Last updated"
+    },
+    "terms": {
+      "title": "Terms and Conditions",
+      "description": "Rules of use for the Celaest platform.",
+      "lastUpdated": "Last updated"
+    }
   }
 }

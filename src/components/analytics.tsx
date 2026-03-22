@@ -1,15 +1,14 @@
 import Script from 'next/script';
 
 export function Analytics() {
+  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+
+  if (!gaId) return null;
+
   return (
     <>
-      {/* 
-        Enterprise Analytics Pattern 
-        Scripts with type="text/partytown" are executed in a Web Worker,
-        leaving the main thread 100% free for React UI rendering.
-      */}
       <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=G-ENTERPRISE-ID`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
         strategy="afterInteractive"
       />
       <Script
@@ -20,7 +19,7 @@ export function Analytics() {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'G-ENTERPRISE-ID', {
+          gtag('config', '${gaId}', {
             page_path: window.location.pathname,
           });
         `}

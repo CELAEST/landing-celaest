@@ -320,5 +320,17 @@
       }
     },
     "copyright": "Todos los derechos reservados."
+  },
+  "legal": {
+    "privacy": {
+      "title": "Política de Privacidad",
+      "description": "Cómo gestionamos y protegemos sus datos empresariales.",
+      "lastUpdated": "Última actualización"
+    },
+    "terms": {
+      "title": "Términos y Condiciones",
+      "description": "Reglas de uso para la plataforma Celaest.",
+      "lastUpdated": "Última actualización"
+    }
   }
 }
