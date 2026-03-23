@@ -72,7 +72,7 @@ export function SplineBackground() {
       {isDesktop && (
         <div className="absolute inset-0 w-full h-full" style={{ zIndex: 0 }}>
           <Spline 
-            scene="https://prod.spline.design/Yic4l1OuN9ECUUjB/scene.splinecode" 
+            scene="https://prod.spline.design/Yic4l1OuN9ECUUjB/scene.splinecode?v=2026" 
             style={{ width: "100%", height: "100%" }}
             onLoad={(app) => {
               splineAppRef.current = app;
