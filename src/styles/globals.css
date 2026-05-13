@@ -40,6 +40,26 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
+  /*
+   * content-visibility: auto tells the browser to skip layout and paint of
+   * an element until it's near the viewport. Combined with contain-intrinsic-
+   * size it reserves scroll space so there's no layout shift when content
+   * "materialises". Massive cold-load TBT win for tall landing pages.
+   *
+   * Two variants because mobile and desktop sections have very different
+   * intrinsic heights — using one value would cause noticeable scroll jumps
+   * when sections become visible.
+   */
+  .cv-section {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 900px;
+  }
+  @media (min-width: 1024px) {
+    .cv-section {
+      contain-intrinsic-size: 1px 1200px;
+    }
+  }
 }
 
 @layer components {

@@ -2,7 +2,6 @@ import { setRequestLocale } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 import { Navigation } from "@/components/landing/navigation";
 import { HeroSection } from "@/components/landing/hero-section";
-import { PageLoadingOverlay } from "@/components/ui/page-loading-overlay";
 import dynamic from "next/dynamic";
 import {
   generateOrganizationSchema,
@@ -97,9 +96,6 @@ export default async function HomePage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(generateSoftwareSchema()) }}
       />
-      {/* Branded splash that hides cold-load jank (Spline boot, font swap,
-          marquee hydration). Self-removes after window.load + idle. */}
-      <PageLoadingOverlay />
       <Navigation />
       <main>
         <HeroSection
@@ -109,14 +105,28 @@ export default async function HomePage({ params }: PageProps) {
             </div>
           }
         />
-        <ProductsSection />
-        <PlatformSection />
-        <SecuritySection />
-        <PricingSection />
-
-        <FAQSection />
+        {/* Below-fold sections wrapped in cv-section so the browser skips
+            their layout/paint cost until the user scrolls near them. The
+            wrapper reserves the intrinsic height to prevent scroll-jumps. */}
+        <div className="cv-section">
+          <ProductsSection />
+        </div>
+        <div className="cv-section">
+          <PlatformSection />
+        </div>
+        <div className="cv-section">
+          <SecuritySection />
+        </div>
+        <div className="cv-section">
+          <PricingSection />
+        </div>
+        <div className="cv-section">
+          <FAQSection />
+        </div>
       </main>
-      <Footer />
+      <div className="cv-section">
+        <Footer />
+      </div>
     </div>
   );
 }

@@ -12,18 +12,38 @@ export function HeroSection({ splineBackground }: { splineBackground?: React.Rea
   // Duplicamos el array para que el loop sea sin saltos.
   const marqueeLoop = [...marqueeItems, ...marqueeItems];
 
-  // Gate the marquee animation behind two signals:
-  //   1) window 'load' (all images, fonts, deferred scripts finished)
-  //   2) requestIdleCallback (main thread is actually idle)
-  // Until both happen the marquee renders static at translateX(0), so the
-  // 55 s linear animation doesn't compete for CPU during hydration / Spline
-  // init and we avoid the visible jank on cold loads.
-  const [marqueeReady, setMarqueeReady] = useState(false);
+  // Three-stage marquee mount that eliminates first-frame jank:
+  //   stage 0 (`idle`)    — no GPU layer, no animation. Costs nothing on the
+  //                         critical path. This is the LCP-friendly state.
+  //   stage 1 (`promoted`)— GPU compositing layer is created (will-change +
+  //                         translateZ(0)) but the animation is NOT applied.
+  //                         The browser uploads textures during 1 frame.
+  //   stage 2 (`playing`) — animation kicks in. Because the layer already
+  //                         exists from stage 1, frame-1 of the animation
+  //                         is cheap → no visible stutter on cold load.
+  //
+  // Stage transitions are gated by window.load + requestIdleCallback so the
+  // promotion never competes with hydration / Spline boot.
+  type MarqueeStage = "idle" | "promoted" | "playing";
+  const [marqueeStage, setMarqueeStage] = useState<MarqueeStage>("idle");
 
   useEffect(() => {
     let idleHandle: number | undefined;
     let timeoutHandle: number | undefined;
+    let raf1 = 0;
+    let raf2 = 0;
     let loadFired = false;
+
+    const startSequence = () => {
+      // Stage 1: promote layer in this frame.
+      setMarqueeStage("promoted");
+      // Stage 2: start animation TWO frames later. One frame for React to
+      // commit the promoted styles, one for the compositor to upload the
+      // layer. By the time the animation begins both are done.
+      raf1 = requestAnimationFrame(() => {
+        raf2 = requestAnimationFrame(() => setMarqueeStage("playing"));
+      });
+    };
 
     const startWhenIdle = () => {
       const ric = (
@@ -32,9 +52,9 @@ export function HeroSection({ splineBackground }: { splineBackground?: React.Rea
         }
       ).requestIdleCallback;
       if (typeof ric === "function") {
-        idleHandle = ric(() => setMarqueeReady(true), { timeout: 1200 });
+        idleHandle = ric(startSequence, { timeout: 1200 });
       } else {
-        timeoutHandle = window.setTimeout(() => setMarqueeReady(true), 600);
+        timeoutHandle = window.setTimeout(startSequence, 600);
       }
     };
 
@@ -55,6 +75,8 @@ export function HeroSection({ splineBackground }: { splineBackground?: React.Rea
         .cancelIdleCallback;
       if (typeof idleHandle === "number" && typeof cancelRic === "function") cancelRic(idleHandle);
       if (typeof timeoutHandle === "number") clearTimeout(timeoutHandle);
+      if (raf1) cancelAnimationFrame(raf1);
+      if (raf2) cancelAnimationFrame(raf2);
     };
   }, []);
 
@@ -153,7 +175,19 @@ export function HeroSection({ splineBackground }: { splineBackground?: React.Rea
             {/* track con fade lateral */}
             <div className="py-6 sm:py-8 md:py-10 overflow-hidden [mask-image:linear-gradient(to_right,transparent_0%,#000_8%,#000_92%,transparent_100%)]">
               <div
-                className={`${marqueeReady ? "animate-marquee" : ""} flex w-max items-center whitespace-nowrap`}
+                className={`${marqueeStage === "playing" ? "animate-marquee" : ""} flex w-max items-center whitespace-nowrap`}
+                style={
+                  marqueeStage !== "idle"
+                    ? {
+                        // GPU layer is created at stage "promoted" so that
+                        // when stage "playing" applies the animation, the
+                        // layer already exists and no frame is dropped.
+                        transform: "translate3d(0,0,0)",
+                        willChange: "transform",
+                        backfaceVisibility: "hidden",
+                      }
+                    : undefined
+                }
               >
                 {marqueeLoop.map((item, i) => (
                   <div key={i} className="flex items-center shrink-0">
