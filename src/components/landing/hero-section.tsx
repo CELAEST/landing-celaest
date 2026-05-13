@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { ArrowRight, Play } from "lucide-react";
 import { ConstellationBackground } from "@/components/ui/constellation-background";
@@ -10,6 +11,52 @@ export function HeroSection({ splineBackground }: { splineBackground?: React.Rea
   const marqueeItems = t.raw("marquee.items") as string[];
   // Duplicamos el array para que el loop sea sin saltos.
   const marqueeLoop = [...marqueeItems, ...marqueeItems];
+
+  // Gate the marquee animation behind two signals:
+  //   1) window 'load' (all images, fonts, deferred scripts finished)
+  //   2) requestIdleCallback (main thread is actually idle)
+  // Until both happen the marquee renders static at translateX(0), so the
+  // 55 s linear animation doesn't compete for CPU during hydration / Spline
+  // init and we avoid the visible jank on cold loads.
+  const [marqueeReady, setMarqueeReady] = useState(false);
+
+  useEffect(() => {
+    let idleHandle: number | undefined;
+    let timeoutHandle: number | undefined;
+    let loadFired = false;
+
+    const startWhenIdle = () => {
+      const ric = (
+        window as unknown as {
+          requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+        }
+      ).requestIdleCallback;
+      if (typeof ric === "function") {
+        idleHandle = ric(() => setMarqueeReady(true), { timeout: 1200 });
+      } else {
+        timeoutHandle = window.setTimeout(() => setMarqueeReady(true), 600);
+      }
+    };
+
+    const onLoad = () => {
+      loadFired = true;
+      startWhenIdle();
+    };
+
+    if (document.readyState === "complete") {
+      onLoad();
+    } else {
+      window.addEventListener("load", onLoad, { once: true });
+    }
+
+    return () => {
+      if (!loadFired) window.removeEventListener("load", onLoad);
+      const cancelRic = (window as unknown as { cancelIdleCallback?: (id: number) => void })
+        .cancelIdleCallback;
+      if (typeof idleHandle === "number" && typeof cancelRic === "function") cancelRic(idleHandle);
+      if (typeof timeoutHandle === "number") clearTimeout(timeoutHandle);
+    };
+  }, []);
 
   return (
     <section className="relative min-h-screen flex flex-col justify-end lg:justify-center overflow-hidden bg-brand-dark pt-24 sm:pt-32 pb-6 sm:pb-10 lg:pb-16 cursor-default">
@@ -105,7 +152,9 @@ export function HeroSection({ splineBackground }: { splineBackground?: React.Rea
 
             {/* track con fade lateral */}
             <div className="py-6 sm:py-8 md:py-10 overflow-hidden [mask-image:linear-gradient(to_right,transparent_0%,#000_8%,#000_92%,transparent_100%)]">
-              <div className="animate-marquee flex w-max items-center whitespace-nowrap">
+              <div
+                className={`${marqueeReady ? "animate-marquee" : ""} flex w-max items-center whitespace-nowrap`}
+              >
                 {marqueeLoop.map((item, i) => (
                   <div key={i} className="flex items-center shrink-0">
                     <span className="font-display font-medium text-[13px] sm:text-[17px] md:text-[19px] tracking-[-0.02em] leading-none text-white/90 px-7 sm:px-12 md:px-16">
