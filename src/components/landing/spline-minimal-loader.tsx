@@ -98,7 +98,12 @@ export function SplineBackground() {
             onLoad={(app) => {
               splineAppRef.current = app;
               // Mantener la imagen estática 1000ms más para asegurar que WebGL dibuje el frame
-              setTimeout(() => setIsLoaded(true), 1000);
+              setTimeout(() => {
+                setIsLoaded(true);
+                // Broadcast: anything that needs to wait for the robot to be
+                // fully painted (hero marquee, etc.) listens for this event.
+                window.dispatchEvent(new Event("spline:loaded"));
+              }, 1000);
             }}
           />
         </div>

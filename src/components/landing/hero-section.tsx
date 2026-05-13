@@ -22,8 +22,13 @@ export function HeroSection({ splineBackground }: { splineBackground?: React.Rea
   //                         exists from stage 1, frame-1 of the animation
   //                         is cheap → no visible stutter on cold load.
   //
-  // Stage transitions are gated by window.load + requestIdleCallback so the
-  // promotion never competes with hydration / Spline boot.
+  // Trigger priority:
+  //   1) Desktop: wait for the Spline robot to finish loading (the heaviest
+  //      work on cold load). The SplineBackground dispatches 'spline:loaded'
+  //      ~1 s after WebGL has painted the first robot frame.
+  //   2) Mobile: no Spline mounts, so wait for window.load + idle instead.
+  //   3) Safety net: 8 s hard timeout in case Spline never reports (slow
+  //      network, runtime error, blocked CDN). The marquee always starts.
   type MarqueeStage = "idle" | "promoted" | "playing";
   const [marqueeStage, setMarqueeStage] = useState<MarqueeStage>("idle");
 
@@ -32,9 +37,24 @@ export function HeroSection({ splineBackground }: { splineBackground?: React.Rea
     let timeoutHandle: number | undefined;
     let raf1 = 0;
     let raf2 = 0;
+    let safetyHandle: number | undefined;
+    let started = false;
     let loadFired = false;
 
-    const startSequence = () => {
+    const onSplineLoaded = () => {
+      begin();
+    };
+    const onWindowLoad = () => {
+      loadFired = true;
+      // On mobile there is no Spline → use window.load + idle as the trigger.
+      // On desktop Spline will eventually fire its own event; if it doesn't,
+      // the safety-net timeout still kicks in.
+      if (window.innerWidth < 1024) startWhenIdle();
+    };
+
+    const begin = () => {
+      if (started) return;
+      started = true;
       // Stage 1: promote layer in this frame.
       setMarqueeStage("promoted");
       // Stage 2: start animation TWO frames later. One frame for React to
@@ -52,29 +72,33 @@ export function HeroSection({ splineBackground }: { splineBackground?: React.Rea
         }
       ).requestIdleCallback;
       if (typeof ric === "function") {
-        idleHandle = ric(startSequence, { timeout: 1200 });
+        idleHandle = ric(begin, { timeout: 1200 });
       } else {
-        timeoutHandle = window.setTimeout(startSequence, 600);
+        timeoutHandle = window.setTimeout(begin, 600);
       }
     };
 
-    const onLoad = () => {
-      loadFired = true;
-      startWhenIdle();
-    };
+    // Listen for the robot-loaded signal first — this is the primary trigger.
+    window.addEventListener("spline:loaded", onSplineLoaded, { once: true });
 
     if (document.readyState === "complete") {
-      onLoad();
+      onWindowLoad();
     } else {
-      window.addEventListener("load", onLoad, { once: true });
+      window.addEventListener("load", onWindowLoad, { once: true });
     }
 
+    // Safety net: never leave the marquee static for more than 8 s. If Spline
+    // is slow / errored / blocked, the page should still feel alive.
+    safetyHandle = window.setTimeout(begin, 8000);
+
     return () => {
-      if (!loadFired) window.removeEventListener("load", onLoad);
+      window.removeEventListener("spline:loaded", onSplineLoaded);
+      if (!loadFired) window.removeEventListener("load", onWindowLoad);
       const cancelRic = (window as unknown as { cancelIdleCallback?: (id: number) => void })
         .cancelIdleCallback;
       if (typeof idleHandle === "number" && typeof cancelRic === "function") cancelRic(idleHandle);
       if (typeof timeoutHandle === "number") clearTimeout(timeoutHandle);
+      if (typeof safetyHandle === "number") clearTimeout(safetyHandle);
       if (raf1) cancelAnimationFrame(raf1);
       if (raf2) cancelAnimationFrame(raf2);
     };
