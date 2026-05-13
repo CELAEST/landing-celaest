@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 interface SectionHeaderProps {
   title1: string;
   title2: string;
@@ -14,6 +10,10 @@ interface SectionHeaderProps {
 /**
  * Reusable section header component following the enterprise design system.
  * Eliminates the repeated header pattern across all landing sections.
+ *
+ * Note: uses CSS-only fade-up (see `.animate-fade-up` in globals.css) instead
+ * of framer-motion to keep the framework off the critical path. Plays once on
+ * mount; sections below the fold are already gated by dynamic imports.
  */
 export function SectionHeader({
   title1,
@@ -24,11 +24,8 @@ export function SectionHeader({
   className = "",
 }: SectionHeaderProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className={`${align === "center" ? "text-center" : "text-left"} mb-10 w-full ${className}`}
+    <div
+      className={`animate-fade-up ${align === "center" ? "text-center" : "text-left"} mb-10 w-full ${className}`}
     >
       {badge && (
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.05] mb-6 shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
@@ -49,6 +46,6 @@ export function SectionHeader({
           {subtitle}
         </p>
       )}
-    </motion.div>
+    </div>
   );
 }

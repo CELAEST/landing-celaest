@@ -11,7 +11,10 @@ import "@/styles/globals.css";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "swap",
+  // `optional` keeps the fallback for the entire page-view if Inter doesn't
+  // arrive within ~100 ms. Eliminates the late font-swap that re-triggers LCP
+  // measurement (~5 s on slow networks). Cached visits still use Inter.
+  display: "optional",
   preload: true,
   fallback: ["system-ui", "-apple-system", "Segoe UI", "Roboto", "Arial", "sans-serif"],
 });

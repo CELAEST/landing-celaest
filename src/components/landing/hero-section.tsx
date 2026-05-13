@@ -64,9 +64,14 @@ export function HeroSection({ splineBackground }: { splineBackground?: React.Rea
             </span>
           </h1>
 
-          {/* Subheadline */}
+          {/* Subheadline — LCP element. Uses system fonts to avoid web-font
+              swap delay (would push LCP from ~0.9 s to ~5 s on slow networks). */}
           <p
             className="text-base sm:text-lg md:text-xl text-brand-slate-light max-w-xl mb-8 sm:mb-10 lg:mb-12 leading-relaxed mx-auto lg:mx-0"
+            style={{
+              fontFamily:
+                "system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+            }}
           >
             {t("subheadline1")} {t("subheadline2")}
           </p>
