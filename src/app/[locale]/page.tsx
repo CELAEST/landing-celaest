@@ -2,6 +2,7 @@ import { setRequestLocale } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 import { Navigation } from "@/components/landing/navigation";
 import { HeroSection } from "@/components/landing/hero-section";
+import { PageLoadingOverlay } from "@/components/ui/page-loading-overlay";
 import dynamic from "next/dynamic";
 import {
   generateOrganizationSchema,
@@ -96,6 +97,9 @@ export default async function HomePage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(generateSoftwareSchema()) }}
       />
+      {/* Branded splash that hides cold-load jank (Spline boot, font swap,
+          marquee hydration). Self-removes after window.load + idle. */}
+      <PageLoadingOverlay />
       <Navigation />
       <main>
         <HeroSection
