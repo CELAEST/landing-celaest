@@ -17,10 +17,31 @@ export function SplineBackground() {
 
   useEffect(() => {
     // 1. Mobile constraint: never load Spline on phones
-    if (window.innerWidth >= 1024) {
-      // Montamos inmediatamente para aprovechar el caché del Service Worker (0ms de red)
-      setIsDesktop(true);
+    if (window.innerWidth < 1024) return;
+
+    // 2. Defer Spline mount until the browser is idle so it doesn't block the
+    // hero's initial paint and hydration. Falls back to a small timeout when
+    // requestIdleCallback isn't available (Safari).
+    const ric: ((cb: () => void) => number) | undefined = (
+      window as unknown as { requestIdleCallback?: (cb: () => void) => number }
+    ).requestIdleCallback;
+    const cancelRic: ((id: number) => void) | undefined = (
+      window as unknown as { cancelIdleCallback?: (id: number) => void }
+    ).cancelIdleCallback;
+
+    let handle: number;
+    let isIdleHandle = false;
+    if (typeof ric === "function") {
+      handle = ric(() => setIsDesktop(true));
+      isIdleHandle = true;
+    } else {
+      handle = window.setTimeout(() => setIsDesktop(true), 600);
     }
+
+    return () => {
+      if (isIdleHandle && typeof cancelRic === "function") cancelRic(handle);
+      else clearTimeout(handle);
+    };
   }, []);
 
   useEffect(() => {

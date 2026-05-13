@@ -1,18 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { ArrowRight, Play } from "lucide-react";
+import { ConstellationBackground } from "@/components/ui/constellation-background";
 
 export function HeroSection({ splineBackground }: { splineBackground?: React.ReactNode }) {
   const t = useTranslations("hero");
 
-  const stats = [
-    { value: "500+", label: t("stats.assets") },
-    { value: "10K+", label: t("stats.users") },
-    { value: "99.9%", label: t("stats.uptime") },
-    { value: "24/7", label: t("stats.support") },
-  ];
+  const marqueeItems = t.raw("marquee.items") as string[];
+  // Duplicamos el array para que el loop sea sin saltos.
+  const marqueeLoop = [...marqueeItems, ...marqueeItems];
 
   return (
     <section className="relative min-h-screen flex flex-col justify-end lg:justify-center overflow-hidden bg-brand-dark pt-24 sm:pt-32 pb-6 sm:pb-10 lg:pb-16 cursor-default">
@@ -30,6 +27,12 @@ export function HeroSection({ splineBackground }: { splineBackground?: React.Rea
         {/* Subtle neon glows */}
         <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-brand-neon/5 to-transparent blur-[100px] sm:blur-[120px]" />
         <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-brand-neon-blue/5 to-transparent blur-[100px] sm:blur-[120px]" />
+      </div>
+
+      {/* Drifting constellation — sits above Spline (z-0) and gradients (z-1), below content (z-10).
+          On desktop the mask is weighted to the left so it doesn't compete with the robot on the right. */}
+      <div className="absolute inset-0 z-[2] pointer-events-none [mask-image:radial-gradient(ellipse_70%_75%_at_30%_50%,#000_25%,transparent_95%)]">
+        <ConstellationBackground nodeCount={50} nodeAlpha={0.25} />
       </div>
 
       {/* Content — pointer-events-none lets mouse pass through to Spline */}
@@ -89,24 +92,24 @@ export function HeroSection({ splineBackground }: { splineBackground?: React.Rea
           </div>
         </div>
 
-        {/* Stats */}
-        <div
-          className="animate-fade-up delay-400 w-full relative mt-4 sm:mt-8 lg:mt-16"
-        >
-          <div className="pointer-events-auto relative z-10 w-full mx-auto rounded-2xl sm:rounded-3xl border border-white/10 bg-brand-gray/30 backdrop-blur-md p-4 sm:p-6 lg:p-8 shadow-2xl overflow-hidden">
+        {/* Announcement marquee — reemplaza la antigua franja de stats */}
+        <div className="animate-fade-up delay-400 w-full relative mt-4 sm:mt-8 lg:mt-16">
+          <div className="pointer-events-auto relative z-10 w-full mx-auto rounded-2xl sm:rounded-3xl border border-white/10 bg-brand-gray/30 backdrop-blur-md shadow-2xl overflow-hidden">
+            {/* hairline accent superior */}
             <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-neon/50 to-transparent" />
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-              {stats.map((stat, i) => (
-                <div key={stat.label} className="text-center relative">
-                  {i !== 0 && <div className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 w-px h-12 bg-white/10" />}
-                  <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-b from-white to-brand-slate-light bg-clip-text text-transparent mb-1 sm:mb-2">
-                    {stat.value}
+
+            {/* track con fade lateral */}
+            <div className="py-6 sm:py-8 md:py-10 overflow-hidden [mask-image:linear-gradient(to_right,transparent_0%,#000_8%,#000_92%,transparent_100%)]">
+              <div className="animate-marquee flex w-max items-center whitespace-nowrap">
+                {marqueeLoop.map((item, i) => (
+                  <div key={i} className="flex items-center shrink-0">
+                    <span className="font-display font-medium text-[13px] sm:text-[17px] md:text-[19px] tracking-[-0.02em] leading-none text-white/90 px-7 sm:px-12 md:px-16">
+                      {item}
+                    </span>
+                    <span className="w-px h-6 sm:h-8 md:h-9 bg-white/10 shrink-0" aria-hidden="true" />
                   </div>
-                  <div className="text-[10px] sm:text-xs text-brand-neon font-mono uppercase tracking-widest">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>

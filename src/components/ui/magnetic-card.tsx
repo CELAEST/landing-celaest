@@ -38,7 +38,7 @@ export function MagneticCard({
       onMouseMove={handleMouseMove}
       onMouseEnter={onHoverStart}
       onMouseLeave={onHoverEnd}
-      className={`group relative rounded-3xl border border-white/5 bg-brand-surface-alt/80 backdrop-blur-xl shadow-2xl overflow-hidden transition-all duration-500 hover:border-white/10 hover:bg-brand-gray hover:-translate-y-1 ${className}`}
+      className={`group relative rounded-3xl border border-white/[0.06] bg-[#080a0e]/92 backdrop-blur-xl shadow-2xl overflow-hidden transition-all duration-500 hover:border-white/10 hover:bg-[#0c0e14] hover:-translate-y-1 ${className}`}
     >
       {/* Magnetic Glow Effect */}
       <motion.div

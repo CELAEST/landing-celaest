@@ -9,11 +9,11 @@
     "getStarted": "Get Started"
   },
   "hero": {
-    "badge": "Premium Digital Asset Marketplace",
+    "badge": "Premium Marketplace for Enterprise Automation",
     "headline1": "Code that Scales.",
     "headline2": "Profits that Grow.",
-    "subheadline1": "Premium, verified digital assets for serious professionals.",
-    "subheadline2": "Excel macros, Python scripts, and business software that delivers instant ROI.",
+    "subheadline1": "Premium, verified AI automations for serious professionals.",
+    "subheadline2": "Excel macros, Python scripts, and enterprise AI agents that deliver instant ROI.",
     "browseCTA": "Browse Marketplace",
     "watchDemo": "Watch Demo",
     "stats": {
@@ -21,6 +21,21 @@
       "users": "Active Users",
       "uptime": "Uptime",
       "support": "Support"
+    },
+    "marquee": {
+      "items": [
+        "AI-Powered Automation",
+        "Workflow Optimization",
+        "Enterprise API Integrations",
+        "Custom Excel Macros",
+        "Verified Python Scripts",
+        "Automated Data Processing",
+        "Telegram & WhatsApp Bots",
+        "Web Scraping & ETL Pipelines",
+        "Automated Reports & Dashboards",
+        "Custom LLM Agents",
+        "Custom Enterprise Software"
+      ]
     }
   },
   "products": {

@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { Plus, Minus } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SectionHeader } from "@/components/ui/section-header";
+import { ConstellationBackground } from "@/components/ui/constellation-background";
 
 interface FAQ {
   question: string;
@@ -167,6 +168,11 @@ export function FAQSection() {
 
       {/* Dense Core Tech Grid (Cyan tint, concentrated in the middle) */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(34,211,238,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(34,211,238,0.02)_1px,transparent_1px)] bg-[size:1rem_1rem] [mask-image:radial-gradient(ellipse_40%_40%_at_50%_50%,#000_20%,transparent_80%)] pointer-events-none opacity-40" />
+
+      {/* Drifting constellation — fade only at top so it flows seamlessly into the footer below. */}
+      <div className="absolute inset-0 pointer-events-none [mask-image:linear-gradient(to_bottom,transparent_0%,#000_18%,#000_100%)]">
+        <ConstellationBackground />
+      </div>
 
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}

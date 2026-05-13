@@ -2,10 +2,10 @@
 
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import Image from 'next/image';
 import { Twitter, Linkedin, Github, Mail, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Logo } from "@/components/ui/logo";
+import { ConstellationBackground } from "@/components/ui/constellation-background";
 
 export function Footer() {
   const t = useTranslations('footer');
@@ -20,49 +20,23 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-brand-deep border-t border-white/5 relative overflow-hidden">
+    <footer className="bg-brand-deep relative overflow-hidden">
       {/* Background Graphic - Premium SVG + CSS Mesh Gradient */}
-      <div className="absolute inset-x-0 bottom-0 h-full z-0 pointer-events-none overflow-hidden flex flex-col justify-end">
-        {/* Ambient Glow Effects */}
+      <div className="absolute inset-0 h-full z-0 pointer-events-none overflow-hidden">
+        {/* Ambient Glow Effects (kept for blue/cyan ambience) */}
         <div className="absolute bottom-[-10%] left-[10%] w-[50%] h-[300px] bg-cyan-500/20 blur-[120px] rounded-full mix-blend-screen" />
         <div className="absolute bottom-[-10%] right-[10%] w-[50%] h-[300px] bg-blue-600/20 blur-[120px] rounded-full mix-blend-screen" />
-        
-        {/* Infinite Resolution SVG Wave (Fiber Optic effect) */}
-        <svg
-          className="w-full relative z-10 opacity-70 mix-blend-screen"
-          viewBox="0 0 1200 250"
-          preserveAspectRatio="none"
-          fill="none"
-          style={{ height: '400px' }}
-        >
-          {[...Array(25)].map((_, i) => (
-            <path
-              key={i}
-              d={`M0,${120 + i * 3} C${300 + i * 12},${250 + i * 5} ${800 - i * 15},${-30 + i * 3} 1200,${100 + i * 4}`}
-              stroke={i % 2 === 0 ? "url(#cyanBlueGlow)" : "url(#blueCyanGlow)"}
-              strokeWidth={0.5 + (i % 3) * 0.5}
-              opacity={0.1 + (i % 5) * 0.15}
-            />
-          ))}
-          
-          <defs>
-            <linearGradient id="cyanBlueGlow" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="#06b6d4" stopOpacity="0" />
-              <stop offset="20%" stopColor="#06b6d4" stopOpacity="1" />
-              <stop offset="80%" stopColor="#3b82f6" stopOpacity="1" />
-              <stop offset="100%" stopColor="#3b82f6" stopOpacity="0" />
-            </linearGradient>
-            <linearGradient id="blueCyanGlow" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="#3b82f6" stopOpacity="0" />
-              <stop offset="30%" stopColor="#3b82f6" stopOpacity="1" />
-              <stop offset="70%" stopColor="#22d3ee" stopOpacity="1" />
-              <stop offset="100%" stopColor="#22d3ee" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-        </svg>
+
+        {/* Drifting constellation — fades only at bottom so it continues seamlessly from the FAQ section above. */}
+        <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,#000_0%,#000_70%,transparent_100%)]">
+          <ConstellationBackground nodeCount={90} />
+        </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 relative z-10">
+      <div
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 relative z-20"
+        style={{ textShadow: "0 2px 16px rgba(0,0,0,0.95), 0 0 4px rgba(0,0,0,0.95)" }}
+      >
         {/* Newsletter Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -76,18 +50,18 @@ export function Footer() {
               <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
                 {t('newsletter.title')}
               </h3>
-              <p className="text-brand-slate-light text-sm">{t('newsletter.description')}</p>
+              <p className="text-zinc-300 text-sm">{t('newsletter.description')}</p>
             </div>
-            <form className="flex gap-3" onSubmit={(e) => e.preventDefault()}>
+            <form className="flex flex-col sm:flex-row gap-3" onSubmit={(e) => e.preventDefault()}>
               <input
                 type="email"
                 placeholder={t('newsletter.placeholder')}
-                className="flex-1 px-5 py-3 bg-brand-gray border border-white/10 rounded-xl text-white text-sm placeholder:text-brand-slate-light focus:outline-none focus:border-brand-neon/40 transition-colors"
+                className="w-full sm:flex-1 px-5 py-3 bg-brand-gray border border-white/10 rounded-xl text-white text-sm placeholder:text-brand-slate-light focus:outline-none focus:border-brand-neon/40 transition-colors"
                 aria-label="Email address"
               />
               <button
                 type="submit"
-                className="px-5 py-3 bg-brand-neon text-brand-dark font-semibold rounded-xl text-sm hover:brightness-110 transition-all flex items-center gap-2 shrink-0"
+                className="w-full sm:w-auto px-5 py-3 bg-brand-neon text-brand-dark font-semibold rounded-xl text-sm hover:brightness-110 transition-all flex items-center justify-center gap-2 shrink-0"
               >
                 {t('newsletter.subscribe')}
                 <ArrowRight className="w-4 h-4" />
@@ -115,7 +89,7 @@ export function Footer() {
                 CELAEST
               </span>
             </div>
-            <p className="text-brand-slate-light text-xs leading-relaxed mb-5">
+            <p className="text-zinc-300 text-xs leading-relaxed mb-5">
               {t('brand.description')}
             </p>
             <div className="flex gap-2">
@@ -123,7 +97,7 @@ export function Footer() {
                 <Link
                   key={label}
                   href={href}
-                  className="w-9 h-9 bg-white/5 rounded-lg flex items-center justify-center hover:bg-brand-neon/10 text-brand-slate-light hover:text-brand-neon transition-all duration-300 border border-transparent hover:border-brand-neon/20"
+                  className="w-9 h-9 bg-black/25 rounded-lg flex items-center justify-center hover:bg-brand-neon/10 text-zinc-300 hover:text-white transition-all duration-300 border border-white/10 hover:border-brand-neon/20 backdrop-blur-[2px]"
                   aria-label={label}
                 >
                   <Icon className="w-4 h-4" />
@@ -152,7 +126,7 @@ export function Footer() {
                       <li key={item}>
                         <Link
                           href={href}
-                          className="text-brand-slate-light hover:text-brand-neon transition-colors text-sm"
+                          className="text-zinc-300 hover:text-white transition-colors text-sm drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]"
                         >
                           {item}
                         </Link>
@@ -168,10 +142,10 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="pt-7 border-t border-white/5">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-brand-slate-light text-xs">
+            <p className="text-zinc-300 text-xs">
               © {new Date().getFullYear()} CELAEST. {t('copyright')}
             </p>
-            <div className="flex items-center gap-2 text-brand-slate-light text-xs">
+            <div className="flex items-center gap-2 text-zinc-300 text-xs">
               <span>Hecho con</span>
               <span className="text-brand-neon">♥</span>
               <span>para profesionales.</span>

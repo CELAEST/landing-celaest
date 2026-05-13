@@ -39,13 +39,13 @@ export function SectionHeader({
         </div>
       )}
 
-      <h2 className="text-4xl sm:text-5xl md:text-6xl font-semibold text-white mb-6 tracking-tight leading-[1.1]">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-4 sm:mb-6 tracking-tight leading-[1.1]">
         <span className="text-white">{title1} </span>
         <span className="text-brand-slate-light font-medium">{title2}</span>
       </h2>
 
       {subtitle && (
-        <p className="text-brand-slate-light text-lg sm:text-xl font-medium tracking-tight leading-relaxed max-w-2xl mx-auto">
+        <p className="text-brand-slate-light text-base sm:text-lg md:text-xl font-medium tracking-tight leading-relaxed max-w-2xl mx-auto">
           {subtitle}
         </p>
       )}

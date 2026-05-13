@@ -9,11 +9,11 @@
     "getStarted": "Comenzar"
   },
   "hero": {
-    "badge": "Mercado Premium de Activos Digitales",
+    "badge": "Mercado Premium de Automatizaciones Empresariales",
     "headline1": "Código que Escala.",
     "headline2": "Ganancias que Crecen.",
-    "subheadline1": "Activos digitales premium y verificados para profesionales serios.",
-    "subheadline2": "Macros Excel, scripts Python y software empresarial con ROI instantáneo.",
+    "subheadline1": "Automatizaciones con IA premium y verificadas para profesionales serios.",
+    "subheadline2": "Macros Excel, scripts Python y agentes IA empresariales con ROI instantáneo.",
     "browseCTA": "Explorar Mercado",
     "watchDemo": "Ver Demo",
     "stats": {
@@ -21,6 +21,21 @@
       "users": "Usuarios Activos",
       "uptime": "Disponibilidad",
       "support": "Soporte"
+    },
+    "marquee": {
+      "items": [
+        "Automatizaciones con IA",
+        "Optimización de flujos de trabajo",
+        "Integraciones API empresariales",
+        "Macros de Excel a medida",
+        "Scripts de Python verificados",
+        "Procesamiento automatizado de datos",
+        "Bots para Telegram y WhatsApp",
+        "Web scraping y pipelines ETL",
+        "Reportes y dashboards automatizados",
+        "Agentes con LLMs personalizados",
+        "Software empresarial a medida"
+      ]
     }
   },
   "products": {

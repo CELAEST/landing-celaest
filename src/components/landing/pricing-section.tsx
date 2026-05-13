@@ -79,11 +79,11 @@ export function PricingSection() {
             viewport={{ once: true }}
             className="flex flex-col gap-2 text-left"
           >
-            <h2 className="text-4xl sm:text-5xl lg:text-[56px] tracking-tight leading-[1.1] text-white font-semibold flex flex-col sm:inline-block">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] tracking-tight leading-[1.1] text-white font-semibold flex flex-col sm:inline-block">
               <span>{t("title1")} </span>
               <span className="text-brand-slate-light font-medium">{t("title2")}</span>
             </h2>
-            <p className="text-brand-slate-light text-xl sm:text-2xl md:text-3xl lg:text-[32px] font-medium tracking-tight leading-[1.25] max-w-4xl mt-3">
+            <p className="text-brand-slate-light text-base sm:text-lg md:text-xl lg:text-2xl font-medium tracking-tight leading-[1.4] max-w-4xl mt-4">
               {t("subtitle")}
             </p>
           </motion.div>

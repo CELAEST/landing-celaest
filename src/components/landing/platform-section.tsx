@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { useRef, useEffect, useCallback, useState } from "react";
+import { ConstellationBackground } from "@/components/ui/constellation-background";
 
 const PLATFORM_CARDS = [
   {
@@ -51,7 +52,10 @@ export function PlatformSection() {
 
   return (
     <section id="platform" ref={sectionRef} className="py-16 sm:py-24 bg-brand-dark relative overflow-hidden">
-
+      {/* Drifting constellation (subtle ambience) */}
+      <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_75%_80%_at_50%_50%,#000_20%,transparent_90%)]">
+        <ConstellationBackground nodeCount={55} nodeAlpha={0.3} />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header (Linear Style Typography + AI Badge) */}

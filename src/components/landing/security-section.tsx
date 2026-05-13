@@ -2,14 +2,18 @@
 
 import React, { useState } from "react";
 import { useTranslations } from "next-intl";
-import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
+import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import { SectionHeader } from "@/components/ui/section-header";
 import { MagneticCard } from "@/components/ui/magnetic-card";
+import { ConstellationBackground } from "@/components/ui/constellation-background";
 
-import { VerifiedShield } from "./security/verified-shield";
-import { EncryptionLock } from "./security/encryption-lock";
-import { GlobularServers } from "./security/globular-servers";
-import { RobotHead } from "./security/robot-head";
+// Code-split the R3F + GLTF + shader bundle out of the security section's
+// initial chunk. The component itself viewport-gates its own Canvas.
+const ParticleCore = dynamic(
+  () => import("./security/particle-core").then((m) => ({ default: m.ParticleCore })),
+  { ssr: false, loading: () => <div className="w-60 h-60 md:w-72 md:h-72" /> },
+);
 
 // ==========================================
 // MAIN COMPONENT
@@ -21,12 +25,12 @@ export function SecuritySection() {
   // Path definitions for central alignment to the 40x40 robot ears and trunk
   // SVG ViewBox is 1000x650. Center shifted UP to Top-[40%] (Y:260)
   const paths = {
-    // Left ear is approx X:412, Y:245 (To stop at edge of robot)
-    verified: "M 380 120 C 395 120, 380 245, 412 245",
-    // Right ear is approx X:588, Y:245
-    encryption: "M 620 120 C 605 120, 620 245, 588 245",
-    // Bottom trunk is approx X:500, Y:323
-    infrastructure: "M 500 412 C 500 370, 500 370, 500 323"
+    // Top-left connector: endpoint pulled closer to the core (X:445) without overlapping it.
+    verified: "M 380 120 C 400 120, 410 245, 445 245",
+    // Top-right connector: mirror at X:555.
+    encryption: "M 620 120 C 600 120, 590 245, 555 245",
+    // Bottom connector: endpoint raised to match the lifted core (Y:305).
+    infrastructure: "M 500 412 C 500 360, 500 360, 500 305"
   };
 
   const isAnyActive = hoveredNode !== null;
@@ -40,6 +44,11 @@ export function SecuritySection() {
       {/* Cyan grid radiating from Robot's center */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(34,211,238,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(34,211,238,0.03)_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_40%,#000_10%,transparent_80%)] pointer-events-none" />
 
+      {/* Drifting constellation (subtle ambience) */}
+      <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_75%_80%_at_50%_50%,#000_20%,transparent_90%)]">
+        <ConstellationBackground nodeCount={55} nodeAlpha={0.3} />
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center">
         
         {/* Header */}
@@ -52,7 +61,7 @@ export function SecuritySection() {
 
         {/* The Interactive SVG Schematic Container */}
         <div 
-          className="relative w-full max-w-5xl aspect-[700/800] md:aspect-[1000/650] mt-4 -md:mt-4 select-none"
+          className="relative w-full max-w-5xl md:aspect-[1000/650] mt-8 md:mt-4 select-none"
           onMouseLeave={() => setHoveredNode(null)}
         >
           {/* Central Reactor Glow (Reacts to any node hover) */}
@@ -121,18 +130,15 @@ export function SecuritySection() {
             
             {/* NODE 1: Licencias Verificadas */}
             <div className="md:absolute top-[15%] left-[22%] md:-translate-x-1/2 md:-translate-y-1/2 w-full md:w-[32%] z-20">
-              <MagneticCard 
+              <MagneticCard
                 onHoverStart={() => setHoveredNode("verified")}
                 className={hoveredNode && hoveredNode !== "verified" && hoveredNode !== "all" ? "md:opacity-40" : "opacity-100"}
               >
-                <div className="p-6 flex flex-col items-center text-center">
-                  <div className="flex flex-col items-center gap-4 mb-4">
-                    <VerifiedShield active={hoveredNode === "verified" || hoveredNode === "all"} />
-                    <h3 className="text-white font-bold text-xl leading-tight tracking-tight">
-                      {t("features.verified.title")}
-                    </h3>
-                  </div>
-                  <p className="text-brand-slate-light text-sm leading-relaxed">
+                <div className="px-5 py-6 sm:px-6 sm:py-8 flex flex-col items-center text-center">
+                  <h3 className="font-display text-white font-medium text-[20px] sm:text-[22px] leading-[1.15] tracking-[-0.02em] mb-2.5 sm:mb-3">
+                    {t("features.verified.title")}
+                  </h3>
+                  <p className="font-sans text-white/55 text-[13px] sm:text-[14px] leading-[1.6] sm:leading-[1.65] tracking-[0.005em] max-w-[30ch]">
                     {t("features.verified.description")}
                   </p>
                 </div>
@@ -141,18 +147,15 @@ export function SecuritySection() {
 
             {/* NODE 2: Cifrado End-to-End */}
             <div className="md:absolute top-[15%] left-[78%] md:-translate-x-1/2 md:-translate-y-1/2 w-full md:w-[32%] z-20">
-              <MagneticCard 
+              <MagneticCard
                 onHoverStart={() => setHoveredNode("encryption")}
                 className={hoveredNode && hoveredNode !== "encryption" && hoveredNode !== "all" ? "md:opacity-40" : "opacity-100"}
               >
-                <div className="p-6 flex flex-col items-center text-center">
-                  <div className="flex flex-col items-center gap-4 mb-4">
-                    <EncryptionLock active={hoveredNode === "encryption" || hoveredNode === "all"} />
-                    <h3 className="text-white font-bold text-xl leading-tight tracking-tight">
-                      {t("features.encryption.title")}
-                    </h3>
-                  </div>
-                  <p className="text-brand-slate-light text-sm leading-relaxed">
+                <div className="px-5 py-6 sm:px-6 sm:py-8 flex flex-col items-center text-center">
+                  <h3 className="font-display text-white font-medium text-[20px] sm:text-[22px] leading-[1.15] tracking-[-0.02em] mb-2.5 sm:mb-3">
+                    {t("features.encryption.title")}
+                  </h3>
+                  <p className="font-sans text-white/55 text-[13px] sm:text-[14px] leading-[1.6] sm:leading-[1.65] tracking-[0.005em] max-w-[30ch]">
                     {t("features.encryption.description")}
                   </p>
                 </div>
@@ -165,23 +168,20 @@ export function SecuritySection() {
               onMouseEnter={() => setHoveredNode("all")}
               onMouseLeave={() => setHoveredNode(null)}
             >
-              <RobotHead activeNode={hoveredNode} />
+              <ParticleCore activeNode={hoveredNode} />
             </div>
 
             {/* NODE 3: Infraestructura Resiliente */}
             <div className="md:absolute top-[75%] left-[50%] md:-translate-x-1/2 md:-translate-y-1/2 w-full md:w-[36%] z-20">
-              <MagneticCard 
+              <MagneticCard
                 onHoverStart={() => setHoveredNode("infrastructure")}
                 className={hoveredNode && hoveredNode !== "infrastructure" && hoveredNode !== "all" ? "md:opacity-40" : "opacity-100"}
               >
-                <div className="p-6 flex flex-col items-center text-center">
-                  <div className="flex flex-col items-center gap-4 mb-4">
-                    <GlobularServers active={hoveredNode === "infrastructure" || hoveredNode === "all"} />
-                    <h3 className="text-white font-bold text-xl leading-tight tracking-tight">
-                      {t("features.infrastructure.title")}
-                    </h3>
-                  </div>
-                  <p className="text-brand-slate-light text-sm leading-relaxed">
+                <div className="px-5 py-6 sm:px-6 sm:py-8 flex flex-col items-center text-center">
+                  <h3 className="font-display text-white font-medium text-[20px] sm:text-[22px] leading-[1.15] tracking-[-0.02em] mb-2.5 sm:mb-3">
+                    {t("features.infrastructure.title")}
+                  </h3>
+                  <p className="font-sans text-white/55 text-[13px] sm:text-[14px] leading-[1.6] sm:leading-[1.65] tracking-[0.005em] max-w-[32ch]">
                     {t("features.infrastructure.description")}
                   </p>
                 </div>
