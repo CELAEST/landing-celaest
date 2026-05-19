@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Check } from "lucide-react";
-import { motion } from "framer-motion";
+import { SectionReveal } from "@/components/ui/section-reveal";
 
 interface Plan {
   key: "starter" | "professional" | "enterprise";
@@ -20,11 +20,17 @@ export function PricingSection() {
 
   return (
     <section id="pricing" className="py-16 sm:py-24 bg-black relative overflow-hidden">
-      {/* High-Performance Animated Background (No Video) */}
+      {/*
+        Lightweight static background.
+        Removed the 3 huge animated `motion.div` orbs (each blur 140-160px)
+        because they continuously kept the GPU busy compositing oversized
+        layers, even when the section was off-screen — that was the main
+        cause of the scroll lag the user reported.
+      */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        {/* Vercel-style subtle grid background starting behind cards */}
+        {/* Subtle grid pattern */}
         <div
-          className="absolute inset-x-0 top-[10%] bottom-0 z-0 opacity-[0.15] mix-blend-screen"
+          className="absolute inset-x-0 top-[10%] bottom-0 z-0 opacity-[0.15]"
           style={{
             backgroundImage: `linear-gradient(to right, rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,1) 1px, transparent 1px)`,
             backgroundSize: "40px 40px",
@@ -34,51 +40,16 @@ export function PricingSection() {
               "radial-gradient(ellipse 60% 80% at 50% 50%, black 10%, transparent 100%)",
           }}
         />
-
-        {/* Animated Aurora / Plasma Orbs */}
-        <motion.div
-          animate={{
-            scale: [1, 1.15, 1],
-            opacity: [0.15, 0.3, 0.15],
-            x: ["-5%", "5%", "-5%"],
-          }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[20%] left-[10%] w-[600px] h-[600px] bg-brand-neon/30 rounded-full blur-[140px] mix-blend-screen"
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.25, 1],
-            opacity: [0.1, 0.25, 0.1],
-            x: ["5%", "-5%", "5%"],
-            y: ["5%", "-5%", "5%"],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2,
-          }}
-          className="absolute top-[10%] right-[10%] w-[700px] h-[700px] bg-brand-neon-blue/20 rounded-full blur-[160px] mix-blend-screen"
-        />
-        <motion.div
-           animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.1, 0.2, 0.1],
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          className="absolute bottom-[-10%] left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-emerald-500/15 rounded-full blur-[150px] mix-blend-screen"
-        />
+        {/* Static glows (no animation, much cheaper for the GPU) */}
+        <div className="absolute top-[20%] left-[10%] w-[400px] h-[400px] bg-brand-neon/20 rounded-full blur-[100px]" />
+        <div className="absolute top-[10%] right-[10%] w-[450px] h-[450px] bg-brand-neon-blue/15 rounded-full blur-[110px]" />
+        <div className="absolute bottom-[-10%] left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-emerald-500/10 rounded-full blur-[120px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header - Stacked layout matching the upper sections and aligned with cards */}
-        <div className="max-w-[1000px] mx-auto w-full mb-12 sm:mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex flex-col gap-2 text-left"
-          >
+        {/* Header */}
+        <SectionReveal className="max-w-[1000px] mx-auto w-full mb-12 sm:mb-20">
+          <div className="flex flex-col gap-2 text-left">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] tracking-tight leading-[1.1] text-white font-semibold flex flex-col sm:inline-block">
               <span>{t("title1")} </span>
               <span className="text-brand-slate-light font-medium">{t("title2")}</span>
@@ -86,8 +57,8 @@ export function PricingSection() {
             <p className="text-brand-slate-light text-base sm:text-lg md:text-xl lg:text-2xl font-medium tracking-tight leading-[1.4] max-w-4xl mt-4">
               {t("subtitle")}
             </p>
-          </motion.div>
-        </div>
+          </div>
+        </SectionReveal>
 
         {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-6 max-w-sm sm:max-w-md md:max-w-[1000px] mx-auto items-stretch">
@@ -96,25 +67,21 @@ export function PricingSection() {
             const features = t.raw(`plans.${plan.key}.features`) as string[];
 
             return (
-              <motion.div
+              <SectionReveal
                 key={plan.key}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                whileHover={{ y: -8 }}
-                className="relative group cursor-pointer"
+                delay={idx * 100}
+                className="relative group cursor-pointer transition-transform duration-300 hover:-translate-y-2"
               >
                 {/* Glow ring for popular */}
                 {plan.popular && (
-                  <div className="absolute -inset-[1px] bg-gradient-to-b from-brand-neon/50 via-brand-neon-blue/30 to-brand-neon/50 rounded-[25px] blur-[2px] transition-all duration-500 group-hover:blur-[6px] group-hover:opacity-80 opacity-60" />
+                  <div className="absolute -inset-[1px] bg-gradient-to-b from-brand-neon/50 via-brand-neon-blue/30 to-brand-neon/50 rounded-[25px] blur-[2px] transition-opacity duration-500 group-hover:opacity-90 opacity-60" />
                 )}
 
                 <div
-                  className={`relative h-full rounded-3xl p-7 sm:p-8 flex flex-col transition-all duration-500 ${
+                  className={`relative h-full rounded-3xl p-7 sm:p-8 flex flex-col transition-colors duration-300 ${
                     plan.popular
-                      ? "bg-brand-gray border border-brand-neon/30 shadow-[0_0_30px_rgba(34,211,238,0.05)] group-hover:shadow-[0_0_50px_rgba(34,211,238,0.2)] group-hover:border-brand-neon/60 group-hover:bg-brand-surface-alt"
-                      : "bg-brand-surface-alt border border-white/5 shadow-xl shadow-black/50 group-hover:bg-brand-surface-alt group-hover:border-white/20 group-hover:shadow-[0_0_40px_rgba(255,255,255,0.04)]"
+                      ? "bg-brand-gray border border-brand-neon/30 shadow-[0_0_30px_rgba(34,211,238,0.05)] group-hover:border-brand-neon/60"
+                      : "bg-brand-surface-alt border border-white/5 shadow-xl shadow-black/50 group-hover:border-white/20"
                   }`}
                 >
                   {plan.popular && (
@@ -157,10 +124,14 @@ export function PricingSection() {
                   <ul className="space-y-3 mb-8 flex-1">
                     {features.map((feature) => (
                       <li key={feature} className="flex gap-3 items-start">
-                        <div className={`shrink-0 w-5 h-5 rounded-md flex items-center justify-center mt-0.5 ${
-                          plan.popular ? 'bg-brand-neon/15' : 'bg-white/5'
-                        }`}>
-                          <Check className={`w-3 h-3 ${plan.popular ? 'text-brand-neon' : 'text-brand-slate-light'}`} />
+                        <div
+                          className={`shrink-0 w-5 h-5 rounded-md flex items-center justify-center mt-0.5 ${
+                            plan.popular ? "bg-brand-neon/15" : "bg-white/5"
+                          }`}
+                        >
+                          <Check
+                            className={`w-3 h-3 ${plan.popular ? "text-brand-neon" : "text-brand-slate-light"}`}
+                          />
                         </div>
                         <span className="text-brand-slate-light text-sm leading-snug">{feature}</span>
                       </li>
@@ -169,7 +140,11 @@ export function PricingSection() {
 
                   {/* CTA */}
                   <a
-                    href={price === "Custom" ? "#contact" : "https://celaest-dashboard.vercel.app/?mode=signup"}
+                    href={
+                      price === "Custom"
+                        ? "#contact"
+                        : "https://celaest-dashboard.vercel.app/?mode=signup"
+                    }
                     className={`w-full py-3.5 rounded-xl text-center font-semibold text-sm transition-all duration-300 block ${
                       plan.popular
                         ? "bg-brand-neon text-brand-dark hover:shadow-lg hover:shadow-brand-neon/30 hover:brightness-110"
@@ -179,21 +154,19 @@ export function PricingSection() {
                     {price === "Custom" ? t("contactSales") : t("getStarted")}
                   </a>
                 </div>
-              </motion.div>
+              </SectionReveal>
             );
           })}
         </div>
 
         {/* Guarantee */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
+        <SectionReveal
+          as="p"
+          delay={300}
           className="text-center text-brand-slate-light text-xs mt-10 sm:mt-14 max-w-lg mx-auto"
         >
           {t("guarantee")}
-        </motion.p>
+        </SectionReveal>
       </div>
     </section>
   );

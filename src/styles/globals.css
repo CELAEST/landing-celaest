@@ -42,22 +42,41 @@
   }
 
   /*
-   * content-visibility: auto tells the browser to skip layout and paint of
-   * an element until it's near the viewport. Combined with contain-intrinsic-
-   * size it reserves scroll space so there's no layout shift when content
-   * "materialises". Massive cold-load TBT win for tall landing pages.
+   * Section containment strategy:
    *
-   * Two variants because mobile and desktop sections have very different
-   * intrinsic heights — using one value would cause noticeable scroll jumps
-   * when sections become visible.
+   * `content-visibility: auto` was causing visible jank/lag when scrolling
+   * because the browser would skip the layout/paint entirely off-screen and
+   * then try to "materialize" everything in a single frame when the section
+   * approached the viewport — leading to dropped frames especially for
+   * heavy sections like Pricing (animated orbs) and Platform (videos).
+   *
+   * The new strategy uses just CSS `contain` for layout/paint isolation
+   * (no skip), so each section renders progressively as the user scrolls.
+   * The result: no rendering bursts, no scroll jank, smoother feel.
    */
   .cv-section {
-    content-visibility: auto;
-    contain-intrinsic-size: 1px 900px;
+    contain: layout paint style;
   }
-  @media (min-width: 1024px) {
-    .cv-section {
-      contain-intrinsic-size: 1px 1200px;
+
+  /* Smooth section fade-in: triggered via IntersectionObserver in JS */
+  .section-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .section-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* Respect users that prefer no motion */
+  @media (prefers-reduced-motion: reduce) {
+    .section-reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
     }
   }
 }

@@ -1,9 +1,9 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
-import { useRef, useEffect, useCallback, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { ConstellationBackground } from "@/components/ui/constellation-background";
+import { SectionReveal } from "@/components/ui/section-reveal";
 
 const PLATFORM_CARDS = [
   {
@@ -30,25 +30,6 @@ const PLATFORM_CARDS = [
 export function PlatformSection() {
   const t = useTranslations("platform");
   const sectionRef = useRef<HTMLElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  // Mark section as visible when scrolled into view
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <section id="platform" ref={sectionRef} className="py-16 sm:py-24 bg-brand-dark relative overflow-hidden">
@@ -60,35 +41,23 @@ export function PlatformSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header (Linear Style Typography + AI Badge) */}
         <div className="mb-16 sm:mb-24 max-w-5xl text-left">
-          {/* Subtle AI Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-8 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-neon/5 border border-brand-neon/20 backdrop-blur-sm"
-          >
+          <SectionReveal className="mb-8 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-neon/5 border border-brand-neon/20 backdrop-blur-sm">
             <div className="w-1.5 h-1.5 rounded-full bg-brand-neon animate-pulse shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
             <span className="text-[11px] font-bold tracking-[0.15em] text-brand-neon uppercase">
               Plataforma de Automatización con IA
             </span>
-          </motion.div>
+          </SectionReveal>
 
-          {/* Main Title / Subtitle Block */}
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] tracking-tight leading-[1.15]"
-          >
+          <SectionReveal as="h2" delay={80} className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] tracking-tight leading-[1.15] block">
             <span className="text-white font-semibold">{t("title")}. </span>
             <span className="text-brand-slate-light font-medium">{t("subtitle")}</span>
-          </motion.h2>
+          </SectionReveal>
         </div>
 
         {/* Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-7 max-w-sm sm:max-w-md md:max-w-none mx-auto">
           {PLATFORM_CARDS.map((card, index) => (
-            <PlatformCard key={card.id} card={card} index={index} isVisible={isVisible} />
+            <PlatformCard key={card.id} card={card} index={index} />
           ))}
         </div>
       </div>
@@ -99,14 +68,42 @@ export function PlatformSection() {
 function PlatformCard({
   card,
   index,
-  isVisible,
 }: {
   card: (typeof PLATFORM_CARDS)[0];
   index: number;
-  isVisible: boolean;
 }) {
   const t = useTranslations(`platform.cards.${card.id}`);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+
+  // Only autoplay when the card is actually visible to the user.
+  // Saves a lot of GPU/CPU on long pages where 3 mp4 videos would
+  // otherwise decode permanently even off-screen.
+  useEffect(() => {
+    const node = wrapperRef.current;
+    if (!node) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setInView(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.25 },
+    );
+    io.observe(node);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (inView) {
+      v.play().catch(() => {});
+    } else {
+      v.pause();
+    }
+  }, [inView]);
 
   const handleMouseEnter = () => {
     if (videoRef.current) {
@@ -115,21 +112,21 @@ function PlatformCard({
   };
 
   const handleMouseLeave = () => {
-    if (videoRef.current) {
+    // Keep playing on desktop hover-out only if in view (mobile-first)
+    if (videoRef.current && !inView) {
       videoRef.current.pause();
-      videoRef.current.currentTime = 0.01; // Resetea la vista al primer frame
+      videoRef.current.currentTime = 0.01;
     }
   };
 
   return (
-    <div
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      className={`group relative flex flex-col rounded-2xl border border-white/[0.06] bg-brand-surface-alt overflow-hidden cursor-pointer transition-[border-color,box-shadow,transform,opacity] duration-700 ease-out hover:border-white/[0.14] hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.9)] ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-      }`}
-      style={{ transitionDelay: `${index * 150}ms` }}
-    >
+    <SectionReveal delay={index * 100} className="h-full">
+      <div
+        ref={wrapperRef}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        className="group relative flex flex-col h-full rounded-2xl border border-white/[0.06] bg-brand-surface-alt overflow-hidden cursor-pointer transition-[border-color,box-shadow] duration-500 hover:border-white/[0.14] hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.9)]"
+      >
       {/* Top cyan glow line — visible on hover only (GPU: opacity) */}
       <div
         className="absolute top-0 left-0 right-0 h-px z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
@@ -146,12 +143,10 @@ function PlatformCard({
 
       {/* ── VIDEO ZONE ───────────────────────────────────── */}
       <div className="relative aspect-video sm:aspect-[16/10] overflow-hidden rounded-t-2xl bg-[#0a0f14]">
-        {/* Video natively renders first frame on load. Mobile videos auto-play nicely. */}
         <video
           ref={videoRef}
           src={`${card.video}#t=0.01`}
-          preload="auto"
-          autoPlay
+          preload="metadata"
           muted
           loop
           playsInline
@@ -200,13 +195,14 @@ function PlatformCard({
 
         {/* Explorar link */}
         <div className="mt-5 pt-4 border-t border-white/[0.05] flex items-center gap-2 text-zinc-400 group-hover:text-brand-neon transition-colors duration-300 text-[13px] font-semibold tracking-wide">
-          <span>{t("tag") === "Control" ? "Explorar" : t("tag") === "Flujos" ? "Automatizar" : "Conectar"}</span>
+          <span>Explorar</span>
           <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
           </svg>
         </div>
       </div>
 
-    </div>
+      </div>
+    </SectionReveal>
   );
 }
