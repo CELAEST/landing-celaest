@@ -269,9 +269,11 @@ const ParticleLayer = ({ count, config, brainGeometry, isHovered, pointer3D }: L
 const ParticleBrain = ({
   isHovered,
   pointer3D,
+  scaleMultiplier = 1,
 }: {
   isHovered: boolean;
   pointer3D: React.MutableRefObject<THREE.Vector3>;
+  scaleMultiplier?: number;
 }) => {
   const gltf = useGLTF("/particle_ui_brain.gltf") as any;
 
@@ -305,7 +307,7 @@ const ParticleBrain = ({
 
   // Vista fija ligeramente sesgada en Y para mostrar profundidad 3D sin rotación animada
   return (
-    <group rotation={[0, 0.35, 0]}>
+    <group rotation={[0, 0.35, 0]} scale={[scaleMultiplier, scaleMultiplier, scaleMultiplier]}>
       {/* Capa A · Estructura densa interior (Particle Emitter 2) */}
       <ParticleLayer
         count={LAYER_A_COUNT}
@@ -368,6 +370,7 @@ const PointerTracker = ({
 
 export function DynamicInfrastructure() {
   const [isHovered, setIsHovered] = useState(false);
+  const [scaleMultiplier, setScaleMultiplier] = useState(1);
   // Two-stage mount: (1) IntersectionObserver decides when the Canvas can
   // initialize at all, (2) `visible` toggles continuously so the r3f frameloop
   // pauses while the section is off-screen. This keeps the WebGL context
@@ -376,6 +379,23 @@ export function DynamicInfrastructure() {
   const [visible, setVisible] = useState(false);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const pointer3D = useRef(new THREE.Vector3(999, 999, 999));
+
+  // Responsive scale handler
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 480) {
+        setScaleMultiplier(0.9); // Increased from 0.6 to 0.9 for better mobile presence
+      } else if (window.innerWidth < 768) {
+        setScaleMultiplier(0.95); 
+      } else {
+        setScaleMultiplier(1); // Default for desktop
+      }
+    };
+
+    handleResize(); // Initial check
+    window.addEventListener("resize", handleResize, { passive: true });
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const el = wrapperRef.current;
@@ -402,15 +422,25 @@ export function DynamicInfrastructure() {
     return () => io.disconnect();
   }, []);
 
+  // Handle pointer/touch correctly for instant reaction
+  const handleInteractStart = () => setIsHovered(true);
+  const handleInteractEnd = () => setIsHovered(false);
+
   return (
     <div
       ref={wrapperRef}
-      className="relative w-full h-[500px] md:h-[600px] flex items-center justify-center isolate cursor-crosshair group"
-      onPointerEnter={() => setIsHovered(true)}
-      onPointerLeave={() => setIsHovered(false)}
+      className="relative w-full h-[320px] sm:h-[450px] md:h-[600px] flex items-center justify-center isolate cursor-crosshair group overflow-hidden"
+      onPointerEnter={handleInteractStart}
+      onPointerLeave={handleInteractEnd}
+      onPointerDown={handleInteractStart}
+      onPointerUp={handleInteractEnd}
+      onPointerCancel={handleInteractEnd}
+      onTouchStart={handleInteractStart}
+      onTouchEnd={handleInteractEnd}
+      onTouchCancel={handleInteractEnd}
     >
       {mounted && (
-        <div className="absolute inset-0 z-10">
+        <div className="absolute inset-0 z-10 flex items-center justify-center">
           <Canvas
             camera={{ position: [0, 0, 8], fov: 45 }}
             dpr={[1, 1.5]}
@@ -418,7 +448,7 @@ export function DynamicInfrastructure() {
             gl={{ antialias: false, alpha: true, powerPreference: "high-performance", stencil: false }}
           >
             <Suspense fallback={null}>
-              <ParticleBrain isHovered={isHovered} pointer3D={pointer3D} />
+              <ParticleBrain isHovered={isHovered} pointer3D={pointer3D} scaleMultiplier={scaleMultiplier} />
               <PointerTracker isHovered={isHovered} pointer3D={pointer3D} />
             </Suspense>
           </Canvas>
