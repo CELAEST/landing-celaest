@@ -243,12 +243,16 @@ const ParticleLayer = ({ count, config, brainGeometry, isHovered, pointer3D }: L
     const m = materialRef.current;
     if (!m) return;
     m.uniforms.uTime.value = state.clock.elapsedTime;
+    // Hover blend: enter is much faster than exit so the reaction feels
+    // instant when the cursor arrives, while the release decays smoothly.
+    const target = isHovered ? 1.0 : 0.0;
+    const speed = isHovered ? 18 : 5;
     m.uniforms.uHover.value = THREE.MathUtils.lerp(
       m.uniforms.uHover.value,
-      isHovered ? 1.0 : 0.0,
-      Math.min(1, delta * 4.5),
+      target,
+      Math.min(1, delta * speed),
     );
-    m.uniforms.uMousePos.value.lerp(pointer3D.current, Math.min(1, delta * 12));
+    m.uniforms.uMousePos.value.lerp(pointer3D.current, Math.min(1, delta * 22));
   });
 
   return (
@@ -353,16 +357,25 @@ const PointerTracker = ({
   const raycaster = useMemo(() => new THREE.Raycaster(), []);
   const plane = useMemo(() => new THREE.Plane(new THREE.Vector3(0, 0, 1), 0), []);
   const idle = useMemo(() => new THREE.Vector3(999, 999, 999), []);
+  const target = useMemo(() => new THREE.Vector3(), []);
+  const wasHovered = useRef(false);
 
   useFrame((state) => {
     if (!isHovered) {
       pointer3D.current.lerp(idle, 0.08);
+      wasHovered.current = false;
       return;
     }
     raycaster.setFromCamera(state.pointer, state.camera);
-    const target = new THREE.Vector3();
     raycaster.ray.intersectPlane(plane, target);
-    pointer3D.current.lerp(target, 0.22);
+    // On the first frame after hover starts, snap directly to the cursor so
+    // there's no "catch up" delay from the (999,999,999) idle position.
+    if (!wasHovered.current) {
+      pointer3D.current.copy(target);
+      wasHovered.current = true;
+      return;
+    }
+    pointer3D.current.lerp(target, 0.55);
   });
 
   return null;
