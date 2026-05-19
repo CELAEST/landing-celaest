@@ -148,7 +148,19 @@
     "mostPopular": "Most Popular",
     "getStarted": "Get Started",
     "contactSales": "Contact Sales",
-    "guarantee": "All plans include a 30-day money-back guarantee. No questions asked."
+    "guarantee": "All plans include a 30-day money-back guarantee. No questions asked.",
+    "perYear": "/year",
+    "billing": {
+      "monthly": "Monthly",
+      "yearly": "Yearly",
+      "savePercent": "Save {percent}%"
+    },
+    "geo": {
+      "showingIn": "Prices shown in {currency} · {country}",
+      "switchToUsd": "Show in USD",
+      "switchToLocal": "Show in local currency",
+      "billedYearly": "Billed yearly"
+    }
   },
   "security": {
     "title1": "Enterprise-Grade",

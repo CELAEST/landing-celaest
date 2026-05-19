@@ -148,7 +148,19 @@
     "mostPopular": "Más Popular",
     "getStarted": "Comenzar",
     "contactSales": "Contactar Ventas",
-    "guarantee": "Todos los planes incluyen una garantía de devolución de dinero de 30 días. Sin preguntas."
+    "guarantee": "Todos los planes incluyen una garantía de devolución de dinero de 30 días. Sin preguntas.",
+    "perYear": "/año",
+    "billing": {
+      "monthly": "Mensual",
+      "yearly": "Anual",
+      "savePercent": "Ahorra {percent}%"
+    },
+    "geo": {
+      "showingIn": "Precios en {currency} · {country}",
+      "switchToUsd": "Ver en USD",
+      "switchToLocal": "Ver en moneda local",
+      "billedYearly": "Facturado anualmente"
+    }
   },
   "security": {
     "title1": "Seguridad de",
