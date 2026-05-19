@@ -668,7 +668,8 @@ function ParticleSphere({ activeNode, pointer }: { activeNode: SecurityNode; poi
       uMorphLock:   { value: 0 },
       uMorphShield: { value: 0 },
       uMorphGlobe:  { value: 0 },
-      uMorphLogo:   { value: 0 },
+      // Logo is the default resting state of the particle field.
+      uMorphLogo:   { value: 1 },
       uTargetDir: { value: new THREE.Vector3(0, 0, 0) },
       uMousePos: { value: new THREE.Vector3(999, 999, 999) },
       uColorMain: { value: new THREE.Color("#FFFFFF") },
@@ -700,11 +701,12 @@ function ParticleSphere({ activeNode, pointer }: { activeNode: SecurityNode; poi
     //   verified       → shield
     //   encryption     → padlock
     //   infrastructure → globe
-    //   "all"          → CELAEST logo (centre hover reveals the brand)
+    //   default / "all" → CELAEST logo (the brand silhouette is the resting state)
     const targetLock   = activeNode === "encryption" ? 1 : 0;
     const targetShield = activeNode === "verified" ? 1 : 0;
     const targetGlobe  = activeNode === "infrastructure" ? 1 : 0;
-    const targetLogo   = activeNode === "all" ? 1 : 0;
+    // Logo is the default state when nothing else is active.
+    const targetLogo   = activeNode === "all" || activeNode == null ? 1 : 0;
     const morphLerp    = Math.min(1, delta * 3);
     m.uniforms.uMorphLock.value   = THREE.MathUtils.lerp(m.uniforms.uMorphLock.value,   targetLock,   morphLerp);
     m.uniforms.uMorphShield.value = THREE.MathUtils.lerp(m.uniforms.uMorphShield.value, targetShield, morphLerp);
