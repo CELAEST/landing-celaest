@@ -4,6 +4,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { GLTFLoader, MeshSurfaceSampler, SVGLoader } from "three-stdlib";
 import * as THREE from "three";
+import { CELAEST_LOGO_PATH_D, CELAEST_LOGO_VIEWBOX } from "@/components/ui/logo-path";
 
 // requestIdleCallback isn't in lib.dom for some setups and Safari lacks it.
 type IdleHandle = number;
@@ -515,6 +516,33 @@ function sampleLockPositions(scene: THREE.Object3D, count: number): Float32Array
   return out;
 }
 
+// Sample the CELAEST logo synchronously at module-load time.
+// This is the resting silhouette of the particle field, so we MUST have it
+// ready before the first frame paints — otherwise users would see a sphere
+// flash for 1-2 frames while the async sampler caught up.
+// SVGLoader+ExtrudeGeometry+MeshSurfaceSampler are all CPU-only and run in
+// a few ms (~3-5ms typical) on first import, paid once per session.
+let cachedLogoPositions: Float32Array | null = null;
+function getLogoPositionsSync(count: number): Float32Array {
+  if (cachedLogoPositions && cachedLogoPositions.length === count * 3) {
+    return cachedLogoPositions;
+  }
+  try {
+    const geos = buildLogoGeometriesFromPath(CELAEST_LOGO_PATH_D);
+    if (geos.length === 0) {
+      cachedLogoPositions = new Float32Array(count * 3);
+      return cachedLogoPositions;
+    }
+    const positions = sampleGeometryList(geos, count, LOGO_TARGET_SIZE, LOGO_Y_OFFSET);
+    geos.forEach((g) => g.dispose());
+    cachedLogoPositions = positions;
+    return positions;
+  } catch {
+    cachedLogoPositions = new Float32Array(count * 3);
+    return cachedLogoPositions;
+  }
+}
+
 function ParticleSphere({ activeNode, pointer }: { activeNode: SecurityNode; pointer: PointerRef }) {
   const materialRef = useRef<THREE.ShaderMaterial>(null);
   const geometryRef = useRef<THREE.BufferGeometry | null>(null);
@@ -560,7 +588,9 @@ function ParticleSphere({ activeNode, pointer }: { activeNode: SecurityNode; poi
     const lockPositions   = new Float32Array(positions);
     const shieldPositions = new Float32Array(positions);
     const globePositions  = new Float32Array(positions);
-    const logoPositions   = new Float32Array(positions);
+    // Logo is the DEFAULT shape → sample it synchronously so the very first
+    // frame already shows the lambda silhouette and never the bare sphere.
+    const logoPositions   = new Float32Array(getLogoPositionsSync(PARTICLE_COUNT));
 
     const geo = new THREE.BufferGeometry();
     geo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
@@ -627,34 +657,12 @@ function ParticleSphere({ activeNode, pointer }: { activeNode: SecurityNode; poi
       writeTarget("aGlobePos", positions);
     }));
 
-    // 4) CELAEST logo: poll the DOM until the Logo SVG is rendered, then
-    //    parse + sample on idle so SVGLoader doesn't stall the main thread.
-    let raf = 0;
-    const tryLogo = () => {
-      if (cancelled) return;
-      const d = findLogoPathInDOM();
-      if (!d) {
-        raf = requestAnimationFrame(tryLogo);
-        return;
-      }
-      cleanups.push(scheduleIdle(() => {
-        if (cancelled) return;
-        try {
-          const geos = buildLogoGeometriesFromPath(d);
-          if (geos.length === 0) return;
-          const positions = sampleGeometryList(geos, PARTICLE_COUNT, LOGO_TARGET_SIZE, LOGO_Y_OFFSET);
-          geos.forEach((g) => g.dispose());
-          writeTarget("aLogoPos", positions);
-        } catch (err) {
-          console.warn("[ParticleCore] Failed to sample CELAEST logo:", err);
-        }
-      }));
-    };
-    raf = requestAnimationFrame(tryLogo);
+    // Note: the logo silhouette is now sampled synchronously inside the
+    // initial geometry useMemo (see getLogoPositionsSync) so we no longer
+    // poll the DOM here — the resting state is correct from frame 1.
 
     return () => {
       cancelled = true;
-      if (raf) cancelAnimationFrame(raf);
       cleanups.forEach((fn) => fn());
       // Dispose the main geometry on unmount.
       geometryRef.current?.dispose();
