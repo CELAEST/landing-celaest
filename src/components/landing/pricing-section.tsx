@@ -72,7 +72,7 @@ export function PricingSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header - Stacked layout matching the upper sections and aligned with cards */}
-        <div className="max-w-5xl mx-auto w-full mb-14 sm:mb-20">
+        <div className="max-w-[1000px] mx-auto w-full mb-12 sm:mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -90,7 +90,7 @@ export function PricingSection() {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 max-w-5xl mx-auto items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-6 max-w-sm sm:max-w-md md:max-w-[1000px] mx-auto items-stretch">
           {PLANS.map((plan, idx) => {
             const price = t(`plans.${plan.key}.price`);
             const features = t.raw(`plans.${plan.key}.features`) as string[];

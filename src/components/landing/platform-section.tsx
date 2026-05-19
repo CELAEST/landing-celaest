@@ -86,7 +86,7 @@ export function PlatformSection() {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-7">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-7 max-w-sm sm:max-w-md md:max-w-none mx-auto">
           {PLATFORM_CARDS.map((card, index) => (
             <PlatformCard key={card.id} card={card} index={index} isVisible={isVisible} />
           ))}
@@ -145,18 +145,19 @@ function PlatformCard({
       />
 
       {/* ── VIDEO ZONE ───────────────────────────────────── */}
-      <div className="relative aspect-[16/10] overflow-hidden rounded-t-2xl bg-[#0a0f14]">
-        {/* Video natively renders first frame on load. Played explicitly on hover to maintain 100/100 performance without GPU tax. */}
+      <div className="relative aspect-video sm:aspect-[16/10] overflow-hidden rounded-t-2xl bg-[#0a0f14]">
+        {/* Video natively renders first frame on load. Mobile videos auto-play nicely. */}
         <video
           ref={videoRef}
           src={`${card.video}#t=0.01`}
           preload="auto"
+          autoPlay
           muted
           loop
           playsInline
           disablePictureInPicture
           suppressHydrationWarning
-          className={`absolute inset-0 w-full h-full object-cover ${card.videoClassName || ""}`}
+          className={`absolute inset-0 w-full h-full object-cover sm:opacity-80 group-hover:opacity-100 transition-opacity duration-500 ${card.videoClassName || ""}`}
         >
           <track kind="captions" src="data:text/vtt," label="no-captions" />
         </video>
@@ -199,7 +200,7 @@ function PlatformCard({
 
         {/* Explorar link */}
         <div className="mt-5 pt-4 border-t border-white/[0.05] flex items-center gap-2 text-zinc-400 group-hover:text-brand-neon transition-colors duration-300 text-[13px] font-semibold tracking-wide">
-          <span>Explorar</span>
+          <span>{t("tag") === "Control" ? "Explorar" : t("tag") === "Flujos" ? "Automatizar" : "Conectar"}</span>
           <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
           </svg>
