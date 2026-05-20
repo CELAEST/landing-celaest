@@ -112,15 +112,33 @@ export function useGeoPricing(locale: string): UseGeoPricingResult {
       const plan = planByCode.get(planCode.toLowerCase());
       if (!plan) return null;
 
-      // Pick original (USD) values when the user has forced USD, otherwise
-      // the localised values resolved by the backend.
-      const amount = isForcedUSD
-        ? cycle === "monthly"
-          ? plan.original_price_monthly
-          : plan.original_price_yearly
-        : cycle === "monthly"
-          ? plan.local_price_monthly
-          : plan.local_price_yearly;
+      // Pick the amount in the currently selected currency.
+      //
+      // When the user toggles "Ver en USD" we DO NOT fall back to the US
+      // base price (`original_price_*`). Doing so would make 1.437.975 COP
+      // suddenly jump to $990 USD, which is the US market price and is
+      // visibly more expensive than the local PPP-adjusted price.
+      //
+      // Instead we show the USD equivalent of the SAME amount the
+      // customer would pay locally: local_price / exchange_rate. This way
+      // switching currencies is just a unit conversion — it never adds or
+      // removes value, which is what the user expects.
+      //
+      // The original USD price is only used as a fallback when the
+      // backend didn't provide an exchange rate or local price (e.g. for
+      // unknown countries that already default to USD).
+      const localAmount =
+        cycle === "monthly" ? plan.local_price_monthly : plan.local_price_yearly;
+      const usdAmount =
+        cycle === "monthly" ? plan.original_price_monthly : plan.original_price_yearly;
+      const rate = pricing?.exchange_rate ?? 0;
+
+      let amount: number;
+      if (isForcedUSD) {
+        amount = rate > 0 && Number.isFinite(localAmount) ? localAmount / rate : usdAmount;
+      } else {
+        amount = localAmount;
+      }
 
       if (typeof amount !== "number" || !Number.isFinite(amount)) return null;
 
@@ -134,7 +152,7 @@ export function useGeoPricing(locale: string): UseGeoPricingResult {
         symbolPos: parts.symbolPos,
       };
     },
-    [planByCode, isForcedUSD, currency, locale],
+    [planByCode, isForcedUSD, currency, locale, pricing?.exchange_rate],
   );
 
   const formatAmount = useCallback(

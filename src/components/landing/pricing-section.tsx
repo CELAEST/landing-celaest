@@ -221,64 +221,66 @@ export function PricingSection() {
                     </p>
                   </div>
 
-                  {/* Price.
-                      We render the number and currency code separately so
-                      that long localised amounts (e.g. "1.437.975 COP") can
-                      shrink the number while keeping the code legible, and
-                      so nothing ever overflows the card.
+                  {/* Price block.
+                      Layout: row 1 = optional symbol + number + currency code,
+                      row 2 = "/mes" or "/año" billing period below.
 
-                      `min-w-0` on the flex parent allows children to shrink
-                      below their intrinsic width; `tabular-nums` keeps
-                      digits aligned across cards. The size scales down on
-                      narrower screens and when the number itself is long. */}
-                  <div className="mb-2 flex items-baseline flex-wrap gap-x-1.5 gap-y-0 min-w-0 min-h-[3.5rem]">
+                      Keeping the headline on a single line (no wrap) avoids
+                      the ugly break where "COP" jumps under "143.798". The
+                      number font size scales down with the digit count so
+                      even "1.437.975" fits cleanly in the card. */}
+                  <div className="mb-2 flex flex-col min-w-0 min-h-[3.5rem]">
                     {isCustom ? (
                       <span className="text-4xl sm:text-5xl font-bold bg-gradient-to-b from-white to-brand-slate-light bg-clip-text text-transparent">
                         {fallbackPrice}
                       </span>
                     ) : resolved ? (
                       <>
-                        {/* Symbol (when applicable) shown smaller, like a
-                            superscript. We skip showing "$" when the code is
-                            not USD to avoid the redundant "$ 143.798 COP"
-                            (many LATAM currencies reuse the "$" symbol). */}
-                        {resolved.symbolPos === "before" &&
-                          resolved.currencySymbol &&
-                          !(resolved.currencySymbol === "$" && resolved.currencyCode !== "USD") && (
-                            <span className="text-2xl sm:text-3xl font-semibold text-brand-slate-light leading-none translate-y-1">
-                              {resolved.currencySymbol}
-                            </span>
-                          )}
-                        <span
-                          className={`font-bold bg-gradient-to-b from-white to-brand-slate-light bg-clip-text text-transparent tabular-nums leading-none break-words ${
-                            // Shrink the headline for very long numbers so
-                            // they always fit in a single line within the card.
-                            resolved.formattedNumber.length > 9
-                              ? "text-3xl sm:text-4xl"
-                              : resolved.formattedNumber.length > 6
-                                ? "text-4xl sm:text-[2.75rem]"
-                                : "text-4xl sm:text-5xl"
-                          }`}
-                        >
-                          {resolved.formattedNumber}
-                        </span>
-                        <span className="text-sm sm:text-[15px] font-semibold text-brand-slate-light tracking-wide">
-                          {resolved.currencyCode}
-                        </span>
-                        <span className="text-brand-slate-light text-xs sm:text-sm">
+                        <div className="flex items-baseline gap-1.5 min-w-0 whitespace-nowrap">
+                          {/* Symbol (small superscript). Hidden when the
+                              symbol is "$" but the currency is not USD —
+                              many LATAM currencies reuse the dollar sign
+                              and we already show the code (COP / MXN) to
+                              the right, so the prefix would be redundant. */}
+                          {resolved.symbolPos === "before" &&
+                            resolved.currencySymbol &&
+                            !(
+                              resolved.currencySymbol === "$" &&
+                              resolved.currencyCode !== "USD"
+                            ) && (
+                              <span className="text-2xl sm:text-3xl font-semibold text-brand-slate-light leading-none">
+                                {resolved.currencySymbol}
+                              </span>
+                            )}
+                          <span
+                            className={`font-bold bg-gradient-to-b from-white to-brand-slate-light bg-clip-text text-transparent tabular-nums leading-none ${
+                              resolved.formattedNumber.length > 9
+                                ? "text-[28px] sm:text-[34px]"
+                                : resolved.formattedNumber.length > 6
+                                  ? "text-[34px] sm:text-[42px]"
+                                  : "text-4xl sm:text-5xl"
+                            }`}
+                          >
+                            {resolved.formattedNumber}
+                          </span>
+                          <span className="text-[13px] sm:text-sm font-semibold text-brand-slate-light tracking-wide">
+                            {resolved.currencyCode}
+                          </span>
+                        </div>
+                        <span className="text-brand-slate-light text-xs sm:text-sm mt-1">
                           {cycle === "monthly" ? t("perMonth") : t("perYear")}
                         </span>
                       </>
                     ) : (
                       // Translation fallback (USD numeric) — used during the
                       // brief window before the API responds or if it fails.
-                      <>
-                        <span className="text-lg text-brand-slate-light font-medium mr-0.5">$</span>
+                      <div className="flex items-baseline gap-1 whitespace-nowrap">
+                        <span className="text-lg text-brand-slate-light font-medium">$</span>
                         <span className="text-4xl sm:text-5xl font-bold bg-gradient-to-b from-white to-brand-slate-light bg-clip-text text-transparent tabular-nums">
                           {fallbackPrice}
                         </span>
-                        <span className="text-brand-slate-light text-sm ml-1">{t("perMonth")}</span>
-                      </>
+                        <span className="text-brand-slate-light text-sm">{t("perMonth")}</span>
+                      </div>
                     )}
                   </div>
 
