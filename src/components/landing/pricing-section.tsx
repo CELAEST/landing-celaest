@@ -7,14 +7,25 @@ import { SectionReveal } from "@/components/ui/section-reveal";
 import { useGeoPricing } from "@/hooks/useGeoPricing";
 
 interface Plan {
+  /** i18n key used to read name/description/features/price in messages. */
   key: "starter" | "professional" | "enterprise";
+  /**
+   * Plan code as defined in the backend (`/api/v1/public/pricing/resolve`).
+   * Used to look up the localised price. `null` means the plan is presented
+   * as a "Custom" tier and does not have a numeric price in the API.
+   */
+  backendCode: "pro" | "enterprise" | null;
   popular: boolean;
 }
 
+// NOTE: the landing's marketing tiers map onto the backend's billing plans:
+//   - "Starter"      (UI) → `pro`        (API, $29/mo baseline)
+//   - "Professional" (UI) → `enterprise` (API, $99/mo baseline)
+//   - "Enterprise"   (UI) → no API plan → presented as "Custom" / contact sales
 const PLANS: Plan[] = [
-  { key: "starter", popular: false },
-  { key: "professional", popular: true },
-  { key: "enterprise", popular: false },
+  { key: "starter", backendCode: "pro", popular: false },
+  { key: "professional", backendCode: "enterprise", popular: true },
+  { key: "enterprise", backendCode: null, popular: false },
 ];
 
 type BillingCycle = "monthly" | "yearly";
@@ -38,8 +49,8 @@ export function PricingSection() {
   const yearlySavingsPercent = useMemo(() => {
     const ref = pricing?.plans?.find(
       (p) =>
-        p.plan_code.toLowerCase() === "professional" ||
-        p.plan_code.toLowerCase() === "starter",
+        p.plan_code.toLowerCase() === "pro" ||
+        p.plan_code.toLowerCase() === "enterprise",
     );
     if (!ref) return 17;
     const monthlyAnnualized = ref.local_price_monthly * 12;
@@ -158,11 +169,16 @@ export function PricingSection() {
           {PLANS.map((plan, idx) => {
             const features = t.raw(`plans.${plan.key}.features`) as string[];
             const fallbackPrice = t(`plans.${plan.key}.price`); // translation default (USD numeric or "Custom")
-            const isCustom = fallbackPrice === "Custom";
+            // A plan is "Custom" when it has no backend code (contact-sales tier).
+            const isCustom = plan.backendCode === null;
 
-            // Server-resolved price for this plan in the current cycle.
-            // Falls back to translation default while loading or on error.
-            const resolved = isCustom ? null : getPlanPrice(plan.key, cycle);
+            // Server-resolved price for this plan in the current cycle, using
+            // the backend `plan_code` (not the i18n key). Falls back to the
+            // translation default while loading or on error.
+            const resolved =
+              isCustom || !plan.backendCode
+                ? null
+                : getPlanPrice(plan.backendCode, cycle);
 
             return (
               <SectionReveal

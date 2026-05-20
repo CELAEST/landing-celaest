@@ -12,8 +12,13 @@
  *  - Hydration-safe: only ever called on the client
  */
 
+// Production fallback so the landing works even if the env var is not wired
+// up in the deployment platform (Vercel build embeds NEXT_PUBLIC_* at build
+// time — a missing var would otherwise silently disable geo-pricing).
+const DEFAULT_API_BASE_URL = "https://celaest-back.onrender.com";
+
 const API_BASE_URL = (
-  process.env.NEXT_PUBLIC_CELAEST_API_URL || ""
+  process.env.NEXT_PUBLIC_CELAEST_API_URL || DEFAULT_API_BASE_URL
 ).replace(/\/+$/, "");
 
 // Cache for 1 hour. Pricing rarely changes intra-session and FX rates are
