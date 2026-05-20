@@ -222,6 +222,42 @@ export async function fetchGeoPricing(
 // --- Formatting ------------------------------------------------------------
 
 /**
+ * Format a numeric amount into number / currency-code parts using the
+ * resolved currency. Useful when the UI wants to render the number large
+ * and the currency code at a smaller size (so long currency formats like
+ * "143.798 COP" don't overflow narrow plan cards).
+ *
+ * For USD (and other prefix-symbol currencies) the symbol is returned in
+ * `symbol`; the number itself is locale-formatted with thousand separators.
+ */
+export function formatLocalAmountParts(
+  amount: number,
+  currency: SupportedCurrency | null | undefined,
+  locale: string,
+): { number: string; code: string; symbol: string; symbolPos: "before" | "after" } {
+  const code = currency?.code || "USD";
+  const symbol = currency?.symbol || "$";
+  const symbolPos = (currency?.symbol_pos === "after" ? "after" : "before") as
+    | "before"
+    | "after";
+  const isZero = currency?.is_zero_decimal ?? false;
+  const decimals = isZero ? 0 : (currency?.decimals ?? 2);
+
+  let number: string;
+  try {
+    number = new Intl.NumberFormat(locale, {
+      style: "decimal",
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals,
+    }).format(amount);
+  } catch {
+    number = amount.toFixed(decimals);
+  }
+
+  return { number, code, symbol, symbolPos };
+}
+
+/**
  * Format a numeric amount using the resolved currency, falling back to USD.
  * Locale is taken from the browser so 1,200.00 becomes 1.200,00 in es-CO etc.
  */

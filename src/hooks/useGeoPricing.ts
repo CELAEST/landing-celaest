@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   fetchGeoPricing,
   formatLocalAmount,
+  formatLocalAmountParts,
   getCountryOverrideFromURL,
   getCurrencyOverride,
   setCurrencyOverride,
@@ -40,7 +41,19 @@ interface UseGeoPricingResult {
   getPlanPrice: (
     planCode: string,
     cycle: "monthly" | "yearly",
-  ) => { amount: number; formatted: string } | null;
+  ) => {
+    amount: number;
+    /** Fully formatted price including currency, e.g. "143.798 COP". */
+    formatted: string;
+    /** Number-only portion, locale-formatted: "143.798". */
+    formattedNumber: string;
+    /** ISO 4217 code of the currency the amount is in: "COP", "USD". */
+    currencyCode: string;
+    /** Currency symbol when available: "$" for USD/COP. */
+    currencySymbol: string;
+    /** Whether the symbol typically goes before or after the number. */
+    symbolPos: "before" | "after";
+  } | null;
   /** Formats an arbitrary amount in the currently selected currency. */
   formatAmount: (amount: number) => string;
 }
@@ -111,9 +124,14 @@ export function useGeoPricing(locale: string): UseGeoPricingResult {
 
       if (typeof amount !== "number" || !Number.isFinite(amount)) return null;
 
+      const parts = formatLocalAmountParts(amount, currency, locale);
       return {
         amount,
         formatted: formatLocalAmount(amount, currency, locale),
+        formattedNumber: parts.number,
+        currencyCode: parts.code,
+        currencySymbol: parts.symbol,
+        symbolPos: parts.symbolPos,
       };
     },
     [planByCode, isForcedUSD, currency, locale],

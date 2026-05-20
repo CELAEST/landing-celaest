@@ -98,19 +98,24 @@ export function PricingSection() {
           </div>
         </SectionReveal>
 
-        {/* Controls: billing-cycle toggle + geo badge / USD switcher */}
-        <SectionReveal className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-10 sm:mb-14">
+        {/* Controls: twin "pills" share the exact same outer shell so they
+            line up symmetrically on the same horizontal row.
+            - h-11 (44 px) is a comfortable tap target on touch devices.
+            - Inner items are h-9 (36 px) for the active segment.
+            - On <sm the row wraps to a column; both pills become full-width
+              and identical, preserving symmetry. */}
+        <SectionReveal className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center gap-3 sm:gap-4 mb-10 sm:mb-14 px-4">
           {/* Cycle toggle */}
           <div
             role="tablist"
             aria-label={t("billing.monthly") + " / " + t("billing.yearly")}
-            className="inline-flex items-center rounded-full p-1 border border-white/10 bg-white/[0.03] backdrop-blur-sm"
+            className="inline-flex h-11 items-center rounded-full p-1 border border-white/10 bg-white/[0.03] backdrop-blur-sm"
           >
             <button
               role="tab"
               aria-selected={cycle === "monthly"}
               onClick={() => setCycle("monthly")}
-              className={`relative px-4 sm:px-5 py-2 text-xs sm:text-sm font-semibold rounded-full transition-colors ${
+              className={`h-9 px-4 sm:px-5 text-xs sm:text-sm font-semibold rounded-full transition-colors whitespace-nowrap ${
                 cycle === "monthly"
                   ? "bg-white text-brand-dark"
                   : "text-brand-slate-light hover:text-white"
@@ -122,7 +127,7 @@ export function PricingSection() {
               role="tab"
               aria-selected={cycle === "yearly"}
               onClick={() => setCycle("yearly")}
-              className={`relative px-4 sm:px-5 py-2 text-xs sm:text-sm font-semibold rounded-full transition-colors inline-flex items-center gap-2 ${
+              className={`h-9 px-4 sm:px-5 text-xs sm:text-sm font-semibold rounded-full transition-colors inline-flex items-center gap-1.5 whitespace-nowrap ${
                 cycle === "yearly"
                   ? "bg-white text-brand-dark"
                   : "text-brand-slate-light hover:text-white"
@@ -143,20 +148,23 @@ export function PricingSection() {
             </button>
           </div>
 
-          {/* Geo badge + USD toggle (only renders when geo-pricing applies) */}
+          {/* Currency switcher — same pill shape as the cycle toggle so the
+              two controls feel like siblings instead of mismatched widgets. */}
           {showGeoBadge && pricing && (
-            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-sm text-xs sm:text-[13px]">
-              <Globe className="w-3.5 h-3.5 text-brand-neon shrink-0" aria-hidden />
-              <span className="text-brand-slate-light">
-                {t("geo.showingIn", {
-                  currency: currency.code,
-                  country: pricing.country_name,
-                })}
+            <div className="inline-flex h-11 items-center rounded-full p-1 border border-white/10 bg-white/[0.03] backdrop-blur-sm max-w-full">
+              <span className="inline-flex items-center gap-2 h-9 px-3 sm:px-4 text-xs sm:text-sm text-brand-slate-light min-w-0">
+                <Globe className="w-3.5 h-3.5 text-brand-neon shrink-0" aria-hidden />
+                <span className="truncate">
+                  {t("geo.showingIn", {
+                    currency: currency.code,
+                    country: pricing.country_name,
+                  })}
+                </span>
               </span>
               <button
                 onClick={toggleCurrencyOverride}
-                className="text-white/90 hover:text-brand-neon font-semibold transition-colors underline-offset-2 hover:underline"
                 aria-pressed={isForcedUSD}
+                className="h-9 px-4 sm:px-5 text-xs sm:text-sm font-semibold rounded-full bg-white text-brand-dark transition-colors hover:brightness-95 whitespace-nowrap shrink-0"
               >
                 {isForcedUSD ? t("geo.switchToLocal") : t("geo.switchToUsd")}
               </button>
@@ -213,18 +221,51 @@ export function PricingSection() {
                     </p>
                   </div>
 
-                  {/* Price */}
-                  <div className="mb-2 flex items-baseline min-h-[3.5rem]">
+                  {/* Price.
+                      We render the number and currency code separately so
+                      that long localised amounts (e.g. "1.437.975 COP") can
+                      shrink the number while keeping the code legible, and
+                      so nothing ever overflows the card.
+
+                      `min-w-0` on the flex parent allows children to shrink
+                      below their intrinsic width; `tabular-nums` keeps
+                      digits aligned across cards. The size scales down on
+                      narrower screens and when the number itself is long. */}
+                  <div className="mb-2 flex items-baseline flex-wrap gap-x-1.5 gap-y-0 min-w-0 min-h-[3.5rem]">
                     {isCustom ? (
                       <span className="text-4xl sm:text-5xl font-bold bg-gradient-to-b from-white to-brand-slate-light bg-clip-text text-transparent">
                         {fallbackPrice}
                       </span>
                     ) : resolved ? (
                       <>
-                        <span className="text-4xl sm:text-5xl font-bold bg-gradient-to-b from-white to-brand-slate-light bg-clip-text text-transparent tabular-nums">
-                          {resolved.formatted}
+                        {/* Symbol (when applicable) shown smaller, like a
+                            superscript. We skip showing "$" when the code is
+                            not USD to avoid the redundant "$ 143.798 COP"
+                            (many LATAM currencies reuse the "$" symbol). */}
+                        {resolved.symbolPos === "before" &&
+                          resolved.currencySymbol &&
+                          !(resolved.currencySymbol === "$" && resolved.currencyCode !== "USD") && (
+                            <span className="text-2xl sm:text-3xl font-semibold text-brand-slate-light leading-none translate-y-1">
+                              {resolved.currencySymbol}
+                            </span>
+                          )}
+                        <span
+                          className={`font-bold bg-gradient-to-b from-white to-brand-slate-light bg-clip-text text-transparent tabular-nums leading-none break-words ${
+                            // Shrink the headline for very long numbers so
+                            // they always fit in a single line within the card.
+                            resolved.formattedNumber.length > 9
+                              ? "text-3xl sm:text-4xl"
+                              : resolved.formattedNumber.length > 6
+                                ? "text-4xl sm:text-[2.75rem]"
+                                : "text-4xl sm:text-5xl"
+                          }`}
+                        >
+                          {resolved.formattedNumber}
                         </span>
-                        <span className="text-brand-slate-light text-sm ml-1.5">
+                        <span className="text-sm sm:text-[15px] font-semibold text-brand-slate-light tracking-wide">
+                          {resolved.currencyCode}
+                        </span>
+                        <span className="text-brand-slate-light text-xs sm:text-sm">
                           {cycle === "monthly" ? t("perMonth") : t("perYear")}
                         </span>
                       </>
