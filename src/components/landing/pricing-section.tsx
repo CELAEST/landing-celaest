@@ -319,7 +319,7 @@ export function PricingSection() {
                     href={
                       isCustom
                         ? "#contact"
-                        : "https://celaest-dashboard.vercel.app/?mode=signup"
+                        : `https://celaest-dashboard.vercel.app/?mode=signup&plan=${plan.backendCode}&billing_cycle=${cycle}`
                     }
                     className={`w-full py-3.5 rounded-xl text-center font-semibold text-sm transition-all duration-300 block ${
                       plan.popular
