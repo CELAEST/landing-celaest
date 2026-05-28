@@ -186,10 +186,28 @@ export function ConstellationBackground({
     const ro = new ResizeObserver(resize);
     ro.observe(canvas);
 
+    let startTimeout: number | undefined;
+
+    const startTick = () => {
+      if (inView && !raf && running) {
+        raf = requestAnimationFrame(tick);
+      }
+    };
+
     const io = new IntersectionObserver(
       ([entry]) => {
         inView = entry.isIntersecting;
-        if (inView && !raf) raf = requestAnimationFrame(tick);
+        if (inView && !raf) {
+          if (document.readyState !== "complete") {
+            const handleLoad = () => {
+              window.removeEventListener("load", handleLoad);
+              startTimeout = window.setTimeout(startTick, 500);
+            };
+            window.addEventListener("load", handleLoad);
+          } else {
+            startTimeout = window.setTimeout(startTick, 300);
+          }
+        }
       },
       { threshold: 0 },
     );
@@ -198,6 +216,7 @@ export function ConstellationBackground({
     return () => {
       running = false;
       if (raf) cancelAnimationFrame(raf);
+      if (startTimeout) clearTimeout(startTimeout);
       ro.disconnect();
       io.disconnect();
     };

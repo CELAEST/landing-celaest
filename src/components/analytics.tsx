@@ -9,11 +9,11 @@ export function Analytics() {
     <>
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-        strategy="afterInteractive"
+        strategy="worker"
       />
       <Script
         id="google-analytics"
-        strategy="afterInteractive"
+        strategy="worker"
       >
         {`
           window.dataLayer = window.dataLayer || [];

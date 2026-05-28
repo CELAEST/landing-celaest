@@ -32,7 +32,29 @@ const nextConfig: NextConfig = {
       '@radix-ui/react-dialog',
       '@radix-ui/react-dropdown-menu',
       '@radix-ui/react-select',
+      'three',
+      'three-stdlib',
+      '@react-three/fiber',
+      '@react-three/drei',
+      'lucide-react',
+      'framer-motion',
     ],
+  },
+  
+  // Webpack optimization to prevent multiple Three.js instances
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      three: require.resolve('three'),
+    };
+    return config;
+  },
+
+  // Turbopack alias for three.js deduplication in development mode
+  turbopack: {
+    resolveAlias: {
+      three: 'three',
+    },
   },
   
   // Compiler optimizations

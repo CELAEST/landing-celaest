@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
 import { Logo } from "@/components/ui/logo";
 import { Button } from "@/components/ui/button";
 import { LanguageSelector } from "./language-selector";
@@ -159,47 +158,44 @@ export function Navigation() {
       </div>
 
       {/* Mobile menu panel */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.18, ease: "easeOut" }}
-            className="md:hidden absolute top-full left-0 right-0 bg-brand-deep/98 backdrop-blur-xl border-b border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
-          >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex flex-col">
-              <div className="flex flex-col">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.id}
-                    href={link.href}
-                    onClick={(e) => handleSmoothScroll(e, link.id)}
-                    className="py-4 text-brand-soft hover:text-white transition-colors font-semibold text-base tracking-wide border-b border-white/[0.04] last:border-b-0"
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </div>
-
-              <div className="flex flex-col gap-3 mt-6">
-                <a
-                  href={`${dashboardUrl}?mode=signin`}
-                  className="w-full text-center py-3 text-brand-slate-light hover:text-white transition-colors text-sm font-medium border border-white/10 rounded-xl"
-                >
-                  {t("signIn")}
-                </a>
-                <a
-                  href={`${dashboardUrl}?mode=signup`}
-                  className="w-full text-center py-3 bg-brand-neon text-brand-dark font-bold rounded-xl shadow-[0_0_20px_rgba(34,211,238,0.25)] hover:brightness-110 transition-all"
-                >
-                  {t("getStarted")}
-                </a>
-              </div>
-            </div>
-          </motion.div>
+      <div
+        className={cn(
+          "md:hidden absolute top-full left-0 right-0 bg-brand-deep/98 backdrop-blur-xl border-b border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.6)] transition-all duration-200 ease-out origin-top",
+          isMobileMenuOpen
+            ? "opacity-100 translate-y-0 pointer-events-auto"
+            : "opacity-0 -translate-y-2 pointer-events-none"
         )}
-      </AnimatePresence>
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex flex-col">
+          <div className="flex flex-col">
+            {navLinks.map((link) => (
+              <a
+                key={link.id}
+                href={link.href}
+                onClick={(e) => handleSmoothScroll(e, link.id)}
+                className="py-4 text-brand-soft hover:text-white transition-colors font-semibold text-base tracking-wide border-b border-white/[0.04] last:border-b-0"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+
+          <div className="flex flex-col gap-3 mt-6">
+            <a
+              href={`${dashboardUrl}?mode=signin`}
+              className="w-full text-center py-3 text-brand-slate-light hover:text-white transition-colors text-sm font-medium border border-white/10 rounded-xl"
+            >
+              {t("signIn")}
+            </a>
+            <a
+              href={`${dashboardUrl}?mode=signup`}
+              className="w-full text-center py-3 bg-brand-neon text-brand-dark font-bold rounded-xl shadow-[0_0_20px_rgba(34,211,238,0.25)] hover:brightness-110 transition-all"
+            >
+              {t("getStarted")}
+            </a>
+          </div>
+        </div>
+      </div>
     </nav>
   );
 }

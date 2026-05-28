@@ -46,7 +46,7 @@ export function SecuritySection() {
 
       {/* Drifting constellation (subtle ambience) */}
       <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_75%_80%_at_50%_50%,#000_20%,transparent_90%)]">
-        <ConstellationBackground nodeCount={55} nodeAlpha={0.3} />
+        <ConstellationBackground nodeCount={35} nodeAlpha={0.3} />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center">
