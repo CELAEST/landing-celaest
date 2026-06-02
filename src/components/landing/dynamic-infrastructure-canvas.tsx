@@ -242,13 +242,13 @@ const ParticleLayer = ({ count, config, brainGeometry, isHovered, pointer3D }: L
     // Hover blend: enter is much faster than exit so the reaction feels
     // instant when the cursor arrives, while the release decays smoothly.
     const target = isHovered ? 1.0 : 0.0;
-    const speed = isHovered ? 18 : 5;
+    const speed = isHovered ? 45 : 5;
     m.uniforms.uHover.value = THREE.MathUtils.lerp(
       m.uniforms.uHover.value,
       target,
       Math.min(1, delta * speed),
     );
-    m.uniforms.uMousePos.value.lerp(pointer3D.current, Math.min(1, delta * 22));
+    m.uniforms.uMousePos.value.copy(pointer3D.current);
   });
 
   return (
@@ -371,7 +371,7 @@ const PointerTracker = ({
       wasHovered.current = true;
       return;
     }
-    pointer3D.current.lerp(target, 0.55);
+    pointer3D.current.lerp(target, 0.85);
   });
 
   return null;
