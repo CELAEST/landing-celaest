@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { GLTFLoader, MeshSurfaceSampler, SVGLoader } from "three-stdlib";
 import * as THREE from "three";

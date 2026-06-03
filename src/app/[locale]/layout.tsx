@@ -44,7 +44,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://landing-celaest.vercel.app';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://landing-celaest.vercel.app";
 
   const titles = {
     en: "Celeast - Premium Digital Asset Marketplace",
@@ -71,33 +71,33 @@ export async function generateMetadata({
       languages: {
         en: `${baseUrl}/en`,
         es: `${baseUrl}/es`,
-        'x-default': `${baseUrl}/en`,
+        "x-default": `${baseUrl}/en`,
       },
     },
     openGraph: {
       title,
       description,
       url: `${baseUrl}/${locale}`,
-      siteName: 'CELAEST',
-      locale: locale === 'es' ? 'es_ES' : 'en_US',
-      type: 'website',
+      siteName: "CELAEST",
+      locale: locale === "es" ? "es_ES" : "en_US",
+      type: "website",
       images: [
         {
-          url: '/robot1.webp',
+          url: "/robot1.webp",
           width: 1200,
           height: 630,
-          alt: 'CELAEST Platform',
+          alt: "CELAEST Platform",
         },
       ],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title,
       description,
-      images: ['/robot1.webp'],
+      images: ["/robot1.webp"],
     },
     icons: {
-      icon: '/icon.svg',
+      icon: "/icon.svg",
     },
   };
 }
@@ -107,10 +107,7 @@ interface RootLayoutProps {
   params: Promise<{ locale: string }>;
 }
 
-export default async function RootLayout({
-  children,
-  params,
-}: RootLayoutProps) {
+export default async function RootLayout({ children, params }: RootLayoutProps) {
   const { locale } = await params;
 
   if (!routing.locales.includes(locale as any)) {
@@ -122,10 +119,7 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html
-      lang={locale}
-      className={`${inter.variable} ${spaceGrotesk.variable}`}
-    >
+    <html lang={locale} className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <head />
       <body className="font-sans antialiased" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>

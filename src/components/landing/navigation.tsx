@@ -46,10 +46,7 @@ export function Navigation() {
     };
   }, [isMobileMenuOpen]);
 
-  const handleSmoothScroll = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    targetId: string,
-  ) => {
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
     const element = document.getElementById(targetId);
@@ -92,11 +89,7 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 lg:h-24">
           {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center gap-2 group w-32"
-            onClick={handleLogoClick}
-          >
+          <Link href="/" className="flex items-center gap-2 group w-32" onClick={handleLogoClick}>
             <div className="w-8 h-8 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
               <Logo color="#e2e8f0" />
             </div>
@@ -163,7 +156,7 @@ export function Navigation() {
           "md:hidden absolute top-full left-0 right-0 bg-brand-deep/98 backdrop-blur-xl border-b border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.6)] transition-all duration-200 ease-out origin-top",
           isMobileMenuOpen
             ? "opacity-100 translate-y-0 pointer-events-auto"
-            : "opacity-0 -translate-y-2 pointer-events-none"
+            : "opacity-0 -translate-y-2 pointer-events-none",
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex flex-col">

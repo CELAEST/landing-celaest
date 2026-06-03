@@ -130,15 +130,14 @@ export function HeroSection({ splineBackground }: { splineBackground?: React.Rea
 
       {/* Content — pointer-events-none lets mouse pass through to Spline */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pointer-events-none">
-
         {/* Text Content */}
         <div className="max-w-2xl mb-8 sm:mb-12 lg:mb-16 pt-4 sm:pt-10 lg:pt-0 text-center lg:text-left mx-auto lg:mx-0">
           {/* Badge */}
-          <div
-            className="animate-fade-up inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-brand-gray/40 border border-brand-neon/20 rounded-full mb-6 sm:mb-8 backdrop-blur-md"
-          >
+          <div className="animate-fade-up inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-brand-gray/40 border border-brand-neon/20 rounded-full mb-6 sm:mb-8 backdrop-blur-md">
             <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-brand-neon rounded-full animate-pulse shadow-[0_0_10px_rgba(34,211,238,0.6)]" />
-            <span className="text-xs sm:text-sm font-medium text-brand-soft tracking-wide">{t("badge")}</span>
+            <span className="text-xs sm:text-sm font-medium text-brand-soft tracking-wide">
+              {t("badge")}
+            </span>
           </div>
 
           {/* Main Headline */}
@@ -149,11 +148,9 @@ export function HeroSection({ splineBackground }: { splineBackground?: React.Rea
               letterSpacing: "-0.05em",
             }}
           >
-             <span className="text-gray-300 drop-shadow-md">
-              {t("headline1")}
-             </span>{" "}
+            <span className="text-gray-300 drop-shadow-md">{t("headline1")}</span>{" "}
             <span className="bg-gradient-to-r from-brand-neon to-brand-neon-blue bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(34,211,238,0.2)]">
-               <br className="hidden sm:block" /> {t("headline2")}
+              <br className="hidden sm:block" /> {t("headline2")}
             </span>
           </h1>
 
@@ -170,9 +167,7 @@ export function HeroSection({ splineBackground }: { splineBackground?: React.Rea
           </p>
 
           {/* CTA Buttons */}
-          <div
-            className="animate-fade-up delay-300 flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-3 sm:gap-4"
-          >
+          <div className="animate-fade-up delay-300 flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-3 sm:gap-4">
             <a
               href="https://celaest-dashboard.vercel.app/?tab=marketplace"
               className="pointer-events-auto group relative w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-brand-neon text-brand-dark font-bold rounded-xl overflow-hidden shadow-[0_0_40px_rgba(34,211,238,0.2)] hover:shadow-[0_0_60px_rgba(34,211,238,0.4)] transition-all flex items-center justify-center gap-3 text-sm sm:text-base"
@@ -218,7 +213,10 @@ export function HeroSection({ splineBackground }: { splineBackground?: React.Rea
                     <span className="font-display font-medium text-[13px] sm:text-[17px] md:text-[19px] tracking-[-0.02em] leading-none text-white/90 px-7 sm:px-12 md:px-16">
                       {item}
                     </span>
-                    <span className="w-px h-6 sm:h-8 md:h-9 bg-white/10 shrink-0" aria-hidden="true" />
+                    <span
+                      className="w-px h-6 sm:h-8 md:h-9 bg-white/10 shrink-0"
+                      aria-hidden="true"
+                    />
                   </div>
                 ))}
               </div>

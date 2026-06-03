@@ -128,9 +128,15 @@ export function ConstellationBackground({
         else if (n.y > height + 8) n.y = -8;
       }
 
-      // links
+      // links - bucketed by opacity to minimize draw calls (stroke())
       const linkDistSq = linkDistance * linkDistance;
       ctx.lineWidth = 1;
+      
+      const buckets: { x1: number; y1: number; x2: number; y2: number }[][] = Array.from(
+        { length: 5 },
+        () => [],
+      );
+
       for (let i = 0; i < nodes.length; i++) {
         const a = nodes[i];
         for (let j = i + 1; j < nodes.length; j++) {
@@ -141,17 +147,28 @@ export function ConstellationBackground({
           if (dSq < linkDistSq) {
             const dist = Math.sqrt(dSq);
             const alpha = (1 - dist / linkDistance) * linkOpacity;
-            ctx.strokeStyle = `rgba(${linkColor},${alpha})`;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.stroke();
+            const bucketIndex = Math.min(4, Math.floor((alpha / linkOpacity) * 5));
+            buckets[bucketIndex].push({ x1: a.x, y1: a.y, x2: b.x, y2: b.y });
           }
         }
       }
 
+      for (let k = 0; k < 5; k++) {
+        const lines = buckets[k];
+        if (lines.length === 0) continue;
+        const alpha = ((k + 1) / 5) * linkOpacity;
+        ctx.strokeStyle = `rgba(${linkColor},${alpha})`;
+        ctx.beginPath();
+        for (let i = 0; i < lines.length; i++) {
+          const line = lines[i];
+          ctx.moveTo(line.x1, line.y1);
+          ctx.lineTo(line.x2, line.y2);
+        }
+        ctx.stroke();
+      }
+
       // nodes — los marcados parpadean: oscilan entre muy débiles y
-      // muy brillantes, y al pico se les agrega aura (shadowBlur).
+      // muy brillantes, y al pico se les agrega un aura simulada usando círculos concéntricos.
       for (const n of nodes) {
         let eb = n.b;
         let glow = 0;
@@ -163,20 +180,29 @@ export function ConstellationBackground({
           // Aura: solo aparece en la mitad alta del ciclo, escala con s.
           glow = Math.max(0, (s - 0.5) * 2); // 0 abajo de s=0.5, 1 en s=1
         }
+        
         // Alpha base + boost del glow → al peak se vuelve blanco puro.
         const alpha = Math.min(nodeAlpha * eb + glow * 0.55, 1);
+        const radius = nodeRadius * (0.7 + eb * 0.5);
+
+        // Brillo simulado (con círculos concéntricos acelerados por hardware en lugar del costoso shadowBlur de la CPU)
         if (glow > 0.05) {
-          ctx.shadowColor = `rgba(${nodeColor},${0.5 * glow})`;
-          ctx.shadowBlur = 6 * glow;
-        } else {
-          ctx.shadowBlur = 0;
+          ctx.fillStyle = `rgba(${nodeColor},${alpha * 0.25 * glow})`;
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, radius * 3.5, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.fillStyle = `rgba(${nodeColor},${alpha * 0.12 * glow})`;
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, radius * 7, 0, Math.PI * 2);
+          ctx.fill();
         }
+
         ctx.fillStyle = `rgba(${nodeColor},${alpha})`;
         ctx.beginPath();
-        ctx.arc(n.x, n.y, nodeRadius * (0.7 + eb * 0.5), 0, Math.PI * 2);
+        ctx.arc(n.x, n.y, radius, 0, Math.PI * 2);
         ctx.fill();
       }
-      ctx.shadowBlur = 0; // reset al final del frame
 
       raf = requestAnimationFrame(tick);
     };
@@ -197,15 +223,22 @@ export function ConstellationBackground({
     const io = new IntersectionObserver(
       ([entry]) => {
         inView = entry.isIntersecting;
-        if (inView && !raf) {
-          if (document.readyState !== "complete") {
-            const handleLoad = () => {
-              window.removeEventListener("load", handleLoad);
-              startTimeout = window.setTimeout(startTick, 500);
-            };
-            window.addEventListener("load", handleLoad);
-          } else {
-            startTimeout = window.setTimeout(startTick, 300);
+        if (inView) {
+          if (!raf) {
+            if (document.readyState !== "complete") {
+              const handleLoad = () => {
+                window.removeEventListener("load", handleLoad);
+                startTimeout = window.setTimeout(startTick, 500);
+              };
+              window.addEventListener("load", handleLoad);
+            } else {
+              startTimeout = window.setTimeout(startTick, 300);
+            }
+          }
+        } else {
+          if (startTimeout) {
+            window.clearTimeout(startTimeout);
+            startTimeout = undefined;
           }
         }
       },
