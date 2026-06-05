@@ -14,8 +14,7 @@ export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const t = useTranslations("nav");
 
-  // Resolvemos la URL de forma segura para evitar Hydration Mismatch (.env en Server vs Client)
-  const dashboardUrl = process.env.NEXT_PUBLIC_SAAS_DASHBOARD_URL || "https://app.celaest.com";
+  const dashboardUrl = "https://celaest-dashboard.vercel.app/";
 
   useEffect(() => {
     let ticking = false;
