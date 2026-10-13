@@ -132,13 +132,6 @@ export function HeroSection({ splineBackground }: { splineBackground?: React.Rea
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pointer-events-none">
         {/* Text Content */}
         <div className="max-w-2xl mb-8 sm:mb-12 lg:mb-16 pt-4 sm:pt-10 lg:pt-0 text-center lg:text-left mx-auto lg:mx-0">
-          {/* Badge */}
-          <div className="animate-fade-up inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-brand-gray/40 border border-brand-neon/20 rounded-full mb-6 sm:mb-8 backdrop-blur-md">
-            <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-brand-neon rounded-full animate-pulse shadow-[0_0_10px_rgba(34,211,238,0.6)]" />
-            <span className="text-xs sm:text-sm font-medium text-brand-soft tracking-wide">
-              {t("badge")}
-            </span>
-          </div>
 
           {/* Main Headline */}
           <h1

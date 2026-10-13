@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { ArrowRight, Play } from "lucide-react";
 import { ConstellationBackground } from "@/components/ui/constellation-background";
+import { MagneticElement } from "@/components/landing-v2/lab";
 
 export function HeroSection({ splineBackground }: { splineBackground?: React.ReactNode }) {
   const t = useTranslations("hero");
@@ -132,13 +133,6 @@ export function HeroSection({ splineBackground }: { splineBackground?: React.Rea
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pointer-events-none">
         {/* Text Content */}
         <div className="max-w-2xl mb-8 sm:mb-12 lg:mb-16 pt-4 sm:pt-10 lg:pt-0 text-center lg:text-left mx-auto lg:mx-0">
-          {/* Badge */}
-          <div className="animate-fade-up inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-brand-gray/40 border border-brand-neon/20 rounded-full mb-6 sm:mb-8 backdrop-blur-md">
-            <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-brand-neon rounded-full animate-pulse shadow-[0_0_10px_rgba(34,211,238,0.6)]" />
-            <span className="text-xs sm:text-sm font-medium text-brand-soft tracking-wide">
-              {t("badge")}
-            </span>
-          </div>
 
           {/* Main Headline */}
           <h1
@@ -166,22 +160,27 @@ export function HeroSection({ splineBackground }: { splineBackground?: React.Rea
             {t("subheadline1")} {t("subheadline2")}
           </p>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons with Spring Physics */}
           <div className="animate-fade-up delay-300 flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-3 sm:gap-4">
-            <a
-              href="https://celaest-dashboard.vercel.app/?tab=marketplace"
-              className="pointer-events-auto group relative w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-brand-neon text-brand-dark font-bold rounded-xl overflow-hidden shadow-[0_0_40px_rgba(34,211,238,0.2)] hover:shadow-[0_0_60px_rgba(34,211,238,0.4)] transition-all flex items-center justify-center gap-3 text-sm sm:text-base"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-brand-neon to-brand-neon-blue opacity-0 group-hover:opacity-100 transition-opacity" />
-              <span className="relative z-10 flex items-center gap-2">
-                {t("browseCTA")}
-                <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </a>
-            <button className="pointer-events-auto group w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-transparent border-2 border-brand-slate text-brand-ice font-bold rounded-xl hover:border-brand-neon hover:bg-brand-neon/5 transition-all flex items-center justify-center gap-3 text-sm sm:text-base">
-              <Play className="w-4 sm:w-5 h-4 sm:h-5" />
-              {t("watchDemo")}
-            </button>
+            <MagneticElement strength={0.3}>
+              <a
+                href="https://celaest-dashboard.vercel.app/?tab=marketplace"
+                className="pointer-events-auto group relative w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-brand-neon text-brand-dark font-bold rounded-xl overflow-hidden shadow-[0_0_40px_rgba(34,211,238,0.2)] hover:shadow-[0_0_60px_rgba(34,211,238,0.4)] transition-all flex items-center justify-center gap-3 text-sm sm:text-base"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-brand-neon to-brand-neon-blue opacity-0 group-hover:opacity-100 transition-opacity" />
+                <span className="relative z-10 flex items-center gap-2">
+                  {t("browseCTA")}
+                  <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </a>
+            </MagneticElement>
+
+            <MagneticElement strength={0.25}>
+              <button className="pointer-events-auto group w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-transparent border-2 border-brand-slate text-brand-ice font-bold rounded-xl hover:border-brand-neon hover:bg-brand-neon/5 transition-all flex items-center justify-center gap-3 text-sm sm:text-base">
+                <Play className="w-4 sm:w-5 h-4 sm:h-5" />
+                {t("watchDemo")}
+              </button>
+            </MagneticElement>
           </div>
         </div>
 

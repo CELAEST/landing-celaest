@@ -10,6 +10,7 @@ import {
 } from "@/lib/structured-data";
 
 import { SplineBackground } from "@/components/landing-v2/spline-minimal-loader";
+import { LabProvider, VolumetricAura, LabHUD } from "@/components/landing-v2/lab";
 
 // Lazy load sections below the fold for better performance
 const ProductsSection = dynamic(
@@ -82,48 +83,56 @@ export default async function LandingV2Page({ params }: PageProps) {
   setRequestLocale(locale);
 
   return (
-    <div className="min-h-screen bg-brand-dark">
-      {/* JSON-LD Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateOrganizationSchema()) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateWebSiteSchema()) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateSoftwareSchema()) }}
-      />
-      <Navigation />
-      <main>
-        <HeroSection
-          splineBackground={
-            <div className="absolute z-0 w-[104%] h-[108%] -left-2 -top-4 pointer-events-auto">
-              <SplineBackground />
-            </div>
-          }
+    <LabProvider>
+      <div className="min-h-screen bg-brand-dark relative overflow-x-hidden">
+        {/* Volumetric reactive atmosphere */}
+        <VolumetricAura />
+
+        {/* JSON-LD Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(generateOrganizationSchema()) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(generateWebSiteSchema()) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(generateSoftwareSchema()) }}
+        />
+        <Navigation />
+        <main>
+          <HeroSection
+            splineBackground={
+              <div className="absolute z-0 w-[104%] h-[108%] -left-2 -top-4 pointer-events-auto">
+                <SplineBackground />
+              </div>
+            }
+          />
+          <div className="cv-section">
+            <ProductsSection />
+          </div>
+          <div className="cv-section">
+            <PlatformSection />
+          </div>
+          <div className="cv-section">
+            <SecuritySection />
+          </div>
+          <div className="cv-section">
+            <PricingSection />
+          </div>
+          <div className="cv-section">
+            <FAQSection />
+          </div>
+        </main>
         <div className="cv-section">
-          <ProductsSection />
+          <Footer />
         </div>
-        <div className="cv-section">
-          <PlatformSection />
-        </div>
-        <div className="cv-section">
-          <SecuritySection />
-        </div>
-        <div className="cv-section">
-          <PricingSection />
-        </div>
-        <div className="cv-section">
-          <FAQSection />
-        </div>
-      </main>
-      <div className="cv-section">
-        <Footer />
+
+        {/* Floating Design Lab Controller */}
+        <LabHUD />
       </div>
-    </div>
+    </LabProvider>
   );
 }

@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { useRef, useEffect, useState } from "react";
 import { ConstellationBackground } from "@/components/ui/constellation-background";
 import { SectionReveal } from "@/components/ui/section-reveal";
+import { SpotlightCard, MagneticElement } from "@/components/landing-v2/lab";
 
 const PLATFORM_CARDS = [
   {
@@ -41,12 +42,7 @@ export function PlatformSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header (Linear Style Typography + AI Badge) */}
         <div className="mb-16 sm:mb-24 max-w-5xl text-left">
-          <SectionReveal className="mb-8 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-neon/5 border border-brand-neon/20 backdrop-blur-sm">
-            <div className="w-1.5 h-1.5 rounded-full bg-brand-neon animate-pulse shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
-            <span className="text-[11px] font-bold tracking-[0.15em] text-brand-neon uppercase">
-              Plataforma de Automatización con IA
-            </span>
-          </SectionReveal>
+
 
           <SectionReveal as="h2" delay={80} className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] tracking-tight leading-[1.15] block">
             <span className="text-white font-semibold">{t("title")}. </span>
@@ -121,12 +117,16 @@ function PlatformCard({
 
   return (
     <SectionReveal delay={index * 100} className="h-full">
-      <div
-        ref={wrapperRef}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        className="group relative flex flex-col h-full rounded-2xl border border-white/[0.06] bg-brand-surface-alt overflow-hidden cursor-pointer transition-[border-color,box-shadow] duration-500 hover:border-white/[0.14] hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.9)]"
+      <SpotlightCard
+        glowColor={card.glowColor}
+        className="flex flex-col h-full border border-white/[0.08] bg-brand-surface-alt transition-[box-shadow] duration-500 hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.9)]"
       >
+        <div
+          ref={wrapperRef}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className="relative flex flex-col h-full overflow-hidden"
+        >
       {/* Top cyan glow line — visible on hover only (GPU: opacity) */}
       <div
         className="absolute top-0 left-0 right-0 h-px z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
@@ -168,19 +168,18 @@ function PlatformCard({
 
         {/* Tag + Arrow row */}
         <div className="flex items-center justify-between mb-5">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.05]">
-            <div className="w-1.5 h-1.5 bg-brand-neon rounded-full shadow-[0_0_6px_rgba(34,211,238,0.6)]" />
-            <span className="text-[10px] font-bold tracking-[0.14em] text-zinc-500 group-hover:text-zinc-400 transition-colors duration-300 uppercase">
-              {t("tag")}
-            </span>
-          </div>
+          <span className="text-[10px] font-mono tracking-[0.18em] text-zinc-500 group-hover:text-zinc-400 transition-colors duration-300 uppercase">
+            {t("tag")}
+          </span>
 
-          {/* Arrow button */}
-          <div className="w-7 h-7 rounded-full border border-white/[0.05] flex items-center justify-center bg-white/[0.02] group-hover:bg-brand-neon group-hover:border-transparent transition-all duration-300 -rotate-45 group-hover:rotate-0">
-            <svg className="w-3 h-3 text-neutral-500 group-hover:text-black transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </div>
+          {/* Arrow button with magnetic spring attraction */}
+          <MagneticElement strength={0.4}>
+            <div className="w-7 h-7 rounded-full border border-white/[0.08] flex items-center justify-center bg-white/[0.03] group-hover:bg-brand-neon group-hover:border-transparent transition-all duration-300 -rotate-45 group-hover:rotate-0 shadow-sm">
+              <svg className="w-3 h-3 text-neutral-400 group-hover:text-black transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </div>
+          </MagneticElement>
         </div>
 
         {/* Title */}
@@ -201,8 +200,8 @@ function PlatformCard({
           </svg>
         </div>
       </div>
-
-      </div>
+        </div>
+      </SpotlightCard>
     </SectionReveal>
   );
 }

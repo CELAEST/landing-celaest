@@ -32,17 +32,7 @@ export function ProductsSection() {
         <div className="flex flex-col lg:flex-row items-center gap-10 sm:gap-12 lg:gap-14">
           {/* LEFT HALF: Content & CTA */}
           <div className="w-full lg:w-[45%] flex flex-col items-start text-left shrink-0">
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mb-6 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.02] border border-white/[0.05] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
-            >
-              <div className="w-1.5 h-1.5 rounded-full bg-brand-neon animate-pulse shadow-[0_0_8px_rgba(34,211,238,0.6)]" />
-              <span className="text-[10px] font-semibold tracking-widest text-zinc-400 uppercase">
-                Developer API & SDK
-              </span>
-            </motion.div>
+
 
             <motion.h2
               initial={{ opacity: 0, y: 20 }}

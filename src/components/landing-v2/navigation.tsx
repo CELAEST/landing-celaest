@@ -8,6 +8,7 @@ import { Logo } from "@/components/ui/logo";
 import { Button } from "@/components/ui/button";
 import { LanguageSelector } from "./language-selector";
 import { cn } from "@/lib/utils";
+import { MagneticElement } from "@/components/landing-v2/lab";
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -87,8 +88,8 @@ export function Navigation() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 lg:h-24">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group w-32" onClick={handleLogoClick}>
+          {/* Logo with LAB Badge */}
+          <Link href="/" className="flex items-center gap-2 group w-auto" onClick={handleLogoClick}>
             <div className="w-8 h-8 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
               <Logo color="#e2e8f0" />
             </div>
@@ -101,6 +102,9 @@ export function Navigation() {
               }}
             >
               CELEAST
+            </span>
+            <span className="text-[9px] font-mono tracking-[0.2em] px-2 py-0.5 rounded bg-emerald-400/10 text-emerald-400 border border-emerald-400/20 uppercase font-semibold">
+              LAB
             </span>
           </Link>
 
@@ -127,13 +131,15 @@ export function Navigation() {
             >
               {t("signIn")}
             </a>
-            <Button
-              size="default"
-              className="hidden sm:inline-flex bg-brand-neon text-brand-dark hover:bg-brand-ice shadow-[0_0_15px_rgba(34,211,238,0.3)] hover:shadow-[0_0_25px_rgba(34,211,238,0.5)] transition-all font-bold tracking-wide"
-              asChild
-            >
-              <a href={`${dashboardUrl}?mode=signup`}>{t("getStarted")}</a>
-            </Button>
+            <MagneticElement strength={0.3}>
+              <Button
+                size="default"
+                className="hidden sm:inline-flex bg-brand-neon text-brand-dark hover:bg-brand-ice shadow-[0_0_15px_rgba(34,211,238,0.3)] hover:shadow-[0_0_25px_rgba(34,211,238,0.5)] transition-all font-bold tracking-wide"
+                asChild
+              >
+                <a href={`${dashboardUrl}?mode=signup`}>{t("getStarted")}</a>
+              </Button>
+            </MagneticElement>
 
             {/* Mobile hamburger toggle */}
             <button

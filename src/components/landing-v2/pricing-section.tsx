@@ -206,7 +206,7 @@ export function PricingSection() {
                   }`}
                 >
                   {plan.popular && (
-                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-brand-neon to-brand-neon-blue text-brand-dark text-[10px] font-bold rounded-full uppercase tracking-[0.15em]">
+                    <div className="text-[10px] font-mono tracking-[0.2em] uppercase text-emerald-400 font-semibold mb-2">
                       {t("mostPopular")}
                     </div>
                   )}

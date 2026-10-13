@@ -39,15 +39,8 @@ export function PlatformSection() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header (Linear Style Typography + AI Badge) */}
+        {/* Header */}
         <div className="mb-16 sm:mb-24 max-w-5xl text-left">
-          <SectionReveal className="mb-8 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-neon/5 border border-brand-neon/20 backdrop-blur-sm">
-            <div className="w-1.5 h-1.5 rounded-full bg-brand-neon animate-pulse shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
-            <span className="text-[11px] font-bold tracking-[0.15em] text-brand-neon uppercase">
-              Plataforma de Automatización con IA
-            </span>
-          </SectionReveal>
-
           <SectionReveal as="h2" delay={80} className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] tracking-tight leading-[1.15] block">
             <span className="text-white font-semibold">{t("title")}. </span>
             <span className="text-brand-slate-light font-medium">{t("subtitle")}</span>
@@ -166,14 +159,10 @@ function PlatformCard({
       {/* ── CONTENT ZONE ─────────────────────────────────── */}
       <div className="flex flex-col flex-1 px-5 pt-4 pb-6 relative z-20">
 
-        {/* Tag + Arrow row */}
         <div className="flex items-center justify-between mb-5">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.05]">
-            <div className="w-1.5 h-1.5 bg-brand-neon rounded-full shadow-[0_0_6px_rgba(34,211,238,0.6)]" />
-            <span className="text-[10px] font-bold tracking-[0.14em] text-zinc-500 group-hover:text-zinc-400 transition-colors duration-300 uppercase">
-              {t("tag")}
-            </span>
-          </div>
+          <span className="text-[10px] font-mono tracking-[0.18em] text-zinc-500 group-hover:text-zinc-400 transition-colors duration-300 uppercase">
+            {t("tag")}
+          </span>
 
           {/* Arrow button */}
           <div className="w-7 h-7 rounded-full border border-white/[0.05] flex items-center justify-center bg-white/[0.02] group-hover:bg-brand-neon group-hover:border-transparent transition-all duration-300 -rotate-45 group-hover:rotate-0">

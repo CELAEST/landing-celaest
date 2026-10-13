@@ -52,12 +52,17 @@ export function SecuritySection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center">
         
         {/* Header */}
-        <SectionHeader
-          title1={t("title1")}
-          title2={t("title2")}
-          subtitle={t("description")}
-          badge="Global Scale Infrastructure"
-        />
+        <div className="animate-fade-up text-center mb-10 w-full">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-4 sm:mb-6 tracking-tight leading-[1.1]">
+            <span className="text-white">{t("title1")} </span>
+            <span className="text-brand-slate-light font-medium">{t("title2")}</span>
+          </h2>
+          {t("description") && (
+            <p className="text-brand-slate-light text-base sm:text-lg md:text-xl font-medium tracking-tight leading-relaxed max-w-2xl mx-auto">
+              {t("description")}
+            </p>
+          )}
+        </div>
 
         {/* The Interactive SVG Schematic Container */}
         <div 
