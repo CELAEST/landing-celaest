@@ -13,9 +13,6 @@ import { getSecurityParticleData, SecurityParticleData } from "./security-data-l
 type SecurityNode = "verified" | "encryption" | "infrastructure" | "all" | null;
 type PointerRef = React.MutableRefObject<{ x: number; y: number }>;
 
-const PARTICLE_COUNT = 6000;
-const SPHERE_RADIUS = 0.9;
-
 function getTargetDir(node: SecurityNode): THREE.Vector3 {
   if (node === "verified") return new THREE.Vector3(-0.95, 0.65, 0).normalize();
   if (node === "encryption") return new THREE.Vector3(0.95, 0.65, 0).normalize();
@@ -182,43 +179,15 @@ function ParticleSphere({
   const materialRef = useRef<THREE.ShaderMaterial>(null);
 
   const geometry = useMemo(() => {
-    const positions = new Float32Array(PARTICLE_COUNT * 3);
-    const normals = new Float32Array(PARTICLE_COUNT * 3);
-    const seeds = new Float32Array(PARTICLE_COUNT);
-    const phases = new Float32Array(PARTICLE_COUNT);
-
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-      let u: number, v: number, s: number;
-      do {
-        u = Math.random() * 2 - 1;
-        v = Math.random() * 2 - 1;
-        s = u * u + v * v;
-      } while (s >= 1 || s === 0);
-      const factor = 2 * Math.sqrt(1 - s);
-      const x = u * factor;
-      const y = v * factor;
-      const z = 1 - 2 * s;
-
-      const r = SPHERE_RADIUS * (0.82 + Math.random() * 0.36);
-      positions[i * 3]     = x * r;
-      positions[i * 3 + 1] = y * r;
-      positions[i * 3 + 2] = z * r;
-      normals[i * 3]     = x;
-      normals[i * 3 + 1] = y;
-      normals[i * 3 + 2] = z;
-      seeds[i] = Math.random();
-      phases[i] = Math.random();
-    }
-
     const geo = new THREE.BufferGeometry();
-    geo.setAttribute("position",   new THREE.BufferAttribute(positions, 3));
-    geo.setAttribute("aNormal",    new THREE.BufferAttribute(normals, 3));
+    geo.setAttribute("position",   new THREE.BufferAttribute(data.spherePositions, 3));
+    geo.setAttribute("aNormal",    new THREE.BufferAttribute(data.normals, 3));
     geo.setAttribute("aLockPos",   new THREE.BufferAttribute(data.lockPositions,   3));
     geo.setAttribute("aShieldPos", new THREE.BufferAttribute(data.shieldPositions, 3));
     geo.setAttribute("aGlobePos",  new THREE.BufferAttribute(data.globePositions,  3));
     geo.setAttribute("aLogoPos",   new THREE.BufferAttribute(data.logoPositions,   3));
-    geo.setAttribute("aSeed",      new THREE.BufferAttribute(seeds, 1));
-    geo.setAttribute("aPhase",     new THREE.BufferAttribute(phases, 1));
+    geo.setAttribute("aSeed",      new THREE.BufferAttribute(data.seeds, 1));
+    geo.setAttribute("aPhase",     new THREE.BufferAttribute(data.phases, 1));
     return geo;
   }, [data]);
 

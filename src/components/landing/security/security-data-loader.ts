@@ -1,10 +1,14 @@
 /**
  * CELAEST · Ultra-Fast Binary Security Core Particle Loader
- * Pre-baked 6,000 particles across 4 targets (lock, shield, globe, logo)
- * Zero GLTF parsing · Zero CPU sampling · Sub-millisecond initialization
+ * Pre-baked 6,000 particles across 4 targets (lock, shield, globe, logo) + resting sphere
+ * 100% faithful to original design · Sub-millisecond initialization · Zero CPU sampling
  */
 
 export interface SecurityParticleData {
+  spherePositions: Float32Array;
+  normals: Float32Array;
+  seeds: Float32Array;
+  phases: Float32Array;
   lockPositions: Float32Array;
   shieldPositions: Float32Array;
   globePositions: Float32Array;
@@ -29,25 +33,42 @@ export function getSecurityParticleData(): Promise<SecurityParticleData> {
       .then((buffer) => {
         const headerSize = 32;
         const PARTICLE_COUNT = 6000;
-        const layerBytes = PARTICLE_COUNT * 12;
+        const vec3Bytes = PARTICLE_COUNT * 12;
+        const scalarBytes = PARTICLE_COUNT * 4;
 
         let offset = headerSize;
-        const lock = new Float32Array(buffer, offset, PARTICLE_COUNT * 3);
-        offset += layerBytes;
+        const spherePositions = new Float32Array(buffer, offset, PARTICLE_COUNT * 3);
+        offset += vec3Bytes;
 
-        const shield = new Float32Array(buffer, offset, PARTICLE_COUNT * 3);
-        offset += layerBytes;
+        const normals = new Float32Array(buffer, offset, PARTICLE_COUNT * 3);
+        offset += vec3Bytes;
 
-        const globe = new Float32Array(buffer, offset, PARTICLE_COUNT * 3);
-        offset += layerBytes;
+        const seeds = new Float32Array(buffer, offset, PARTICLE_COUNT);
+        offset += scalarBytes;
 
-        const logo = new Float32Array(buffer, offset, PARTICLE_COUNT * 3);
+        const phases = new Float32Array(buffer, offset, PARTICLE_COUNT);
+        offset += scalarBytes;
+
+        const lockPositions = new Float32Array(buffer, offset, PARTICLE_COUNT * 3);
+        offset += vec3Bytes;
+
+        const shieldPositions = new Float32Array(buffer, offset, PARTICLE_COUNT * 3);
+        offset += vec3Bytes;
+
+        const globePositions = new Float32Array(buffer, offset, PARTICLE_COUNT * 3);
+        offset += vec3Bytes;
+
+        const logoPositions = new Float32Array(buffer, offset, PARTICLE_COUNT * 3);
 
         const data: SecurityParticleData = {
-          lockPositions: lock,
-          shieldPositions: shield,
-          globePositions: globe,
-          logoPositions: logo,
+          spherePositions,
+          normals,
+          seeds,
+          phases,
+          lockPositions,
+          shieldPositions,
+          globePositions,
+          logoPositions,
           count: PARTICLE_COUNT,
         };
 
@@ -63,4 +84,3 @@ export function preloadSecurityParticles(): void {
   if (typeof window === "undefined") return;
   getSecurityParticleData().catch(() => {});
 }
-
