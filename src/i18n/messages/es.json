@@ -97,15 +97,15 @@
     "popular": "Más popular",
     "cards": {
       "management": {
-        "title": "Gestión Centralizada",
+        "title": "Gestión\nCentralizada",
         "description": "Administra licencias, miembros y versiones desde un único panel, de forma simple y segura."
       },
       "workflow": {
-        "title": "Pipeline de Automatización",
+        "title": "Pipeline\nde Automatización",
         "description": "Automatiza tareas y procesos repetitivos para enfocarte en lo que realmente importa."
       },
       "ecosystem": {
-        "title": "Ecosistema de Activos",
+        "title": "Ecosistema\nde Activos",
         "description": "Explora y conecta tus macros, scripts y herramientas en un solo lugar."
       }
     }

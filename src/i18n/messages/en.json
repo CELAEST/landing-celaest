@@ -97,15 +97,15 @@
     "popular": "Most Popular",
     "cards": {
       "management": {
-        "title": "Centralized Management",
+        "title": "Centralized\nManagement",
         "description": "Manage licenses, members, and versions from a single dashboard, simply and securely."
       },
       "workflow": {
-        "title": "Automation Pipeline",
+        "title": "Automation\nPipeline",
         "description": "Automate repetitive tasks and workflows so you can focus on what really matters."
       },
       "ecosystem": {
-        "title": "Asset Ecosystem",
+        "title": "Asset\nEcosystem",
         "description": "Explore and connect your macros, scripts, and tools all in one unified place."
       }
     }
