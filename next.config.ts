@@ -33,7 +33,6 @@ const nextConfig: NextConfig = {
       '@radix-ui/react-dropdown-menu',
       '@radix-ui/react-select',
       'three',
-      'three-stdlib',
       '@react-three/fiber',
       'lucide-react',
       'framer-motion',
