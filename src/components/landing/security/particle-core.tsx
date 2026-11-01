@@ -1,16 +1,8 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
+import ParticleCoreCanvas from "./particle-core-canvas";
 import { preloadSecurityParticles } from "./security-data-loader";
-
-const ParticleCoreCanvas = dynamic(
-  () => import("./particle-core-canvas"),
-  {
-    ssr: false,
-    loading: () => <div className="w-60 h-60 md:w-72 md:h-72 flex items-center justify-center bg-transparent" />,
-  }
-);
 
 type SecurityNode = "verified" | "encryption" | "infrastructure" | "all" | null;
 

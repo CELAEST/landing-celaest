@@ -1,17 +1,8 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import dynamic from "next/dynamic";
+import DynamicInfrastructureCanvas from "./dynamic-infrastructure-canvas";
 import { preloadBrainParticles } from "./brain-data-loader";
-
-// Code-split the R3F canvas out of initial bundle, pre-load the binary data gently in idle
-const DynamicInfrastructureCanvas = dynamic(
-  () => import("./dynamic-infrastructure-canvas"),
-  {
-    ssr: false,
-    loading: () => <div className="absolute inset-0 flex items-center justify-center bg-transparent" />,
-  }
-);
 
 export function DynamicInfrastructure() {
   const [isHovered, setIsHovered] = useState(false);
