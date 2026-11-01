@@ -20,6 +20,7 @@ const { GLTFLoader, MeshSurfaceSampler, SVGLoader } = require("three-stdlib");
 const PARTICLE_COUNT = 6000;
 const SPHERE_RADIUS = 0.9;
 const LOCK_TARGET_SIZE = 2.05;
+const LOCK_X_OFFSET = -0.11; // Gentle shift to the left to perfectly balance the open shackle
 const LOCK_Y_OFFSET = 0.0;
 const LOCK_YAW = Math.PI / 2;
 const LOCK_PITCH = 0;
@@ -237,6 +238,7 @@ function sampleLockPositions(scene, count) {
     pz = zr2;
 
     py += LOCK_Y_OFFSET;
+    px += LOCK_X_OFFSET;
 
     out[i * 3]     = px;
     out[i * 3 + 1] = py;
