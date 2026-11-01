@@ -40,10 +40,10 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 h-[72px] sm:h-[82px] flex items-center justify-between px-5 sm:px-8 md:px-[clamp(26px,7.9vw,138px)] transition-all duration-300 ease-out",
+        "fixed top-0 left-0 right-0 z-50 h-[72px] sm:h-[82px] flex items-center justify-between px-5 sm:px-8 md:px-[clamp(26px,7.9vw,138px)] transition-all duration-500 ease-in-out",
         isScrolled
-          ? "bg-[#020202]/90 backdrop-blur-md border-b border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.85)]"
-          : "bg-gradient-to-b from-black/60 via-black/20 to-transparent border-b border-transparent shadow-none",
+          ? "bg-[#020202]/90 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.6)]"
+          : "bg-transparent",
       )}
     >
       {/* Brand Logo & Name */}
