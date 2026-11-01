@@ -16,6 +16,21 @@
     "subheadline2": "Excel macros, Python scripts, and enterprise AI agents that deliver instant ROI.",
     "browseCTA": "Browse Marketplace",
     "watchDemo": "Watch Demo",
+    "intent": {
+      "sectionAria": "CELAEST Editorial Hero",
+      "contact": "Contact",
+      "robotAria": "Make the CELAEST robot wave",
+      "robotTitle": "Click to wave",
+      "kickerLine1": "ARTIFICIAL INTELLIGENCE",
+      "kickerLine2": "FOR ENTERPRISES",
+      "titleSmall": "FROM",
+      "titleMain": "INTENTION",
+      "titleConnector": "TO",
+      "titleResult": "RESULTS",
+      "titleAria": "From intention to results",
+      "description": "We design, implement, and scale AI systems that turn processes into real results for your business.",
+      "cta": "EXPLORE SOLUTIONS"
+    },
     "stats": {
       "assets": "Verified Assets",
       "users": "Active Users",
@@ -77,6 +92,7 @@
   "platform": {
     "title": "Power your Workflow",
     "subtitle": "Enterprise-grade infrastructure designed for efficiency, security, and limitless scalability.",
+    "explore": "Explore",
     "cards": {
       "ecosystem": {
         "title": "Asset Ecosystem",
@@ -346,7 +362,9 @@
         "items": ["Privacy Policy", "Terms of Service", "License Agreement", "Cookie Policy", "GDPR"]
       }
     },
-    "copyright": "All rights reserved."
+    "copyright": "All rights reserved.",
+    "madeWith": "Made with",
+    "forProfessionals": "for professionals."
   },
   "legal": {
     "privacy": {
@@ -356,7 +374,7 @@
     },
     "terms": {
       "title": "Terms and Conditions",
-      "description": "Rules of use for the Celaest platform.",
+      "description": "Rules of use for the CELAEST platform.",
       "lastUpdated": "Last updated"
     }
   }

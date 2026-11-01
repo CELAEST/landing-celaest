@@ -42,7 +42,7 @@ export function SectionReveal({
           }
         }
       },
-      { rootMargin: "0px 0px -10% 0px", threshold: 0.05 },
+      { rootMargin: "250px 0px 250px 0px", threshold: 0 },
     );
     io.observe(node);
     return () => io.disconnect();

@@ -1,17 +1,15 @@
 "use client";
 
-import React, { Suspense, useRef, useState, useMemo } from "react";
+import React, { Suspense, useRef, useState, useMemo, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
-import { MeshSurfaceSampler } from "three-stdlib";
+import { getBrainParticleData, BrainParticleData } from "./brain-data-loader";
 
 // =====================================================================
-// CELAEST · Particle UI Brain Canvas Component
-// Réplica fiel de la escena Spline (dos emisores + force collider).
+// CELAEST · Ultra-High Performance Particle UI Brain Canvas
+// GPU Direct Binary Stream · Zero MeshSurfaceSampling · 60 FPS Locked
 // =====================================================================
 
-const BRAIN_TARGET_SIZE = 6.2;
 const LAYER_A_COUNT = 18000; // estructura (Particle Emitter 2)
 const LAYER_B_COUNT = 9000;  // superficie con flujo (Particle Emitter)
 
@@ -118,9 +116,13 @@ const VERTEX_SHADER = /* glsl */ `
     float dist        = length(toCursor);
     float radius      = 2.2;
     float attract     = smoothstep(radius, 0.0, dist) * uHover;
-    vec3  swirlNoise  = curlNoise(pos * 1.6 + uTime * 0.7 + aSeed * 3.14);
-    pos += toCursor * attract * 0.40 * (0.7 + aSeed * 0.5);
-    pos += swirlNoise * attract * 0.45;
+
+    // Branching optimizado: solo calcula curl swirl en las partículas atraídas
+    if (attract > 0.001) {
+      vec3  swirlNoise  = curlNoise(pos * 1.6 + uTime * 0.7 + aSeed * 3.14);
+      pos += toCursor * attract * 0.40 * (0.7 + aSeed * 0.5);
+      pos += swirlNoise * attract * 0.45;
+    }
 
     // ---- Color (mezcla principal/acento según seed) ----
     float accent = step(1.0 - uAccentMix, aSeed);
@@ -128,17 +130,14 @@ const VERTEX_SHADER = /* glsl */ `
 
     // =====================================================================
     //  SILUETA 3D · Rim lighting + backface fade (clave para ver el cerebro)
-    //  - viewNormal: la normal del vértice transformada al espacio de cámara
-    //  - facing > 0 → mira a la cámara | facing < 0 → da la espalda
-    //  - rim = 1 - |facing| → pico en el contorno silueta
     // =====================================================================
     vec4 sampledMV  = modelViewMatrix * vec4(position, 1.0);
     vec3 viewNormal = normalize(normalMatrix * aNormal);
     vec3 viewDir    = normalize(-sampledMV.xyz);
     float facing    = dot(viewNormal, viewDir);
-    float front     = smoothstep(-0.35, 0.30, facing); // back → invisible, front → visible
-    float rim       = pow(1.0 - abs(facing), 1.4);     // pico en el borde
-    float silhouette = front * 0.45 + rim * 0.85;       // bordes más brillantes que el centro
+    float front     = smoothstep(-0.35, 0.30, facing);
+    float rim       = pow(1.0 - abs(facing), 1.4);
+    float silhouette = front * 0.45 + rim * 0.85;
 
     // ---- Brillo: variación por seed + halo en hover ----
     float brightness = 0.55 + 0.5 * pow(1.0 - life, 1.4);
@@ -148,7 +147,7 @@ const VERTEX_SHADER = /* glsl */ `
     // ---- Alpha: silueta + fade vital + variación por seed ----
     vAlpha  = silhouette;
     vAlpha *= (1.0 - life * 0.85);
-    vAlpha *= (0.40 + aSeed * 0.60);   // dispersión de visibilidad → textura orgánica
+    vAlpha *= (0.40 + aSeed * 0.60);
     vAlpha *= (1.0 + attract * 0.6);
     vAlpha  = clamp(vAlpha, 0.0, 1.0);
 
@@ -172,6 +171,8 @@ const FRAGMENT_SHADER = /* glsl */ `
 
 type LayerProps = {
   count: number;
+  positions: Float32Array;
+  normals: Float32Array;
   config: {
     colorMain: string;
     colorAccent: string;
@@ -180,44 +181,29 @@ type LayerProps = {
     size: number;
     lifeSpeed: number;
   };
-  brainGeometry: THREE.BufferGeometry;
   isHovered: boolean;
   pointer3D: React.MutableRefObject<THREE.Vector3>;
 };
 
-const ParticleLayer = ({ count, config, brainGeometry, isHovered, pointer3D }: LayerProps) => {
+const ParticleLayer = ({ count, positions, normals, config, isHovered, pointer3D }: LayerProps) => {
   const materialRef = useRef<THREE.ShaderMaterial>(null);
 
+  // BufferGeometry instanciada en 0ms directo desde el TypedArray binario
   const geometry = useMemo(() => {
-    const tempMesh = new THREE.Mesh(brainGeometry, new THREE.MeshBasicMaterial());
-    const sampler = new MeshSurfaceSampler(tempMesh).build();
-
-    const positions = new Float32Array(count * 3);
-    const normals = new Float32Array(count * 3);
-    const seeds = new Float32Array(count);
-    const phases = new Float32Array(count);
-
-    const tempPos = new THREE.Vector3();
-    const tempNormal = new THREE.Vector3();
-    for (let i = 0; i < count; i++) {
-      sampler.sample(tempPos, tempNormal);
-      positions[i * 3] = tempPos.x;
-      positions[i * 3 + 1] = tempPos.y;
-      positions[i * 3 + 2] = tempPos.z;
-      normals[i * 3] = tempNormal.x;
-      normals[i * 3 + 1] = tempNormal.y;
-      normals[i * 3 + 2] = tempNormal.z;
-      seeds[i] = Math.random();
-      phases[i] = Math.random();
-    }
-
     const geo = new THREE.BufferGeometry();
     geo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
     geo.setAttribute("aNormal", new THREE.BufferAttribute(normals, 3));
+
+    const seeds = new Float32Array(count);
+    const phases = new Float32Array(count);
+    for (let i = 0; i < count; i++) {
+      seeds[i] = Math.random();
+      phases[i] = Math.random();
+    }
     geo.setAttribute("aSeed", new THREE.BufferAttribute(seeds, 1));
     geo.setAttribute("aPhase", new THREE.BufferAttribute(phases, 1));
     return geo;
-  }, [brainGeometry, count]);
+  }, [positions, normals, count]);
 
   const uniforms = useMemo(
     () => ({
@@ -239,8 +225,6 @@ const ParticleLayer = ({ count, config, brainGeometry, isHovered, pointer3D }: L
     const m = materialRef.current;
     if (!m) return;
     m.uniforms.uTime.value = state.clock.elapsedTime;
-    // Hover blend: enter is much faster than exit so the reaction feels
-    // instant when the cursor arrives, while the release decays smoothly.
     const target = isHovered ? 1.0 : 0.0;
     const speed = isHovered ? 45 : 5;
     m.uniforms.uHover.value = THREE.MathUtils.lerp(
@@ -270,68 +254,41 @@ const ParticleBrain = ({
   isHovered,
   pointer3D,
   scaleMultiplier = 1,
+  data,
 }: {
   isHovered: boolean;
   pointer3D: React.MutableRefObject<THREE.Vector3>;
   scaleMultiplier?: number;
+  data: BrainParticleData;
 }) => {
-  const gltf = useGLTF("/particle_ui_brain.gltf") as any;
-
-  // Geometría del cerebro centrada y escalada (una sola vez)
-  const brainGeometry = useMemo(() => {
-    let brainMesh: THREE.Mesh | null = null;
-    let firstMesh: THREE.Mesh | null = null;
-    Object.values(gltf.nodes).forEach((n: any) => {
-      if (n?.isMesh) {
-        if (!firstMesh) firstMesh = n;
-        if (n.name?.toLowerCase().includes("brain")) brainMesh = n;
-      }
-    });
-    const baseMesh = brainMesh ?? firstMesh;
-    if (!baseMesh) return null;
-
-    const geo = (baseMesh as THREE.Mesh).geometry.clone();
-    geo.computeBoundingBox();
-    const box = geo.boundingBox!;
-    const center = box.getCenter(new THREE.Vector3());
-    const size = box.getSize(new THREE.Vector3());
-    const maxDim = Math.max(size.x, size.y, size.z);
-    const scale = BRAIN_TARGET_SIZE / maxDim;
-    geo.translate(-center.x, -center.y, -center.z);
-    geo.scale(scale, scale, scale);
-    geo.computeVertexNormals();
-    return geo;
-  }, [gltf]);
-
-  if (!brainGeometry) return null;
-
-  // Vista fija ligeramente sesgada en Y para mostrar profundidad 3D sin rotación animada
   return (
     <group rotation={[0, 0.35, 0]} scale={[scaleMultiplier, scaleMultiplier, scaleMultiplier]}>
-      {/* Capa A · Estructura densa interior (Particle Emitter 2) */}
+      {/* Capa A · Estructura densa interior */}
       <ParticleLayer
         count={LAYER_A_COUNT}
-        brainGeometry={brainGeometry}
+        positions={data.layerA.positions}
+        normals={data.layerA.normals}
         isHovered={isHovered}
         pointer3D={pointer3D}
         config={{
-          colorMain: "#FFFFFF",   // blanco puro
-          colorAccent: "#E2E8F0", // gris claro (textura sutil)
+          colorMain: "#FFFFFF",
+          colorAccent: "#E2E8F0",
           accentMix: 0.18,
           drift: 0.10,
           size: 1.7,
           lifeSpeed: 0.12,
         }}
       />
-      {/* Capa B · Flujo de superficie (Particle Emitter) */}
+      {/* Capa B · Flujo de superficie */}
       <ParticleLayer
         count={LAYER_B_COUNT}
-        brainGeometry={brainGeometry}
+        positions={data.layerB.positions}
+        normals={data.layerB.normals}
         isHovered={isHovered}
         pointer3D={pointer3D}
         config={{
-          colorMain: "#F8FAFC",   // brand-ice (blanco hueso)
-          colorAccent: "#CBD5E1", // gris azulado sutil
+          colorMain: "#F8FAFC",
+          colorAccent: "#CBD5E1",
           accentMix: 0.30,
           drift: 0.28,
           size: 2.2,
@@ -364,8 +321,6 @@ const PointerTracker = ({
     }
     raycaster.setFromCamera(state.pointer, state.camera);
     raycaster.ray.intersectPlane(plane, target);
-    // On the first frame after hover starts, snap directly to the cursor so
-    // there's no "catch up" delay from the (999,999,999) idle position.
     if (!wasHovered.current) {
       pointer3D.current.copy(target);
       wasHovered.current = true;
@@ -389,6 +344,17 @@ export default function DynamicInfrastructureCanvas({
   scaleMultiplier,
 }: DynamicInfrastructureCanvasProps) {
   const pointer3D = useRef(new THREE.Vector3(999, 999, 999));
+  const [data, setData] = useState<BrainParticleData | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    getBrainParticleData().then((res) => {
+      if (active) setData(res);
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
 
   return (
     <Canvas
@@ -398,7 +364,14 @@ export default function DynamicInfrastructureCanvas({
       gl={{ antialias: false, alpha: true, powerPreference: "high-performance", stencil: false }}
     >
       <Suspense fallback={null}>
-        <ParticleBrain isHovered={isHovered} pointer3D={pointer3D} scaleMultiplier={scaleMultiplier} />
+        {data && (
+          <ParticleBrain
+            isHovered={isHovered}
+            pointer3D={pointer3D}
+            scaleMultiplier={scaleMultiplier}
+            data={data}
+          />
+        )}
         <PointerTracker isHovered={isHovered} pointer3D={pointer3D} />
       </Suspense>
     </Canvas>

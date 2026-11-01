@@ -15,7 +15,7 @@ interface FAQ {
 const SupportNodeIcon = ({ active }: { active: boolean }) => (
   <svg
     viewBox="0 0 100 100"
-    className="w-[80px] h-[80px] mx-auto md:w-[96px] md:h-[96px] shrink-0 drop-shadow-[0_0_15px_rgba(34,211,238,0.4)]"
+    className="w-[80px] h-[80px] mx-auto md:w-[96px] md:h-[96px] shrink-0 drop-shadow-[0_0_15px_rgba(167,139,250,0.45)]"
   >
     {/* Outer radar ping */}
     {active &&
@@ -26,7 +26,7 @@ const SupportNodeIcon = ({ active }: { active: boolean }) => (
           cy="50"
           r="28"
           fill="none"
-          stroke="#22d3ee"
+          stroke="#a78bfa"
           strokeWidth="1.5"
           animate={{ r: [28, 48], opacity: [0.8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.5, ease: "easeOut" }}
@@ -39,7 +39,7 @@ const SupportNodeIcon = ({ active }: { active: boolean }) => (
       cy="50"
       r="42"
       fill="none"
-      stroke={active ? "rgba(34,211,238,0.4)" : "#333"}
+      stroke={active ? "rgba(167,139,250,0.45)" : "#333"}
       strokeWidth="1.5"
       strokeDasharray="30 60 10 60"
       animate={{ rotate: active ? 360 : 0 }}
@@ -51,10 +51,10 @@ const SupportNodeIcon = ({ active }: { active: boolean }) => (
       cy="50"
       r="36"
       fill="none"
-      stroke={active ? "rgba(34,211,238,0.15)" : "#222"}
+      stroke={active ? "rgba(167,139,250,0.2)" : "#222"}
       strokeWidth="4"
       strokeDasharray="2 8"
-      animate={{ rotate: active ? -360 : 0 }}
+      animate={{ rotate: -360 }}
       transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
       style={{ transformOrigin: "center" }}
     />
@@ -64,8 +64,8 @@ const SupportNodeIcon = ({ active }: { active: boolean }) => (
       cx="50"
       cy="50"
       r="24"
-      fill={active ? "rgba(34,211,238,0.1)" : "#0c0c0c"}
-      stroke={active ? "#22d3ee" : "#333"}
+      fill={active ? "rgba(167,139,250,0.12)" : "#0c0c0c"}
+      stroke={active ? "#a78bfa" : "#333"}
       strokeWidth="2"
       className="transition-colors duration-500"
     />
@@ -74,7 +74,7 @@ const SupportNodeIcon = ({ active }: { active: boolean }) => (
     <g transform="translate(50, 48) scale(1)">
       <motion.path
         d="M -12 -10 L 12 -10 C 14.2 -10 16 -8.2 16 -6 L 16 6 C 16 8.2 14.2 10 12 10 L 4 10 L -4 16 L -4 10 L -12 10 C -14.2 10 -16 8.2 -16 6 L -16 -6 C -16 -8.2 -14.2 -10 -12 -10 Z"
-        fill={active ? "rgba(34,211,238,0.15)" : "none"}
+        fill={active ? "rgba(167,139,250,0.18)" : "none"}
         stroke={active ? "#fff" : "#888"}
         strokeWidth="2"
         strokeLinejoin="round"
@@ -88,7 +88,7 @@ const SupportNodeIcon = ({ active }: { active: boolean }) => (
         y1="-3"
         x2="8"
         y2="-3"
-        stroke={active ? "#22d3ee" : "#555"}
+        stroke={active ? "#a78bfa" : "#555"}
         strokeWidth="2"
         strokeLinecap="round"
         strokeDasharray="16"
@@ -100,7 +100,7 @@ const SupportNodeIcon = ({ active }: { active: boolean }) => (
         y1="3"
         x2="2"
         y2="3"
-        stroke={active ? "#22d3ee" : "#555"}
+        stroke={active ? "#a78bfa" : "#555"}
         strokeWidth="2"
         strokeLinecap="round"
         strokeDasharray="10"
@@ -116,7 +116,7 @@ const SupportNodeIcon = ({ active }: { active: boolean }) => (
           cx="38"
           cy="38"
           r="3"
-          fill="#10b981"
+          fill="#c084fc"
           animate={{ opacity: [0, 1, 0] }}
           transition={{ duration: 2, repeat: Infinity, delay: 0.1 }}
         />
@@ -124,7 +124,7 @@ const SupportNodeIcon = ({ active }: { active: boolean }) => (
           cx="62"
           cy="62"
           r="3"
-          fill="#10b981"
+          fill="#c084fc"
           animate={{ opacity: [0, 1, 0] }}
           transition={{ duration: 2, repeat: Infinity, delay: 1.1 }}
         />
@@ -132,7 +132,7 @@ const SupportNodeIcon = ({ active }: { active: boolean }) => (
           cx="64"
           cy="34"
           r="3"
-          fill="#10b981"
+          fill="#c084fc"
           animate={{ opacity: [0, 1, 0] }}
           transition={{ duration: 2, repeat: Infinity, delay: 0.7 }}
         />
@@ -158,16 +158,16 @@ export function FAQSection() {
       <div className="absolute inset-0 bg-brand-deep pointer-events-none" />
 
       {/* Top Center Ambient Lighting (Titles) */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-[radial-gradient(ellipse_at_top,rgba(34,211,238,0.06)_0%,transparent_70%)] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-[radial-gradient(ellipse_at_top,rgba(167,139,250,0.10)_0%,transparent_70%)] pointer-events-none" />
 
       {/* Bottom Center Ambient Lighting (CTA) */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_bottom,rgba(34,211,238,0.04)_0%,transparent_60%)] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_bottom,rgba(167,139,250,0.08)_0%,transparent_60%)] pointer-events-none" />
 
       {/* Giant Floor Perspective Grid (Subtle white/gray) */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_10%,transparent_100%)] pointer-events-none" />
 
-      {/* Dense Core Tech Grid (Cyan tint, concentrated in the middle) */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(34,211,238,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(34,211,238,0.02)_1px,transparent_1px)] bg-[size:1rem_1rem] [mask-image:radial-gradient(ellipse_40%_40%_at_50%_50%,#000_20%,transparent_80%)] pointer-events-none opacity-40" />
+      {/* Dense Core Tech Grid (Violet tint, concentrated in the middle) */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(167,139,250,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(167,139,250,0.03)_1px,transparent_1px)] bg-[size:1rem_1rem] [mask-image:radial-gradient(ellipse_40%_40%_at_50%_50%,#000_20%,transparent_80%)] pointer-events-none opacity-40" />
 
       {/* Drifting constellation — fade only at top so it flows seamlessly into the footer below. */}
       <div className="absolute inset-0 pointer-events-none [mask-image:linear-gradient(to_bottom,transparent_0%,#000_18%,#000_100%)]">
@@ -192,7 +192,7 @@ export function FAQSection() {
               <div
                 className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
                   openIndex === index
-                    ? "border-brand-neon/30 bg-gradient-to-b from-brand-gray to-brand-deep shadow-[0_10px_30px_-15px_rgba(34,211,238,0.2)]"
+                    ? "border-brand-neon/30 bg-gradient-to-b from-brand-gray to-brand-deep shadow-[0_10px_30px_-15px_rgba(167,139,250,0.25)]"
                     : "border-white/[0.05] bg-brand-dark hover:border-white/[0.1] hover:bg-brand-surface-alt"
                 }`}
               >
@@ -256,13 +256,13 @@ export function FAQSection() {
           onMouseLeave={() => setHoveredCTA(false)}
           className={`mt-14 sm:mt-24 text-center rounded-3xl p-10 sm:p-14 relative overflow-hidden transition-all duration-700 cursor-pointer border backdrop-blur-xl ${
             hoveredCTA
-              ? "border-brand-neon/40 shadow-[0_0_60px_rgba(34,211,238,0.15)] scale-[1.02]"
+              ? "border-brand-neon/40 shadow-[0_0_60px_rgba(167,139,250,0.2)] scale-[1.02]"
               : "border-white/[0.08] shadow-2xl"
           }`}
           style={{
             background: hoveredCTA
-              ? "linear-gradient(180deg, rgba(20,20,25,0.7) 0%, rgba(2,2,2,0.95) 100%)"
-              : "linear-gradient(180deg, rgba(20,20,25,0.4) 0%, rgba(4,4,4,0.8) 100%)",
+              ? "linear-gradient(180deg, rgba(14,12,26,0.75) 0%, rgba(3,3,7,0.98) 100%)"
+              : "linear-gradient(180deg, rgba(10,9,20,0.5) 0%, rgba(3,3,7,0.85) 100%)",
           }}
         >
           {/* Internal Cyber Grid (gives it that tech feel) */}
@@ -272,7 +272,7 @@ export function FAQSection() {
 
           {/* Spotlight directly behind the floating SVG */}
           <div
-            className={`absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[radial-gradient(circle_at_50%_0%,rgba(34,211,238,0.12)_0%,transparent_70%)] pointer-events-none transition-opacity duration-1000 ${hoveredCTA ? "opacity-100" : "opacity-30"}`}
+            className={`absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[radial-gradient(circle_at_50%_0%,rgba(167,139,250,0.15)_0%,transparent_70%)] pointer-events-none transition-opacity duration-1000 ${hoveredCTA ? "opacity-100" : "opacity-30"}`}
           />
 
           {/* Subtle horizontal top edge glow (Glassmorphism highlight) */}
@@ -282,7 +282,7 @@ export function FAQSection() {
 
           {/* Inner radial gradient that aggressively pulses on hover */}
           <div
-            className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_50%_50%,rgba(34,211,238,0.06)_0%,transparent_50%)] pointer-events-none transition-opacity duration-1000 ${hoveredCTA ? "opacity-100" : "opacity-0"}`}
+            className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_50%_50%,rgba(167,139,250,0.10)_0%,transparent_50%)] pointer-events-none transition-opacity duration-1000 ${hoveredCTA ? "opacity-100" : "opacity-0"}`}
           />
 
           <div className="relative z-10 flex flex-col items-center">
@@ -305,7 +305,7 @@ export function FAQSection() {
 
             <a
               href="mailto:support@celaest.com"
-              className={`inline-flex items-center justify-center gap-3 px-8 py-4 font-bold rounded-xl transition-all duration-500 overflow-hidden relative group/btn ${hoveredCTA ? "bg-brand-neon text-brand-dark shadow-[0_0_25px_rgba(34,211,238,0.4)] scale-105" : "bg-white/5 text-white border border-white/10 hover:bg-white/10"}`}
+              className={`inline-flex items-center justify-center gap-3 px-8 py-4 font-bold rounded-xl transition-all duration-500 overflow-hidden relative group/btn ${hoveredCTA ? "bg-brand-neon text-brand-dark shadow-[0_0_25px_rgba(167,139,250,0.45)] scale-105" : "bg-white/5 text-white border border-white/10 hover:bg-white/10"}`}
             >
               {/* Button inner shine effect */}
               {hoveredCTA && (

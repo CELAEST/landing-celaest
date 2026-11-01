@@ -5,15 +5,12 @@ import { notFound } from "next/navigation";
 import { Inter, Space_Grotesk } from "next/font/google";
 
 import { Analytics } from "@/components/analytics";
-import { routing } from "@/i18n/routing";
+import { routing, type Locale } from "@/i18n/routing";
 import "@/styles/globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  // `optional` keeps the fallback for the entire page-view if Inter doesn't
-  // arrive within ~100 ms. Eliminates the late font-swap that re-triggers LCP
-  // measurement (~5 s on slow networks). Cached visits still use Inter.
   display: "optional",
   preload: true,
   fallback: ["system-ui", "-apple-system", "Segoe UI", "Roboto", "Arial", "sans-serif"],
@@ -35,7 +32,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#050505",
+  themeColor: "#030307",
 };
 
 export async function generateMetadata({
@@ -47,22 +44,22 @@ export async function generateMetadata({
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://landing-celaest.vercel.app";
 
   const titles = {
-    en: "Celeast - Premium Digital Asset Marketplace",
-    es: "Celeast - Mercado Premium de Activos Digitales",
+    en: "CELAEST - Enterprise AI Systems & Digital Asset Marketplace",
+    es: "CELAEST - Sistemas de IA para Empresas y Activos Digitales",
   };
 
   const descriptions = {
-    en: "Premium, verified digital assets for serious professionals. Excel macros, Python scripts, and business software that delivers instant ROI.",
-    es: "Activos digitales premium y verificados para profesionales serios. Macros Excel, scripts Python y software empresarial con ROI instantáneo.",
+    en: "We design, implement, and scale AI systems that turn processes into real results for your business.",
+    es: "Diseñamos, implementamos y escalamos sistemas de IA que convierten procesos en resultados reales para tu negocio.",
   };
 
-  const title = titles[locale as keyof typeof titles];
-  const description = descriptions[locale as keyof typeof descriptions];
+  const title = titles[locale as keyof typeof titles] ?? titles.es;
+  const description = descriptions[locale as keyof typeof descriptions] ?? descriptions.es;
 
   return {
     title: {
       default: title,
-      template: "%s | Celeast",
+      template: "%s | CELAEST",
     },
     description,
     metadataBase: new URL(baseUrl),
@@ -71,7 +68,7 @@ export async function generateMetadata({
       languages: {
         en: `${baseUrl}/en`,
         es: `${baseUrl}/es`,
-        "x-default": `${baseUrl}/en`,
+        "x-default": `${baseUrl}/es`,
       },
     },
     openGraph: {
@@ -84,8 +81,8 @@ export async function generateMetadata({
       images: [
         {
           url: "/robot1.webp",
-          width: 1200,
-          height: 630,
+          width: 1920,
+          height: 1080,
           alt: "CELAEST Platform",
         },
       ],
@@ -110,7 +107,7 @@ interface RootLayoutProps {
 export default async function RootLayout({ children, params }: RootLayoutProps) {
   const { locale } = await params;
 
-  if (!routing.locales.includes(locale as any)) {
+  if (!routing.locales.includes(locale as Locale)) {
     notFound();
   }
 
@@ -120,24 +117,19 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
 
   return (
     <html lang={locale} className={`${inter.variable} ${spaceGrotesk.variable}`}>
-      <head />
+      <head>
+        <link
+          rel="preload"
+          as="image"
+          href="/robot_hero_gaze/gaze_018.webp"
+          type="image/webp"
+        />
+      </head>
       <body className="font-sans antialiased" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           {children}
           <Analytics />
         </NextIntlClientProvider>
-        {/* Service Worker: Caché de assets 3D de Spline para recargas instantáneas */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              if ('serviceWorker' in navigator) {
-                window.addEventListener('load', function() {
-                  navigator.serviceWorker.register('/sw.js').catch(function() {});
-                });
-              }
-            `,
-          }}
-        />
       </body>
     </html>
   );

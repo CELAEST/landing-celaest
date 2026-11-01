@@ -40,9 +40,9 @@ export function SecuritySection() {
       {/* Background Ambience */}
       <div className="absolute inset-0 bg-brand-deep pointer-events-none" />
       {/* Permanent subtle aura from Robot */}
-      <div className="absolute top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[900px] h-[600px] md:h-[900px] bg-[radial-gradient(circle_at_50%_50%,rgba(34,211,238,0.04)_0%,transparent_60%)] pointer-events-none" />
-      {/* Cyan grid radiating from Robot's center */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(34,211,238,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(34,211,238,0.03)_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_40%,#000_10%,transparent_80%)] pointer-events-none" />
+      <div className="absolute top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[900px] h-[600px] md:h-[900px] bg-[radial-gradient(circle_at_50%_50%,rgba(167,139,250,0.08)_0%,transparent_60%)] pointer-events-none" />
+      {/* Tech grid radiating from Robot's center */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(167,139,250,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(167,139,250,0.04)_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_40%,#000_10%,transparent_80%)] pointer-events-none" />
 
       {/* Drifting constellation (subtle ambience) */}
       <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_75%_80%_at_50%_50%,#000_20%,transparent_90%)]">
@@ -70,7 +70,7 @@ export function SecuritySection() {
           onMouseLeave={() => setHoveredNode(null)}
         >
           {/* Central Reactor Glow (Reacts to any node hover) */}
-          <div className={`absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] md:w-[700px] h-[500px] md:h-[700px] bg-[radial-gradient(circle_at_50%_50%,rgba(34,211,238,0.08)_0%,transparent_50%)] rounded-full pointer-events-none transition-opacity duration-1000 ${isAnyActive ? 'opacity-100' : 'opacity-0'}`} />
+          <div className={`absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] md:w-[700px] h-[500px] md:h-[700px] bg-[radial-gradient(circle_at_50%_50%,rgba(167,139,250,0.14)_0%,transparent_50%)] rounded-full pointer-events-none transition-opacity duration-1000 ${isAnyActive ? 'opacity-100' : 'opacity-0'}`} />
 
           {/* Symmetrical SVG Connections Layer */}
           <svg
@@ -81,7 +81,7 @@ export function SecuritySection() {
             <defs>
               <linearGradient id="neon-glow" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="transparent" />
-                <stop offset="50%" stopColor="#22d3ee" />
+                <stop offset="50%" stopColor="#a78bfa" />
                 <stop offset="100%" stopColor="transparent" />
               </linearGradient>
               <filter id="blur-glow" x="-20%" y="-20%" width="140%" height="140%">
@@ -103,7 +103,7 @@ export function SecuritySection() {
             {/* ACTIVE GLOWING PATHS (Node Specific) */}
             <g filter="url(#blur-glow)">
               {/* Verified Path */}
-              <path d={paths.verified} fill="none" stroke="#22d3ee" strokeWidth="2" 
+              <path d={paths.verified} fill="none" stroke="#a78bfa" strokeWidth="2" 
                 className={`transition-opacity duration-500 ${hoveredNode === "verified" || hoveredNode === "all" ? "opacity-100" : (isAnyActive ? "opacity-10" : "opacity-0")}`} />
               <motion.path d={paths.verified} fill="none" stroke="#fff" strokeWidth="3" strokeDasharray="50 1000" strokeLinecap="round"
                 animate={{ strokeDashoffset: hoveredNode === "verified" || hoveredNode === "all" ? [1050, -50] : 1050 }}
@@ -111,7 +111,7 @@ export function SecuritySection() {
                 className={hoveredNode === "verified" || hoveredNode === "all" ? "opacity-100" : "opacity-0"} />
 
               {/* Encryption Path */}
-              <path d={paths.encryption} fill="none" stroke="#22d3ee" strokeWidth="2" 
+              <path d={paths.encryption} fill="none" stroke="#a78bfa" strokeWidth="2" 
                 className={`transition-opacity duration-500 ${hoveredNode === "encryption" || hoveredNode === "all" ? "opacity-100" : (isAnyActive ? "opacity-10" : "opacity-0")}`} />
               <motion.path d={paths.encryption} fill="none" stroke="#fff" strokeWidth="3" strokeDasharray="50 1000" strokeLinecap="round"
                 animate={{ strokeDashoffset: hoveredNode === "encryption" || hoveredNode === "all" ? [1050, -50] : 1050 }}
@@ -119,7 +119,7 @@ export function SecuritySection() {
                 className={hoveredNode === "encryption" || hoveredNode === "all" ? "opacity-100" : "opacity-0"} />
 
               {/* Infrastructure Path */}
-              <path d={paths.infrastructure} fill="none" stroke="#22d3ee" strokeWidth="2" 
+              <path d={paths.infrastructure} fill="none" stroke="#a78bfa" strokeWidth="2" 
                 className={`transition-opacity duration-500 ${hoveredNode === "infrastructure" || hoveredNode === "all" ? "opacity-100" : (isAnyActive ? "opacity-10" : "opacity-0")}`} />
               <motion.path d={paths.infrastructure} fill="none" stroke="#fff" strokeWidth="3" strokeDasharray="50 1000" strokeLinecap="round"
                 animate={{ strokeDashoffset: hoveredNode === "infrastructure" || hoveredNode === "all" ? [1050, -50] : 1050 }}

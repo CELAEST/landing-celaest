@@ -16,6 +16,21 @@
     "subheadline2": "Macros Excel, scripts Python y agentes IA empresariales con ROI instantáneo.",
     "browseCTA": "Explorar Mercado",
     "watchDemo": "Ver Demo",
+    "intent": {
+      "sectionAria": "Hero editorial CELAEST",
+      "contact": "Contacto",
+      "robotAria": "Hacer que el robot CELAEST salude",
+      "robotTitle": "Haz clic para saludar",
+      "kickerLine1": "INTELIGENCIA ARTIFICIAL",
+      "kickerLine2": "PARA EMPRESAS",
+      "titleSmall": "DE LA",
+      "titleMain": "INTENCIÓN",
+      "titleConnector": "AL",
+      "titleResult": "RESULTADO",
+      "titleAria": "De la intención al resultado",
+      "description": "Diseñamos, implementamos y escalamos sistemas de IA que convierten procesos en resultados reales para tu negocio.",
+      "cta": "EXPLORAR SOLUCIONES"
+    },
     "stats": {
       "assets": "Activos Verificados",
       "users": "Usuarios Activos",
@@ -77,6 +92,7 @@
   "platform": {
     "title": "Potencia tu Flujo de Trabajo",
     "subtitle": "Infraestructura de nivel empresarial diseñada para la eficiencia, seguridad y escalabilidad sin límites.",
+    "explore": "Explorar",
     "cards": {
       "ecosystem": {
         "title": "Ecosistema de Activos",
@@ -346,7 +362,9 @@
         "items": ["Política de Privacidad", "Términos de Servicio", "Acuerdo de Licencia", "Política de Cookies", "GDPR"]
       }
     },
-    "copyright": "Todos los derechos reservados."
+    "copyright": "Todos los derechos reservados.",
+    "madeWith": "Hecho con",
+    "forProfessionals": "para profesionales."
   },
   "legal": {
     "privacy": {
@@ -356,7 +374,7 @@
     },
     "terms": {
       "title": "Términos y Condiciones",
-      "description": "Reglas de uso para la plataforma Celaest.",
+      "description": "Reglas de uso para la plataforma CELAEST.",
       "lastUpdated": "Última actualización"
     }
   }

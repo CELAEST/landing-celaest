@@ -1,75 +1,21 @@
 import { setRequestLocale } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
-import { Navigation } from "@/components/landing/navigation";
 import { HeroSection } from "@/components/landing/hero-section";
-import dynamic from "next/dynamic";
+import { VolumetricAura } from "@/components/landing/lab";
+import { ProductsSection } from "@/components/landing/products-view";
+import { PlatformSection } from "@/components/landing/platform-section";
+import { SecuritySection } from "@/components/landing/security-section";
+import { PricingSection } from "@/components/landing/pricing-section";
+import { FAQSection } from "@/components/landing/faq-section";
+import { Footer } from "@/components/landing/footer";
 import {
   generateOrganizationSchema,
   generateWebSiteSchema,
   generateSoftwareSchema,
 } from "@/lib/structured-data";
 
-import { SplineBackground } from "@/components/landing/spline-minimal-loader";
-
-// Lazy load sections below the fold for better performance
-const ProductsSection = dynamic(
-  () =>
-    import("@/components/landing/products-view").then((mod) => ({
-      default: mod.ProductsSection,
-    })),
-  {
-    loading: () => <div className="py-24 bg-brand-deep" />,
-  },
-);
-const PricingSection = dynamic(
-  () =>
-    import("@/components/landing/pricing-section").then((mod) => ({
-      default: mod.PricingSection,
-    })),
-  {
-    loading: () => <div className="py-24 bg-brand-deep" />,
-  },
-);
-const SecuritySection = dynamic(
-  () =>
-    import("@/components/landing/security-section").then((mod) => ({
-      default: mod.SecuritySection,
-    })),
-  {
-    loading: () => <div className="py-24 bg-brand-deep" />,
-  },
-);
-
-const PlatformSection = dynamic(
-  () =>
-    import("@/components/landing/platform-section").then((mod) => ({
-      default: mod.PlatformSection,
-    })),
-  {
-    loading: () => <div className="py-24 bg-brand-deep" />,
-  },
-);
-const FAQSection = dynamic(
-  () =>
-    import("@/components/landing/faq-section").then((mod) => ({
-      default: mod.FAQSection,
-    })),
-  {
-    loading: () => <div className="py-24 bg-brand-deep" />,
-  },
-);
-const Footer = dynamic(
-  () =>
-    import("@/components/landing/footer").then((mod) => ({
-      default: mod.Footer,
-    })),
-  {
-    loading: () => <div className="py-12 bg-slate-900" />,
-  },
-);
-
 // ISR: Revalidate every hour
-export const revalidate = 3600; // Force Turbopack rebuild
+export const revalidate = 3600;
 
 interface PageProps {
   params: Promise<{ locale: Locale }>;
@@ -82,7 +28,9 @@ export default async function HomePage({ params }: PageProps) {
   setRequestLocale(locale);
 
   return (
-    <div className="min-h-screen bg-brand-dark">
+    <div className="min-h-screen bg-brand-dark relative overflow-x-hidden">
+      <VolumetricAura />
+
       {/* JSON-LD Structured Data */}
       <script
         type="application/ld+json"
@@ -96,18 +44,9 @@ export default async function HomePage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(generateSoftwareSchema()) }}
       />
-      <Navigation />
+
       <main>
-        <HeroSection
-          splineBackground={
-            <div className="absolute z-0 w-[104%] h-[108%] -left-2 -top-4 pointer-events-auto">
-              <SplineBackground />
-            </div>
-          }
-        />
-        {/* Below-fold sections wrapped in cv-section so the browser skips
-            their layout/paint cost until the user scrolls near them. The
-            wrapper reserves the intrinsic height to prevent scroll-jumps. */}
+        <HeroSection />
         <div className="cv-section">
           <ProductsSection />
         </div>

@@ -35,7 +35,6 @@ const nextConfig: NextConfig = {
       'three',
       'three-stdlib',
       '@react-three/fiber',
-      '@react-three/drei',
       'lucide-react',
       'framer-motion',
     ],

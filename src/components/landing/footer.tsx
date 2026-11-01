@@ -23,9 +23,9 @@ export function Footer() {
     <footer className="bg-brand-deep relative overflow-hidden">
       {/* Background Graphic - Premium SVG + CSS Mesh Gradient */}
       <div className="absolute inset-0 h-full z-0 pointer-events-none overflow-hidden">
-        {/* Ambient Glow Effects (kept for blue/cyan ambience) */}
-        <div className="absolute bottom-[-10%] left-[10%] w-[50%] h-[300px] bg-cyan-500/20 blur-[120px] rounded-full mix-blend-screen" />
-        <div className="absolute bottom-[-10%] right-[10%] w-[50%] h-[300px] bg-blue-600/20 blur-[120px] rounded-full mix-blend-screen" />
+        {/* Ambient Glow Effects (Hero obsidian & royal violet ambience) */}
+        <div className="absolute bottom-[-10%] left-[10%] w-[50%] h-[300px] bg-violet-600/20 blur-[120px] rounded-full mix-blend-screen" />
+        <div className="absolute bottom-[-10%] right-[10%] w-[50%] h-[300px] bg-purple-700/20 blur-[120px] rounded-full mix-blend-screen" />
 
         {/* Drifting constellation — fades only at bottom so it continues seamlessly from the FAQ section above. */}
         <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,#000_0%,#000_70%,transparent_100%)]">
@@ -75,8 +75,8 @@ export function Footer() {
           {/* Brand Column */}
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2.5 mb-4 overflow-visible">
-              <div className="w-10 h-10 flex items-center justify-center drop-shadow-[0_0_20px_rgba(6,182,212,0.8)]">
-                <Logo color="#22d3ee" className="w-10 h-10" />
+              <div className="w-10 h-10 flex items-center justify-center drop-shadow-[0_0_20px_rgba(167,139,250,0.75)]">
+                <Logo color="#a78bfa" className="w-10 h-10" />
               </div>
               <span
                 className="text-2xl font-black bg-gradient-to-r from-white via-brand-ice to-brand-slate-light bg-clip-text text-transparent tracking-tighter notranslate"
@@ -146,9 +146,9 @@ export function Footer() {
               © {new Date().getFullYear()} CELAEST. {t('copyright')}
             </p>
             <div className="flex items-center gap-2 text-zinc-300 text-xs">
-              <span>Hecho con</span>
+              <span>{t('madeWith')}</span>
               <span className="text-brand-neon">♥</span>
-              <span>para profesionales.</span>
+              <span>{t('forProfessionals')}</span>
             </div>
           </div>
         </div>

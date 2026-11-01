@@ -66,7 +66,7 @@ export function PricingSection() {
   );
 
   return (
-    <section id="pricing" className="py-16 sm:py-24 bg-black relative overflow-hidden">
+    <section id="pricing" className="py-16 sm:py-24 bg-brand-dark relative overflow-hidden">
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div
           className="absolute inset-x-0 top-[10%] bottom-0 z-0 opacity-[0.15]"
@@ -81,7 +81,7 @@ export function PricingSection() {
         />
         <div className="absolute top-[20%] left-[10%] w-[400px] h-[400px] bg-brand-neon/20 rounded-full blur-[100px]" />
         <div className="absolute top-[10%] right-[10%] w-[450px] h-[450px] bg-brand-neon-blue/15 rounded-full blur-[110px]" />
-        <div className="absolute bottom-[-10%] left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-emerald-500/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-purple-900/15 rounded-full blur-[120px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -138,8 +138,8 @@ export function PricingSection() {
                 <span
                   className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${
                     cycle === "yearly"
-                      ? "bg-emerald-500/20 text-emerald-700"
-                      : "bg-emerald-500/20 text-emerald-300"
+                      ? "bg-brand-neon/20 text-purple-900"
+                      : "bg-brand-neon/20 text-brand-neon"
                   }`}
                 >
                   -{yearlySavingsPercent}%
@@ -201,12 +201,12 @@ export function PricingSection() {
                 <div
                   className={`relative h-full rounded-3xl p-7 sm:p-8 flex flex-col transition-colors duration-300 ${
                     plan.popular
-                      ? "bg-brand-gray border border-brand-neon/30 shadow-[0_0_30px_rgba(34,211,238,0.05)] group-hover:border-brand-neon/60"
+                      ? "bg-brand-gray border border-brand-neon/30 shadow-[0_0_35px_rgba(167,139,250,0.12)] group-hover:border-brand-neon/60"
                       : "bg-brand-surface-alt border border-white/5 shadow-xl shadow-black/50 group-hover:border-white/20"
                   }`}
                 >
                   {plan.popular && (
-                    <div className="text-[10px] font-mono tracking-[0.2em] uppercase text-emerald-400 font-semibold mb-2">
+                    <div className="text-[10px] font-mono tracking-[0.2em] uppercase text-brand-neon font-semibold mb-2">
                       {t("mostPopular")}
                     </div>
                   )}

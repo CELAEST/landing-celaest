@@ -584,7 +584,7 @@ function ParticleSphere({ activeNode, pointer }: { activeNode: SecurityNode; poi
       uTargetDir: { value: new THREE.Vector3(0, 0, 0) },
       uMousePos: { value: new THREE.Vector3(999, 999, 999) },
       uColorMain: { value: new THREE.Color("#FFFFFF") },
-      uColorAccent: { value: new THREE.Color("#22d3ee") },
+      uColorAccent: { value: new THREE.Color("#a78bfa") },
     }),
     [],
   );

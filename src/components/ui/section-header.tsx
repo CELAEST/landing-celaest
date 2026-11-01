@@ -29,7 +29,7 @@ export function SectionHeader({
     >
       {badge && (
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.05] mb-6 shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
-          <div className="w-1.5 h-1.5 bg-brand-neon rounded-full animate-pulse shadow-[0_0_8px_rgba(34,211,238,0.6)]" />
+          <div className="w-1.5 h-1.5 bg-brand-neon rounded-full animate-pulse shadow-[0_0_8px_rgba(167,139,250,0.65)]" />
           <span className="text-[10px] font-bold tracking-widest text-brand-accent uppercase">
             {badge}
           </span>

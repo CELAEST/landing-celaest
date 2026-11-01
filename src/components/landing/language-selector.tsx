@@ -67,21 +67,21 @@ export function LanguageSelector() {
       </button>
 
       {isOpen && !isPending && (
-        <div className="absolute top-full right-0 mt-2 w-48 rounded-lg bg-white shadow-2xl overflow-hidden animate-fade-in z-50 border border-brand-soft">
+        <div className="absolute top-full right-0 mt-2 w-48 rounded-xl bg-[#0a0a0a]/95 backdrop-blur-xl shadow-2xl overflow-hidden animate-fade-in z-50 border border-white/10">
           {routing.locales.map((code) => (
             <button
               key={code}
               onClick={() => handleSelect(code)}
               className={cn(
-                'w-full px-4 py-3 text-left flex items-center gap-3 transition-all duration-200 first:rounded-t-lg last:rounded-b-lg',
+                'w-full px-4 py-3 text-left flex items-center gap-3 transition-all duration-200 first:rounded-t-xl last:rounded-b-xl',
                 locale === code
-                  ? 'bg-sky-50 text-sky-700 font-semibold'
-                  : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+                  ? 'bg-brand-neon/15 text-brand-neon font-semibold'
+                  : 'text-brand-soft hover:bg-white/5 hover:text-white'
               )}
             >
-              <Globe className={cn("w-4 h-4", locale === code ? "text-sky-500" : "text-gray-400")} />
+              <Globe className={cn("w-4 h-4", locale === code ? "text-brand-neon" : "text-white/40")} />
               <span className="flex-1 text-sm">{localeNames[code]}</span>
-              {locale === code && <Check className="w-4 h-4 text-sky-500" />}
+              {locale === code && <Check className="w-4 h-4 text-brand-neon" />}
             </button>
           ))}
         </div>

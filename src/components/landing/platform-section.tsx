@@ -4,26 +4,27 @@ import { useTranslations } from "next-intl";
 import { useRef, useEffect, useState } from "react";
 import { ConstellationBackground } from "@/components/ui/constellation-background";
 import { SectionReveal } from "@/components/ui/section-reveal";
+import { SpotlightCard, MagneticElement } from "@/components/landing/lab";
 
 const PLATFORM_CARDS = [
   {
     id: "management",
     video: "/sesion/1.mp4",
-    accentColor: "rgba(34,211,238,1)",
-    glowColor: "rgba(34,211,238,0.15)",
+    accentColor: "rgba(167,139,250,1)",
+    glowColor: "rgba(167,139,250,0.16)",
   },
   {
     id: "workflow",
     video: "/sesion/2.mp4",
-    accentColor: "rgba(34,211,238,1)",
-    glowColor: "rgba(34,211,238,0.12)",
+    accentColor: "rgba(167,139,250,1)",
+    glowColor: "rgba(167,139,250,0.13)",
   },
   {
     id: "ecosystem",
     video: "/sesion/3.mp4",
     videoClassName: "object-[80%_center]",
-    accentColor: "rgba(34,211,238,1)",
-    glowColor: "rgba(34,211,238,0.10)",
+    accentColor: "rgba(167,139,250,1)",
+    glowColor: "rgba(167,139,250,0.11)",
   },
 ];
 
@@ -50,7 +51,7 @@ export function PlatformSection() {
         {/* Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-7 max-w-sm sm:max-w-md md:max-w-none mx-auto">
           {PLATFORM_CARDS.map((card, index) => (
-            <PlatformCard key={card.id} card={card} index={index} />
+            <PlatformCard key={card.id} card={card} index={index} exploreLabel={t("explore")} />
           ))}
         </div>
       </div>
@@ -61,18 +62,17 @@ export function PlatformSection() {
 function PlatformCard({
   card,
   index,
+  exploreLabel,
 }: {
   card: (typeof PLATFORM_CARDS)[0];
   index: number;
+  exploreLabel: string;
 }) {
   const t = useTranslations(`platform.cards.${card.id}`);
   const videoRef = useRef<HTMLVideoElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
 
-  // Only autoplay when the card is actually visible to the user.
-  // Saves a lot of GPU/CPU on long pages where 3 mp4 videos would
-  // otherwise decode permanently even off-screen.
   useEffect(() => {
     const node = wrapperRef.current;
     if (!node) return;
@@ -105,7 +105,6 @@ function PlatformCard({
   };
 
   const handleMouseLeave = () => {
-    // Keep playing on desktop hover-out only if in view (mobile-first)
     if (videoRef.current && !inView) {
       videoRef.current.pause();
       videoRef.current.currentTime = 0.01;
@@ -114,84 +113,79 @@ function PlatformCard({
 
   return (
     <SectionReveal delay={index * 100} className="h-full">
-      <div
-        ref={wrapperRef}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        className="group relative flex flex-col h-full rounded-2xl border border-white/[0.06] bg-brand-surface-alt overflow-hidden cursor-pointer transition-[border-color,box-shadow] duration-500 hover:border-white/[0.14] hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.9)]"
+      <SpotlightCard
+        glowColor={card.glowColor}
+        className="flex flex-col h-full border border-white/[0.08] bg-brand-surface-alt transition-[box-shadow] duration-500 hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.9)]"
       >
-      {/* Top cyan glow line — visible on hover only (GPU: opacity) */}
-      <div
-        className="absolute top-0 left-0 right-0 h-px z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-        style={{ background: `linear-gradient(to right, transparent, ${card.accentColor}, transparent)` }}
-      />
-
-      {/* Corner ambient glow — Zero-cost radial gradient (no blur filter) */}
-      <div
-        className="absolute -top-32 -right-32 w-64 h-64 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-        style={{ 
-          background: `radial-gradient(circle at center, ${card.glowColor} 0%, transparent 70%)` 
-        }}
-      />
-
-      {/* ── VIDEO ZONE ───────────────────────────────────── */}
-      <div className="relative aspect-video sm:aspect-[16/10] overflow-hidden rounded-t-2xl bg-[#0a0f14]">
-        <video
-          ref={videoRef}
-          src={`${card.video}#t=0.01`}
-          preload="metadata"
-          muted
-          loop
-          playsInline
-          disablePictureInPicture
-          suppressHydrationWarning
-          className={`absolute inset-0 w-full h-full object-cover sm:opacity-80 group-hover:opacity-100 transition-opacity duration-500 ${card.videoClassName || ""}`}
+        <div
+          ref={wrapperRef}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className="relative flex flex-col h-full overflow-hidden"
         >
-          <track kind="captions" src="data:text/vtt," label="no-captions" />
-        </video>
-        {/* Bottom fade into card body */}
-        <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-brand-surface-alt to-transparent z-10 pointer-events-none" />
-        {/* Side vignettes for depth */}
-        <div className="absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-brand-surface-alt to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-brand-surface-alt to-transparent z-10 pointer-events-none" />
-      </div>
+          <div
+            className="absolute top-0 left-0 right-0 h-px z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+            style={{ background: `linear-gradient(to right, transparent, ${card.accentColor}, transparent)` }}
+          />
 
-      {/* ── CONTENT ZONE ─────────────────────────────────── */}
-      <div className="flex flex-col flex-1 px-5 pt-4 pb-6 relative z-20">
+          <div
+            className="absolute -top-32 -right-32 w-64 h-64 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+            style={{
+              background: `radial-gradient(circle at center, ${card.glowColor} 0%, transparent 70%)`,
+            }}
+          />
 
-        <div className="flex items-center justify-between mb-5">
-          <span className="text-[10px] font-mono tracking-[0.18em] text-zinc-500 group-hover:text-zinc-400 transition-colors duration-300 uppercase">
-            {t("tag")}
-          </span>
+          <div className="relative aspect-video sm:aspect-[16/10] overflow-hidden rounded-t-2xl bg-[#080808]">
+            <video
+              ref={videoRef}
+              src={`${card.video}#t=0.01`}
+              preload="metadata"
+              muted
+              loop
+              playsInline
+              disablePictureInPicture
+              suppressHydrationWarning
+              className={`absolute inset-0 w-full h-full object-cover sm:opacity-80 group-hover:opacity-100 transition-opacity duration-500 ${card.videoClassName || ""}`}
+            >
+              <track kind="captions" src="data:text/vtt," label="no-captions" />
+            </video>
+            <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-brand-surface-alt to-transparent z-10 pointer-events-none" />
+            <div className="absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-brand-surface-alt to-transparent z-10 pointer-events-none" />
+            <div className="absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-brand-surface-alt to-transparent z-10 pointer-events-none" />
+          </div>
 
-          {/* Arrow button */}
-          <div className="w-7 h-7 rounded-full border border-white/[0.05] flex items-center justify-center bg-white/[0.02] group-hover:bg-brand-neon group-hover:border-transparent transition-all duration-300 -rotate-45 group-hover:rotate-0">
-            <svg className="w-3 h-3 text-neutral-500 group-hover:text-black transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
+          <div className="flex flex-col flex-1 px-5 pt-4 pb-6 relative z-20">
+            <div className="flex items-center justify-between mb-5">
+              <span className="text-[10px] font-mono tracking-[0.18em] text-zinc-500 group-hover:text-zinc-400 transition-colors duration-300 uppercase">
+                {t("tag")}
+              </span>
+
+              <MagneticElement strength={0.4}>
+                <div className="w-7 h-7 rounded-full border border-white/[0.08] flex items-center justify-center bg-white/[0.03] group-hover:bg-brand-neon group-hover:border-transparent transition-all duration-300 -rotate-45 group-hover:rotate-0 shadow-sm">
+                  <svg className="w-3 h-3 text-neutral-400 group-hover:text-black transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </div>
+              </MagneticElement>
+            </div>
+
+            <h3 className="text-[22px] sm:text-[24px] font-bold text-white tracking-tight mb-3 group-hover:text-brand-neon transition-colors duration-300 leading-snug">
+              {t("title")}
+            </h3>
+
+            <p className="text-zinc-400 text-sm sm:text-[15px] leading-[1.7] line-clamp-3 mb-auto">
+              {t("description")}
+            </p>
+
+            <div className="mt-5 pt-4 border-t border-white/[0.05] flex items-center gap-2 text-zinc-400 group-hover:text-brand-neon transition-colors duration-300 text-[13px] font-semibold tracking-wide">
+              <span>{exploreLabel}</span>
+              <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </div>
           </div>
         </div>
-
-        {/* Title */}
-        <h3 className="text-[22px] sm:text-[24px] font-bold text-white tracking-tight mb-3 group-hover:text-brand-neon transition-colors duration-300 leading-snug">
-          {t("title")}
-        </h3>
-
-        {/* Description */}
-        <p className="text-zinc-400 text-sm sm:text-[15px] leading-[1.7] line-clamp-3 mb-auto">
-          {t("description")}
-        </p>
-
-        {/* Explorar link */}
-        <div className="mt-5 pt-4 border-t border-white/[0.05] flex items-center gap-2 text-zinc-400 group-hover:text-brand-neon transition-colors duration-300 text-[13px] font-semibold tracking-wide">
-          <span>Explorar</span>
-          <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </div>
-      </div>
-
-      </div>
+      </SpotlightCard>
     </SectionReveal>
   );
 }

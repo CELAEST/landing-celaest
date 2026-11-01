@@ -5,12 +5,12 @@
 @layer base {
   :root {
     --color-dark-bg: 5 5 5;
-    --color-dark-surface: 10 10 10;
-    --color-dark-border: 20 20 20;
-    --color-neon-primary: 34 211 238; /* Cyan */
-    --color-neon-secondary: 56 189 248; /* Blue */
+    --color-dark-surface: 9 9 11;
+    --color-dark-border: 26 26 26;
+    --color-neon-primary: 167 139 250; /* Violet (#a78bfa) */
+    --color-neon-secondary: 139 92 246; /* Deep Violet (#8b5cf6) */
     --color-text-main: 248 250 252;
-    --color-text-muted: 148 163 184;
+    --color-text-muted: 136 136 136; /* #888888 Titanium Slate */
   }
 
   * {
@@ -58,13 +58,13 @@
     contain: layout paint style;
   }
 
-  /* Smooth section fade-in: triggered via IntersectionObserver in JS */
+  /* Snappy section fade-in: anticipatory IntersectionObserver triggers 250px before entering */
   .section-reveal {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(12px);
     transition:
-      opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
   }
   .section-reveal.is-visible {

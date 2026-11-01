@@ -3,24 +3,16 @@
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import dynamic from "next/dynamic";
+import { DynamicInfrastructure } from "./dynamic-infrastructure";
 import { ConstellationBackground } from "@/components/ui/constellation-background";
-
-// Code-split the heavy R3F + GLTF brain bundle out of the products section's
-// initial chunk. The component itself also viewport-gates its own Canvas.
-const DynamicInfrastructure = dynamic(
-  () => import("./dynamic-infrastructure").then((m) => ({ default: m.DynamicInfrastructure })),
-  { ssr: false, loading: () => <div className="relative w-full h-[500px] md:h-[600px]" /> },
-);
 
 export function ProductsSection() {
   const t = useTranslations("products");
 
   return (
     <section id="products" className="py-16 sm:py-24 bg-brand-deep relative overflow-hidden">
-      {/* Background Glows (Subtle, professional) */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-gradient-to-r from-transparent via-brand-neon/50 to-transparent opacity-50" />
-      <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-brand-neon/5 rounded-full blur-[120px] pointer-events-none" />
+      {/* Background Glows (Positioned safely below section seam) */}
+      <div className="absolute top-[10%] -left-[10%] w-[50%] h-[50%] bg-brand-neon/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[0%] right-[0%] w-[40%] h-[40%] bg-brand-neon-blue/5 rounded-full blur-[120px] pointer-events-none" />
 
       {/* Drifting constellation (subtle ambience) */}

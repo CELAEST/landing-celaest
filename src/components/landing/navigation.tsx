@@ -100,7 +100,7 @@ export function Navigation() {
                 letterSpacing: "-0.05em",
               }}
             >
-              CELEAST
+              CELAEST
             </span>
           </Link>
 
@@ -129,7 +129,7 @@ export function Navigation() {
             </a>
             <Button
               size="default"
-              className="hidden sm:inline-flex bg-brand-neon text-brand-dark hover:bg-brand-ice shadow-[0_0_15px_rgba(34,211,238,0.3)] hover:shadow-[0_0_25px_rgba(34,211,238,0.5)] transition-all font-bold tracking-wide"
+              className="hidden sm:inline-flex bg-brand-neon text-brand-dark hover:bg-brand-ice shadow-[0_0_20px_rgba(167,139,250,0.35)] hover:shadow-[0_0_30px_rgba(167,139,250,0.55)] transition-all font-bold tracking-wide"
               asChild
             >
               <a href={`${dashboardUrl}?mode=signup`}>{t("getStarted")}</a>
@@ -181,7 +181,7 @@ export function Navigation() {
             </a>
             <a
               href={`${dashboardUrl}?mode=signup`}
-              className="w-full text-center py-3 bg-brand-neon text-brand-dark font-bold rounded-xl shadow-[0_0_20px_rgba(34,211,238,0.25)] hover:brightness-110 transition-all"
+              className="w-full text-center py-3 bg-brand-neon text-brand-dark font-bold rounded-xl shadow-[0_0_20px_rgba(167,139,250,0.35)] hover:brightness-110 transition-all"
             >
               {t("getStarted")}
             </a>

@@ -2,9 +2,9 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import dynamic from "next/dynamic";
+import { preloadBrainParticles } from "./brain-data-loader";
 
-// Code-split the heavy R3F + GLTF brain bundle out of the initial wrapper chunk.
-// The canvas component is dynamically loaded only when approaching the viewport.
+// Code-split the R3F canvas out of initial bundle, pre-load the binary data gently in idle
 const DynamicInfrastructureCanvas = dynamic(
   () => import("./dynamic-infrastructure-canvas"),
   {
@@ -16,32 +16,43 @@ const DynamicInfrastructureCanvas = dynamic(
 export function DynamicInfrastructure() {
   const [isHovered, setIsHovered] = useState(false);
   const [scaleMultiplier, setScaleMultiplier] = useState(1);
-  
-  // Two-stage mount: (1) IntersectionObserver decides when the Canvas can
-  // initialize at all, (2) `visible` toggles continuously so the r3f frameloop
-  // pauses while the section is off-screen. This keeps the WebGL context
-  // alive (no re-init stutter) without burning the main thread when invisible.
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
+
+  // Preload particles binary buffer gently in idle without blocking page load
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const win = window as any;
+      if (typeof win.requestIdleCallback === "function") {
+        const handle = win.requestIdleCallback(() => preloadBrainParticles(), { timeout: 2500 });
+        return () => win.cancelIdleCallback?.(handle);
+      } else {
+        const timer = setTimeout(preloadBrainParticles, 1200);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, []);
 
   // Responsive scale handler
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 480) {
-        setScaleMultiplier(0.9); // Increased from 0.6 to 0.9 for better mobile presence
+        setScaleMultiplier(0.9);
       } else if (window.innerWidth < 768) {
-        setScaleMultiplier(0.95); 
+        setScaleMultiplier(0.95);
       } else {
-        setScaleMultiplier(1); // Default for desktop
+        setScaleMultiplier(1);
       }
     };
 
-    handleResize(); // Initial check
+    handleResize();
     window.addEventListener("resize", handleResize, { passive: true });
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Anticipatory observer: canvas mounts 500px before reaching viewport
+  // and pauses frameloop when scrolled away to save 100% of GPU/CPU
   useEffect(() => {
     const el = wrapperRef.current;
     if (!el) return;
@@ -61,13 +72,12 @@ export function DynamicInfrastructure() {
           }
         }
       },
-      { rootMargin: "300px" },
+      { rootMargin: "500px 0px 500px 0px" },
     );
     io.observe(el);
     return () => io.disconnect();
   }, []);
 
-  // Handle pointer/touch correctly for instant reaction
   const handleInteractStart = () => setIsHovered(true);
   const handleInteractEnd = () => setIsHovered(false);
 
