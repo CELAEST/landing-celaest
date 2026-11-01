@@ -6,7 +6,8 @@
     "pricing": "Pricing",
     "faq": "FAQ",
     "signIn": "Sign In",
-    "getStarted": "Get Started"
+    "getStarted": "Get Started",
+    "signUp": "Sign Up"
   },
   "hero": {
     "badge": "Premium Marketplace for Enterprise Automation",
@@ -347,19 +348,43 @@
     "links": {
       "product": {
         "title": "Product",
-        "items": ["Excel Macros", "Python Scripts", "Business Software", "Pricing", "Enterprise"]
+        "items": [
+          "Excel Macros",
+          "Python Scripts",
+          "Business Software",
+          "Pricing",
+          "Enterprise"
+        ]
       },
       "company": {
         "title": "Company",
-        "items": ["About Us", "Blog", "Careers", "Press Kit", "Partners"]
+        "items": [
+          "About Us",
+          "Blog",
+          "Careers",
+          "Press Kit",
+          "Partners"
+        ]
       },
       "support": {
         "title": "Support",
-        "items": ["Documentation", "Help Center", "Contact Us", "Status", "API"]
+        "items": [
+          "Documentation",
+          "Help Center",
+          "Contact Us",
+          "Status",
+          "API"
+        ]
       },
       "legal": {
         "title": "Legal",
-        "items": ["Privacy Policy", "Terms of Service", "License Agreement", "Cookie Policy", "GDPR"]
+        "items": [
+          "Privacy Policy",
+          "Terms of Service",
+          "License Agreement",
+          "Cookie Policy",
+          "GDPR"
+        ]
       }
     },
     "copyright": "All rights reserved.",

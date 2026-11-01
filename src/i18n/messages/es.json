@@ -6,7 +6,8 @@
     "pricing": "Precios",
     "faq": "Preguntas",
     "signIn": "Iniciar Sesión",
-    "getStarted": "Comenzar"
+    "getStarted": "Comenzar",
+    "signUp": "Registrarse"
   },
   "hero": {
     "badge": "Mercado Premium de Automatizaciones Empresariales",
@@ -347,19 +348,43 @@
     "links": {
       "product": {
         "title": "Producto",
-        "items": ["Macros Excel", "Scripts Python", "Software Empresarial", "Precios", "Enterprise"]
+        "items": [
+          "Macros Excel",
+          "Scripts Python",
+          "Software Empresarial",
+          "Precios",
+          "Enterprise"
+        ]
       },
       "company": {
         "title": "Empresa",
-        "items": ["Nosotros", "Blog", "Carreras", "Kit de Prensa", "Socios"]
+        "items": [
+          "Nosotros",
+          "Blog",
+          "Carreras",
+          "Kit de Prensa",
+          "Socios"
+        ]
       },
       "support": {
         "title": "Soporte",
-        "items": ["Documentación", "Centro de Ayuda", "Contáctanos", "Estado", "API"]
+        "items": [
+          "Documentación",
+          "Centro de Ayuda",
+          "Contáctanos",
+          "Estado",
+          "API"
+        ]
       },
       "legal": {
         "title": "Legal",
-        "items": ["Política de Privacidad", "Términos de Servicio", "Acuerdo de Licencia", "Política de Cookies", "GDPR"]
+        "items": [
+          "Política de Privacidad",
+          "Términos de Servicio",
+          "Acuerdo de Licencia",
+          "Política de Cookies",
+          "GDPR"
+        ]
       }
     },
     "copyright": "Todos los derechos reservados.",

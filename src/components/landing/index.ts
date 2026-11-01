@@ -1,4 +1,5 @@
 // Landing page components (CELAEST Canonical Architecture)
+export { Header } from "./header";
 export { HeroSection } from "./hero-section";
 export { ProductsSection } from "./products-view";
 export { PlatformSection } from "./platform-section";

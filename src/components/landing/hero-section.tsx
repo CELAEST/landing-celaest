@@ -2,9 +2,6 @@
 
 import { useCallback, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
-import { ArrowUpRight } from "lucide-react";
-import { Logo } from "@/components/ui/logo";
-import { LanguageSelector } from "./language-selector";
 import { useRobotSequenceCanvas } from "./hero/useRobotSequenceCanvas";
 import { HeroArtStage } from "./hero/HeroArtStage";
 import { HeroIntentCopy } from "./hero/HeroIntentCopy";
@@ -20,13 +17,8 @@ export function HeroSection() {
   const frame = useRef(0);
   const pointer = useRef({ x: -9999, y: -9999 });
 
-  const {
-    robotCanvasRef,
-    robotImgRef,
-    handleRobotClick,
-    updateGazeFromUV,
-    resetGazeToRest,
-  } = useRobotSequenceCanvas();
+  const { robotCanvasRef, robotImgRef, handleRobotClick, updateGazeFromUV, resetGazeToRest } =
+    useRobotSequenceCanvas();
 
   const measure = useCallback(() => {
     const root = titleRef.current;
@@ -96,22 +88,6 @@ export function HeroSection() {
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
     >
-      <header className="intent-header">
-        <a className="intent-brand notranslate" href="#intent-hero" aria-label="CELAEST" translate="no">
-          <span className="intent-brand-logo">
-            <Logo color="#f8f7fb" />
-          </span>
-          <span>CELAEST</span>
-        </a>
-
-        <div className="intent-header-actions">
-          <LanguageSelector />
-          <a className="intent-contact" href="#pricing">
-            {t("contact")} <ArrowUpRight aria-hidden="true" size={15} strokeWidth={1.5} />
-          </a>
-        </div>
-      </header>
-
       <div id="intent-hero" className="intent-stage">
         <HeroArtStage robotImgRef={robotImgRef} robotCanvasRef={robotCanvasRef} />
 
