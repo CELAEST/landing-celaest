@@ -1,32 +1,21 @@
-# Contrato Canónico: Cards Isométricas 3D de Plataforma (Reemplazo de Videos)
+# Contrato Canónico: Cards Isométricas 3D de Plataforma (Estructura Asimétrica 1:1)
 
-## Contexto & Requerimiento
-Se reemplazó la sección previa de videos genéricos `/sesion/1.mp4`, `2.mp4` y `3.mp4` por un trío de tarjetas de diseño isométrico de alta gama con soporte para interactividad 3D, profundidad espacial y cero retraso de carga:
+## Contexto & Corrección Estructural
+Se corrigió la composición y arquitectura de las 3 tarjetas de la sección Plataforma para reflejar con precisión matemática 1:1 el diseño de referencia:
 
-1. **Card 1: Gestión Centralizada (`management`)**
-   - Ícono superior: `Layers` (Capas) en contenedor de vidrio con brillo especular.
-   - Ilustración 3D: Paneles de dashboard translúcidos con anillo orbital neón.
-   - Copy: "Gestión Centralizada" / "Administra licencias, miembros y versiones desde un único panel, de forma simple y segura."
-   - Fondo: `card-bg-1.webp` con base ahumada.
+1. **Proporción de Card (Squarish / ~1:1)**:
+   - Ya no son tarjetas verticales alargadas de columna única.
+   - Proporción cuadrada `aspect-square` (`min-h-[340px] sm:min-h-[365px]`), amplia y espaciosa.
 
-2. **Card 2: Pipeline de Automatización (`workflow`) - Destacada**
-   - Perímetro neón: Borde púrpura reactivo `border-2 border-[#a78bfa]/80 shadow-[0_0_35px_-5px_rgba(167,139,250,0.35)]`.
-   - Badge superior: `● Más popular` con pulso de luz neón.
-   - Ícono superior: `Zap` (Rayo) en caja de vidrio.
-   - Ilustración 3D: Cadena de bloques y conectores con nodo central de energía cúbica.
-   - Copy: "Pipeline de Automatización" / "Automatiza tareas y procesos repetitivos para enfocarte en lo que realmente importa."
+2. **Composición Asimétrica Izquierda/Derecha**:
+   - **Columna Izquierda (55% de ancho)**:
+     - **Arriba**: Badge de categoría/popularidad y caja de ícono cuadrada de cristal (`Layers`, `Zap`, `Shield`). En la Card 2 ("Pipeline"), el badge `● Más popular` se ubica arriba a la izquierda justo encima del ícono del rayo.
+     - **Centro**: Título con salto de línea limpio (`Gestión\nCentralizada`, `Pipeline\nde Automatización`, `Ecosistema\nde Activos`) y descripción de 3 líneas.
+     - **Abajo**: Enlace `Explorar →` alineado a la izquierda.
+   - **Área Superior Derecha (56% de ancho)**:
+     - La ilustración isométrica 3D (`management.webp`, `workflow.webp`, `ecosystem.webp`) flota en el cuadrante superior derecho con perspectiva espacial y paralaje reactivo al cursor (`rotateX`, `rotateY`, `translateZ(30px)`).
 
-3. **Card 3: Ecosistema de Activos (`ecosystem`)**
-   - Ícono superior: `Shield` (Escudo) en caja de vidrio.
-   - Ilustración 3D: Pedestal tecnológico con cubos de cristal e insignias de código, apps y analítica.
-   - Copy: "Ecosistema de Activos" / "Explora y conecta tus macros, scripts y herramientas en un solo lugar."
-   - Fondo: `card-bg-3.webp` con arco de luz inferior.
-
-## Arquitectura & Rendimiento
-- Componente desacoplado: `src/components/landing/platform-card.tsx` (bajo el estándar de Clean Architecture de componentes atómicos).
-- Orquestador: `src/components/landing/platform-section.tsx`.
-- Optimización de activos: Ilustraciones recortadas y convertidas a WebP de alta fidelidad (<50 KB cada una, <190 KB en total para toda la sección).
-- Dinamismo 3D:
-  - Levitación continua mediante `framer-motion` (`y: [-4, 4, -4]`).
-  - Parallax Tilt 3D reactivo al cursor con física de resorte (`useSpring`, `rotateX`, `rotateY`, `translateZ(30px)`).
-  - Spotlight radial interactivo que sigue las coordenadas relativas del mouse.
+3. **Limpieza Quirúrgica de Activos**:
+   - **Card 1**: Únicamente los 3 paneles de dashboard translúcidos con su anillo orbital neón (sin bloques duplicados a la izquierda).
+   - **Card 2**: Únicamente los 3 cubos interconectados con el cubo superior de cristal y energía púrpura, y borde perimetral neón con resplandor completo.
+   - **Card 3**: Pedestal con cubos y fichas de código, terminal y métricas.
