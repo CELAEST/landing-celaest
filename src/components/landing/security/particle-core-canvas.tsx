@@ -130,15 +130,17 @@ const VERTEX_SHADER = /* glsl */ `
     float driftStrength = mix(0.18, 0.03, activeMorph);
     vec3 pos = basePos + normalPush + flow * driftStrength;
 
-    // Directional pull toward active node
-    pos += uTargetDir * 0.28 * uHover * (0.6 + aSeed * 0.5);
+    // Directional pull toward active node: ONLY stretches the resting sphere; shapes remain dead center
+    float spherePull = (1.0 - activeMorph) * uHover;
+    pos += uTargetDir * 0.28 * spherePull * (0.6 + aSeed * 0.5);
 
-    // Subtle cursor attraction
+    // Subtle cursor attraction: gentle surface ripple without displacing defined shapes off center
     vec3 toCursor = uMousePos - pos;
     float dist = length(toCursor);
-    float radius = 2.4;
+    float radius = 2.2;
     float attract = smoothstep(radius, 0.0, dist) * uHover;
-    pos += toCursor * attract * 0.16;
+    float cursorPull = mix(0.16, 0.02, activeMorph);
+    pos += toCursor * attract * cursorPull;
 
     // Color & Alpha
     float accentMix = step(0.72, aSeed);

@@ -62,7 +62,7 @@ export function SecuritySection() {
           onMouseLeave={() => setHoveredNode(null)}
         >
           {/* Central Reactor Glow (Reacts to any node hover) */}
-          <div className={`absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] md:w-[700px] h-[500px] md:h-[700px] bg-[radial-gradient(circle_at_50%_50%,rgba(167,139,250,0.14)_0%,transparent_50%)] rounded-full pointer-events-none transition-opacity duration-1000 ${isAnyActive ? 'opacity-100' : 'opacity-0'}`} />
+          <div className={`absolute top-[42.3%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] md:w-[700px] h-[500px] md:h-[700px] bg-[radial-gradient(circle_at_50%_50%,rgba(167,139,250,0.14)_0%,transparent_50%)] rounded-full pointer-events-none transition-opacity duration-1000 ${isAnyActive ? 'opacity-100' : 'opacity-0'}`} />
 
           {/* Symmetrical SVG Connections Layer */}
           <svg
@@ -161,7 +161,7 @@ export function SecuritySection() {
 
             {/* THE CORE ENGINE (ROBOT HEAD) */}
             <div 
-              className="hidden md:flex absolute top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2 z-30 cursor-crosshair"
+              className="hidden md:flex absolute top-[42.3%] left-[50%] -translate-x-1/2 -translate-y-1/2 z-30 cursor-crosshair"
               onMouseEnter={() => setHoveredNode("all")}
               onMouseLeave={() => setHoveredNode(null)}
             >

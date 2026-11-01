@@ -20,16 +20,16 @@ const { GLTFLoader, MeshSurfaceSampler, SVGLoader } = require("three-stdlib");
 const PARTICLE_COUNT = 6000;
 const SPHERE_RADIUS = 0.9;
 const LOCK_TARGET_SIZE = 2.05;
-const LOCK_Y_OFFSET = 0.33;
-const LOCK_YAW = 1.4;
+const LOCK_Y_OFFSET = 0.0;
+const LOCK_YAW = Math.PI / 2;
 const LOCK_PITCH = 0;
 
 const SHIELD_TARGET_SIZE = 2.0;
-const SHIELD_Y_OFFSET = 0.33;
+const SHIELD_Y_OFFSET = 0.0;
 const GLOBE_TARGET_SIZE = 1.95;
-const GLOBE_Y_OFFSET = 0.33;
+const GLOBE_Y_OFFSET = 0.0;
 const LOGO_TARGET_SIZE = 2.0;
-const LOGO_Y_OFFSET = 0.33;
+const LOGO_Y_OFFSET = 0.0;
 
 // Read CELAEST_LOGO_PATH_D directly from source of truth
 const logoPathFile = fs.readFileSync(path.join(__dirname, "../src/components/ui/logo-path.ts"), "utf8");
