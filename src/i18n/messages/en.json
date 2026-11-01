@@ -94,21 +94,19 @@
     "title": "Power your Workflow",
     "subtitle": "Enterprise-grade infrastructure designed for efficiency, security, and limitless scalability.",
     "explore": "Explore",
+    "popular": "Most Popular",
     "cards": {
-      "ecosystem": {
-        "title": "Asset Ecosystem",
-        "tag": "MARKETPLACE",
-        "description": "Explore hundreds of verified macros and scripts ready to integrate into your business."
+      "management": {
+        "title": "Centralized Management",
+        "description": "Manage licenses, members, and versions from a single dashboard, simply and securely."
       },
       "workflow": {
         "title": "Automation Pipeline",
-        "tag": "ADAPTIVE",
-        "description": "Workflows that adapt to your needs, from idea to massive production."
+        "description": "Automate repetitive tasks and workflows so you can focus on what really matters."
       },
-      "management": {
-        "title": "Centralized Management",
-        "tag": "CONTROL",
-        "description": "Manage licenses, members, and versions from a unified and powerful dashboard."
+      "ecosystem": {
+        "title": "Asset Ecosystem",
+        "description": "Explore and connect your macros, scripts, and tools all in one unified place."
       }
     }
   },

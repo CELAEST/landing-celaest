@@ -94,21 +94,19 @@
     "title": "Potencia tu Flujo de Trabajo",
     "subtitle": "Infraestructura de nivel empresarial diseñada para la eficiencia, seguridad y escalabilidad sin límites.",
     "explore": "Explorar",
+    "popular": "Más popular",
     "cards": {
-      "ecosystem": {
-        "title": "Ecosistema de Activos",
-        "tag": "MARKETPLACE",
-        "description": "Explora cientos de macros y scripts verificados listos para integrarse en tu empresa."
+      "management": {
+        "title": "Gestión Centralizada",
+        "description": "Administra licencias, miembros y versiones desde un único panel, de forma simple y segura."
       },
       "workflow": {
         "title": "Pipeline de Automatización",
-        "tag": "ADAPTATIVO",
-        "description": "Flujos de trabajo que se adaptan a tus necesidades, desde la idea hasta la producción masiva."
+        "description": "Automatiza tareas y procesos repetitivos para enfocarte en lo que realmente importa."
       },
-      "management": {
-        "title": "Gestión Centralizada",
-        "tag": "CONTROL",
-        "description": "Administra licencias, miembros y versiones desde un dashboard unificado y potente."
+      "ecosystem": {
+        "title": "Ecosistema de Activos",
+        "description": "Explora y conecta tus macros, scripts y herramientas en un solo lugar."
       }
     }
   },
