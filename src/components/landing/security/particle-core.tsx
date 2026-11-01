@@ -2,9 +2,8 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
+import { preloadSecurityParticles } from "./security-data-loader";
 
-// Code-split the heavy R3F + GLTF particle core bundle out of the initial wrapper chunk.
-// The canvas component is dynamically loaded only when approaching the viewport.
 const ParticleCoreCanvas = dynamic(
   () => import("./particle-core-canvas"),
   {
@@ -21,14 +20,24 @@ type ParticleCoreProps = {
 
 export function ParticleCore({ activeNode }: ParticleCoreProps) {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
-  
-  // Mount the Canvas only after the wrapper enters the viewport. Once mounted
-  // we keep it (toggling off would dispose the WebGL context and re-mounting
-  // would stutter on scroll-back). `visible` toggles continuously to drive the
-  // r3f frameloop → we stop running the shader when the section is off-screen.
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
 
+  // Preload binary security data gently in idle
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const win = window as any;
+      if (typeof win.requestIdleCallback === "function") {
+        const handle = win.requestIdleCallback(() => preloadSecurityParticles(), { timeout: 3000 });
+        return () => win.cancelIdleCallback?.(handle);
+      } else {
+        const timer = setTimeout(preloadSecurityParticles, 1500);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, []);
+
+  // Anticipatory 500px observer to mount before scroll arrival
   useEffect(() => {
     const el = wrapperRef.current;
     if (!el) return;
@@ -48,7 +57,7 @@ export function ParticleCore({ activeNode }: ParticleCoreProps) {
           }
         }
       },
-      { rootMargin: "200px" },
+      { rootMargin: "500px 0px 500px 0px" },
     );
     io.observe(el);
     return () => io.disconnect();

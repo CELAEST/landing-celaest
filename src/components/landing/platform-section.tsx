@@ -82,7 +82,7 @@ function PlatformCard({
     }
     const io = new IntersectionObserver(
       ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0.25 },
+      { rootMargin: "250px 0px 250px 0px", threshold: 0.15 },
     );
     io.observe(node);
     return () => io.disconnect();

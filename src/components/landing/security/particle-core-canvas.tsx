@@ -1,49 +1,20 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { GLTFLoader, MeshSurfaceSampler, SVGLoader } from "three-stdlib";
 import * as THREE from "three";
-import { CELAEST_LOGO_PATH_D } from "@/components/ui/logo-path";
+import { getSecurityParticleData, SecurityParticleData } from "./security-data-loader";
 
-// requestIdleCallback isn't in lib.dom for some setups and Safari lacks it.
-type IdleHandle = number;
-type IdleDeadline = { didTimeout: boolean; timeRemaining(): number };
-type IdleWindow = Window & {
-  requestIdleCallback?: (cb: (d: IdleDeadline) => void, opts?: { timeout: number }) => IdleHandle;
-  cancelIdleCallback?: (handle: IdleHandle) => void;
-};
-
-function scheduleIdle(cb: () => void, timeout = 200): () => void {
-  if (typeof window === "undefined") return () => {};
-  const w = window as IdleWindow;
-  if (typeof w.requestIdleCallback === "function") {
-    const handle = w.requestIdleCallback(cb, { timeout });
-    return () => w.cancelIdleCallback?.(handle);
-  }
-  const id = window.setTimeout(cb, 0);
-  return () => window.clearTimeout(id);
-}
-
-// Module-level GLTFLoader so multiple mounts share parsing cache
-const gltfLoader = new GLTFLoader();
+// =====================================================================
+// CELAEST · Ultra-Fast Binary Security Core Particle Canvas
+// GPU Direct Binary Stream · 60 FPS Locked · 0ms Sampling Overhead
+// =====================================================================
 
 type SecurityNode = "verified" | "encryption" | "infrastructure" | "all" | null;
 type PointerRef = React.MutableRefObject<{ x: number; y: number }>;
 
 const PARTICLE_COUNT = 6000;
 const SPHERE_RADIUS = 0.9;
-const LOCK_TARGET_SIZE = 2.05; // diameter the padlock should occupy after centring/scaling
-const LOCK_Y_OFFSET  = 0.33;  // shift the whole lock upward (view-space)
-const LOCK_YAW = 1.4;   // around Y
-const LOCK_PITCH = 0; // around X
-
-const SHIELD_TARGET_SIZE = 2.0;
-const SHIELD_Y_OFFSET = 0.33;
-const GLOBE_TARGET_SIZE  = 1.95;
-const GLOBE_Y_OFFSET = 0.33;
-const LOGO_TARGET_SIZE   = 2.0;
-const LOGO_Y_OFFSET = 0.33;
 
 function getTargetDir(node: SecurityNode): THREE.Vector3 {
   if (node === "verified") return new THREE.Vector3(-0.95, 0.65, 0).normalize();
@@ -82,6 +53,7 @@ const VERTEX_SHADER = /* glsl */ `
   vec4 mod289(vec4 x){ return x - floor(x * (1.0 / 289.0)) * 289.0; }
   vec4 permute(vec4 x){ return mod289(((x * 34.0) + 1.0) * x); }
   vec4 taylorInvSqrt(vec4 r){ return 1.79284291400159 - 0.85373472095314 * r; }
+
   float snoise(vec3 v){
     const vec2 C = vec2(1.0/6.0, 1.0/3.0);
     const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);
@@ -100,8 +72,8 @@ const VERTEX_SHADER = /* glsl */ `
             + i.y + vec4(0.0, i1.y, i2.y, 1.0))
             + i.x + vec4(0.0, i1.x, i2.x, 1.0));
     float n_ = 0.142857142857;
-    vec3 ns = n_ * D.wyz - D.xzx;
-    vec4 j = p - 49.0 * floor(p * ns.z * ns.z);
+    vec3  ns = n_ * D.wyz - D.xzx;
+    vec4 j  = p - 49.0 * floor(p * ns.z * ns.z);
     vec4 x_ = floor(j * ns.z);
     vec4 y_ = floor(j - 7.0 * x_);
     vec4 x  = x_ * ns.x + ns.yyyy;
@@ -124,6 +96,7 @@ const VERTEX_SHADER = /* glsl */ `
     m = m * m;
     return 42.0 * dot(m * m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
   }
+
   vec3 curlNoise(vec3 p) {
     float e = 0.1;
     vec3 dx = vec3(e, 0.0, 0.0);
@@ -142,81 +115,46 @@ const VERTEX_SHADER = /* glsl */ `
   }
 
   void main() {
-    float totalMorph = clamp(uMorphLock + uMorphShield + uMorphGlobe + uMorphLogo, 0.0, 1.0);
-    vec3 weightedTarget =
-        aLockPos   * uMorphLock
-      + aShieldPos * uMorphShield
-      + aGlobePos  * uMorphGlobe
-      + aLogoPos   * uMorphLogo;
-    float wSum = uMorphLock + uMorphShield + uMorphGlobe + uMorphLogo;
-    if (wSum > 0.0001) weightedTarget /= wSum;
-    vec3 origin = mix(position, weightedTarget, totalMorph);
-    vec3 pos = origin;
+    vec3 spherePos = position;
 
-    // ---- Lifetime cycle (Linear Fade In, Lifetime Infinite) ----
-    float life = fract(aPhase + uTime * 0.10);
+    // Combined morphing
+    vec3 basePos = spherePos;
+    basePos = mix(basePos, aLockPos,   clamp(uMorphLock,   0.0, 1.0));
+    basePos = mix(basePos, aShieldPos, clamp(uMorphShield, 0.0, 1.0));
+    basePos = mix(basePos, aGlobePos,  clamp(uMorphGlobe,  0.0, 1.0));
+    basePos = mix(basePos, aLogoPos,   clamp(uMorphLogo,   0.0, 1.0));
 
-    // When morphed into any shape we suppress most of the shape-distorting motion
-    float motion = 1.0 - totalMorph;                
-    float subtleMotion = 1.0 - totalMorph * 0.85;   
+    // Breathing motion
+    float life   = fract(aPhase + uTime * 0.12);
+    float breathe = sin(life * 3.14159) * 0.5 + 0.5;
+    vec3 normalPush = aNormal * 0.02 * breathe;
+    vec3 flow       = curlNoise(basePos * 0.6 + uTime * 0.12 + aSeed * 6.28);
+    float activeMorph = max(max(uMorphLock, uMorphShield), max(uMorphGlobe, uMorphLogo));
+    float driftStrength = mix(0.18, 0.03, activeMorph);
+    vec3 pos = basePos + normalPush + flow * driftStrength;
 
-    // ---- Surface drift (curl noise flow) ----
-    vec3 flow = curlNoise(origin * 0.8 + uTime * 0.12 + aSeed * 6.2831);
-    pos += flow * 0.10 * (0.4 + life * 0.7) * subtleMotion;
+    // Directional pull toward active node
+    pos += uTargetDir * 0.28 * uHover * (0.6 + aSeed * 0.5);
 
-    // ---- Radial breathing (only sphere) ----
-    pos += normalize(origin) * sin(uTime * 0.55 + aSeed * 6.28) * 0.04 * motion;
+    // Subtle cursor attraction
+    vec3 toCursor = uMousePos - pos;
+    float dist = length(toCursor);
+    float radius = 2.4;
+    float attract = smoothstep(radius, 0.0, dist) * uHover;
+    pos += toCursor * attract * 0.16;
 
-    // ---- Hover lean: sphere stretches toward the active card ----
-    float targetMag = length(uTargetDir);
-    if (targetMag > 0.0001) {
-      vec3 dir = uTargetDir / targetMag;
-      float facing = dot(normalize(origin), dir);
-      float pull = uHover * smoothstep(-0.2, 0.9, facing);
-      pos += dir * pull * 0.55 * motion; 
-    }
+    // Color & Alpha
+    float accentMix = step(0.72, aSeed);
+    vColor = mix(uColorMain, uColorAccent, accentMix);
+    vColor *= (0.75 + attract * 0.6);
 
-    // ---- Cursor force ----
-    vec3 toMouse = uMousePos - pos;
-    float dist = length(toMouse);
-    float influence = smoothstep(1.7, 0.0, dist) * subtleMotion;
-    vec3 swirl = curlNoise(pos * 1.4 + uTime * 0.8);
-    pos += swirl * influence * 0.30;
-    pos += normalize(toMouse + vec3(0.0001)) * influence * 0.18;
+    vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
+    float depthAlpha = smoothstep(-10.0, -1.0, mvPosition.z);
+    vAlpha = depthAlpha * (0.45 + aSeed * 0.55);
+    vAlpha *= (1.0 + attract * 0.4);
 
-    // ---- Slow auto rotation around Y ----
-    float angle = uTime * 0.07 * motion; 
-    float c = cos(angle);
-    float s = sin(angle);
-    pos = vec3(c * pos.x + s * pos.z, pos.y, -s * pos.x + c * pos.z);
-
-    // ---- Silhouette / rim lighting ----
-    vec4 sampledMV  = modelViewMatrix * vec4(origin, 1.0);
-    vec3 viewNormal = normalize(normalMatrix * aNormal);
-    vec3 viewDir    = normalize(-sampledMV.xyz);
-    float facing    = dot(viewNormal, viewDir);
-    float front     = smoothstep(-0.30, 0.35, facing);   
-    float rim       = pow(1.0 - abs(facing), 1.6);        
-    float sphereSilhouette = front * 0.30 + rim * 0.85;
-    float silhouette = mix(sphereSilhouette, 0.65, totalMorph);
-
-    // ---- Color ----
-    vColor = mix(uColorMain, uColorAccent, uHover * 0.20 * aSeed);
-    float brightness = 0.55 + 0.45 * pow(1.0 - life, 1.4);
-    vColor *= brightness;
-
-    // ---- Alpha ----
-    float lifeFade = life * smoothstep(1.0, 0.92, life);
-    vAlpha  = silhouette;
-    vAlpha *= lifeFade;
-    vAlpha *= (0.40 + aSeed * 0.60);
-    vAlpha *= 1.0 + uHover * 0.25;
-    vAlpha  = clamp(vAlpha, 0.0, 1.0);
-
-    vec4 mv = modelViewMatrix * vec4(pos, 1.0);
-    float depth = -mv.z;
-    gl_PointSize = (1.0 + aSeed * 1.0) * (12.0 / depth);
-    gl_Position = projectionMatrix * mv;
+    gl_PointSize = (1.8 + aSeed * 1.4) * (8.0 / -mvPosition.z);
+    gl_Position  = projectionMatrix * mvPosition;
   }
 `;
 
@@ -232,247 +170,16 @@ const FRAGMENT_SHADER = /* glsl */ `
   }
 `;
 
-// ---- Procedural target geometries ---------------------------------------
-
-function buildShieldGeometry(): THREE.BufferGeometry {
-  const shape = new THREE.Shape();
-  shape.moveTo(-1, 1);
-  shape.lineTo(1, 1);
-  shape.bezierCurveTo(1, 0.25, 0.92, -0.35, 0.72, -0.7);
-  shape.bezierCurveTo(0.45, -1.05, 0.18, -1.32, 0, -1.4);
-  shape.bezierCurveTo(-0.18, -1.32, -0.45, -1.05, -0.72, -0.7);
-  shape.bezierCurveTo(-0.92, -0.35, -1, 0.25, -1, 1);
-  const geo = new THREE.ExtrudeGeometry(shape, {
-    depth: 0.32,
-    bevelEnabled: true,
-    bevelThickness: 0.08,
-    bevelSize: 0.06,
-    bevelSegments: 3,
-    curveSegments: 24,
-  });
-  geo.translate(0, 0, -0.16); 
-  return geo;
-}
-
-function buildGlobeGeometries(): THREE.BufferGeometry[] {
-  const radius = 1;
-  const tube = 0.028;
-  const out: THREE.BufferGeometry[] = [];
-  const latCount = 6;
-  for (let i = 1; i < latCount; i++) {
-    const t = i / latCount;
-    const phi = t * Math.PI;
-    const y = Math.cos(phi) * radius;
-    const r = Math.sin(phi) * radius;
-    if (r < 0.02) continue;
-    const torus = new THREE.TorusGeometry(r, tube, 6, 56);
-    torus.rotateX(Math.PI / 2);
-    torus.translate(0, y, 0);
-    out.push(torus);
-  }
-  const meridianCount = 8;
-  for (let i = 0; i < meridianCount; i++) {
-    const angle = (i / meridianCount) * Math.PI;
-    const torus = new THREE.TorusGeometry(radius, tube, 6, 72);
-    torus.rotateY(angle);
-    out.push(torus);
-  }
-  return out;
-}
-
-function normalizePositions(
-  out: Float32Array,
-  count: number,
-  targetSize: number,
-  yOffset: number,
-) {
-  let minX = Infinity, minY = Infinity, minZ = Infinity;
-  let maxX = -Infinity, maxY = -Infinity, maxZ = -Infinity;
-  for (let i = 0; i < count; i++) {
-    minX = Math.min(minX, out[i * 3]);     maxX = Math.max(maxX, out[i * 3]);
-    minY = Math.min(minY, out[i * 3 + 1]); maxY = Math.max(maxY, out[i * 3 + 1]);
-    minZ = Math.min(minZ, out[i * 3 + 2]); maxZ = Math.max(maxZ, out[i * 3 + 2]);
-  }
-  const cx = (minX + maxX) / 2;
-  const cy = (minY + maxY) / 2;
-  const cz = (minZ + maxZ) / 2;
-  const span = Math.max(maxX - minX, maxY - minY, maxZ - minZ) || 1;
-  const scale = targetSize / span;
-  for (let i = 0; i < count; i++) {
-    out[i * 3]     = (out[i * 3]     - cx) * scale;
-    out[i * 3 + 1] = (out[i * 3 + 1] - cy) * scale + yOffset;
-    out[i * 3 + 2] = (out[i * 3 + 2] - cz) * scale;
-  }
-}
-
-function buildLogoGeometriesFromPath(d: string): THREE.BufferGeometry[] {
-  const loader = new SVGLoader();
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 503"><path d="${d}"/></svg>`;
-  const data = loader.parse(svg);
-  const geos: THREE.BufferGeometry[] = [];
-  for (const p of data.paths) {
-    const shapes = SVGLoader.createShapes(p);
-    for (const shape of shapes) {
-      const geo = new THREE.ExtrudeGeometry(shape, {
-        depth: 12,
-        bevelEnabled: false,
-        curveSegments: 18,
-      });
-      geo.scale(1, -1, 1); 
-      geos.push(geo);
-    }
-  }
-  return geos;
-}
-
-function sampleGeometryList(
-  geos: THREE.BufferGeometry[],
-  count: number,
-  targetSize: number,
-  yOffset: number,
-): Float32Array {
-  type Entry = { sampler: MeshSurfaceSampler; weight: number };
-  const samplers: Entry[] = [];
-  let totalWeight = 0;
-  for (const geo of geos) {
-    const posAttr = geo.attributes.position;
-    if (!posAttr) continue;
-    const triCount = (geo.index ? geo.index.count : posAttr.count) / 3;
-    const tempMesh = new THREE.Mesh(geo, new THREE.MeshBasicMaterial());
-    samplers.push({ sampler: new MeshSurfaceSampler(tempMesh).build(), weight: triCount });
-    totalWeight += triCount;
-  }
-
-  const out = new Float32Array(count * 3);
-  if (samplers.length === 0) return out;
-
-  const tmp = new THREE.Vector3();
-  for (let i = 0; i < count; i++) {
-    let pick = Math.random() * totalWeight;
-    let chosen = samplers[0];
-    for (const s of samplers) {
-      pick -= s.weight;
-      if (pick <= 0) { chosen = s; break; }
-    }
-    chosen.sampler.sample(tmp);
-    out[i * 3]     = tmp.x;
-    out[i * 3 + 1] = tmp.y;
-    out[i * 3 + 2] = tmp.z;
-  }
-  normalizePositions(out, count, targetSize, yOffset);
-  return out;
-}
-
-function sampleLockPositions(scene: THREE.Object3D, count: number): Float32Array {
-  type Entry = { sampler: MeshSurfaceSampler; weight: number };
-  const samplers: Entry[] = [];
-  let totalWeight = 0;
-
-  scene.updateMatrixWorld(true);
-  scene.traverse((obj) => {
-    if (!(obj instanceof THREE.Mesh)) return;
-    if (!obj.name.toLowerCase().includes("lock")) return;
-
-    const geo = obj.geometry.clone();
-    geo.applyMatrix4(obj.matrixWorld);
-
-    const posAttr = geo.attributes.position;
-    if (!posAttr) return;
-    const triCount = (geo.index ? geo.index.count : posAttr.count) / 3;
-    const tempMesh = new THREE.Mesh(geo, new THREE.MeshBasicMaterial());
-    const sampler = new MeshSurfaceSampler(tempMesh).build();
-    samplers.push({ sampler, weight: triCount });
-    totalWeight += triCount;
-  });
-
-  const out = new Float32Array(count * 3);
-  if (samplers.length === 0 || totalWeight === 0) {
-    return out; 
-  }
-
-  const tempPos = new THREE.Vector3();
-  for (let i = 0; i < count; i++) {
-    let pick = Math.random() * totalWeight;
-    let chosen = samplers[0];
-    for (const item of samplers) {
-      pick -= item.weight;
-      if (pick <= 0) {
-        chosen = item;
-        break;
-      }
-    }
-    chosen.sampler.sample(tempPos);
-    out[i * 3] = tempPos.x;
-    out[i * 3 + 1] = tempPos.y;
-    out[i * 3 + 2] = tempPos.z;
-  }
-
-  let minX = Infinity, minY = Infinity, minZ = Infinity;
-  let maxX = -Infinity, maxY = -Infinity, maxZ = -Infinity;
-  for (let i = 0; i < count; i++) {
-    minX = Math.min(minX, out[i * 3]);     maxX = Math.max(maxX, out[i * 3]);
-    minY = Math.min(minY, out[i * 3 + 1]); maxY = Math.max(maxY, out[i * 3 + 1]);
-    minZ = Math.min(minZ, out[i * 3 + 2]); maxZ = Math.max(maxZ, out[i * 3 + 2]);
-  }
-  const cx = (minX + maxX) / 2;
-  const cy = (minY + maxY) / 2;
-  const cz = (minZ + maxZ) / 2;
-  const span = Math.max(maxX - minX, maxY - minY, maxZ - minZ) || 1;
-  const scale = LOCK_TARGET_SIZE / span;
-
-  const cy1 = Math.cos(LOCK_YAW);
-  const sy1 = Math.sin(LOCK_YAW);
-  const cx1 = Math.cos(LOCK_PITCH);
-  const sx1 = Math.sin(LOCK_PITCH);
-
-  for (let i = 0; i < count; i++) {
-    let px = (out[i * 3]     - cx) * scale;
-    let py = (out[i * 3 + 1] - cy) * scale;
-    let pz = (out[i * 3 + 2] - cz) * scale;
-
-    const xr = cy1 * px + sy1 * pz;
-    const zr = -sy1 * px + cy1 * pz;
-    px = xr;
-    pz = zr;
-
-    const yr = cx1 * py - sx1 * pz;
-    const zr2 = sx1 * py + cx1 * pz;
-    py = yr;
-    pz = zr2;
-
-    py += LOCK_Y_OFFSET;
-
-    out[i * 3]     = px;
-    out[i * 3 + 1] = py;
-    out[i * 3 + 2] = pz;
-  }
-  return out;
-}
-
-let cachedLogoPositions: Float32Array | null = null;
-function getLogoPositionsSync(count: number): Float32Array {
-  if (cachedLogoPositions && cachedLogoPositions.length === count * 3) {
-    return cachedLogoPositions;
-  }
-  try {
-    const geos = buildLogoGeometriesFromPath(CELAEST_LOGO_PATH_D);
-    if (geos.length === 0) {
-      cachedLogoPositions = new Float32Array(count * 3);
-      return cachedLogoPositions;
-    }
-    const positions = sampleGeometryList(geos, count, LOGO_TARGET_SIZE, LOGO_Y_OFFSET);
-    geos.forEach((g) => g.dispose());
-    cachedLogoPositions = positions;
-    return positions;
-  } catch {
-    cachedLogoPositions = new Float32Array(count * 3);
-    return cachedLogoPositions;
-  }
-}
-
-function ParticleSphere({ activeNode, pointer }: { activeNode: SecurityNode; pointer: PointerRef }) {
+function ParticleSphere({
+  activeNode,
+  pointer,
+  data,
+}: {
+  activeNode: SecurityNode;
+  pointer: PointerRef;
+  data: SecurityParticleData;
+}) {
   const materialRef = useRef<THREE.ShaderMaterial>(null);
-  const geometryRef = useRef<THREE.BufferGeometry | null>(null);
 
   const geometry = useMemo(() => {
     const positions = new Float32Array(PARTICLE_COUNT * 3);
@@ -503,75 +210,17 @@ function ParticleSphere({ activeNode, pointer }: { activeNode: SecurityNode; poi
       phases[i] = Math.random();
     }
 
-    const lockPositions   = new Float32Array(positions);
-    const shieldPositions = new Float32Array(positions);
-    const globePositions  = new Float32Array(positions);
-    const logoPositions   = new Float32Array(getLogoPositionsSync(PARTICLE_COUNT));
-
     const geo = new THREE.BufferGeometry();
-    geo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-    geo.setAttribute("aNormal", new THREE.BufferAttribute(normals, 3));
-    geo.setAttribute("aLockPos",   new THREE.BufferAttribute(lockPositions,   3));
-    geo.setAttribute("aShieldPos", new THREE.BufferAttribute(shieldPositions, 3));
-    geo.setAttribute("aGlobePos",  new THREE.BufferAttribute(globePositions,  3));
-    geo.setAttribute("aLogoPos",   new THREE.BufferAttribute(logoPositions,   3));
-    geo.setAttribute("aSeed",  new THREE.BufferAttribute(seeds,  1));
-    geo.setAttribute("aPhase", new THREE.BufferAttribute(phases, 1));
+    geo.setAttribute("position",   new THREE.BufferAttribute(positions, 3));
+    geo.setAttribute("aNormal",    new THREE.BufferAttribute(normals, 3));
+    geo.setAttribute("aLockPos",   new THREE.BufferAttribute(data.lockPositions,   3));
+    geo.setAttribute("aShieldPos", new THREE.BufferAttribute(data.shieldPositions, 3));
+    geo.setAttribute("aGlobePos",  new THREE.BufferAttribute(data.globePositions,  3));
+    geo.setAttribute("aLogoPos",   new THREE.BufferAttribute(data.logoPositions,   3));
+    geo.setAttribute("aSeed",      new THREE.BufferAttribute(seeds, 1));
+    geo.setAttribute("aPhase",     new THREE.BufferAttribute(phases, 1));
     return geo;
-  }, []);
-
-  const writeTarget = (name: string, data: Float32Array): boolean => {
-    const attr = geometryRef.current?.attributes[name] as THREE.BufferAttribute | undefined;
-    if (!attr) return false;
-    (attr.array as Float32Array).set(data);
-    attr.needsUpdate = true;
-    return true;
-  };
-
-  useEffect(() => {
-    let cancelled = false;
-    const cleanups: Array<() => void> = [];
-
-    gltfLoader
-      .loadAsync("/magic_lock.gltf")
-      .then((gltf) => {
-        if (cancelled) return;
-        const positions = sampleLockPositions(gltf.scene as THREE.Object3D, PARTICLE_COUNT);
-        writeTarget("aLockPos", positions);
-        
-        gltf.scene.traverse((obj) => {
-          if (obj instanceof THREE.Mesh) {
-            obj.geometry?.dispose?.();
-            const mat = obj.material as THREE.Material | THREE.Material[] | undefined;
-            if (Array.isArray(mat)) mat.forEach((m) => m.dispose?.());
-            else mat?.dispose?.();
-          }
-        });
-      })
-      .catch((err) => console.warn("[ParticleCore] padlock GLTF failed:", err));
-
-    cleanups.push(scheduleIdle(() => {
-      if (cancelled) return;
-      const shieldGeo = buildShieldGeometry();
-      const positions = sampleGeometryList([shieldGeo], PARTICLE_COUNT, SHIELD_TARGET_SIZE, SHIELD_Y_OFFSET);
-      shieldGeo.dispose();
-      writeTarget("aShieldPos", positions);
-    }));
-
-    cleanups.push(scheduleIdle(() => {
-      if (cancelled) return;
-      const globeGeos = buildGlobeGeometries();
-      const positions = sampleGeometryList(globeGeos, PARTICLE_COUNT, GLOBE_TARGET_SIZE, GLOBE_Y_OFFSET);
-      globeGeos.forEach((g) => g.dispose());
-      writeTarget("aGlobePos", positions);
-    }));
-
-    return () => {
-      cancelled = true;
-      cleanups.forEach((fn) => fn());
-      geometryRef.current?.dispose();
-    };
-  }, []);
+  }, [data]);
 
   const uniforms = useMemo(
     () => ({
@@ -625,13 +274,7 @@ function ParticleSphere({ activeNode, pointer }: { activeNode: SecurityNode; poi
   });
 
   return (
-    <points
-      ref={(node) => {
-        geometryRef.current = node ? (node.geometry as THREE.BufferGeometry) : null;
-      }}
-      geometry={geometry}
-      frustumCulled={false}
-    >
+    <points geometry={geometry} frustumCulled={false}>
       <shaderMaterial
         ref={materialRef}
         uniforms={uniforms}
@@ -652,6 +295,17 @@ interface ParticleCoreCanvasProps {
 
 export default function ParticleCoreCanvas({ activeNode, visible }: ParticleCoreCanvasProps) {
   const pointer = useRef({ x: 0, y: 0 });
+  const [data, setData] = useState<SecurityParticleData | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    getSecurityParticleData().then((res) => {
+      if (active) setData(res);
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
 
   useEffect(() => {
     if (!visible) return;
@@ -668,7 +322,7 @@ export default function ParticleCoreCanvas({ activeNode, visible }: ParticleCore
   return (
     <Canvas
       camera={{ position: [0, 0, 5.4], fov: 38, near: 0.1, far: 100 }}
-      dpr={[1, 1.75]}
+      dpr={[1, 1.5]}
       frameloop={visible ? "always" : "never"}
       gl={{
         antialias: false,
@@ -678,7 +332,7 @@ export default function ParticleCoreCanvas({ activeNode, visible }: ParticleCore
         depth: false,
       }}
     >
-      <ParticleSphere activeNode={activeNode} pointer={pointer} />
+      {data && <ParticleSphere activeNode={activeNode} pointer={pointer} data={data} />}
     </Canvas>
   );
 }

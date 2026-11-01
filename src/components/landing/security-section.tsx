@@ -3,17 +3,9 @@
 import React, { useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
-import { SectionHeader } from "@/components/ui/section-header";
+import { ParticleCore } from "./security/particle-core";
 import { MagneticCard } from "@/components/ui/magnetic-card";
 import { ConstellationBackground } from "@/components/ui/constellation-background";
-
-// Code-split the R3F + GLTF + shader bundle out of the security section's
-// initial chunk. The component itself viewport-gates its own Canvas.
-const ParticleCore = dynamic(
-  () => import("./security/particle-core").then((m) => ({ default: m.ParticleCore })),
-  { ssr: false, loading: () => <div className="w-60 h-60 md:w-72 md:h-72" /> },
-);
 
 // ==========================================
 // MAIN COMPONENT
