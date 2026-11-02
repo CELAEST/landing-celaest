@@ -39,7 +39,7 @@ export function MembersWidget() {
         {NAV.map(({ key, icon: Icon, active }) => (
           <div
             key={key}
-            className={`flex items-center gap-1.5 px-2 py-1 rounded-md text-[10px] whitespace-nowrap ${active ? "bg-[#7c3aed]/25 text-[#c4b5fd] border-l-2 border-l-[#8b5cf6] font-medium" : "text-neutral-400 hover:text-white"}`}
+            className={`flex items-center gap-1.5 px-2 py-1 rounded-md text-[10px] whitespace-nowrap transition-colors ${active ? "bg-[#7c3aed]/20 text-[#c4b5fd] border border-[#7c3aed]/30 font-medium" : "text-neutral-400 hover:text-white"}`}
           >
             <Icon className="w-3 h-3 shrink-0" />
             <span>{t(key)}</span>
