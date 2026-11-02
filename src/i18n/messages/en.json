@@ -55,9 +55,9 @@
     }
   },
   "products": {
-    "title1": "Professional Tools for",
-    "title2": "Serious Automation",
-    "subtitle": "Build faster with premium, pre-built solutions trusted by thousands of professionals worldwide.",
+    "title1": "AI Tools for",
+    "title2": "Real Results",
+    "subtitle": "Buy and deploy production-ready AI solutions and automations, without starting from scratch or spending weeks coding.",
     "features": {
       "verified": {
         "title": "Verified Scripts",
@@ -91,10 +91,69 @@
     "exploreCTA": "Explore All Products"
   },
   "platform": {
+    "badge": "CAPABILITIES",
     "title": "Power your Workflow",
+    "title1": "Power your",
+    "title2": "workflow.",
     "subtitle": "Enterprise-grade infrastructure designed for efficiency, security, and limitless scalability.",
     "explore": "Explore",
     "popular": "Most Popular",
+    "columns": {
+      "management": {
+        "number": "01",
+        "titleLine1": "Centralized",
+        "titleLine2": "management",
+        "description": "Manage licenses, members, and versions from a single dashboard, simply and securely."
+      },
+      "workflow": {
+        "number": "02",
+        "titleLine1": "Automation",
+        "titleLine2": "pipeline",
+        "description": "Automate repetitive tasks and workflows so you can focus on what really matters."
+      },
+      "ecosystem": {
+        "number": "03",
+        "titleLine1": "Asset",
+        "titleLine2": "ecosystem",
+        "description": "Explore and connect your macros, scripts, and tools all in one unified place."
+      }
+    },
+    "widgetMembers": {
+      "title": "Members",
+      "search": "Search members...",
+      "invite": "Invite",
+      "owner": "Owner",
+      "admin": "Admin",
+      "member": "Member",
+      "active": "Active",
+      "membersCount": "4 members",
+      "pagination": "1/1"
+    },
+    "widgetPipeline": {
+      "trigger": "Trigger",
+      "newUser": "New user",
+      "action": "Execute action",
+      "sendNotification": "Send notification",
+      "completed": "Completed",
+      "errorRetry": "Error / Retry"
+    },
+    "widgetEcosystem": {
+      "search": "Search in library...",
+      "allDropdown": "All",
+      "categories": {
+        "all": "All",
+        "macros": "Macros",
+        "scripts": "Scripts",
+        "integrations": "Integrations",
+        "tools": "Tools"
+      },
+      "cards": {
+        "autoSync": "Auto Sync",
+        "dataFetcher": "Data Fetcher",
+        "sheetsBridge": "Sheets Bridge",
+        "slackConnector": "Slack Connector"
+      }
+    },
     "cards": {
       "management": {
         "title": "Centralized\nManagement",

@@ -55,9 +55,9 @@
     }
   },
   "products": {
-    "title1": "Herramientas Profesionales para",
-    "title2": "Automatización Seria",
-    "subtitle": "Construye más rápido con soluciones premium preconstruidas en las que confían miles de profesionales en todo el mundo.",
+    "title1": "Herramientas con IA para",
+    "title2": "Resultados Reales",
+    "subtitle": "Compra y pon a operar soluciones y automatizaciones con IA listas para producción, sin empezar de cero ni perder semanas programando.",
     "features": {
       "verified": {
         "title": "Scripts Verificados",
@@ -91,10 +91,69 @@
     "exploreCTA": "Explorar Todos los Productos"
   },
   "platform": {
+    "badge": "CAPACIDADES",
     "title": "Potencia tu Flujo de Trabajo",
+    "title1": "Potencia tu",
+    "title2": "flujo de trabajo.",
     "subtitle": "Infraestructura de nivel empresarial diseñada para la eficiencia, seguridad y escalabilidad sin límites.",
     "explore": "Explorar",
     "popular": "Más popular",
+    "columns": {
+      "management": {
+        "number": "01",
+        "titleLine1": "Gestión",
+        "titleLine2": "centralizada",
+        "description": "Administra licencias, miembros y versiones desde un único panel, de forma simple y segura."
+      },
+      "workflow": {
+        "number": "02",
+        "titleLine1": "Pipeline",
+        "titleLine2": "de automatización",
+        "description": "Automatiza tareas y procesos repetitivos para enfocarte en lo que realmente importa."
+      },
+      "ecosystem": {
+        "number": "03",
+        "titleLine1": "Ecosistema",
+        "titleLine2": "de activos",
+        "description": "Explora y conecta tus macros, scripts y herramientas en un solo lugar."
+      }
+    },
+    "widgetMembers": {
+      "title": "Members",
+      "search": "Search members...",
+      "invite": "Invite",
+      "owner": "Owner",
+      "admin": "Admin",
+      "member": "Member",
+      "active": "Active",
+      "membersCount": "4 members",
+      "pagination": "1/1"
+    },
+    "widgetPipeline": {
+      "trigger": "Trigger",
+      "newUser": "Nuevo usuario",
+      "action": "Ejecutar acción",
+      "sendNotification": "Enviar notificación",
+      "completed": "Completado",
+      "errorRetry": "Error / Reintentar"
+    },
+    "widgetEcosystem": {
+      "search": "Buscar en la librería...",
+      "allDropdown": "Todas",
+      "categories": {
+        "all": "Todos",
+        "macros": "Macros",
+        "scripts": "Scripts",
+        "integrations": "Integraciones",
+        "tools": "Herramientas"
+      },
+      "cards": {
+        "autoSync": "Auto Sync",
+        "dataFetcher": "Data Fetcher",
+        "sheetsBridge": "Sheets Bridge",
+        "slackConnector": "Slack Connector"
+      }
+    },
     "cards": {
       "management": {
         "title": "Gestión\nCentralizada",
