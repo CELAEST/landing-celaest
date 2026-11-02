@@ -41,19 +41,19 @@ export function PlatformSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="mb-14 sm:mb-20 max-w-4xl text-left">
+        <div className="mb-14 sm:mb-20 max-w-7xl mx-auto w-full text-left">
           <SectionReveal
             as="h2"
             delay={80}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] tracking-tight leading-[1.15] block"
+            className="text-3xl sm:text-4xl md:text-[46px] lg:text-[50px] tracking-tight leading-[1.22] block"
           >
             <span className="text-white font-semibold">{t("title")}. </span>
-            <span className="text-brand-slate-light font-medium">{t("subtitle")}</span>
+            <span className="text-brand-slate-light font-normal">{t("subtitle")}</span>
           </SectionReveal>
         </div>
 
         {/* 3D Interactive Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-7 max-w-sm sm:max-w-md md:max-w-6xl mx-auto items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-sm sm:max-w-md md:max-w-7xl mx-auto items-stretch">
           {PLATFORM_CARDS.map((card, index) => (
             <PlatformCard
               key={card.id}
