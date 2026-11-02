@@ -1,26 +1,24 @@
-# Contrato Canónico: Cards Isométricas 3D de Plataforma (Ultra-Clean Master Standard)
+# Contrato Canónico: Cards Isométricas 3D de Plataforma (Ultra-Clean Borderless Master Standard)
 
 ## Contexto & Calidad de Ingeniería
 Las tarjetas de la sección Plataforma se elevaron a estándar de ingeniería de lujo minimalista, logrando paridad 1:1 con el diseño maestro de referencia:
 
-1. **Eliminación Total de Badges Innecesarios**:
-   - Se removió por completo el badge "Más popular" / "Most Popular" de la tarjeta central ("Pipeline de Automatización").
-   - Las 3 tarjetas comparten ahora una jerarquía visual idéntica: caja de ícono cuadrada de cristal (`Layers`, `Zap`, `Shield`) con el mismo espaciado superior.
+1. **Diseño Completamente Sin Bordes (Zero Borders Standard)**:
+   - Las cards NO poseen bordes artificiales (`border-0`), contornos blancos ni halos perimetrales duros.
+   - La separación y volumen espacial se logran de forma limpia mediante contraste tonal natural: paneles de obsidiana profunda `bg-[#09080e]/95 backdrop-blur-2xl` y elevación suave con sombra difusa `shadow-[0_25px_60px_-25px_rgba(0,0,0,0.95)]`.
+   - Las esquinas son redondeadas y sumamente sutiles (`rounded-[28px] sm:rounded-[32px]`) sin trazos que las delimiten.
 
-2. **Perímetro y Bordes Sutiles (Zero-Oversaturation Standard)**:
-   - PROHIBIDO usar bordes saturados o trazos de colores agresivos que ensucien el diseño.
-   - Las 3 tarjetas cuentan con un borde ultrafino de cristal translúcido idéntico:
-     `border border-white/[0.08] hover:border-white/20 transition-all duration-500 rounded-[28px]`
-     con resalte interior sutil `shadow-[0_20px_50px_-20px_rgba(0,0,0,0.9),inset_0_1px_0_rgba(255,255,255,0.06)]` y fondo de obsidiana profunda `bg-[#07070a]/95 backdrop-blur-2xl`.
+2. **Gestión Espacial y Proporción Aérea (1:1.28 Portrait Flow)**:
+   - Proporción vertical espaciosa: `aspect-[1/1.28] min-h-[420px] sm:min-h-[440px] md:min-h-[455px]` con padding generoso `p-7 sm:p-8 md:p-9`.
+   - Cuadrante Superior:
+     - Izquierda: Caja de ícono de cristal puro sin bordes (`w-12 h-12 rounded-[16px] bg-white/[0.03] text-white/70`).
+     - Derecha: Modelo isométrico 3D flotante (`w-[48%] h-[50%]`) con paralaje y atmósfera violeta difusa.
+   - Cuadrante Inferior:
+     - Separación aérea generosa (`mt-auto pt-8 pb-1`).
+     - Tipografía de lujo a dos tonos: Línea 1 en peso ligero (`font-light text-white/75`) y Línea 2 en peso bold (`font-bold text-white whitespace-nowrap`).
+     - Descripción de 3 líneas limpias (`text-[12.5px] sm:text-[13px] font-light leading-[1.65]`).
+     - Enlace inferior `Explorar →` perfectamente alineado.
 
-3. **Iluminación Atmosférica Pura por CSS (Zero Blurry Raster Artifacts)**:
-   - Se eliminaron las texturas rasterizadas de fondo (`card-bg-*.webp`) que generaban artefactos de compresión y esquinas pre-cortadas.
-   - Toda la atmósfera se genera mediante gradientes radiales puros acelerados por hardware:
-     - Card 1: Halo violeta superior derecho + aura violeta inferior derecha.
-     - Card 2: Halo púrpura difuso (`rgba(147,51,234,0.16)`) superior derecho y halo inferior derecho sutil.
-     - Card 3: Halo difuso envolvente del pedestal técnico y órbita.
-
-4. **Tipografía de Alta Gama a Dos Tonos**:
-   - Primera línea: `font-light text-white/80` (ej: `Gestión`, `Pipeline`, `Ecosistema`).
-   - Segunda línea: `font-bold text-white whitespace-nowrap` (ej: `Centralizada`, `de Automatización`, `de Activos`).
-   - Evita saltos de línea antiestéticos o colisiones con los modelos 3D.
+3. **Sin Badges ni Trazos Saturados**:
+   - Tarjeta central libre de badges ("Más popular" eliminado).
+   - Ausencia total de marcos púrpuras saturados; la tarjeta 2 utiliza iluminación atmosférica interna (`radial-gradient`).

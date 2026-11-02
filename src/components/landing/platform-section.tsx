@@ -53,7 +53,7 @@ export function PlatformSection() {
         </div>
 
         {/* 3D Interactive Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-sm sm:max-w-md md:max-w-none mx-auto items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-7 max-w-sm sm:max-w-md md:max-w-6xl mx-auto items-stretch">
           {PLATFORM_CARDS.map((card, index) => (
             <PlatformCard
               key={card.id}

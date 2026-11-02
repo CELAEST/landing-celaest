@@ -75,10 +75,10 @@ export function PlatformCard({
           rotateY,
           transformStyle: "preserve-3d",
         }}
-        className="relative flex flex-col justify-between w-full rounded-[28px] p-6 sm:p-7 md:p-8 overflow-hidden transition-all duration-500 group cursor-pointer select-none aspect-[1/1.25] min-h-[360px] sm:min-h-[380px] md:min-h-[395px] border border-white/[0.08] hover:border-white/20 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.9),inset_0_1px_0_rgba(255,255,255,0.06)] bg-[#07070a]/95 backdrop-blur-2xl"
+        className="relative flex flex-col justify-between w-full rounded-[28px] sm:rounded-[32px] p-7 sm:p-8 md:p-9 overflow-hidden transition-all duration-500 group cursor-pointer select-none aspect-[1/1.28] min-h-[420px] sm:min-h-[440px] md:min-h-[455px] border-0 shadow-[0_25px_60px_-25px_rgba(0,0,0,0.95)] bg-[#09080e]/95 backdrop-blur-2xl"
       >
-        {/* Pure CSS Ambient Atmosphere (No blurry raster artifacts) */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-[28px]">
+        {/* Pure CSS Ambient Atmosphere (Borderless & clean) */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-[28px] sm:rounded-[32px]">
           {id === "management" && (
             <>
               <div className="absolute -top-10 -right-10 w-64 h-64 rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.12),transparent_70%)]" />
@@ -103,7 +103,7 @@ export function PlatformCard({
           {/* Subtle cursor spotlight */}
           {isHovered && (
             <motion.div
-              className="absolute inset-0 bg-[radial-gradient(circle_at_var(--x,_50%)_var(--y,_50%),rgba(167,139,250,0.10),transparent_65%)]"
+              className="absolute inset-0 bg-[radial-gradient(circle_at_var(--x,_50%)_var(--y,_50%),rgba(167,139,250,0.08),transparent_65%)]"
               style={
                 {
                   "--x": `${smoothMouseX.get() * 100}%`,
@@ -115,9 +115,9 @@ export function PlatformCard({
         </div>
 
         {/* TOP-RIGHT: 3D Isometric Illustration */}
-        <div className="absolute top-2 right-2 w-[50%] h-[52%] flex items-center justify-end pointer-events-none z-10 [transform-style:preserve-3d]">
+        <div className="absolute top-3 right-3 sm:top-4 sm:right-4 w-[48%] h-[50%] flex items-center justify-end pointer-events-none z-10 [transform-style:preserve-3d]">
           {/* Ambient Purple Underglow (Subtle & diffused) */}
-          <div className="absolute w-[80%] h-[80%] rounded-full bg-[#a78bfa]/12 blur-3xl pointer-events-none group-hover:bg-[#a78bfa]/22 transition-all duration-500" />
+          <div className="absolute w-[85%] h-[85%] rounded-full bg-[#a78bfa]/12 blur-3xl pointer-events-none group-hover:bg-[#a78bfa]/22 transition-all duration-500" />
 
           {/* Floating Illustration with Parallax Depth */}
           <motion.div
@@ -147,22 +147,22 @@ export function PlatformCard({
 
         {/* LEFT COLUMN: Icon, Title, Description, and Bottom CTA */}
         <div className="relative z-10 flex flex-col justify-between h-full max-w-[62%] sm:max-w-[58%] pointer-events-auto">
-          {/* TOP SECTION: Clean Square Icon Box */}
-          <div className="w-11 h-11 rounded-[14px] bg-white/[0.03] border border-white/[0.08] backdrop-blur-md flex items-center justify-center text-neutral-300 group-hover:text-white group-hover:border-white/20 transition-all duration-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+          {/* TOP SECTION: Clean Square Icon Box (Borderless & minimal) */}
+          <div className="w-12 h-12 rounded-[16px] bg-white/[0.03] flex items-center justify-center text-white/70 group-hover:text-white transition-colors duration-300">
             {icon === "layers" && <Layers className="w-5 h-5 stroke-[1.5]" />}
             {icon === "zap" && <Zap className="w-5 h-5 stroke-[1.5]" />}
             {icon === "shield" && <Shield className="w-5 h-5 stroke-[1.5]" />}
           </div>
 
-          {/* MIDDLE SECTION: Two-Tone Title & Description */}
-          <div className="my-auto pt-3 pb-2">
-            <h3 className="text-xl sm:text-[22px] md:text-[23px] tracking-tight leading-[1.2] text-white">
+          {/* MIDDLE-LOWER SECTION: Two-Tone Title & Description with generous breathing room */}
+          <div className="mt-auto pt-8 pb-1">
+            <h3 className="text-[22px] sm:text-[23px] md:text-[24px] tracking-tight leading-[1.2] text-white">
               {(() => {
                 const lines = title.split("\n");
                 if (lines.length > 1) {
                   return (
                     <>
-                      <span className="font-light text-white/80 block">{lines[0]}</span>
+                      <span className="font-light text-white/75 block">{lines[0]}</span>
                       <span className="font-bold text-white block whitespace-nowrap">
                         {lines[1]}
                       </span>
@@ -173,7 +173,7 @@ export function PlatformCard({
               })()}
             </h3>
 
-            <p className="text-neutral-400 text-[12px] sm:text-[12.5px] md:text-[13px] font-light leading-[1.6] mt-2.5 max-w-[210px] sm:max-w-[225px]">
+            <p className="text-neutral-400 text-[12.5px] sm:text-[13px] font-light leading-[1.65] mt-3.5 max-w-[215px] sm:max-w-[230px]">
               {description}
             </p>
           </div>
@@ -183,7 +183,7 @@ export function PlatformCard({
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-neutral-400 group-hover:text-white text-[12.5px] sm:text-[13px] font-normal tracking-wide transition-colors duration-300 pt-2"
+            className="inline-flex items-center gap-2 text-neutral-400 group-hover:text-white text-[12.5px] sm:text-[13px] font-normal tracking-wide transition-colors duration-300 pt-5"
           >
             <span>{exploreLabel}</span>
             <ArrowRight className="w-3.5 h-3.5 text-neutral-400 group-hover:text-white group-hover:translate-x-1 transition-all duration-300" />
