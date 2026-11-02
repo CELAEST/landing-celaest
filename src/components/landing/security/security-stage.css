@@ -1,0 +1,169 @@
+/* ==========================================================================
+   CELAEST SECURITY STUDIO - ULTRA-CLEAN EDITORIAL ARCHITECTURE (1360px)
+   ========================================================================== */
+
+/* Master Asymmetric Stage Layout (Zero cards over cards) */
+.sec-master-layout {
+  display: grid;
+  grid-template-columns: 44% 56%;
+  border-bottom: 1px solid #24242b;
+  min-height: 520px;
+}
+
+.sec-pillar-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  border-right: 1px solid #24242b;
+}
+
+.sec-pillar-item {
+  flex: 1;
+  padding: 38px 40px 38px 24px;
+  cursor: pointer;
+  border-bottom: 1px solid #24242b;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.sec-pillar-item:last-child {
+  border-bottom: none;
+}
+
+.sec-pillar-item.is-active {
+  background: linear-gradient(90deg, rgba(168, 85, 247, 0.04) 0%, transparent 100%);
+}
+
+.sec-pillar-indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: #a855f7;
+  box-shadow: 0 0 14px rgba(168, 85, 247, 0.6);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sec-pillar-item.is-active .sec-pillar-indicator {
+  opacity: 1;
+}
+
+.sec-pillar-number {
+  font-family: monospace;
+  font-size: 16px;
+  font-weight: 700;
+  color: #71717a;
+  margin-bottom: 8px;
+  transition: color 0.3s ease;
+}
+
+.sec-pillar-item.is-active .sec-pillar-number {
+  color: #c084fc;
+}
+
+.sec-pillar-title {
+  font-size: 28px;
+  line-height: 1.08;
+  letter-spacing: -1.2px;
+  color: #a1a1aa;
+  font-weight: 500;
+  margin: 0 0 10px 0;
+  transition: color 0.3s ease;
+}
+
+.sec-pillar-item.is-active .sec-pillar-title {
+  color: #ffffff;
+}
+
+.sec-pillar-desc {
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: #71717a;
+  margin: 0;
+  transition: color 0.3s ease;
+  max-width: 440px;
+}
+
+.sec-pillar-item.is-active .sec-pillar-desc {
+  color: #a1a1aa;
+}
+
+/* Master Stage Wrap - Pure Floating Canvas */
+.sec-master-stage-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 0 24px 36px;
+  box-sizing: border-box;
+}
+
+.sec-particle-canvas-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 440px;
+}
+
+.sec-stage-foot {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: 12px;
+}
+
+.sec-link-explore {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #87838e;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  width: fit-content;
+}
+
+.sec-link-explore:hover {
+  color: #ffffff;
+}
+
+.sec-link-explore svg {
+  transition: transform 0.25s ease;
+}
+
+.sec-link-explore:hover svg {
+  transform: translateX(4px);
+  color: #a376ff;
+}
+
+/* ==========================================================================
+   RESPONSIVE ADAPTATION
+   ========================================================================== */
+@media (max-width: 960px) {
+  .sec-master-layout {
+    grid-template-columns: 1fr;
+  }
+  .sec-pillar-list {
+    border-right: 0;
+    border-bottom: 1px solid #24242b;
+  }
+  .sec-pillar-item {
+    padding: 28px 16px;
+  }
+  .sec-master-stage-wrap {
+    padding-left: 0;
+    padding-top: 24px;
+  }
+  .sec-particle-canvas-container {
+    min-height: 340px;
+  }
+}

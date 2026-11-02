@@ -2,260 +2,110 @@
 
 import React, { useState } from "react";
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
-import { ParticleCore } from "./security/particle-core";
-import { MagneticCard } from "@/components/ui/magnetic-card";
+import { ArrowRight } from "lucide-react";
 import { ConstellationBackground } from "@/components/ui/constellation-background";
+import { SectionReveal } from "@/components/ui/section-reveal";
+import {
+  UnifiedParticleMasterStage,
+  type ActiveSecurityPillar,
+} from "./security/unified-particle-master-stage";
+import "./security/security-stage.css";
 
-// ==========================================
-// MAIN COMPONENT
-// ==========================================
 export function SecuritySection() {
   const t = useTranslations("security");
-  const [hoveredNode, setHoveredNode] = useState<
-    "verified" | "encryption" | "infrastructure" | "all" | null
-  >(null);
+  const tPlatform = useTranslations("platform");
+  const [activePillar, setActivePillar] = useState<ActiveSecurityPillar>("shield");
 
-  // Path definitions for central alignment to the 40x40 robot ears and trunk
-  // SVG ViewBox is 1000x650. Center shifted UP to Top-[40%] (Y:260)
-  const paths = {
-    // Top-left connector: endpoint pulled closer to the core (X:445) without overlapping it.
-    verified: "M 380 120 C 400 120, 410 245, 445 245",
-    // Top-right connector: mirror at X:555.
-    encryption: "M 620 120 C 600 120, 590 245, 555 245",
-    // Bottom connector: endpoint raised to match the lifted core (Y:305).
-    infrastructure: "M 500 412 C 500 360, 500 360, 500 305",
-  };
-
-  const isAnyActive = hoveredNode !== null;
+  const pillars = [
+    {
+      id: "shield" as const,
+      number: "01",
+      title: t("features.verified.title"),
+      description: t("features.verified.description"),
+    },
+    {
+      id: "lock" as const,
+      number: "02",
+      title: t("features.encryption.title"),
+      description: t("features.encryption.description"),
+    },
+    {
+      id: "globe" as const,
+      number: "03",
+      title: t("features.infrastructure.title"),
+      description: t("features.infrastructure.description"),
+    },
+  ];
 
   return (
     <section
       id="security"
-      className="py-14 sm:py-16 lg:py-20 bg-brand-dark relative overflow-hidden"
+      className="py-16 sm:py-20 lg:py-24 bg-brand-dark relative overflow-hidden"
     >
-      {/* Section Demarcation Divider */}
+      {/* Top Section Demarcation Divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent pointer-events-none z-20" />
 
-      {/* Permanent subtle aura from Robot */}
-      <div className="absolute top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[900px] h-[600px] md:h-[900px] bg-[radial-gradient(circle_at_50%_50%,rgba(167,139,250,0.08)_0%,transparent_60%)] pointer-events-none" />
-      {/* Tech grid radiating from Robot's center */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(167,139,250,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(167,139,250,0.04)_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_40%,#000_10%,transparent_80%)] pointer-events-none" />
-
-      {/* Drifting constellation (subtle ambience) */}
-      <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_75%_80%_at_50%_50%,#000_20%,transparent_90%)]">
-        <ConstellationBackground nodeCount={35} nodeAlpha={0.3} />
+      {/* Atmospheric constellation background */}
+      <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_90%)]">
+        <ConstellationBackground nodeCount={32} nodeAlpha={0.16} />
       </div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-purple-600/[0.03] blur-[140px] rounded-full pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center">
-        {/* Header */}
-        <div className="animate-fade-up text-center mb-10 w-full">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-4 sm:mb-6 tracking-tight leading-[1.1]">
+      {/* Symmetrical container matching PlatformSection max-w-[85rem] */}
+      <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header - Exact copywriting preserved */}
+        <div className="text-center mb-12 lg:mb-16 w-full max-w-3xl mx-auto">
+          <SectionReveal
+            as="h2"
+            delay={60}
+            className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white mb-4 sm:mb-6 tracking-tight leading-[1.1]"
+          >
             <span className="text-white">{t("title1")} </span>
             <span className="text-brand-slate-light font-medium">{t("title2")}</span>
-          </h2>
+          </SectionReveal>
           {t("description") && (
-            <p className="text-brand-slate-light text-base sm:text-lg md:text-xl font-medium tracking-tight leading-relaxed max-w-2xl mx-auto">
-              {t("description")}
-            </p>
+            <SectionReveal delay={100}>
+              <p className="text-brand-slate-light text-base sm:text-lg md:text-xl font-normal tracking-tight leading-relaxed">
+                {t("description")}
+              </p>
+            </SectionReveal>
           )}
         </div>
 
-        {/* The Interactive SVG Schematic Container */}
-        <div
-          className="relative w-full max-w-5xl md:aspect-[1000/650] mt-8 md:mt-4 select-none"
-          onMouseLeave={() => setHoveredNode(null)}
-        >
-          {/* Central Reactor Glow (Reacts to any node hover) */}
-          <div
-            className={`absolute top-[42.3%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] md:w-[700px] h-[500px] md:h-[700px] bg-[radial-gradient(circle_at_50%_50%,rgba(167,139,250,0.14)_0%,transparent_50%)] rounded-full pointer-events-none transition-opacity duration-1000 ${isAnyActive ? "opacity-100" : "opacity-0"}`}
-          />
-
-          {/* Symmetrical SVG Connections Layer */}
-          <svg
-            viewBox="0 0 1000 650"
-            className="absolute inset-0 w-full h-full pointer-events-none hidden md:block"
-            preserveAspectRatio="xMidYMid meet"
-          >
-            <defs>
-              <linearGradient id="neon-glow" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="transparent" />
-                <stop offset="50%" stopColor="#a78bfa" />
-                <stop offset="100%" stopColor="transparent" />
-              </linearGradient>
-              <filter id="blur-glow" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="6" result="blur" />
-                <feMerge>
-                  <feMergeNode in="blur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-            </defs>
-
-            {/* BASE INACTIVE TUBES */}
-            <g opacity="0.15">
-              <path d={paths.verified} fill="none" stroke="#fff" strokeWidth="2" />
-              <path d={paths.encryption} fill="none" stroke="#fff" strokeWidth="2" />
-              <path d={paths.infrastructure} fill="none" stroke="#fff" strokeWidth="2" />
-            </g>
-
-            {/* ACTIVE GLOWING PATHS (Node Specific) */}
-            <g filter="url(#blur-glow)">
-              {/* Verified Path */}
-              <path
-                d={paths.verified}
-                fill="none"
-                stroke="#a78bfa"
-                strokeWidth="2"
-                className={`transition-opacity duration-500 ${hoveredNode === "verified" || hoveredNode === "all" ? "opacity-100" : isAnyActive ? "opacity-10" : "opacity-0"}`}
-              />
-              <motion.path
-                d={paths.verified}
-                fill="none"
-                stroke="#fff"
-                strokeWidth="3"
-                strokeDasharray="50 1000"
-                strokeLinecap="round"
-                animate={{
-                  strokeDashoffset:
-                    hoveredNode === "verified" || hoveredNode === "all" ? [1050, -50] : 1050,
-                }}
-                transition={{ repeat: Infinity, duration: 1.2, ease: "linear" }}
-                className={
-                  hoveredNode === "verified" || hoveredNode === "all" ? "opacity-100" : "opacity-0"
-                }
-              />
-
-              {/* Encryption Path */}
-              <path
-                d={paths.encryption}
-                fill="none"
-                stroke="#a78bfa"
-                strokeWidth="2"
-                className={`transition-opacity duration-500 ${hoveredNode === "encryption" || hoveredNode === "all" ? "opacity-100" : isAnyActive ? "opacity-10" : "opacity-0"}`}
-              />
-              <motion.path
-                d={paths.encryption}
-                fill="none"
-                stroke="#fff"
-                strokeWidth="3"
-                strokeDasharray="50 1000"
-                strokeLinecap="round"
-                animate={{
-                  strokeDashoffset:
-                    hoveredNode === "encryption" || hoveredNode === "all" ? [1050, -50] : 1050,
-                }}
-                transition={{ repeat: Infinity, duration: 1.2, ease: "linear" }}
-                className={
-                  hoveredNode === "encryption" || hoveredNode === "all"
-                    ? "opacity-100"
-                    : "opacity-0"
-                }
-              />
-
-              {/* Infrastructure Path */}
-              <path
-                d={paths.infrastructure}
-                fill="none"
-                stroke="#a78bfa"
-                strokeWidth="2"
-                className={`transition-opacity duration-500 ${hoveredNode === "infrastructure" || hoveredNode === "all" ? "opacity-100" : isAnyActive ? "opacity-10" : "opacity-0"}`}
-              />
-              <motion.path
-                d={paths.infrastructure}
-                fill="none"
-                stroke="#fff"
-                strokeWidth="3"
-                strokeDasharray="50 1000"
-                strokeLinecap="round"
-                animate={{
-                  strokeDashoffset:
-                    hoveredNode === "infrastructure" || hoveredNode === "all" ? [1050, -50] : 1050,
-                }}
-                transition={{ repeat: Infinity, duration: 1.2, ease: "linear" }}
-                className={
-                  hoveredNode === "infrastructure" || hoveredNode === "all"
-                    ? "opacity-100"
-                    : "opacity-0"
-                }
-              />
-            </g>
-          </svg>
-
-          {/* =========================================
-              HTML NODES (Responsive Positioning)
-             ========================================= */}
-          <div className="flex flex-col md:block w-full h-full gap-6 px-4 md:px-0 relative">
-            {/* NODE 1: Licencias Verificadas */}
-            <div className="md:absolute top-[15%] left-[22%] md:-translate-x-1/2 md:-translate-y-1/2 w-full md:w-[32%] z-20">
-              <MagneticCard
-                onHoverStart={() => setHoveredNode("verified")}
-                className={
-                  hoveredNode && hoveredNode !== "verified" && hoveredNode !== "all"
-                    ? "md:opacity-40"
-                    : "opacity-100"
-                }
-              >
-                <div className="px-5 py-6 sm:px-6 sm:py-8 flex flex-col items-center text-center">
-                  <h3 className="font-display text-white font-medium text-[20px] sm:text-[22px] leading-[1.15] tracking-[-0.02em] mb-2.5 sm:mb-3">
-                    {t("features.verified.title")}
-                  </h3>
-                  <p className="font-sans text-white/55 text-[13px] sm:text-[14px] leading-[1.6] sm:leading-[1.65] tracking-[0.005em] max-w-[30ch]">
-                    {t("features.verified.description")}
-                  </p>
+        {/* Master Asymmetric Stage Layout (Zero cards over cards) */}
+        <div className="sec-master-layout">
+          {/* Left Column: 3 Pillars with Clean Typography */}
+          <div className="sec-pillar-list">
+            {pillars.map((p) => {
+              const isActive = activePillar === p.id;
+              return (
+                <div
+                  key={p.id}
+                  className={`sec-pillar-item ${isActive ? "is-active" : ""}`}
+                  onMouseEnter={() => setActivePillar(p.id)}
+                  onClick={() => setActivePillar(p.id)}
+                >
+                  <div className="sec-pillar-indicator" />
+                  <div className="sec-pillar-number">{p.number} —</div>
+                  <h3 className="sec-pillar-title">{p.title}</h3>
+                  <p className="sec-pillar-desc">{p.description}</p>
                 </div>
-              </MagneticCard>
+              );
+            })}
+          </div>
+
+          {/* Right Column: Heroic Unified 3D Particle Canvas */}
+          <div className="sec-master-stage-wrap">
+            <div className="sec-particle-canvas-container">
+              <UnifiedParticleMasterStage activePillar={activePillar} />
             </div>
 
-            {/* NODE 2: Cifrado End-to-End */}
-            <div className="md:absolute top-[15%] left-[78%] md:-translate-x-1/2 md:-translate-y-1/2 w-full md:w-[32%] z-20">
-              <MagneticCard
-                onHoverStart={() => setHoveredNode("encryption")}
-                className={
-                  hoveredNode && hoveredNode !== "encryption" && hoveredNode !== "all"
-                    ? "md:opacity-40"
-                    : "opacity-100"
-                }
-              >
-                <div className="px-5 py-6 sm:px-6 sm:py-8 flex flex-col items-center text-center">
-                  <h3 className="font-display text-white font-medium text-[20px] sm:text-[22px] leading-[1.15] tracking-[-0.02em] mb-2.5 sm:mb-3">
-                    {t("features.encryption.title")}
-                  </h3>
-                  <p className="font-sans text-white/55 text-[13px] sm:text-[14px] leading-[1.6] sm:leading-[1.65] tracking-[0.005em] max-w-[30ch]">
-                    {t("features.encryption.description")}
-                  </p>
-                </div>
-              </MagneticCard>
-            </div>
-
-            {/* THE CORE ENGINE (ROBOT HEAD) */}
-            <div
-              className="hidden md:flex absolute top-[42.3%] left-[50%] -translate-x-1/2 -translate-y-1/2 z-30 cursor-crosshair"
-              onMouseEnter={() => setHoveredNode("all")}
-              onMouseLeave={() => setHoveredNode(null)}
-            >
-              <ParticleCore activeNode={hoveredNode} />
-            </div>
-
-            {/* NODE 3: Infraestructura Resiliente */}
-            <div className="md:absolute top-[75%] left-[50%] md:-translate-x-1/2 md:-translate-y-1/2 w-full md:w-[36%] z-20">
-              <MagneticCard
-                onHoverStart={() => setHoveredNode("infrastructure")}
-                className={
-                  hoveredNode && hoveredNode !== "infrastructure" && hoveredNode !== "all"
-                    ? "md:opacity-40"
-                    : "opacity-100"
-                }
-              >
-                <div className="px-5 py-6 sm:px-6 sm:py-8 flex flex-col items-center text-center">
-                  <h3 className="font-display text-white font-medium text-[20px] sm:text-[22px] leading-[1.15] tracking-[-0.02em] mb-2.5 sm:mb-3">
-                    {t("features.infrastructure.title")}
-                  </h3>
-                  <p className="font-sans text-white/55 text-[13px] sm:text-[14px] leading-[1.6] sm:leading-[1.65] tracking-[0.005em] max-w-[32ch]">
-                    {t("features.infrastructure.description")}
-                  </p>
-                </div>
-              </MagneticCard>
+            {/* Bottom Subtle Explore Link */}
+            <div className="sec-stage-foot">
+              <a href="#pricing" className="sec-link-explore">
+                <span>{tPlatform("explore")}</span>
+                <ArrowRight size={14} />
+              </a>
             </div>
           </div>
         </div>

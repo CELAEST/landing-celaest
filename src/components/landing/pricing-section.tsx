@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Check, Globe } from "lucide-react";
 import { SectionReveal } from "@/components/ui/section-reveal";
+import { ConstellationBackground } from "@/components/ui/constellation-background";
 import { useGeoPricing } from "@/hooks/useGeoPricing";
 
 interface Plan {
@@ -57,13 +58,21 @@ export function PricingSection() {
   const showGeoBadge = Boolean(pricing && (pricing.currency.code !== "USD" || isForcedUSD));
 
   return (
-    <section id="pricing" className="py-14 sm:py-16 lg:py-20 bg-[#000000] relative overflow-hidden">
+    <section
+      id="pricing"
+      className="py-14 sm:py-16 lg:py-20 bg-brand-dark relative overflow-hidden"
+    >
       {/* Section Demarcation Divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent pointer-events-none z-20" />
+      {/* Drifting constellation & subtle atmospheric purple glow */}
+      <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_90%)]">
+        <ConstellationBackground nodeCount={36} nodeAlpha={0.16} />
+      </div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-purple-600/[0.04] blur-[120px] rounded-full pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <SectionReveal className="max-w-[1000px] mx-auto w-full mb-10 sm:mb-14">
+        <SectionReveal className="w-full mb-10 sm:mb-14">
           <div className="flex flex-col gap-2 text-left">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] tracking-tight leading-[1.1] text-white font-semibold flex flex-col sm:inline-block">
               <span>{t("title1")} </span>
@@ -150,7 +159,7 @@ export function PricingSection() {
         </SectionReveal>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-6 max-w-sm sm:max-w-md md:max-w-[1000px] mx-auto items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 w-full items-stretch">
           {PLANS.map((plan, idx) => {
             const features = t.raw(`plans.${plan.key}.features`) as string[];
             const fallbackPrice = t(`plans.${plan.key}.price`); // translation default (USD numeric or "Custom")
