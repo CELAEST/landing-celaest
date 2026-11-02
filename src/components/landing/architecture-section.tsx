@@ -163,7 +163,7 @@ export function ArchitectureSection() {
                 {/* Connector line between columns */}
                 {index < pillars.length - 1 && (
                   <div
-                    className="hidden lg:block absolute left-[124px] right-[28px] top-[44px] h-px bg-[#4d4e53] z-0"
+                    className="hidden lg:block absolute left-[124px] right-[28px] top-[44px] h-px bg-[#24242b] z-0"
                     aria-hidden="true"
                   />
                 )}
@@ -183,9 +183,9 @@ export function ArchitectureSection() {
         </section>
 
         {/* Strategic Business Impact Section */}
-        <section className="border-t border-[#4b4d51] mt-16 sm:mt-20 pt-8 sm:pt-9">
-          <div className="flex items-center gap-4 text-[#a9adbb] text-[11px] font-mono tracking-[2px] leading-none mb-7">
-            <span className="w-10 h-px bg-[#afb2ba] inline-block" />
+        <section className="border-t border-[#24242b] mt-16 sm:mt-20 pt-8 sm:pt-9">
+          <div className="flex items-center gap-4 text-[#87838e] text-[11px] font-mono tracking-[2px] leading-none mb-7">
+            <span className="w-10 h-px bg-[#3d3947] inline-block" />
             <span>{t("impact.badge")}</span>
           </div>
 
@@ -198,7 +198,7 @@ export function ArchitectureSection() {
             </div>
 
             {/* Metric 1: Technical Debt */}
-            <div className="lg:border-l lg:border-[#4b4d51] lg:pl-11 flex flex-col justify-start">
+            <div className="lg:border-l lg:border-[#24242b] lg:pl-11 flex flex-col justify-start">
               <strong className="text-[34px] sm:text-[36px] font-normal tracking-[-1px] text-white leading-none">
                 {t("impact.metrics.debt.value")}
               </strong>
@@ -211,7 +211,7 @@ export function ArchitectureSection() {
             </div>
 
             {/* Metric 2: Operational Efficiency */}
-            <div className="lg:border-l lg:border-[#4b4d51] lg:pl-11 flex flex-col justify-start">
+            <div className="lg:border-l lg:border-[#24242b] lg:pl-11 flex flex-col justify-start">
               <strong className="text-[34px] sm:text-[36px] font-normal tracking-[-1px] text-white leading-none">
                 {t("impact.metrics.efficiency.value")}
               </strong>
@@ -224,7 +224,7 @@ export function ArchitectureSection() {
             </div>
 
             {/* Metric 3: Scalability */}
-            <div className="lg:border-l lg:border-[#4b4d51] lg:pl-11 flex flex-col justify-start">
+            <div className="lg:border-l lg:border-[#24242b] lg:pl-11 flex flex-col justify-start">
               <strong className="text-[34px] sm:text-[36px] font-normal tracking-[-1px] text-white leading-none">
                 {t("impact.metrics.scalability.value")}
               </strong>
