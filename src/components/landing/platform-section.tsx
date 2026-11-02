@@ -14,8 +14,10 @@ export function PlatformSection() {
   return (
     <section
       id="platform"
-      className="py-20 sm:py-28 lg:py-32 bg-brand-dark relative overflow-hidden"
+      className="py-14 sm:py-16 lg:py-20 bg-brand-dark relative overflow-hidden"
     >
+      {/* Section Demarcation Divider */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent pointer-events-none z-20" />
       {/* Drifting constellation & subtle atmospheric purple glow */}
       <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_90%)]">
         <ConstellationBackground nodeCount={40} nodeAlpha={0.18} />
@@ -24,22 +26,16 @@ export function PlatformSection() {
 
       {/* Symmetrical container matching ProductsSection max-w-[85rem] */}
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header - Exact replicar-diseno-web structure */}
+        {/* Header - Ultra clean header without eyebrow */}
         <header className="capabilities-header">
-          {/* Eyebrow badge */}
-          <SectionReveal delay={60} className="capabilities-eyebrow">
-            <span className="capabilities-eyebrow-bar" />
-            <span>{t("badge")}</span>
-          </SectionReveal>
-
           {/* Master Title */}
-          <SectionReveal as="h2" delay={100} className="capabilities-title">
+          <SectionReveal as="h2" delay={60} className="capabilities-title">
             <span className="block">{t("title1")}</span>
             <em>{t("title2")}</em>
           </SectionReveal>
 
           {/* Subtitle */}
-          <SectionReveal delay={140}>
+          <SectionReveal delay={100}>
             <p className="capabilities-subtitle">{t("subtitle")}</p>
           </SectionReveal>
         </header>

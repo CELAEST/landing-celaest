@@ -133,11 +133,6 @@ export function ArchitectureSection() {
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Editorial Hero Header - Proportional to other landing sections */}
         <header className="max-w-4xl">
-          <div className="flex items-center gap-4 text-[#a9adbb] text-[11px] font-mono tracking-[2px] leading-none mb-5">
-            <span className="w-10 h-px bg-[#afb2ba] inline-block" />
-            <span>{t("badge")}</span>
-          </div>
-
           <h2 className="text-4xl sm:text-5xl lg:text-[62px] font-medium tracking-tight sm:tracking-[-2.2px] leading-[0.96] mb-5 text-white font-sans">
             {t("titleLead")}
             <br />
