@@ -8,12 +8,9 @@ export function ClosingCTASection() {
   const t = useTranslations("faq.cta");
 
   return (
-    <section className="py-14 sm:py-16 lg:py-20 bg-brand-dark text-center flex flex-col items-center justify-center relative overflow-hidden">
+    <section className="py-14 sm:py-16 lg:py-20 bg-[#000000] text-center flex flex-col items-center justify-center relative overflow-hidden">
       {/* Section Demarcation Divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent pointer-events-none z-20" />
-
-      {/* Subtle atmospheric ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-purple-600/[0.03] blur-[120px] rounded-full pointer-events-none" />
 
       <motion.div
         initial={{ opacity: 0, y: 24 }}

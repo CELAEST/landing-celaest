@@ -57,10 +57,7 @@ export function PricingSection() {
   const showGeoBadge = Boolean(pricing && (pricing.currency.code !== "USD" || isForcedUSD));
 
   return (
-    <section
-      id="pricing"
-      className="py-14 sm:py-16 lg:py-20 bg-brand-dark relative overflow-hidden"
-    >
+    <section id="pricing" className="py-14 sm:py-16 lg:py-20 bg-[#000000] relative overflow-hidden">
       {/* Section Demarcation Divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent pointer-events-none z-20" />
 

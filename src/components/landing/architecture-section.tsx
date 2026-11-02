@@ -22,7 +22,7 @@ export function ArchitectureSection() {
   return (
     <section
       id="architecture"
-      className="bg-brand-dark text-[#f7f7f8] relative overflow-hidden py-14 sm:py-16 lg:py-20"
+      className="bg-[#000000] text-[#f7f7f8] relative overflow-hidden py-14 sm:py-16 lg:py-20"
     >
       {/* Section Demarcation Divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent pointer-events-none z-20" />
