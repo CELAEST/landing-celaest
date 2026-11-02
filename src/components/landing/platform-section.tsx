@@ -9,19 +9,20 @@ export function PlatformSection() {
   const t = useTranslations("platform");
 
   return (
-    <section id="platform" className="py-20 sm:py-28 bg-brand-dark relative overflow-hidden">
-      {/* Drifting constellation (subtle ambience) */}
-      <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_75%_80%_at_50%_50%,#000_20%,transparent_90%)]">
-        <ConstellationBackground nodeCount={50} nodeAlpha={0.25} />
+    <section id="platform" className="py-24 sm:py-32 bg-brand-dark relative overflow-hidden">
+      {/* Drifting constellation & subtle atmospheric purple glow */}
+      <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_90%)]">
+        <ConstellationBackground nodeCount={40} nodeAlpha={0.18} />
       </div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-purple-600/[0.04] blur-[120px] rounded-full pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="max-w-3xl text-left">
           {/* Eyebrow Badge */}
           <SectionReveal delay={60} className="flex items-center gap-3 mb-4 sm:mb-5">
-            <span className="w-7 h-[2px] bg-[#8b5cf6]" />
-            <span className="text-[11px] sm:text-xs font-mono font-semibold tracking-[0.25em] text-[#a78bfa] uppercase">
+            <span className="w-8 h-[2px] bg-[#8b5cf6]" />
+            <span className="text-xs font-mono font-semibold tracking-[0.25em] text-[#a78bfa] uppercase">
               {t("badge")}
             </span>
           </SectionReveal>
@@ -30,7 +31,7 @@ export function PlatformSection() {
           <SectionReveal
             as="h2"
             delay={100}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-[66px] font-medium tracking-tight text-white leading-[1.08] block"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-[68px] font-medium tracking-tight text-white leading-[1.05] block"
           >
             <span className="block">{t("title1")}</span>
             <span className="block text-white/95">{t("title2")}</span>
@@ -38,14 +39,14 @@ export function PlatformSection() {
 
           {/* Subtitle */}
           <SectionReveal delay={140}>
-            <p className="text-neutral-400 text-sm sm:text-base md:text-lg max-w-2xl font-normal leading-relaxed mt-4 sm:mt-5">
+            <p className="text-neutral-400 text-sm sm:text-base md:text-lg max-w-2xl font-normal leading-relaxed mt-5">
               {t("subtitle")}
             </p>
           </SectionReveal>
         </div>
 
         {/* 3 Capabilities Columns Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 xl:gap-12 mt-12 sm:mt-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-7 xl:gap-8 mt-14 sm:mt-20 items-start">
           <PlatformColumn
             number={t("columns.management.number")}
             titleLine1={t("columns.management.titleLine1")}

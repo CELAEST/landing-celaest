@@ -1,28 +1,22 @@
-# Contrato Canónico: Sección Plataforma / Capacidades (Master UI Mockup Standard)
+# Contrato Canónico: Sección Plataforma / Capacidades (World-Class Engineering & Micro-UI Standard)
 
-## Contexto & Resumen de Implementación
-Se implementó con paridad visual y de ingeniería 1:1 el diseño oficial de la sección Plataforma ("CAPACIDADES" / "Potencia tu flujo de trabajo") a partir del mockup maestro `media_1793603336593_c4c3aabc.jpg`:
+## Técnicas de Diseño de Alto Nivel Empleadas
+Siguiendo las técnicas de repositorios de referencia mundial en diseño de interfaces (Linear, Vercel, Raycast):
 
-1. **Header de Sección**:
-   - Eyebrow Badge: Barra horizontal violeta (`w-7 h-[2px] bg-[#8b5cf6]`) + texto `CAPACIDADES` en tipografía mono con espaciado tracking amplio (`tracking-[0.25em] text-[#a78bfa] text-xs font-semibold`).
-   - Título H2 a dos líneas:
-     - Línea 1: `Potencia tu` (peso medio/light, blanco).
-     - Línea 2: `flujo de trabajo.` (peso bold, minúsculas con punto final `flujo de trabajo.`).
-   - Subtítulo neutral: `Infraestructura de nivel empresarial diseñada para la eficiencia, seguridad y escalabilidad sin límites.` en `text-neutral-400`.
+1. **Bevel Highlights & Vidrio Multicapa**:
+   - Resalte especular superior de 1px (`before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/[0.12] before:to-transparent`).
+   - Profundidad mediante paneles obsidian `#0c0d15` y micro-bordes `border-white/[0.08]` que ofrecen contraste sin saturación ni contornos falsos.
+   - Resplandor atmosférico violeta de fondo (`bg-purple-600/[0.04] blur-[120px]`).
 
-2. **Columnas de Capacidades (01, 02, 03)**:
-   - Diseño abierto, respirable y sin marcos exteriores gruesos ni artificiales:
-     - Indicador numérico: `01`, `02`, `03` en `text-[#8b5cf6] font-mono`.
-     - Títulos a dos tonos: Línea 1 ligera (`font-light`), Línea 2 destacada (`font-bold`):
-       - 01: `Gestión` / `centralizada`
-       - 02: `Pipeline` / `de automatización`
-       - 03: `Ecosistema` / `de activos`
-     - Enlace al pie: `Explorar →` perfectamente alineado y con hover micro-interactivo.
+2. **Tipografía y Proporciones Sin Truncamiento**:
+   - Espaciado ampliado de contenedor maestro `max-w-[1360px]` con grid `gap-7 xl:gap-8` para otorgar ~420px de respiración a cada una de las 3 columnas.
+   - Cero elipsis no deseada: todos los textos de navegación (`Dashboard`, `Members`, `Licenses`, `Integrations`, `Settings`), nombres de miembros (`Carlos Méndez`), roles y categorías (`Integraciones`, `Herramientas`) se despliegan en tipografía completa con legibilidad absoluta.
 
-3. **Software UI Widgets (React + Tailwind CSS de Alto Rendimiento)**:
-   - Arquitectura desacoplada en `src/components/landing/platform/`:
-     - `widgets/members-widget.tsx`: Tabla de gestión de miembros con sidebar hexagonal, barra de búsqueda, botón `+ Invite`, y registros con avatares reales en WebP (`Esteban Rojas`, `María González`, `Carlos Méndez`, `Lucía Torres`), roles y badges de estado activo.
-     - `widgets/pipeline-widget.tsx`: Editor visual de flujos con barra lateral de herramientas, nodo trigger (`Trigger: Nuevo usuario`), cable conductor violeta, nodo de acción (`Ejecutar acción: Enviar notificación`) y bifurcación a `Completado` (verde) y `Error / Reintentar` (rojo).
-     - `widgets/ecosystem-widget.tsx` + `widgets/ecosystem-icons.tsx`: Tienda de activos con buscador y dropdown `Todas`, lista lateral de categorías y grid 2x2 de activos con badges e íconos vectoriales auténticos (Auto Sync, Data Fetcher, Sheets Bridge, Slack Connector).
-   - Componentes modulares respetando el límite estricto de <80 líneas por archivo.
-   - 100% i18n limpio vía `next-intl` (claves en `es.json` y `en.json`).
+3. **Software UI Widgets**:
+   - `MembersWidget`: Sidebar completo con icono hexagonal y selector activo violeta con indicador vertical `border-l-2 border-l-[#8b5cf6]`, barra de búsqueda, botón `+ Invite`, registros con fotos circulares en WebP (`/images/platform/avatars/`), badges activos con pulso verde esmeralda y paginación.
+   - `PipelineWidget`: Toolstrip lateral con botón Play violeta e iconografía de herramientas, nodos de flujo ampliados (`w-[205px]` y `w-[225px]`) con pines de anclaje, cables SVG con codos curvados y estados finales `Completado` (verde) y `Error / Reintentar` (rojo).
+   - `EcosystemWidget`: Buscador superior y filtro `Todas ⌄`, barra de categorías y grid 2x2 con iconos auténticos de Google Sheets y Slack.
+
+4. **Reglas de Calidad**:
+   - Componentes React <80 líneas desacoplados.
+   - 100% i18n limpio con `next-intl`.
