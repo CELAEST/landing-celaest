@@ -7,7 +7,7 @@ import { ProductsSection } from "@/components/landing/products-view";
 import { PlatformSection } from "@/components/landing/platform-section";
 import { SecuritySection } from "@/components/landing/security-section";
 import { PricingSection } from "@/components/landing/pricing-section";
-import { FAQSection } from "@/components/landing/faq-section";
+import { ArchitectureSection } from "@/components/landing/architecture-section";
 import { Footer } from "@/components/landing/footer";
 import {
   generateOrganizationSchema,
@@ -62,7 +62,7 @@ export default async function HomePage({ params }: PageProps) {
           <PricingSection />
         </div>
         <div className="cv-section">
-          <FAQSection />
+          <ArchitectureSection />
         </div>
       </main>
       <div className="cv-section">

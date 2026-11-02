@@ -395,7 +395,13 @@
     ],
     "stillQuestions": "¿Aún tienes preguntas?",
     "contactSupport": "Contactar Soporte",
-    "supportDescription": "Nuestro equipo de soporte está aquí para ayudarte a comenzar."
+    "supportDescription": "Nuestro equipo de soporte está aquí para ayudarte a comenzar.",
+    "cta": {
+      "titleLine1": "De la intención.",
+      "titleLine2": "Al resultado directo.",
+      "getStarted": "Comenzar",
+      "contactSales": "Contactar ventas"
+    }
   },
   "footer": {
     "newsletter": {
@@ -463,6 +469,61 @@
       "title": "Términos y Condiciones",
       "description": "Reglas de uso para la plataforma CELAEST.",
       "lastUpdated": "Última actualización"
+    }
+  },
+  "architecture": {
+    "badge": "ARQUITECTURA DEL SISTEMA",
+    "title1": "El Ecosistema Completo.",
+    "title2": "De la infraestructura a la ejecución.",
+    "subtitle": "CELAEST integra gobernanza centralizada, inteligencia artificial distribuida, flujos continuos y un mercado verificado en una sola plataforma empresarial unificada.",
+    "layers": {
+      "governance": {
+        "tag": "01 / GOBERNANZA",
+        "title": "Control Center & Aislamiento Multi-Tenant",
+        "description": "Aislamiento criptográfico estricto por organización. Control centralizado de licencias, roles granulares (Owner, Admin, Member) y sesiones seguras en un único plano de control empresarial.",
+        "signal": "Aislamiento Multi-Tenant",
+        "metric": "SOC-2 Ready"
+      },
+      "mesh": {
+        "tag": "02 / MALLA NEURAL",
+        "title": "IA Mesh & Enrutamiento en Cascada",
+        "description": "El broker central de inteligencia (celaest-core) optimiza y enruta peticiones entre modelos de vanguardia. Si un proveedor experimenta latencia, conmuta de forma transparente en milisegundos.",
+        "signal": "Conmutación Inteligente",
+        "metric": "<15ms Failover"
+      },
+      "pipeline": {
+        "tag": "03 / ORQUESTACIÓN",
+        "title": "Motor de Automatización Autónoma",
+        "description": "Los eventos operativos se canalizan en grafos deterministas. Cada flujo ejecuta transformaciones de datos, llamadas seguras a APIs y ramas de recuperación con trazabilidad 100% auditable.",
+        "signal": "Ejecución Determinista",
+        "metric": "Trazabilidad Total"
+      },
+      "ecosystem": {
+        "tag": "04 / DISTRIBUCIÓN",
+        "title": "Catálogo de Activos & Soluciones",
+        "description": "Acceso inmediato a herramientas verificadas, conectores empresariales (Sheets, Slack, CRMs) y suites propietarias de alto impacto como Lingua para entrenamiento comunicativo con IA.",
+        "signal": "Despliegue Instantáneo",
+        "metric": "Zero-Code Deploy"
+      }
+    },
+    "synthesis": {
+      "badge": "IMPACTO ESTRATÉGICO",
+      "title": "Consolidación arquitectónica definitiva.",
+      "columns": {
+        "unification": {
+          "title": "1 Plataforma Unificada",
+          "desc": "Reemplaza decenas de scripts huérfanos y suscripciones fragmentadas bajo un único contrato arquitectónico auditable."
+        },
+        "uptime": {
+          "title": "99.99% Resiliencia Global",
+          "desc": "Malla distribuida en el borde sin puntos únicos de fallo, garantizando continuidad operativa para misiones críticas."
+        },
+        "speed": {
+          "title": "10x Velocidad de Despliegue",
+          "desc": "Transforme meses de desarrollo e integración interna en minutos de activación asistida por agentes autónomos."
+        }
+      },
+      "cta": "Explorar Plataforma Empresarial"
     }
   }
 }

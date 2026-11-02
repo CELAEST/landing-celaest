@@ -395,7 +395,13 @@
     ],
     "stillQuestions": "Still have questions?",
     "contactSupport": "Contact Support",
-    "supportDescription": "Our support team is here to help you get started."
+    "supportDescription": "Our support team is here to help you get started.",
+    "cta": {
+      "titleLine1": "From intent.",
+      "titleLine2": "To direct impact.",
+      "getStarted": "Get started",
+      "contactSales": "Contact sales"
+    }
   },
   "footer": {
     "newsletter": {
@@ -463,6 +469,61 @@
       "title": "Terms and Conditions",
       "description": "Rules of use for the CELAEST platform.",
       "lastUpdated": "Last updated"
+    }
+  },
+  "architecture": {
+    "badge": "SYSTEM ARCHITECTURE",
+    "title1": "The Complete Ecosystem.",
+    "title2": "From infrastructure to execution.",
+    "subtitle": "CELAEST integrates centralized governance, distributed artificial intelligence, autonomous workflows, and a verified asset marketplace into a single unified enterprise platform.",
+    "layers": {
+      "governance": {
+        "tag": "01 / GOVERNANCE",
+        "title": "Control Center & Multi-Tenant Isolation",
+        "description": "Strict cryptographic organization-scoped isolation. Centralized control of licenses, granular roles (Owner, Admin, Member), and secure hardware-validated sessions within a single control plane.",
+        "signal": "Multi-Tenant Isolation",
+        "metric": "SOC-2 Ready"
+      },
+      "mesh": {
+        "tag": "02 / NEURAL MESH",
+        "title": "AI Mesh & Cascade Routing",
+        "description": "The central intelligence broker (celaest-core) optimizes and routes requests across cutting-edge models. If a provider experiences latency, it shifts transparently in sub-15ms.",
+        "signal": "Intelligent Failover",
+        "metric": "<15ms Failover"
+      },
+      "pipeline": {
+        "tag": "03 / ORCHESTRATION",
+        "title": "Autonomous Automation Engine",
+        "description": "Operational events are channeled into deterministic graphs. Each flow executes data transformations, secure API calls, and recovery branches with 100% auditable traceability.",
+        "signal": "Deterministic Execution",
+        "metric": "Full Traceability"
+      },
+      "ecosystem": {
+        "tag": "04 / DISTRIBUTION",
+        "title": "Asset Catalog & Specialized Solutions",
+        "description": "Immediate access to verified engineering tools, enterprise connectors (Sheets, Slack, CRMs), and proprietary flagship suites like Lingua for executive communication training.",
+        "signal": "Instant Deployment",
+        "metric": "Zero-Code Deploy"
+      }
+    },
+    "synthesis": {
+      "badge": "STRATEGIC IMPACT",
+      "title": "Definitive architectural consolidation.",
+      "columns": {
+        "unification": {
+          "title": "1 Unified Platform",
+          "desc": "Replace dozens of orphan scripts and fragmented subscriptions under a single auditable architectural contract."
+        },
+        "uptime": {
+          "title": "99.99% Global Resilience",
+          "desc": "Distributed edge mesh with zero single points of failure, ensuring operational continuity for mission-critical workloads."
+        },
+        "speed": {
+          "title": "10x Deployment Velocity",
+          "desc": "Turn months of internal engineering and integration into minutes of autonomous agent-assisted activation."
+        }
+      },
+      "cta": "Explore Enterprise Platform"
     }
   }
 }
