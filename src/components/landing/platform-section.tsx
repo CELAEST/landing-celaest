@@ -1,76 +1,119 @@
 "use client";
 
+import React from "react";
 import { useTranslations } from "next-intl";
+import { ArrowRight } from "lucide-react";
 import { ConstellationBackground } from "@/components/ui/constellation-background";
 import { SectionReveal } from "@/components/ui/section-reveal";
-import { PlatformColumn, MembersWidget, PipelineWidget, EcosystemWidget } from "./platform";
+import { MembersWidget, PipelineWidget, EcosystemWidget } from "./platform";
+import "./platform/platform-previews.css";
 
 export function PlatformSection() {
   const t = useTranslations("platform");
 
   return (
-    <section id="platform" className="py-24 sm:py-32 bg-brand-dark relative overflow-hidden">
+    <section
+      id="platform"
+      className="py-20 sm:py-28 lg:py-32 bg-brand-dark relative overflow-hidden"
+    >
       {/* Drifting constellation & subtle atmospheric purple glow */}
       <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_90%)]">
         <ConstellationBackground nodeCount={40} nodeAlpha={0.18} />
       </div>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-purple-600/[0.04] blur-[120px] rounded-full pointer-events-none" />
 
-      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="max-w-3xl text-left">
-          {/* Eyebrow Badge */}
-          <SectionReveal delay={60} className="flex items-center gap-3 mb-4 sm:mb-5">
-            <span className="w-8 h-[2px] bg-[#8b5cf6]" />
-            <span className="text-xs font-mono font-semibold tracking-[0.25em] text-[#a78bfa] uppercase">
-              {t("badge")}
-            </span>
+      {/* Symmetrical container matching ProductsSection max-w-[85rem] */}
+      <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header - Exact replicar-diseno-web structure */}
+        <header className="capabilities-header">
+          {/* Eyebrow badge */}
+          <SectionReveal delay={60} className="capabilities-eyebrow">
+            <span className="capabilities-eyebrow-bar" />
+            <span>{t("badge")}</span>
           </SectionReveal>
 
-          {/* Master H2 Heading */}
-          <SectionReveal
-            as="h2"
-            delay={100}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-[68px] font-medium tracking-tight text-white leading-[1.05] block"
-          >
+          {/* Master Title */}
+          <SectionReveal as="h2" delay={100} className="capabilities-title">
             <span className="block">{t("title1")}</span>
-            <span className="block text-white/95">{t("title2")}</span>
+            <em>{t("title2")}</em>
           </SectionReveal>
 
           {/* Subtitle */}
           <SectionReveal delay={140}>
-            <p className="text-neutral-400 text-sm sm:text-base md:text-lg max-w-2xl font-normal leading-relaxed mt-5">
-              {t("subtitle")}
-            </p>
+            <p className="capabilities-subtitle">{t("subtitle")}</p>
           </SectionReveal>
-        </div>
+        </header>
 
-        {/* 3 Capabilities Columns Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-7 xl:gap-8 mt-14 sm:mt-20 items-start">
-          <PlatformColumn
-            number={t("columns.management.number")}
-            titleLine1={t("columns.management.titleLine1")}
-            titleLine2={t("columns.management.titleLine2")}
-            description={t("columns.management.description")}
-            exploreLabel={t("explore")}
-            widget={<MembersWidget />}
-          />
-          <PlatformColumn
-            number={t("columns.workflow.number")}
-            titleLine1={t("columns.workflow.titleLine1")}
-            titleLine2={t("columns.workflow.titleLine2")}
-            description={t("columns.workflow.description")}
-            exploreLabel={t("explore")}
-            widget={<PipelineWidget />}
-          />
-          <PlatformColumn
-            number={t("columns.ecosystem.number")}
-            titleLine1={t("columns.ecosystem.titleLine1")}
-            titleLine2={t("columns.ecosystem.titleLine2")}
-            description={t("columns.ecosystem.description")}
-            exploreLabel={t("explore")}
-            widget={<EcosystemWidget />}
-          />
+        {/* 3 Columns Feature Grid - Exact replicar-diseno-web layout */}
+        <div className="feature-grid">
+          {/* Column 01: Centralized Management */}
+          <article className="feature-col">
+            <div>
+              <div className="feature-number">
+                <strong>{t("columns.management.number")}</strong>
+                <span />
+              </div>
+              <h3 className="feature-heading">
+                {t("columns.management.titleLine1")}
+                <br />
+                {t("columns.management.titleLine2")}
+              </h3>
+              <p className="feature-desc">{t("columns.management.description")}</p>
+            </div>
+            <div>
+              <MembersWidget />
+              <a href="#pricing" className="feature-link group/link">
+                <span>{t("explore")}</span>
+                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-1" />
+              </a>
+            </div>
+          </article>
+
+          {/* Column 02: Automation Pipeline */}
+          <article className="feature-col">
+            <div>
+              <div className="feature-number">
+                <strong>{t("columns.workflow.number")}</strong>
+                <span />
+              </div>
+              <h3 className="feature-heading">
+                {t("columns.workflow.titleLine1")}
+                <br />
+                {t("columns.workflow.titleLine2")}
+              </h3>
+              <p className="feature-desc">{t("columns.workflow.description")}</p>
+            </div>
+            <div>
+              <PipelineWidget />
+              <a href="#pricing" className="feature-link group/link">
+                <span>{t("explore")}</span>
+                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-1" />
+              </a>
+            </div>
+          </article>
+
+          {/* Column 03: Asset Ecosystem */}
+          <article className="feature-col">
+            <div>
+              <div className="feature-number">
+                <strong>{t("columns.ecosystem.number")}</strong>
+                <span />
+              </div>
+              <h3 className="feature-heading">
+                {t("columns.ecosystem.titleLine1")}
+                <br />
+                {t("columns.ecosystem.titleLine2")}
+              </h3>
+              <p className="feature-desc">{t("columns.ecosystem.description")}</p>
+            </div>
+            <div>
+              <EcosystemWidget />
+              <a href="#pricing" className="feature-link group/link">
+                <span>{t("explore")}</span>
+                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-1" />
+              </a>
+            </div>
+          </article>
         </div>
       </div>
     </section>
