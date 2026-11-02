@@ -1,0 +1,308 @@
+/* ============================================================================
+   CELAEST ARCHITECTURE SVG ANIMATIONS (CSS-First, GPU-Accelerated)
+   ============================================================================ */
+
+/* 1. Layers Icon Animations */
+@keyframes arch-layer-float-top {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3.5px);
+  }
+}
+
+@keyframes arch-layer-float-mid {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-1.8px);
+  }
+}
+
+@keyframes arch-glow-pulse {
+  0%, 100% {
+    opacity: 0.25;
+    filter: drop-shadow(0 0 6px rgba(208, 199, 255, 0.3));
+  }
+  50% {
+    opacity: 0.65;
+    filter: drop-shadow(0 0 14px rgba(208, 199, 255, 0.6));
+  }
+}
+
+.arch-layer-top {
+  animation: arch-layer-float-top 3.6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.arch-layer-mid {
+  animation: arch-layer-float-mid 3.6s ease-in-out infinite 0.25s;
+  transform-origin: center;
+}
+
+.arch-layer-bot {
+  transform-origin: center;
+}
+
+/* 2. Chip Icon Animations */
+@keyframes arch-chip-core-pulse {
+  0%, 100% {
+    opacity: 0.08;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 0.28;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes arch-chip-trace-dash {
+  0% {
+    stroke-dashoffset: 24;
+    opacity: 0.5;
+  }
+  50% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: -24;
+    opacity: 0.5;
+  }
+}
+
+@keyframes arch-chip-dot-beacon {
+  0%, 100% {
+    r: 1.8;
+    opacity: 0.6;
+    fill: #D0C7FF;
+  }
+  50% {
+    r: 2.6;
+    opacity: 1;
+    fill: #ffffff;
+    filter: drop-shadow(0 0 4px #D0C7FF);
+  }
+}
+
+.arch-chip-core-glow {
+  transform-origin: 32px 32px;
+  animation: arch-chip-core-pulse 2.8s ease-in-out infinite;
+}
+
+.arch-chip-pin-pulse {
+  stroke-dasharray: 6 12;
+  animation: arch-chip-trace-dash 3s linear infinite;
+}
+
+.arch-chip-beacon {
+  animation: arch-chip-dot-beacon 2s ease-in-out infinite;
+}
+
+/* 3. Flows Icon Animations */
+@keyframes arch-flow-packet-v {
+  0% {
+    cy: 29;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    cy: 54;
+    opacity: 0;
+  }
+}
+
+@keyframes arch-flow-packet-left {
+  0% {
+    cx: 48;
+    cy: 54;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  60% {
+    cx: 21;
+    cy: 54;
+  }
+  85% {
+    cx: 21;
+    cy: 67;
+    opacity: 1;
+  }
+  100% {
+    cx: 21;
+    cy: 67;
+    opacity: 0;
+  }
+}
+
+@keyframes arch-flow-packet-mid {
+  0% {
+    cy: 46;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  85% {
+    cy: 67;
+    opacity: 1;
+  }
+  100% {
+    cy: 67;
+    opacity: 0;
+  }
+}
+
+@keyframes arch-flow-packet-right {
+  0% {
+    cx: 48;
+    cy: 54;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  60% {
+    cx: 75;
+    cy: 54;
+  }
+  85% {
+    cx: 75;
+    cy: 67;
+    opacity: 1;
+  }
+  100% {
+    cx: 75;
+    cy: 67;
+    opacity: 0;
+  }
+}
+
+@keyframes arch-node-flash {
+  0%, 70%, 100% {
+    opacity: 0.05;
+  }
+  85% {
+    opacity: 0.35;
+  }
+}
+
+.arch-flow-photon-trunk {
+  animation: arch-flow-packet-v 2.4s ease-in infinite;
+}
+
+.arch-flow-photon-l {
+  animation: arch-flow-packet-left 2.4s ease-out infinite 0.6s;
+}
+
+.arch-flow-photon-m {
+  animation: arch-flow-packet-mid 2.4s ease-out infinite 0.6s;
+}
+
+.arch-flow-photon-r {
+  animation: arch-flow-packet-right 2.4s ease-out infinite 0.6s;
+}
+
+.arch-node-flash-l {
+  animation: arch-node-flash 2.4s ease-out infinite 0.6s;
+}
+.arch-node-flash-m {
+  animation: arch-node-flash 2.4s ease-out infinite 0.6s;
+}
+.arch-node-flash-r {
+  animation: arch-node-flash 2.4s ease-out infinite 0.6s;
+}
+
+/* 4. Cube / Hexagon Animations */
+@keyframes arch-cube-levitate {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3.5px);
+  }
+}
+
+@keyframes arch-face-light-top {
+  0%, 100% {
+    opacity: 0.12;
+  }
+  33% {
+    opacity: 0.35;
+  }
+  66% {
+    opacity: 0.06;
+  }
+}
+
+@keyframes arch-face-light-right {
+  0%, 100% {
+    opacity: 0.06;
+  }
+  33% {
+    opacity: 0.10;
+  }
+  66% {
+    opacity: 0.32;
+  }
+}
+
+@keyframes arch-face-light-left {
+  0%, 100% {
+    opacity: 0.28;
+  }
+  33% {
+    opacity: 0.08;
+  }
+  66% {
+    opacity: 0.10;
+  }
+}
+
+.arch-cube-wrap {
+  animation: arch-cube-levitate 4s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.arch-cube-face-top {
+  animation: arch-face-light-top 4.5s ease-in-out infinite;
+}
+
+.arch-cube-face-r {
+  animation: arch-face-light-right 4.5s ease-in-out infinite;
+}
+
+.arch-cube-face-l {
+  animation: arch-face-light-left 4.5s ease-in-out infinite;
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .arch-layer-top,
+  .arch-layer-mid,
+  .arch-chip-core-glow,
+  .arch-chip-pin-pulse,
+  .arch-chip-beacon,
+  .arch-flow-photon-trunk,
+  .arch-flow-photon-l,
+  .arch-flow-photon-m,
+  .arch-flow-photon-r,
+  .arch-node-flash-l,
+  .arch-node-flash-m,
+  .arch-node-flash-r,
+  .arch-cube-wrap,
+  .arch-cube-face-top,
+  .arch-cube-face-r,
+  .arch-cube-face-l {
+    animation: none !important;
+  }
+}

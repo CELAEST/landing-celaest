@@ -12,7 +12,9 @@ import { ConstellationBackground } from "@/components/ui/constellation-backgroun
 // ==========================================
 export function SecuritySection() {
   const t = useTranslations("security");
-  const [hoveredNode, setHoveredNode] = useState<"verified" | "encryption" | "infrastructure" | "all" | null>(null);
+  const [hoveredNode, setHoveredNode] = useState<
+    "verified" | "encryption" | "infrastructure" | "all" | null
+  >(null);
 
   // Path definitions for central alignment to the 40x40 robot ears and trunk
   // SVG ViewBox is 1000x650. Center shifted UP to Top-[40%] (Y:260)
@@ -22,15 +24,19 @@ export function SecuritySection() {
     // Top-right connector: mirror at X:555.
     encryption: "M 620 120 C 600 120, 590 245, 555 245",
     // Bottom connector: endpoint raised to match the lifted core (Y:305).
-    infrastructure: "M 500 412 C 500 360, 500 360, 500 305"
+    infrastructure: "M 500 412 C 500 360, 500 360, 500 305",
   };
 
   const isAnyActive = hoveredNode !== null;
 
   return (
-    <section id="security" className="py-16 sm:py-24 bg-brand-dark relative overflow-hidden">
-      {/* Background Ambience */}
-      <div className="absolute inset-0 bg-brand-deep pointer-events-none" />
+    <section
+      id="security"
+      className="py-14 sm:py-16 lg:py-20 bg-brand-dark relative overflow-hidden"
+    >
+      {/* Section Demarcation Divider */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent pointer-events-none z-20" />
+
       {/* Permanent subtle aura from Robot */}
       <div className="absolute top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[900px] h-[600px] md:h-[900px] bg-[radial-gradient(circle_at_50%_50%,rgba(167,139,250,0.08)_0%,transparent_60%)] pointer-events-none" />
       {/* Tech grid radiating from Robot's center */}
@@ -42,7 +48,6 @@ export function SecuritySection() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center">
-        
         {/* Header */}
         <div className="animate-fade-up text-center mb-10 w-full">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-4 sm:mb-6 tracking-tight leading-[1.1]">
@@ -57,12 +62,14 @@ export function SecuritySection() {
         </div>
 
         {/* The Interactive SVG Schematic Container */}
-        <div 
+        <div
           className="relative w-full max-w-5xl md:aspect-[1000/650] mt-8 md:mt-4 select-none"
           onMouseLeave={() => setHoveredNode(null)}
         >
           {/* Central Reactor Glow (Reacts to any node hover) */}
-          <div className={`absolute top-[42.3%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] md:w-[700px] h-[500px] md:h-[700px] bg-[radial-gradient(circle_at_50%_50%,rgba(167,139,250,0.14)_0%,transparent_50%)] rounded-full pointer-events-none transition-opacity duration-1000 ${isAnyActive ? 'opacity-100' : 'opacity-0'}`} />
+          <div
+            className={`absolute top-[42.3%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] md:w-[700px] h-[500px] md:h-[700px] bg-[radial-gradient(circle_at_50%_50%,rgba(167,139,250,0.14)_0%,transparent_50%)] rounded-full pointer-events-none transition-opacity duration-1000 ${isAnyActive ? "opacity-100" : "opacity-0"}`}
+          />
 
           {/* Symmetrical SVG Connections Layer */}
           <svg
@@ -95,28 +102,83 @@ export function SecuritySection() {
             {/* ACTIVE GLOWING PATHS (Node Specific) */}
             <g filter="url(#blur-glow)">
               {/* Verified Path */}
-              <path d={paths.verified} fill="none" stroke="#a78bfa" strokeWidth="2" 
-                className={`transition-opacity duration-500 ${hoveredNode === "verified" || hoveredNode === "all" ? "opacity-100" : (isAnyActive ? "opacity-10" : "opacity-0")}`} />
-              <motion.path d={paths.verified} fill="none" stroke="#fff" strokeWidth="3" strokeDasharray="50 1000" strokeLinecap="round"
-                animate={{ strokeDashoffset: hoveredNode === "verified" || hoveredNode === "all" ? [1050, -50] : 1050 }}
+              <path
+                d={paths.verified}
+                fill="none"
+                stroke="#a78bfa"
+                strokeWidth="2"
+                className={`transition-opacity duration-500 ${hoveredNode === "verified" || hoveredNode === "all" ? "opacity-100" : isAnyActive ? "opacity-10" : "opacity-0"}`}
+              />
+              <motion.path
+                d={paths.verified}
+                fill="none"
+                stroke="#fff"
+                strokeWidth="3"
+                strokeDasharray="50 1000"
+                strokeLinecap="round"
+                animate={{
+                  strokeDashoffset:
+                    hoveredNode === "verified" || hoveredNode === "all" ? [1050, -50] : 1050,
+                }}
                 transition={{ repeat: Infinity, duration: 1.2, ease: "linear" }}
-                className={hoveredNode === "verified" || hoveredNode === "all" ? "opacity-100" : "opacity-0"} />
+                className={
+                  hoveredNode === "verified" || hoveredNode === "all" ? "opacity-100" : "opacity-0"
+                }
+              />
 
               {/* Encryption Path */}
-              <path d={paths.encryption} fill="none" stroke="#a78bfa" strokeWidth="2" 
-                className={`transition-opacity duration-500 ${hoveredNode === "encryption" || hoveredNode === "all" ? "opacity-100" : (isAnyActive ? "opacity-10" : "opacity-0")}`} />
-              <motion.path d={paths.encryption} fill="none" stroke="#fff" strokeWidth="3" strokeDasharray="50 1000" strokeLinecap="round"
-                animate={{ strokeDashoffset: hoveredNode === "encryption" || hoveredNode === "all" ? [1050, -50] : 1050 }}
+              <path
+                d={paths.encryption}
+                fill="none"
+                stroke="#a78bfa"
+                strokeWidth="2"
+                className={`transition-opacity duration-500 ${hoveredNode === "encryption" || hoveredNode === "all" ? "opacity-100" : isAnyActive ? "opacity-10" : "opacity-0"}`}
+              />
+              <motion.path
+                d={paths.encryption}
+                fill="none"
+                stroke="#fff"
+                strokeWidth="3"
+                strokeDasharray="50 1000"
+                strokeLinecap="round"
+                animate={{
+                  strokeDashoffset:
+                    hoveredNode === "encryption" || hoveredNode === "all" ? [1050, -50] : 1050,
+                }}
                 transition={{ repeat: Infinity, duration: 1.2, ease: "linear" }}
-                className={hoveredNode === "encryption" || hoveredNode === "all" ? "opacity-100" : "opacity-0"} />
+                className={
+                  hoveredNode === "encryption" || hoveredNode === "all"
+                    ? "opacity-100"
+                    : "opacity-0"
+                }
+              />
 
               {/* Infrastructure Path */}
-              <path d={paths.infrastructure} fill="none" stroke="#a78bfa" strokeWidth="2" 
-                className={`transition-opacity duration-500 ${hoveredNode === "infrastructure" || hoveredNode === "all" ? "opacity-100" : (isAnyActive ? "opacity-10" : "opacity-0")}`} />
-              <motion.path d={paths.infrastructure} fill="none" stroke="#fff" strokeWidth="3" strokeDasharray="50 1000" strokeLinecap="round"
-                animate={{ strokeDashoffset: hoveredNode === "infrastructure" || hoveredNode === "all" ? [1050, -50] : 1050 }}
+              <path
+                d={paths.infrastructure}
+                fill="none"
+                stroke="#a78bfa"
+                strokeWidth="2"
+                className={`transition-opacity duration-500 ${hoveredNode === "infrastructure" || hoveredNode === "all" ? "opacity-100" : isAnyActive ? "opacity-10" : "opacity-0"}`}
+              />
+              <motion.path
+                d={paths.infrastructure}
+                fill="none"
+                stroke="#fff"
+                strokeWidth="3"
+                strokeDasharray="50 1000"
+                strokeLinecap="round"
+                animate={{
+                  strokeDashoffset:
+                    hoveredNode === "infrastructure" || hoveredNode === "all" ? [1050, -50] : 1050,
+                }}
                 transition={{ repeat: Infinity, duration: 1.2, ease: "linear" }}
-                className={hoveredNode === "infrastructure" || hoveredNode === "all" ? "opacity-100" : "opacity-0"} />
+                className={
+                  hoveredNode === "infrastructure" || hoveredNode === "all"
+                    ? "opacity-100"
+                    : "opacity-0"
+                }
+              />
             </g>
           </svg>
 
@@ -124,12 +186,15 @@ export function SecuritySection() {
               HTML NODES (Responsive Positioning)
              ========================================= */}
           <div className="flex flex-col md:block w-full h-full gap-6 px-4 md:px-0 relative">
-            
             {/* NODE 1: Licencias Verificadas */}
             <div className="md:absolute top-[15%] left-[22%] md:-translate-x-1/2 md:-translate-y-1/2 w-full md:w-[32%] z-20">
               <MagneticCard
                 onHoverStart={() => setHoveredNode("verified")}
-                className={hoveredNode && hoveredNode !== "verified" && hoveredNode !== "all" ? "md:opacity-40" : "opacity-100"}
+                className={
+                  hoveredNode && hoveredNode !== "verified" && hoveredNode !== "all"
+                    ? "md:opacity-40"
+                    : "opacity-100"
+                }
               >
                 <div className="px-5 py-6 sm:px-6 sm:py-8 flex flex-col items-center text-center">
                   <h3 className="font-display text-white font-medium text-[20px] sm:text-[22px] leading-[1.15] tracking-[-0.02em] mb-2.5 sm:mb-3">
@@ -146,7 +211,11 @@ export function SecuritySection() {
             <div className="md:absolute top-[15%] left-[78%] md:-translate-x-1/2 md:-translate-y-1/2 w-full md:w-[32%] z-20">
               <MagneticCard
                 onHoverStart={() => setHoveredNode("encryption")}
-                className={hoveredNode && hoveredNode !== "encryption" && hoveredNode !== "all" ? "md:opacity-40" : "opacity-100"}
+                className={
+                  hoveredNode && hoveredNode !== "encryption" && hoveredNode !== "all"
+                    ? "md:opacity-40"
+                    : "opacity-100"
+                }
               >
                 <div className="px-5 py-6 sm:px-6 sm:py-8 flex flex-col items-center text-center">
                   <h3 className="font-display text-white font-medium text-[20px] sm:text-[22px] leading-[1.15] tracking-[-0.02em] mb-2.5 sm:mb-3">
@@ -160,7 +229,7 @@ export function SecuritySection() {
             </div>
 
             {/* THE CORE ENGINE (ROBOT HEAD) */}
-            <div 
+            <div
               className="hidden md:flex absolute top-[42.3%] left-[50%] -translate-x-1/2 -translate-y-1/2 z-30 cursor-crosshair"
               onMouseEnter={() => setHoveredNode("all")}
               onMouseLeave={() => setHoveredNode(null)}
@@ -172,7 +241,11 @@ export function SecuritySection() {
             <div className="md:absolute top-[75%] left-[50%] md:-translate-x-1/2 md:-translate-y-1/2 w-full md:w-[36%] z-20">
               <MagneticCard
                 onHoverStart={() => setHoveredNode("infrastructure")}
-                className={hoveredNode && hoveredNode !== "infrastructure" && hoveredNode !== "all" ? "md:opacity-40" : "opacity-100"}
+                className={
+                  hoveredNode && hoveredNode !== "infrastructure" && hoveredNode !== "all"
+                    ? "md:opacity-40"
+                    : "opacity-100"
+                }
               >
                 <div className="px-5 py-6 sm:px-6 sm:py-8 flex flex-col items-center text-center">
                   <h3 className="font-display text-white font-medium text-[20px] sm:text-[22px] leading-[1.15] tracking-[-0.02em] mb-2.5 sm:mb-3">
@@ -184,9 +257,7 @@ export function SecuritySection() {
                 </div>
               </MagneticCard>
             </div>
-
           </div>
-
         </div>
       </div>
     </section>

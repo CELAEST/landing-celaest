@@ -35,22 +35,15 @@ export function PricingSection() {
   const locale = useLocale();
   const [cycle, setCycle] = useState<BillingCycle>("monthly");
 
-  const {
-    pricing,
-    currency,
-    isForcedUSD,
-    toggleCurrencyOverride,
-    getPlanPrice,
-  } = useGeoPricing(locale);
+  const { pricing, currency, isForcedUSD, toggleCurrencyOverride, getPlanPrice } =
+    useGeoPricing(locale);
 
   // Compute yearly-vs-monthly savings from the resolved professional plan so
   // the badge shows a real number (e.g. "Save 17%"). Falls back to a sensible
   // default while data is loading or absent.
   const yearlySavingsPercent = useMemo(() => {
     const ref = pricing?.plans?.find(
-      (p) =>
-        p.plan_code.toLowerCase() === "pro" ||
-        p.plan_code.toLowerCase() === "enterprise",
+      (p) => p.plan_code.toLowerCase() === "pro" || p.plan_code.toLowerCase() === "enterprise",
     );
     if (!ref) return 17;
     const monthlyAnnualized = ref.local_price_monthly * 12;
@@ -61,28 +54,15 @@ export function PricingSection() {
 
   // Whether to show the geo badge + USD switcher. We only show it when the
   // API actually resolved a non-USD currency — otherwise it's noise.
-  const showGeoBadge = Boolean(
-    pricing && (pricing.currency.code !== "USD" || isForcedUSD),
-  );
+  const showGeoBadge = Boolean(pricing && (pricing.currency.code !== "USD" || isForcedUSD));
 
   return (
-    <section id="pricing" className="py-16 sm:py-24 bg-brand-dark relative overflow-hidden">
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div
-          className="absolute inset-x-0 top-[10%] bottom-0 z-0 opacity-[0.15]"
-          style={{
-            backgroundImage: `linear-gradient(to right, rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,1) 1px, transparent 1px)`,
-            backgroundSize: "40px 40px",
-            maskImage:
-              "radial-gradient(ellipse 60% 80% at 50% 50%, black 10%, transparent 100%)",
-            WebkitMaskImage:
-              "radial-gradient(ellipse 60% 80% at 50% 50%, black 10%, transparent 100%)",
-          }}
-        />
-        <div className="absolute top-[20%] left-[10%] w-[400px] h-[400px] bg-brand-neon/20 rounded-full blur-[100px]" />
-        <div className="absolute top-[10%] right-[10%] w-[450px] h-[450px] bg-brand-neon-blue/15 rounded-full blur-[110px]" />
-        <div className="absolute bottom-[-10%] left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-purple-900/15 rounded-full blur-[120px]" />
-      </div>
+    <section
+      id="pricing"
+      className="py-14 sm:py-16 lg:py-20 bg-brand-dark relative overflow-hidden"
+    >
+      {/* Section Demarcation Divider */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent pointer-events-none z-20" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
@@ -184,9 +164,7 @@ export function PricingSection() {
             // the backend `plan_code` (not the i18n key). Falls back to the
             // translation default while loading or on error.
             const resolved =
-              isCustom || !plan.backendCode
-                ? null
-                : getPlanPrice(plan.backendCode, cycle);
+              isCustom || !plan.backendCode ? null : getPlanPrice(plan.backendCode, cycle);
 
             return (
               <SectionReveal
@@ -245,8 +223,7 @@ export function PricingSection() {
                           {resolved.symbolPos === "before" &&
                             resolved.currencySymbol &&
                             !(
-                              resolved.currencySymbol === "$" &&
-                              resolved.currencyCode !== "USD"
+                              resolved.currencySymbol === "$" && resolved.currencyCode !== "USD"
                             ) && (
                               <span className="text-2xl sm:text-3xl font-semibold text-brand-slate-light leading-none">
                                 {resolved.currencySymbol}
@@ -309,7 +286,9 @@ export function PricingSection() {
                             className={`w-3 h-3 ${plan.popular ? "text-brand-neon" : "text-brand-slate-light"}`}
                           />
                         </div>
-                        <span className="text-brand-slate-light text-sm leading-snug">{feature}</span>
+                        <span className="text-brand-slate-light text-sm leading-snug">
+                          {feature}
+                        </span>
                       </li>
                     ))}
                   </ul>

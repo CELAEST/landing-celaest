@@ -31,11 +31,10 @@ export function PipelineWidget() {
           </div>
         </div>
 
-        {/* Vertical Wire 1 with Terminal Sockets and Glowing Center Dot */}
+        {/* Vertical Wire 1 with Terminal Sockets (Top & Bottom only) */}
         <div className="wire-v1-wrap">
           <div className="wire-v1-pill" />
           <div className="wire-v1-line" />
-          <div className="wire-v1-dot" />
           <div className="wire-v1-pill" />
         </div>
 

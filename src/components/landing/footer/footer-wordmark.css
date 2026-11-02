@@ -1,0 +1,130 @@
+.footer-wordmark-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  isolation: isolate;
+  text-align: center;
+}
+
+.footer-wordmark-track {
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  cursor: default;
+  margin: 0 auto;
+}
+
+/* Ambient backlight behind the wordmark */
+.footer-wordmark-aura {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 75%;
+  height: 140px;
+  background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.22) 0%, rgba(109, 68, 198, 0.08) 50%, transparent 75%);
+  filter: blur(42px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.footer-wordmark-text {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  color: transparent;
+  font-family: "Helvetica Neue", "Arial", var(--font-inter), sans-serif;
+  font-size: clamp(54px, 13.5vw, 192px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.88;
+  white-space: nowrap;
+  -webkit-text-stroke: 1.2px rgba(244, 242, 252, 0.8);
+  transition: -webkit-text-stroke-color 220ms ease, filter 220ms ease;
+}
+
+/* Accent Line under text - Centered glowing beam matching master reference */
+.footer-wordmark-line {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: clamp(-16px, -1.4vw, -10px);
+  width: 52%;
+  max-width: 380px;
+  height: 1.5px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(109, 68, 198, 0.5) 18%,
+    rgba(167, 139, 250, 0.95) 50%,
+    rgba(109, 68, 198, 0.5) 82%,
+    transparent 100%
+  );
+  box-shadow: 0 0 12px rgba(167, 139, 250, 0.55);
+  pointer-events: none;
+}
+
+/* Individual Letters with Light-Sheen Gradient Mask and Royal Violet Dynamic Glow */
+.footer-wordmark-letter {
+  --glow: 0;
+  display: inline-block;
+  padding: 0.08em 0.05em;
+  margin: -0.08em -0.05em;
+  color: transparent;
+  text-shadow: none;
+  filter: drop-shadow(0 0 calc(10px + var(--glow) * 16px) rgba(109, 68, 198, calc(0.28 + var(--glow) * 0.72)));
+  -webkit-text-stroke-width: 1.2px;
+  transition:
+    filter 140ms linear,
+    -webkit-text-stroke-color 180ms ease,
+    transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: filter, -webkit-text-stroke-color;
+}
+
+/* Base silver-to-violet natural progression matching master reference */
+.footer-wordmark-letter:nth-child(1) {
+  -webkit-text-stroke-color: rgba(calc(248 - var(--glow) * 50), calc(246 - var(--glow) * 80), calc(255 - var(--glow) * 5), calc(0.85 + var(--glow) * 0.15));
+  -webkit-mask-image: linear-gradient(118deg, rgba(0,0,0,0.48) 0%, rgba(0,0,0,0.98) 32%, rgba(0,0,0,0.52) 100%);
+  mask-image: linear-gradient(118deg, rgba(0,0,0,0.48) 0%, rgba(0,0,0,0.98) 32%, rgba(0,0,0,0.52) 100%);
+}
+
+.footer-wordmark-letter:nth-child(2) {
+  -webkit-text-stroke-color: rgba(calc(240 - var(--glow) * 50), calc(238 - var(--glow) * 85), calc(252 - var(--glow) * 8), calc(0.82 + var(--glow) * 0.18));
+  -webkit-mask-image: linear-gradient(64deg, rgba(0,0,0,0.44) 0%, rgba(0,0,0,0.96) 42%, rgba(0,0,0,0.48) 100%);
+  mask-image: linear-gradient(64deg, rgba(0,0,0,0.44) 0%, rgba(0,0,0,0.96) 42%, rgba(0,0,0,0.48) 100%);
+}
+
+.footer-wordmark-letter:nth-child(3) {
+  -webkit-text-stroke-color: rgba(calc(228 - var(--glow) * 60), calc(220 - var(--glow) * 95), calc(250 - var(--glow) * 10), calc(0.82 + var(--glow) * 0.18));
+  -webkit-mask-image: linear-gradient(148deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.95) 50%, rgba(0,0,0,0.42) 100%);
+  mask-image: linear-gradient(148deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.95) 50%, rgba(0,0,0,0.42) 100%);
+}
+
+.footer-wordmark-letter:nth-child(4) {
+  -webkit-text-stroke-color: rgba(calc(210 - var(--glow) * 70), calc(195 - var(--glow) * 105), calc(248 - var(--glow) * 12), calc(0.84 + var(--glow) * 0.16));
+  -webkit-mask-image: linear-gradient(118deg, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.96) 38%, rgba(0,0,0,0.46) 100%);
+  mask-image: linear-gradient(118deg, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.96) 38%, rgba(0,0,0,0.46) 100%);
+}
+
+.footer-wordmark-letter:nth-child(5) {
+  -webkit-text-stroke-color: rgba(calc(195 - var(--glow) * 70), calc(175 - var(--glow) * 105), calc(245 - var(--glow) * 15), calc(0.85 + var(--glow) * 0.15));
+  -webkit-mask-image: linear-gradient(64deg, rgba(0,0,0,0.46) 0%, rgba(0,0,0,0.96) 46%, rgba(0,0,0,0.52) 100%);
+  mask-image: linear-gradient(64deg, rgba(0,0,0,0.46) 0%, rgba(0,0,0,0.96) 46%, rgba(0,0,0,0.52) 100%);
+}
+
+.footer-wordmark-letter:nth-child(6) {
+  -webkit-text-stroke-color: rgba(calc(185 - var(--glow) * 70), calc(160 - var(--glow) * 105), calc(245 - var(--glow) * 15), calc(0.88 + var(--glow) * 0.12));
+  -webkit-mask-image: linear-gradient(148deg, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.95) 54%, rgba(0,0,0,0.48) 100%);
+  mask-image: linear-gradient(148deg, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.95) 54%, rgba(0,0,0,0.48) 100%);
+}
+
+.footer-wordmark-letter:nth-child(7) {
+  -webkit-text-stroke-color: rgba(calc(192 - var(--glow) * 60), calc(165 - var(--glow) * 100), calc(250 - var(--glow) * 10), calc(0.9 + var(--glow) * 0.1));
+  -webkit-mask-image: linear-gradient(118deg, rgba(0,0,0,0.48) 0%, rgba(0,0,0,0.98) 60%, rgba(0,0,0,0.5) 100%);
+  mask-image: linear-gradient(118deg, rgba(0,0,0,0.48) 0%, rgba(0,0,0,0.98) 60%, rgba(0,0,0,0.5) 100%);
+}
