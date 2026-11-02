@@ -31,7 +31,7 @@ export function EcosystemWidget() {
         </div>
         <button type="button">
           <span>Todas</span>
-          <ChevronDown size={13} />
+          <ChevronDown size={12} className="shrink-0 opacity-80" />
         </button>
       </div>
 
