@@ -82,9 +82,9 @@ export function PlatformCard({
           transformStyle: "preserve-3d",
         }}
         className={cn(
-          "relative flex flex-col justify-between w-full rounded-[28px] sm:rounded-[32px] p-6 sm:p-7 md:p-8 overflow-hidden transition-all duration-300 group cursor-pointer select-none aspect-square min-h-[330px] sm:min-h-[350px] md:min-h-[365px]",
+          "relative flex flex-col justify-between w-full rounded-[28px] sm:rounded-[32px] p-6 sm:p-7 md:p-8 overflow-hidden transition-all duration-500 group cursor-pointer select-none aspect-square min-h-[330px] sm:min-h-[350px] md:min-h-[365px]",
           isPopular
-            ? "border-2 border-[#a855f7] shadow-[0_0_30px_rgba(168,85,247,0.35),inset_0_0_20px_rgba(168,85,247,0.08)] bg-[#0d0a17]/95"
+            ? "border border-[#a78bfa]/35 hover:border-[#a78bfa]/60 shadow-[0_12px_40px_-15px_rgba(167,139,250,0.18)] bg-[#09090f]/90"
             : "border border-white/[0.08] hover:border-white/20 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.8)] bg-[#09090f]/90",
         )}
       >
@@ -100,7 +100,7 @@ export function PlatformCard({
           {/* Subtle cursor spotlight */}
           {isHovered && (
             <motion.div
-              className="absolute inset-0 bg-[radial-gradient(circle_at_var(--x,_50%)_var(--y,_50%),rgba(167,139,250,0.15),transparent_65%)]"
+              className="absolute inset-0 bg-[radial-gradient(circle_at_var(--x,_50%)_var(--y,_50%),rgba(167,139,250,0.12),transparent_65%)]"
               style={
                 {
                   "--x": `${smoothMouseX.get() * 100}%`,
@@ -113,8 +113,8 @@ export function PlatformCard({
 
         {/* TOP-RIGHT: 3D Isometric Illustration */}
         <div className="absolute top-1 sm:top-2 right-1 sm:right-2 w-[58%] sm:w-[56%] h-[58%] sm:h-[62%] flex items-center justify-end pointer-events-none z-10 [transform-style:preserve-3d]">
-          {/* Ambient Purple Underglow */}
-          <div className="absolute w-[85%] h-[85%] rounded-full bg-[#8b5cf6]/20 blur-2xl pointer-events-none group-hover:bg-[#8b5cf6]/35 transition-all duration-500" />
+          {/* Ambient Purple Underglow (Subtle & diffused) */}
+          <div className="absolute w-[80%] h-[80%] rounded-full bg-[#a78bfa]/12 blur-3xl pointer-events-none group-hover:bg-[#a78bfa]/25 transition-all duration-500" />
 
           {/* Floating Illustration with Parallax Depth */}
           <motion.div
