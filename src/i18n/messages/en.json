@@ -473,57 +473,52 @@
   },
   "architecture": {
     "badge": "SYSTEM ARCHITECTURE",
-    "title1": "The Complete Ecosystem.",
-    "title2": "From infrastructure to execution.",
-    "subtitle": "CELAEST integrates centralized governance, distributed artificial intelligence, autonomous workflows, and a verified asset marketplace into a single unified enterprise platform.",
-    "layers": {
+    "titleLead": "The CELAEST",
+    "titleAccent": "Ecosystem.",
+    "subtitle": "A unified ecosystem where governance, intelligence and automation work together to power enterprise at scale.",
+    "pillars": {
       "governance": {
-        "tag": "01 / GOVERNANCE",
-        "title": "Control Center & Multi-Tenant Isolation",
-        "description": "Strict cryptographic organization-scoped isolation. Centralized control of licenses, granular roles (Owner, Admin, Member), and secure hardware-validated sessions within a single control plane.",
-        "signal": "Multi-Tenant Isolation",
-        "metric": "SOC-2 Ready"
+        "number": "01",
+        "title": "Centralization &\nGovernance",
+        "desc": "Manage access, permissions\nand security at scale."
       },
       "mesh": {
-        "tag": "02 / NEURAL MESH",
-        "title": "AI Mesh & Cascade Routing",
-        "description": "The central intelligence broker (celaest-core) optimizes and routes requests across cutting-edge models. If a provider experiences latency, it shifts transparently in sub-15ms.",
-        "signal": "Intelligent Failover",
-        "metric": "<15ms Failover"
+        "number": "02",
+        "title": "IA Mesh",
+        "desc": "Connect and orchestrate\nthe best AI models."
       },
-      "pipeline": {
-        "tag": "03 / ORCHESTRATION",
-        "title": "Autonomous Automation Engine",
-        "description": "Operational events are channeled into deterministic graphs. Each flow executes data transformations, secure API calls, and recovery branches with 100% auditable traceability.",
-        "signal": "Deterministic Execution",
-        "metric": "Full Traceability"
+      "flows": {
+        "number": "03",
+        "title": "Autonomous Flows",
+        "desc": "Automate processes and\nscale operations."
       },
-      "ecosystem": {
-        "tag": "04 / DISTRIBUTION",
-        "title": "Asset Catalog & Specialized Solutions",
-        "description": "Immediate access to verified engineering tools, enterprise connectors (Sheets, Slack, CRMs), and proprietary flagship suites like Lingua for executive communication training.",
-        "signal": "Instant Deployment",
-        "metric": "Zero-Code Deploy"
+      "marketplace": {
+        "number": "04",
+        "title": "Asset Marketplace &\nSolutions",
+        "desc": "Access verified tools and\nspecialized solutions."
       }
     },
-    "synthesis": {
-      "badge": "STRATEGIC IMPACT",
-      "title": "Definitive architectural consolidation.",
-      "columns": {
-        "unification": {
-          "title": "1 Unified Platform",
-          "desc": "Replace dozens of orphan scripts and fragmented subscriptions under a single auditable architectural contract."
+    "impact": {
+      "badge": "BUSINESS IMPACT",
+      "leadTitle": "Less fragmentation.",
+      "leadAccent": "More execution capacity.",
+      "metrics": {
+        "debt": {
+          "value": "-70%",
+          "label": "Technical Debt",
+          "desc": "From multiple tools to one platform."
         },
-        "uptime": {
-          "title": "99.99% Global Resilience",
-          "desc": "Distributed edge mesh with zero single points of failure, ensuring operational continuity for mission-critical workloads."
+        "efficiency": {
+          "value": "3x",
+          "label": "Operational Efficiency",
+          "desc": "From weeks to minutes."
         },
-        "speed": {
-          "title": "10x Deployment Velocity",
-          "desc": "Turn months of internal engineering and integration into minutes of autonomous agent-assisted activation."
+        "scalability": {
+          "value": "10x",
+          "label": "Scalability",
+          "desc": "Built for what's next."
         }
-      },
-      "cta": "Explore Enterprise Platform"
+      }
     }
   }
 }

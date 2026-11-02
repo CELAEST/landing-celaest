@@ -1,30 +1,34 @@
-# CELAEST Macro-Architecture Section Standard
+# CELAEST Architecture Section - Editorial Minimalist Standard
 
 ## Contexto & Propósito
-En reemplazo de la sección transaccional básica de Preguntas y Respuestas (FAQ), se consolidó la nueva sección de **Arquitectura del Sistema** (`ArchitectureSection`), encargada de articular el valor y alcance del macro-ecosistema completo de CELAEST de forma ultra-limpia y con estándar de lujo empresarial.
+Siguiendo la referencia exacta provista en `c:\Users\user\Downloads\replicar-diseno-web-arriba-footer` y la captura de diseño de alta gama, se rediseñó la sección de Arquitectura (`ArchitectureSection`) eliminando por completo cualquier card encajonada, borde denso o contenedor pesado.
 
-## Pilares del Macro-Ecosistema
-1. **01 / Gobernanza & Multi-Tenant**:
-   - Control Center, aislamiento estricto por organización vía claves criptográficas, RBAC granular (`Owner`, `Admin`, `Member`) y sesiones con tokens seguros.
-   - Micro-esquemático: árbol de permisos limpio con tags flotantes y señal `SOC-2 Ready`.
-2. **02 / Malla Neural (IA Mesh)**:
-   - Broker central de inteligencia distribuida (`celaest-core:8085`), balanceo y conmutación en cascada inteligente sub-15ms entre proveedores (Gemini 1.5 Pro, Claude 3.5 Sonnet, DeepSeek R1).
-   - Micro-esquemático: canales de latencia en tiempo real y señal `<15ms Failover`.
-3. **03 / Orquestación (Execution Graph)**:
-   - Motor de automatización determinista donde cada flujo ejecuta transformaciones de datos, validaciones y ramas de recuperación con trazabilidad 100% auditable.
-   - Micro-esquemático: grafo determinista unboxed con nodos refinados (Trigger con play, Action con rayo púrpura, bifurcación simétrica SVG a Completado/Reintentar).
-4. **04 / Distribución (Marketplace & Soluciones)**:
-   - Catálogo verificado de extensiones y suites de alto impacto (Google Sheets, Slack, Lingua AI, Auto Sync).
-   - Micro-esquemático: emblemas vectoriales oficiales desincorporados de cajas pesadas, despliegue en 1-clic y señal `Zero-Code Deploy`.
+## Estructura de Diseño Editorial
+1. **Header Principal**:
+   - Etiqueta de regla: línea sólida de `49px` con texto mono espaciado `— SYSTEM ARCHITECTURE` (`ARQUITECTURA DEL SISTEMA`).
+   - Título editorial en dos tonos: `The CELAEST` (blanco puro) y `Ecosystem.` (`#9da2b1`) a 96px de escala tipográfica con tracking negativo y leading de 0.88.
+   - Subtítulo editorial en color atenuado `#9da2b1`.
 
-## Síntesis Estratégica
-- Fila inferior con 3 métricas de consolidación:
-  1. `1 Plataforma Unificada` (eliminación de scripts huérfanos).
-  2. `99.99% Resiliencia Global` (malla distribuida sin puntos únicos de fallo).
-  3. `10x Velocidad de Despliegue` (activación asistida por agentes autónomos).
-- CTA directo a `#platform`.
+2. **Los 4 Pilares del Ecosistema**:
+   - Conector continuo hairline horizontal (`#4d4e53`) a la altura del centro de los iconos (44px) que conecta fluidamente los 4 bloques.
+   - Iconos vectoriales de línea fina en color lavanda `#D0C7FF`:
+     1. `01 Centralization & Governance` / `Centralización & Gobernanza` (Icono de capas isométricas superpuestas).
+     2. `02 IA Mesh` / `Malla IA` (Icono de microchip con pines de conexión).
+     3. `03 Autonomous Flows` / `Flujos Autónomos` (Icono de organigrama jerárquico).
+     4. `04 Asset Marketplace & Solutions` / `Mercado de Activos & Soluciones` (Icono de cubo isométrico tridimensional).
+   - Tipografía limpia: número en fuente mono, título blanco a 20-22px y descripción fluida en `#9ba0ae`.
 
-## Reglas de Diseño "Súper Limpio"
-- **Zero Border-Clutter**: Prohibido el uso de bordes gruesos o cards encajonadas dentro de otras cards. Únicamente líneas estructurales sutiles (`border-white/[0.06]`), elevación por luminancia y fondos obsidian glass (`bg-white/[0.015]`).
-- **Zero Hardcoding**: 100% soporte multilingüe en `es.json` y `en.json` con acentuación ortográfica rigurosa.
-- **Validación Blackbox**: Verificación estática con `npm run build` y visual en navegador vivo con Playwright en `/es` y `/en`.
+3. **Sección de Impacto Empresarial (Business Impact)**:
+   - Divisor superior hairline `#4b4d51`.
+   - Etiqueta de regla: `— BUSINESS IMPACT` (`IMPACTO EMPRESARIAL`).
+   - Cuadrícula de 4 columnas:
+     - Columna Lead: `Less fragmentation.` (blanco) / `More execution capacity.` (`#9da2b1`).
+     - 3 Columnas de métricas con separadores verticales `#4b4d51`:
+       - `-70% Technical Debt` (Deuda Técnica)
+       - `3x Operational Efficiency` (Eficiencia Operativa)
+       - `10x Scalability` (Escalabilidad)
+
+## Estándar Técnico
+- Cero assets pesados; iconos vectoriales puros SVG optimizados e incrustados para renderizado instantáneo sin parpadeo.
+- Soporte 100% bilingüe vía `next-intl` (`en.json` y `es.json`) con ortografía y acentuación precisa.
+- Verificación en servidor vivo (`/es` y `/en`) con Playwright.

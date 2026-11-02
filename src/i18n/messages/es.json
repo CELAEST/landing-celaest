@@ -473,57 +473,52 @@
   },
   "architecture": {
     "badge": "ARQUITECTURA DEL SISTEMA",
-    "title1": "El Ecosistema Completo.",
-    "title2": "De la infraestructura a la ejecución.",
-    "subtitle": "CELAEST integra gobernanza centralizada, inteligencia artificial distribuida, flujos continuos y un mercado verificado en una sola plataforma empresarial unificada.",
-    "layers": {
+    "titleLead": "El Ecosistema",
+    "titleAccent": "CELAEST.",
+    "subtitle": "Un ecosistema unificado donde la gobernanza, la inteligencia y la automatización convergen para potenciar la empresa a escala.",
+    "pillars": {
       "governance": {
-        "tag": "01 / GOBERNANZA",
-        "title": "Control Center & Aislamiento Multi-Tenant",
-        "description": "Aislamiento criptográfico estricto por organización. Control centralizado de licencias, roles granulares (Owner, Admin, Member) y sesiones seguras en un único plano de control empresarial.",
-        "signal": "Aislamiento Multi-Tenant",
-        "metric": "SOC-2 Ready"
+        "number": "01",
+        "title": "Centralización &\nGobernanza",
+        "desc": "Gestión de accesos, permisos\ny seguridad a escala."
       },
       "mesh": {
-        "tag": "02 / MALLA NEURAL",
-        "title": "IA Mesh & Enrutamiento en Cascada",
-        "description": "El broker central de inteligencia (celaest-core) optimiza y enruta peticiones entre modelos de vanguardia. Si un proveedor experimenta latencia, conmuta de forma transparente en milisegundos.",
-        "signal": "Conmutación Inteligente",
-        "metric": "<15ms Failover"
+        "number": "02",
+        "title": "Malla IA",
+        "desc": "Conecte y orqueste\nlos mejores modelos de IA."
       },
-      "pipeline": {
-        "tag": "03 / ORQUESTACIÓN",
-        "title": "Motor de Automatización Autónoma",
-        "description": "Los eventos operativos se canalizan en grafos deterministas. Cada flujo ejecuta transformaciones de datos, llamadas seguras a APIs y ramas de recuperación con trazabilidad 100% auditable.",
-        "signal": "Ejecución Determinista",
-        "metric": "Trazabilidad Total"
+      "flows": {
+        "number": "03",
+        "title": "Flujos Autónomos",
+        "desc": "Automatice procesos y\nescale sus operaciones."
       },
-      "ecosystem": {
-        "tag": "04 / DISTRIBUCIÓN",
-        "title": "Catálogo de Activos & Soluciones",
-        "description": "Acceso inmediato a herramientas verificadas, conectores empresariales (Sheets, Slack, CRMs) y suites propietarias de alto impacto como Lingua para entrenamiento comunicativo con IA.",
-        "signal": "Despliegue Instantáneo",
-        "metric": "Zero-Code Deploy"
+      "marketplace": {
+        "number": "04",
+        "title": "Mercado de Activos &\nSoluciones",
+        "desc": "Acceso a herramientas verificadas\ny soluciones especializadas."
       }
     },
-    "synthesis": {
-      "badge": "IMPACTO ESTRATÉGICO",
-      "title": "Consolidación arquitectónica definitiva.",
-      "columns": {
-        "unification": {
-          "title": "1 Plataforma Unificada",
-          "desc": "Reemplaza decenas de scripts huérfanos y suscripciones fragmentadas bajo un único contrato arquitectónico auditable."
+    "impact": {
+      "badge": "IMPACTO EMPRESARIAL",
+      "leadTitle": "Menor fragmentación.",
+      "leadAccent": "Mayor capacidad de ejecución.",
+      "metrics": {
+        "debt": {
+          "value": "-70%",
+          "label": "Deuda Técnica",
+          "desc": "De múltiples herramientas a una sola plataforma."
         },
-        "uptime": {
-          "title": "99.99% Resiliencia Global",
-          "desc": "Malla distribuida en el borde sin puntos únicos de fallo, garantizando continuidad operativa para misiones críticas."
+        "efficiency": {
+          "value": "3x",
+          "label": "Eficiencia Operativa",
+          "desc": "De semanas a cuestión de minutos."
         },
-        "speed": {
-          "title": "10x Velocidad de Despliegue",
-          "desc": "Transforme meses de desarrollo e integración interna en minutos de activación asistida por agentes autónomos."
+        "scalability": {
+          "value": "10x",
+          "label": "Escalabilidad",
+          "desc": "Diseñado para lo que viene."
         }
-      },
-      "cta": "Explorar Plataforma Empresarial"
+      }
     }
   }
 }

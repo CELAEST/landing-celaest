@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="68" height="63" viewBox="0 0 68 63" fill="none">
+  <defs>
+    <!-- Hide only the portions of each rear outline that sit behind the
+         transparent face of the layer in front. The canvas stays transparent. -->
+    <mask id="middle-visible" maskUnits="userSpaceOnUse"
+          x="0" y="0" width="68" height="63">
+      <rect width="68" height="63" fill="white"/>
+      <path d="M34 5 L59 19 L34 33 L9 19 Z" fill="black"/>
+    </mask>
+    <mask id="bottom-visible" maskUnits="userSpaceOnUse"
+          x="0" y="0" width="68" height="63">
+      <rect width="68" height="63" fill="white"/>
+      <path d="M34 5 L59 19 L34 33 L9 19 Z" fill="black"/>
+      <path d="M34 15 L59 29 L34 43 L9 29 Z" fill="black"/>
+    </mask>
+  </defs>
+
+  <g stroke="#D0C7FF" stroke-width="1.55"
+     stroke-linecap="round" stroke-linejoin="round">
+    <!-- Rearmost layer: a complete closed diamond, masked where occluded -->
+    <path d="M34 25 L59 39 L34 53 L9 39 Z"
+          mask="url(#bottom-visible)"/>
+
+    <!-- Middle layer: a complete closed diamond, masked by the top plane -->
+    <path d="M34 15 L59 29 L34 43 L9 29 Z"
+          mask="url(#middle-visible)"/>
+
+    <!-- Front layer remains fully closed and uninterrupted -->
+    <path d="M34 5 L59 19 L34 33 L9 19 Z"/>
+  </g>
+</svg>
