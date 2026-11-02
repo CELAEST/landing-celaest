@@ -1,13 +1,13 @@
-# CELAEST Architecture Section - Editorial Minimalist Standard (V2 Symmetric)
+# CELAEST Architecture Section - Harmonized Scale & Diagonal Numbers Standard
 
-## Especificaciones de Maquetación & Simetría
-1. **Ancho Contenedor Unificado (Anti-Overstretch)**:
-   - Restringido estrictamente a `max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8` para coincidir exactamente con el ancho maestro de `ProductsSection` y `PlatformSection`.
-2. **Posicionamiento de Números & SVGs**:
-   - Los números (`01`, `02`, `03`, `04`) se ubican a la **izquierda inmediata del SVG** (`w-8 shrink-0 mr-2`), alineados verticalmente en el centro del eje conector.
-3. **Escala de Iconos Vectoriales**:
-   - Dimensionados a `76px x 76px` con trazo reforzado (`strokeWidth="1.8"` a `"2.0"`) y resplandor sutil lavanda (`drop-shadow-[0_0_12px_rgba(201,187,255,0.22)]`).
-4. **Conector Inter-Columnas**:
-   - Línea continua `#4d4e53` a `top-[48px]` que vincula las 4 columnas a través de los iconos en desktop.
-5. **Impacto Empresarial**:
-   - Separador superior `#4b4d51`, lead editorial a dos tonos y 3 columnas con divisores verticales para `-70% Technical Debt`, `3x Operational Efficiency` y `10x Scalability`.
+## Especificaciones de Maquetación & Escala Proporcional
+1. **Escala Tipográfica Armonizada (Anti-Gigantismo)**:
+   - El título principal se ajustó de 96px a `text-4xl sm:text-5xl lg:text-[62px] leading-[0.96] tracking-[-2.2px]` para coincidir de forma balanceada con la escala de las demás secciones de la landing (`capabilities-title` en `platform-section.tsx`).
+   - El subtítulo se calibró a `text-base sm:text-lg leading-[1.4]`.
+2. **Posicionamiento Diagonal de Números**:
+   - Siguiendo el contrato exacto de `replicar-diseno-web-arriba-footer`, los números (`01`, `02`, `03`, `04`) se ubican en la esquina superior izquierda de cada columna (`position: absolute; top: 0; left: 0;`), quedando en **posición diagonal** respecto al icono SVG.
+   - El icono se sitúa en la fila superior con `padding-left: 36px` a `height: 89px`.
+3. **Escala y Luminosidad de los Iconos**:
+   - Iconos vectoriales de `66px x 66px` con trazo definido (`1.8px - 2.0px`) y resplandor sutil `#D0C7FF`.
+4. **Ancho Contenedor Maestro**:
+   - Restringido a `max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8` para alinearse verticalmente con las demás secciones de la landing.

@@ -4,40 +4,40 @@ import React from "react";
 import { useTranslations } from "next-intl";
 
 // ============================================================================
-// VECTOR LINE-ART ICONS (Bigger, bolder stroke, soft luminescence)
+// VECTOR LINE-ART ICONS (Faithful to replica reference)
 // ============================================================================
-function LayersIcon({ className = "w-[76px] h-[76px]" }: { className?: string }) {
+function LayersIcon({ className = "w-[66px] h-[66px]" }: { className?: string }) {
   return (
     <svg
-      className={`${className} drop-shadow-[0_0_12px_rgba(201,187,255,0.22)]`}
+      className={`${className} drop-shadow-[0_0_10px_rgba(201,187,255,0.25)]`}
       viewBox="0 0 68 63"
       fill="none"
       aria-hidden="true"
     >
       <defs>
-        <mask id="arch-mid-visible" maskUnits="userSpaceOnUse" x="0" y="0" width="68" height="63">
+        <mask id="arch-mid-vis" maskUnits="userSpaceOnUse" x="0" y="0" width="68" height="63">
           <rect width="68" height="63" fill="white" />
           <path d="M34 5 L59 19 L34 33 L9 19 Z" fill="black" />
         </mask>
-        <mask id="arch-bot-visible" maskUnits="userSpaceOnUse" x="0" y="0" width="68" height="63">
+        <mask id="arch-bot-vis" maskUnits="userSpaceOnUse" x="0" y="0" width="68" height="63">
           <rect width="68" height="63" fill="white" />
           <path d="M34 5 L59 19 L34 33 L9 19 Z" fill="black" />
           <path d="M34 15 L59 29 L34 43 L9 29 Z" fill="black" />
         </mask>
       </defs>
       <g stroke="#D0C7FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M34 25 L59 39 L34 53 L9 39 Z" mask="url(#arch-bot-visible)" />
-        <path d="M34 15 L59 29 L34 43 L9 29 Z" mask="url(#arch-mid-visible)" />
+        <path d="M34 25 L59 39 L34 53 L9 39 Z" mask="url(#arch-bot-vis)" />
+        <path d="M34 15 L59 29 L34 43 L9 29 Z" mask="url(#arch-mid-vis)" />
         <path d="M34 5 L59 19 L34 33 L9 19 Z" />
       </g>
     </svg>
   );
 }
 
-function ChipIcon({ className = "w-[76px] h-[76px]" }: { className?: string }) {
+function ChipIcon({ className = "w-[66px] h-[66px]" }: { className?: string }) {
   return (
     <svg
-      className={`${className} drop-shadow-[0_0_12px_rgba(201,187,255,0.22)]`}
+      className={`${className} drop-shadow-[0_0_10px_rgba(201,187,255,0.25)]`}
       viewBox="0 0 64 64"
       fill="none"
       aria-hidden="true"
@@ -52,10 +52,10 @@ function ChipIcon({ className = "w-[76px] h-[76px]" }: { className?: string }) {
   );
 }
 
-function FlowsIcon({ className = "w-[76px] h-[76px]" }: { className?: string }) {
+function FlowsIcon({ className = "w-[66px] h-[66px]" }: { className?: string }) {
   return (
     <svg
-      className={`${className} drop-shadow-[0_0_12px_rgba(201,187,255,0.22)]`}
+      className={`${className} drop-shadow-[0_0_10px_rgba(201,187,255,0.25)]`}
       viewBox="0 0 96 96"
       fill="none"
       aria-hidden="true"
@@ -71,10 +71,10 @@ function FlowsIcon({ className = "w-[76px] h-[76px]" }: { className?: string }) 
   );
 }
 
-function MarketplaceIcon({ className = "w-[76px] h-[76px]" }: { className?: string }) {
+function MarketplaceIcon({ className = "w-[66px] h-[66px]" }: { className?: string }) {
   return (
     <svg
-      className={`${className} drop-shadow-[0_0_12px_rgba(201,187,255,0.22)]`}
+      className={`${className} drop-shadow-[0_0_10px_rgba(201,187,255,0.25)]`}
       viewBox="0 0 96 96"
       fill="none"
       aria-hidden="true"
@@ -88,7 +88,7 @@ function MarketplaceIcon({ className = "w-[76px] h-[76px]" }: { className?: stri
 }
 
 // ============================================================================
-// MAIN ARCHITECTURE SECTION
+// MAIN ARCHITECTURE SECTION COMPONENT
 // ============================================================================
 export function ArchitectureSection() {
   const t = useTranslations("architecture");
@@ -127,61 +127,60 @@ export function ArchitectureSection() {
   return (
     <section
       id="architecture"
-      className="bg-[#000000] text-[#f7f7f8] relative overflow-hidden py-20 sm:py-28 lg:py-32"
+      className="bg-[#000000] text-[#f7f7f8] relative overflow-hidden py-20 sm:py-24 lg:py-28"
     >
       {/* Symmetrical container matching ProductsSection & PlatformSection max-w-[85rem] */}
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Editorial Hero Header */}
+        {/* Editorial Hero Header - Proportional to other landing sections */}
         <header className="max-w-4xl">
-          <div className="flex items-center gap-4 text-[#a9adbb] text-xs font-mono tracking-[2.2px] leading-none mb-7">
-            <span className="w-12 h-px bg-[#afb2ba] inline-block" />
+          <div className="flex items-center gap-4 text-[#a9adbb] text-[11px] font-mono tracking-[2px] leading-none mb-5">
+            <span className="w-10 h-px bg-[#afb2ba] inline-block" />
             <span>{t("badge")}</span>
           </div>
 
-          <h2 className="text-5xl sm:text-7xl lg:text-[88px] font-normal tracking-[-3.5px] sm:tracking-[-4.5px] leading-[0.88] mb-6 text-white font-sans">
+          <h2 className="text-4xl sm:text-5xl lg:text-[62px] font-medium tracking-tight sm:tracking-[-2.2px] leading-[0.96] mb-5 text-white font-sans">
             {t("titleLead")}
             <br />
-            <span className="text-[#9da2b1]">{t("titleAccent")}</span>
+            <span className="text-[#9da2b1] font-normal">{t("titleAccent")}</span>
           </h2>
 
-          <p className="text-[#9da2b1] text-lg sm:text-xl lg:text-[20px] leading-[1.45] tracking-[-0.35px] max-w-2xl font-light">
+          <p className="text-[#9da2b1] text-base sm:text-lg leading-[1.4] tracking-[-0.25px] max-w-2xl font-light">
             {t("subtitle")}
           </p>
         </header>
 
-        {/* 4 Pillars Grid with Symmetrical Connector Line & Numbers next to SVGs */}
+        {/* 4 Pillars Grid with Diagonal Numbers and Connecting Line */}
         <section
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-0 mt-16 sm:mt-20 relative"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-0 mt-14 sm:mt-16 relative"
           aria-label="System architecture pillars"
         >
           {pillars.map((pillar, index) => (
-            <article className="min-w-0 relative pr-4" key={pillar.number}>
-              {/* Top Row: Number on left + Large SVG + Connector line to next */}
-              <div className="h-[96px] flex items-center justify-start relative">
-                {/* Number beside the SVG */}
-                <span className="font-mono text-[#9ba0ae] text-[15px] sm:text-[16px] leading-none shrink-0 w-8">
-                  {pillar.number}
-                </span>
+            <article className="min-w-0 relative pr-5" key={pillar.number}>
+              {/* Number in the top-left (diagonal to the icon) */}
+              <div className="absolute top-0 left-0 z-10 font-mono text-[#9ba0ae] text-[15px] leading-none">
+                {pillar.number}
+              </div>
 
-                {/* Larger SVG Icon */}
-                <div className="relative z-10 shrink-0 ml-2">{pillar.icon}</div>
+              {/* Top Row: Icon with left-padding to position it diagonally to the number */}
+              <div className="h-[89px] flex items-center justify-start relative pl-9 sm:pl-10">
+                <div className="relative z-10 flex-none">{pillar.icon}</div>
 
                 {/* Connector line between columns */}
                 {index < pillars.length - 1 && (
                   <div
-                    className="hidden lg:block absolute left-[134px] right-[24px] top-[48px] h-px bg-[#4d4e53] z-0"
+                    className="hidden lg:block absolute left-[124px] right-[28px] top-[44px] h-px bg-[#4d4e53] z-0"
                     aria-hidden="true"
                   />
                 )}
               </div>
 
               {/* Title */}
-              <h3 className="font-normal text-[20px] sm:text-[22px] leading-[1.15] tracking-[-0.6px] text-white min-h-[52px] mt-4 mb-3 text-left whitespace-pre-line">
+              <h3 className="font-normal text-[20px] sm:text-[21px] leading-[1.15] tracking-[-0.6px] text-white min-h-[48px] mt-4 mb-2.5 text-left whitespace-pre-line">
                 {pillar.title}
               </h3>
 
               {/* Description */}
-              <p className="text-[#9ba0ae] text-[14px] sm:text-[15px] leading-[1.45] text-left max-w-[250px] whitespace-pre-line font-light">
+              <p className="text-[#9ba0ae] text-[14px] sm:text-[14.5px] leading-[1.4] text-left max-w-[240px] whitespace-pre-line font-light">
                 {pillar.desc}
               </p>
             </article>
@@ -189,26 +188,26 @@ export function ArchitectureSection() {
         </section>
 
         {/* Strategic Business Impact Section */}
-        <section className="border-t border-[#4b4d51] mt-20 pt-9">
-          <div className="flex items-center gap-4 text-[#a9adbb] text-xs font-mono tracking-[2.2px] leading-none mb-8">
-            <span className="w-12 h-px bg-[#afb2ba] inline-block" />
+        <section className="border-t border-[#4b4d51] mt-16 sm:mt-20 pt-8 sm:pt-9">
+          <div className="flex items-center gap-4 text-[#a9adbb] text-[11px] font-mono tracking-[2px] leading-none mb-7">
+            <span className="w-10 h-px bg-[#afb2ba] inline-block" />
             <span>{t("impact.badge")}</span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 mt-7">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 mt-6">
             {/* Impact Lead */}
-            <div className="text-[28px] sm:text-[34px] lg:text-[35px] font-normal leading-[1.08] tracking-[-1.5px] pr-4">
+            <div className="text-[26px] sm:text-[30px] lg:text-[31px] font-normal leading-[1.1] tracking-[-1.2px] pr-4">
               <span className="text-white">{t("impact.leadTitle")}</span>
               <br />
               <span className="text-[#9da2b1]">{t("impact.leadAccent")}</span>
             </div>
 
             {/* Metric 1: Technical Debt */}
-            <div className="lg:border-l lg:border-[#4b4d51] lg:pl-12 flex flex-col justify-start">
-              <strong className="text-[36px] sm:text-[38px] font-normal tracking-[-1px] text-white leading-none">
+            <div className="lg:border-l lg:border-[#4b4d51] lg:pl-11 flex flex-col justify-start">
+              <strong className="text-[34px] sm:text-[36px] font-normal tracking-[-1px] text-white leading-none">
                 {t("impact.metrics.debt.value")}
               </strong>
-              <b className="text-[#c2c5cf] text-[16px] font-normal mt-3 leading-snug">
+              <b className="text-[#c2c5cf] text-[15px] font-normal mt-2.5 leading-snug">
                 {t("impact.metrics.debt.label")}
               </b>
               <small className="text-[#858a98] text-[13px] mt-1 leading-normal font-light">
@@ -217,11 +216,11 @@ export function ArchitectureSection() {
             </div>
 
             {/* Metric 2: Operational Efficiency */}
-            <div className="lg:border-l lg:border-[#4b4d51] lg:pl-12 flex flex-col justify-start">
-              <strong className="text-[36px] sm:text-[38px] font-normal tracking-[-1px] text-white leading-none">
+            <div className="lg:border-l lg:border-[#4b4d51] lg:pl-11 flex flex-col justify-start">
+              <strong className="text-[34px] sm:text-[36px] font-normal tracking-[-1px] text-white leading-none">
                 {t("impact.metrics.efficiency.value")}
               </strong>
-              <b className="text-[#c2c5cf] text-[16px] font-normal mt-3 leading-snug">
+              <b className="text-[#c2c5cf] text-[15px] font-normal mt-2.5 leading-snug">
                 {t("impact.metrics.efficiency.label")}
               </b>
               <small className="text-[#858a98] text-[13px] mt-1 leading-normal font-light">
@@ -230,11 +229,11 @@ export function ArchitectureSection() {
             </div>
 
             {/* Metric 3: Scalability */}
-            <div className="lg:border-l lg:border-[#4b4d51] lg:pl-12 flex flex-col justify-start">
-              <strong className="text-[36px] sm:text-[38px] font-normal tracking-[-1px] text-white leading-none">
+            <div className="lg:border-l lg:border-[#4b4d51] lg:pl-11 flex flex-col justify-start">
+              <strong className="text-[34px] sm:text-[36px] font-normal tracking-[-1px] text-white leading-none">
                 {t("impact.metrics.scalability.value")}
               </strong>
-              <b className="text-[#c2c5cf] text-[16px] font-normal mt-3 leading-snug">
+              <b className="text-[#c2c5cf] text-[15px] font-normal mt-2.5 leading-snug">
                 {t("impact.metrics.scalability.label")}
               </b>
               <small className="text-[#858a98] text-[13px] mt-1 leading-normal font-light">
