@@ -8,29 +8,23 @@ import { PlatformCard } from "./platform-card";
 interface PlatformCardConfig {
   id: "management" | "workflow" | "ecosystem";
   image: string;
-  bgImage: string;
   icon: "layers" | "zap" | "shield";
-  isPopular?: boolean;
 }
 
 const PLATFORM_CARDS: PlatformCardConfig[] = [
   {
     id: "management",
     image: "/images/platform/management.webp",
-    bgImage: "/images/platform/card-bg-1.webp",
     icon: "layers",
   },
   {
     id: "workflow",
     image: "/images/platform/workflow.webp",
-    bgImage: "/images/platform/card-bg-2.webp",
     icon: "zap",
-    isPopular: true,
   },
   {
     id: "ecosystem",
     image: "/images/platform/ecosystem.webp",
-    bgImage: "/images/platform/card-bg-3.webp",
     icon: "shield",
   },
 ];
@@ -67,10 +61,7 @@ export function PlatformSection() {
               title={t(`cards.${card.id}.title`)}
               description={t(`cards.${card.id}.description`)}
               image={card.image}
-              bgImage={card.bgImage}
               icon={card.icon}
-              isPopular={card.isPopular}
-              popularLabel={card.isPopular ? t("popular") : undefined}
               exploreLabel={t("explore")}
               index={index}
             />

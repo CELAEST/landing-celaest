@@ -1,26 +1,26 @@
-# Contrato Canónico: Cards Isométricas 3D de Plataforma (Estructura Asimétrica 1:1)
+# Contrato Canónico: Cards Isométricas 3D de Plataforma (Ultra-Clean Master Standard)
 
-## Contexto & Corrección Estructural
-Se corrigió la composición y arquitectura de las 3 tarjetas de la sección Plataforma para reflejar con precisión matemática 1:1 el diseño de referencia:
+## Contexto & Calidad de Ingeniería
+Las tarjetas de la sección Plataforma se elevaron a estándar de ingeniería de lujo minimalista, logrando paridad 1:1 con el diseño maestro de referencia:
 
-1. **Proporción de Card (Squarish / ~1:1)**:
-   - Proporción cuadrada `aspect-square` (`min-h-[330px] sm:min-h-[350px] md:min-h-[365px]`), amplia y espaciosa.
+1. **Eliminación Total de Badges Innecesarios**:
+   - Se removió por completo el badge "Más popular" / "Most Popular" de la tarjeta central ("Pipeline de Automatización").
+   - Las 3 tarjetas comparten ahora una jerarquía visual idéntica: caja de ícono cuadrada de cristal (`Layers`, `Zap`, `Shield`) con el mismo espaciado superior.
 
-2. **Composición Asimétrica Izquierda/Derecha**:
-   - **Columna Izquierda (55% de ancho)**:
-     - **Arriba**: Badge de categoría/popularidad y caja de ícono cuadrada de cristal (`Layers`, `Zap`, `Shield`). En la Card 2 ("Pipeline"), el badge `● Más popular` se ubica arriba a la izquierda justo encima del ícono del rayo.
-     - **Centro**: Título con salto de línea limpio (`Gestión\nCentralizada`, `Pipeline\nde Automatización`, `Ecosistema\nde Activos`) y descripción de 3 líneas.
-     - **Abajo**: Enlace `Explorar →` alineado a la izquierda.
-   - **Área Superior Derecha (56% de ancho)**:
-     - La ilustración isométrica 3D (`management.webp`, `workflow.webp`, `ecosystem.webp`) flota en el cuadrante superior derecho con perspectiva espacial y paralaje reactivo al cursor (`rotateX`, `rotateY`, `translateZ(30px)`).
+2. **Perímetro y Bordes Sutiles (Zero-Oversaturation Standard)**:
+   - PROHIBIDO usar bordes saturados o trazos de colores agresivos que ensucien el diseño.
+   - Las 3 tarjetas cuentan con un borde ultrafino de cristal translúcido idéntico:
+     `border border-white/[0.08] hover:border-white/20 transition-all duration-500 rounded-[28px]`
+     con resalte interior sutil `shadow-[0_20px_50px_-20px_rgba(0,0,0,0.9),inset_0_1px_0_rgba(255,255,255,0.06)]` y fondo de obsidiana profunda `bg-[#07070a]/95 backdrop-blur-2xl`.
 
-3. **Borde Sutil y Sofisticado (Zero-Oversaturation Standard)**:
-   - PROHIBIDO usar bordes morados saturados agresivos (`border-2 border-[#a855f7]` o halos cegadores) que ensucian el diseño minimalista de lujo.
-   - En su lugar, se implementa un borde de cristal fino y sutil tonalizado con la paleta de las fuentes:
-     `border border-[#a78bfa]/35 hover:border-[#a78bfa]/60 shadow-[0_12px_40px_-15px_rgba(167,139,250,0.18)] bg-[#09090f]/90`
-   - El resplandor inferior del modelo 3D se difumina a `bg-[#a78bfa]/12 blur-3xl`, logrando un aura etérea idéntica a la tipografía sin opacar la estética oscura.
+3. **Iluminación Atmosférica Pura por CSS (Zero Blurry Raster Artifacts)**:
+   - Se eliminaron las texturas rasterizadas de fondo (`card-bg-*.webp`) que generaban artefactos de compresión y esquinas pre-cortadas.
+   - Toda la atmósfera se genera mediante gradientes radiales puros acelerados por hardware:
+     - Card 1: Halo violeta superior derecho + aura violeta inferior derecha.
+     - Card 2: Halo púrpura difuso (`rgba(147,51,234,0.16)`) superior derecho y halo inferior derecho sutil.
+     - Card 3: Halo difuso envolvente del pedestal técnico y órbita.
 
-4. **Limpieza Quirúrgica de Activos**:
-   - **Card 1**: Únicamente los 3 paneles de dashboard translúcidos con su anillo orbital neón.
-   - **Card 2**: Únicamente los 3 cubos interconectados con el cubo superior de cristal y energía púrpura.
-   - **Card 3**: Pedestal con cubos y fichas de código, terminal y métricas.
+4. **Tipografía de Alta Gama a Dos Tonos**:
+   - Primera línea: `font-light text-white/80` (ej: `Gestión`, `Pipeline`, `Ecosistema`).
+   - Segunda línea: `font-bold text-white whitespace-nowrap` (ej: `Centralizada`, `de Automatización`, `de Activos`).
+   - Evita saltos de línea antiestéticos o colisiones con los modelos 3D.
