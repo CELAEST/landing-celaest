@@ -152,7 +152,7 @@ export function ArchitectureSection() {
           {pillars.map((pillar, index) => (
             <article className="min-w-0 relative pr-5" key={pillar.number}>
               {/* Number in the top-left (diagonal to the icon) */}
-              <div className="absolute top-0 left-0 z-10 font-mono text-[#9ba0ae] text-[15px] leading-none">
+              <div className="absolute top-0 left-0 z-10 font-sans font-medium text-[#9ba0ae] text-[15px] leading-none tabular-nums">
                 {pillar.number}
               </div>
 
@@ -184,7 +184,7 @@ export function ArchitectureSection() {
 
         {/* Strategic Business Impact Section */}
         <section className="border-t border-[#24242b] mt-16 sm:mt-20 pt-8 sm:pt-9">
-          <div className="flex items-center gap-4 text-[#87838e] text-[11px] font-mono tracking-[2px] leading-none mb-7">
+          <div className="flex items-center gap-4 text-[#87838e] text-[11px] font-sans font-medium tracking-[0.2em] uppercase leading-none mb-7">
             <span className="w-10 h-px bg-[#3d3947] inline-block" />
             <span>{t("impact.badge")}</span>
           </div>
