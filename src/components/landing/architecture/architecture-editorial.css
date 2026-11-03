@@ -9,7 +9,7 @@
   background-color: #050505;
   color: #f8f7fb;
   overflow: hidden;
-  padding: 64px 0 88px;
+  padding: 48px 0 88px;
 }
 
 /* Atmospheric Glow */
@@ -38,7 +38,7 @@
 /* Header - Centered & Symmetrical */
 .eco-header {
   border-bottom: 1px solid #24242b;
-  padding-bottom: 32px;
+  padding-bottom: 48px;
   margin-bottom: 0;
   text-align: center;
   display: flex;

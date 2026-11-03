@@ -12,10 +12,7 @@ export function PlatformSection() {
   const t = useTranslations("platform");
 
   return (
-    <section
-      id="platform"
-      className="pt-4 sm:pt-6 lg:pt-8 pb-0 bg-brand-dark relative overflow-hidden"
-    >
+    <section id="platform" className="pt-12 pb-0 bg-brand-dark relative overflow-hidden">
       {/* Drifting constellation & subtle atmospheric purple glow */}
       <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_90%)]">
         <ConstellationBackground nodeCount={40} nodeAlpha={0.18} />

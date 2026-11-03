@@ -11,10 +11,7 @@ export function ProductsSection() {
   const t = useTranslations("products");
 
   return (
-    <section
-      id="products"
-      className="pt-0 pb-4 sm:pb-6 lg:pb-8 bg-brand-dark relative overflow-hidden"
-    >
+    <section id="products" className="pt-0 pb-0 bg-brand-dark relative overflow-hidden">
       {/* Background Glows (Positioned safely below section seam) */}
       <div className="absolute top-[10%] -left-[10%] w-[50%] h-[50%] bg-brand-neon/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[0%] right-[0%] w-[40%] h-[40%] bg-brand-neon-blue/5 rounded-full blur-[120px] pointer-events-none" />

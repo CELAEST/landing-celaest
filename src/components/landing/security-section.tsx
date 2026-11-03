@@ -38,10 +38,7 @@ export function SecuritySection() {
   ];
 
   return (
-    <section
-      id="security"
-      className="pt-16 sm:pt-20 lg:pt-24 pb-6 sm:pb-8 lg:pb-10 bg-brand-dark relative overflow-hidden"
-    >
+    <section id="security" className="pt-12 pb-0 bg-brand-dark relative overflow-hidden">
       {/* Atmospheric constellation background */}
       <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_90%)]">
         <ConstellationBackground nodeCount={32} nodeAlpha={0.16} />
@@ -51,12 +48,8 @@ export function SecuritySection() {
       {/* Symmetrical container matching PlatformSection max-w-[85rem] */}
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header - Exact copywriting preserved */}
-        <div className="text-center mb-12 lg:mb-16 w-full max-w-3xl mx-auto">
-          <SectionReveal
-            as="h2"
-            delay={60}
-            className="landing-section-title text-center mb-4 sm:mb-6"
-          >
+        <div className="text-center mb-12 w-full max-w-3xl mx-auto">
+          <SectionReveal as="h2" delay={60} className="landing-section-title text-center mb-4">
             <span className="text-white font-semibold">{t("title1")} </span>
             <span className="text-brand-slate-light font-medium">{t("title2")}</span>
           </SectionReveal>

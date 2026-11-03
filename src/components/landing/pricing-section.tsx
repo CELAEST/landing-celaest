@@ -47,10 +47,7 @@ export function PricingSection() {
   const showGeoBadge = Boolean(pricing && (pricing.currency.code !== "USD" || isForcedUSD));
 
   return (
-    <section
-      id="pricing"
-      className="pt-6 sm:pt-8 lg:pt-10 pb-14 sm:pb-16 lg:pb-20 bg-brand-dark relative overflow-hidden"
-    >
+    <section id="pricing" className="pt-12 pb-0 bg-brand-dark relative overflow-hidden">
       {/* Atmospheric constellation background & subtle glow */}
       <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_90%)]">
         <ConstellationBackground nodeCount={36} nodeAlpha={0.16} />
