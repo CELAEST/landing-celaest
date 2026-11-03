@@ -6,7 +6,7 @@
 /* Header layout: Centered Title + Distributed Controls Bar */
 .pricing-header-layout {
   border-bottom: 1px solid #24242b;
-  padding-bottom: 24px;
+  padding-bottom: 48px;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -362,7 +362,7 @@
 
 @media (max-width: 960px) {
   .pricing-header-layout {
-    padding-bottom: 24px;
+    padding-bottom: 36px;
     gap: 16px;
   }
   .pricing-editorial-grid {
