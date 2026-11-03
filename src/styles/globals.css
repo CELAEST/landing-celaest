@@ -82,6 +82,23 @@
 }
 
 @layer components {
+  /* Master Standardized Section Title (56px Editorial Benchmark) */
+  .landing-section-title {
+    font-size: clamp(32px, 4.2vw, 56px);
+    line-height: 1.14;
+    letter-spacing: -1.4px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 16px 0;
+  }
+
+  .landing-section-title em,
+  .landing-section-title .text-accent {
+    color: #a9a8b5;
+    font-weight: 500;
+    font-style: normal;
+  }
+
   .glass-panel {
     @apply bg-brand-gray/30 backdrop-blur-md border border-white/10;
   }

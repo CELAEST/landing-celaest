@@ -26,9 +26,9 @@ export function ClosingCTASection() {
         className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center"
       >
         {/* Main Headline */}
-        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-white leading-[1.08]">
-          <span className="block">{t("titleLine1")}</span>
-          <span className="block">{t("titleLine2")}</span>
+        <h2 className="landing-section-title text-center">
+          <span className="block text-white font-semibold">{t("titleLine1")}</span>
+          <span className="block text-brand-slate-light font-medium">{t("titleLine2")}</span>
         </h2>
 
         {/* Action Pills */}

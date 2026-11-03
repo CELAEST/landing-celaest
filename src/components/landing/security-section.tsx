@@ -58,9 +58,9 @@ export function SecuritySection() {
           <SectionReveal
             as="h2"
             delay={60}
-            className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white mb-4 sm:mb-6 tracking-tight leading-[1.1]"
+            className="landing-section-title text-center mb-4 sm:mb-6"
           >
-            <span className="text-white">{t("title1")} </span>
+            <span className="text-white font-semibold">{t("title1")} </span>
             <span className="text-brand-slate-light font-medium">{t("title2")}</span>
           </SectionReveal>
           {t("description") && (

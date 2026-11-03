@@ -34,7 +34,7 @@ export function ProductsSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] tracking-tight leading-[1.15] mb-6"
+              className="landing-section-title mb-6"
             >
               <span className="text-white font-semibold">{t("title1")} </span>
               <span className="text-brand-slate-light font-medium">{t("title2")}</span>

@@ -43,10 +43,10 @@
 }
 
 .eco-title {
-  font-size: clamp(38px, 4.6vw, 68px);
-  line-height: 0.94;
-  letter-spacing: -2.2px;
-  font-weight: 500;
+  font-size: clamp(32px, 4.2vw, 56px);
+  line-height: 1.14;
+  letter-spacing: -1.4px;
+  font-weight: 600;
   color: #ffffff;
   margin: 0 0 16px 0;
 }
@@ -54,6 +54,7 @@
 .eco-title em {
   color: #a9a8b5;
   font-style: normal;
+  font-weight: 500;
 }
 
 .eco-subtitle {
@@ -368,3 +369,4 @@
     left: 20px;
   }
 }
+
