@@ -26,35 +26,27 @@ export function ArchitectureImpact({
   const metrics = [debt, efficiency, scalability];
 
   return (
-    <section className="border-t border-[#24242b] mt-16 sm:mt-20 pt-8 sm:pt-9">
-      <div className="flex items-center gap-4 text-[#87838e] text-[11px] font-sans font-medium tracking-[0.2em] uppercase leading-none mb-7">
-        <span className="w-10 h-px bg-[#3d3947] inline-block" />
-        <span>{badge}</span>
-      </div>
+    <section className="eco-impact-closed-box" aria-label="Business impact metrics">
+      <div className="eco-impact-grid-closed">
+        {/* Impact Lead with Eyebrow Inside */}
+        <div className="eco-impact-lead-col">
+          <div className="eco-impact-eyebrow">
+            <span className="rule" />
+            <span>{badge}</span>
+          </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 mt-6">
-        {/* Impact Lead */}
-        <div className="text-[26px] sm:text-[30px] lg:text-[31px] font-normal leading-[1.1] tracking-[-1.2px] pr-4">
-          <span className="text-white">{leadTitle}</span>
-          <br />
-          <span className="text-[#9da2b1]">{leadAccent}</span>
+          <div className="eco-impact-lead-text">
+            <span>{leadTitle}</span>
+            <em>{leadAccent}</em>
+          </div>
         </div>
 
-        {/* 3 Strategic Metrics */}
+        {/* 3 Strategic Metrics (Full-Height Borders, Más Aire & Neón) */}
         {metrics.map((metric) => (
-          <div
-            key={metric.label}
-            className="lg:border-l lg:border-[#24242b] lg:pl-11 flex flex-col justify-start"
-          >
-            <strong className="text-[34px] sm:text-[36px] font-normal tracking-[-1px] text-white leading-none">
-              {metric.value}
-            </strong>
-            <b className="text-[#c2c5cf] text-[15px] font-normal mt-2.5 leading-snug">
-              {metric.label}
-            </b>
-            <small className="text-[#858a98] text-[13px] mt-1 leading-normal font-light">
-              {metric.desc}
-            </small>
+          <div key={metric.label} className="eco-impact-metric-col">
+            <strong className="eco-impact-num neon">{metric.value}</strong>
+            <b className="eco-impact-label">{metric.label}</b>
+            <p className="eco-impact-desc">{metric.desc}</p>
           </div>
         ))}
       </div>

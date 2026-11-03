@@ -2,11 +2,13 @@ import React from "react";
 
 interface IconProps {
   className?: string;
+  style?: React.CSSProperties;
 }
 
-export function ChipAnimatedIcon({ className = "w-[66px] h-[66px]" }: IconProps) {
+export function ChipAnimatedIcon({ className = "w-[66px] h-[66px]", style }: IconProps) {
   return (
     <svg
+      style={style}
       className={`${className} drop-shadow-[0_0_12px_rgba(208,199,255,0.3)]`}
       viewBox="0 0 64 64"
       fill="none"
