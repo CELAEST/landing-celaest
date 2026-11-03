@@ -1,12 +1,15 @@
 "use client";
 
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { loadRobotBinaryBundle } from "./robot-binary-loader";
 
 export const SALUDO_FRAME_COUNT = 72;
 export const SALUDO_FPS = 30;
 export const GAZE_FRAME_COUNT = 60;
 export const GAZE_REST_INDEX = 17; // 0-based index for gaze_018.webp (neutral 3/4 profile)
 export const GAZE_SALUDO_SYNC_INDEX = 59; // 0-based index for gaze_060.webp (matches saludo frame_001 & frame_072)
+
+export type RobotDynamicScene = "gaze" | "saludo" | "explaining" | "listening" | "celebrating";
 
 function getSaludoFrameUrl(indexOneBased: number): string {
   return `/robot_hero_saludo/frame_${String(indexOneBased).padStart(3, "0")}.webp`;
@@ -16,14 +19,40 @@ function getGazeFrameUrl(indexOneBased: number): string {
   return `/robot_hero_gaze/gaze_${String(indexOneBased).padStart(3, "0")}.webp`;
 }
 
+/**
+ * Searches radially outward for the closest decoded bitmap to prevent any canvas dropped frames or blank flash.
+ */
+function findBestBitmap(
+  bitmaps: Array<ImageBitmap | null>,
+  targetIdx: number,
+): { bmp: ImageBitmap; idx: number } | null {
+  const maxIdx = bitmaps.length - 1;
+  const clamped = Math.max(0, Math.min(maxIdx, Math.round(targetIdx)));
+  if (bitmaps[clamped]) return { bmp: bitmaps[clamped]!, idx: clamped };
+
+  for (let offset = 1; offset <= maxIdx; offset++) {
+    const left = clamped - offset;
+    if (left >= 0 && bitmaps[left]) return { bmp: bitmaps[left]!, idx: left };
+    const right = clamped + offset;
+    if (right <= maxIdx && bitmaps[right]) return { bmp: bitmaps[right]!, idx: right };
+  }
+  return null;
+}
+
 export function useRobotSequenceCanvas() {
   const robotCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const robotCtxRef = useRef<CanvasRenderingContext2D | null>(null);
   const robotImgRef = useRef<HTMLImageElement | null>(null);
+
   const saludoBitmapsRef = useRef<Array<ImageBitmap | null>>(Array(SALUDO_FRAME_COUNT).fill(null));
   const gazeBitmapsRef = useRef<Array<ImageBitmap | null>>(Array(GAZE_FRAME_COUNT).fill(null));
+  const isSaludoLoadingRef = useRef<boolean>(false);
+
   const animRafRef = useRef<number>(0);
-  const modeRef = useRef<"gaze" | "align_to_saludo" | "saludo">("gaze");
+  const [currentScene, setCurrentScene] = useState<RobotDynamicScene>("gaze");
+  const modeRef = useRef<RobotDynamicScene | "align_to_saludo">("gaze");
+  const sceneStartTimeRef = useRef<number>(0);
+
   const saludoStartTimeRef = useRef<number>(0);
   const targetGazeFrameRef = useRef<number>(GAZE_REST_INDEX);
   const currentGazeFrameRef = useRef<number>(GAZE_REST_INDEX);
@@ -37,9 +66,16 @@ export function useRobotSequenceCanvas() {
       const i1 = Math.min(maxIdx, i0 + 1);
       const frac = Math.round((clamped - i0) * 10) / 10;
 
-      const bmp0 = bitmaps[i0];
-      if (!bmp0) return false;
-      const bmp1 = bitmaps[i1];
+      let bmp0 = bitmaps[i0];
+      let bmp1 = bitmaps[i1];
+
+      // Zero-drop fallback: always pull closest decoded bitmap if requested index is decoding
+      if (!bmp0) {
+        const best = findBestBitmap(bitmaps, clamped);
+        if (!best) return false;
+        bmp0 = best.bmp;
+        bmp1 = null;
+      }
 
       const key = `${prefix}:${i0}:${bmp1 && frac > 0.05 ? frac.toFixed(1) : "0"}`;
       if (lastDrawnKeyRef.current === key) return true;
@@ -66,6 +102,7 @@ export function useRobotSequenceCanvas() {
       lastDrawnKeyRef.current = key;
       canvas.dataset.frame =
         prefix === "saludo" ? String(Math.round(clamped) + 1) : `gaze-${Math.round(clamped) + 1}`;
+
       if (robotImgRef.current) {
         robotImgRef.current.style.opacity = "0";
       }
@@ -81,13 +118,16 @@ export function useRobotSequenceCanvas() {
     const tick = (now: number) => {
       const dt = Math.min(0.05, (now - prevTime) / 1000);
       prevTime = now;
+      const tScene = (now - sceneStartTimeRef.current) / 1000;
 
+      // 1. Full Saludo Wave Playback
       if (modeRef.current === "saludo") {
         const elapsedSec = (now - saludoStartTimeRef.current) / 1000;
         const floatFrame = elapsedSec * SALUDO_FPS;
 
         if (floatFrame >= SALUDO_FRAME_COUNT - 1) {
           modeRef.current = "gaze";
+          setCurrentScene("gaze");
           currentGazeFrameRef.current = GAZE_SALUDO_SYNC_INDEX;
           drawBlendedSequenceFrame(gazeBitmapsRef.current, GAZE_SALUDO_SYNC_INDEX, "gaze");
         } else {
@@ -97,24 +137,55 @@ export function useRobotSequenceCanvas() {
         }
       }
 
-      const goal =
-        modeRef.current === "align_to_saludo" ? GAZE_SALUDO_SYNC_INDEX : targetGazeFrameRef.current;
+      // 2. Compute dynamic goal frame based on active scene
+      let goal = targetGazeFrameRef.current;
+      let speed = 16.0; // High-agility biomechanical speed (120 FPS responsiveness)
+      let maxStep = dt * 96.0;
+
+      if (modeRef.current === "align_to_saludo") {
+        goal = GAZE_SALUDO_SYNC_INDEX;
+        speed = 18.0;
+        maxStep = dt * 110.0;
+      } else if (modeRef.current === "explaining") {
+        // Conversational nodding & scanning between listener and platform
+        const nod = Math.sin(tScene * 3.8) * 2.8 + Math.cos(tScene * 2.1) * 1.5;
+        const scan = Math.sin(tScene * 1.3) * 6.5;
+        goal = Math.max(0, Math.min(GAZE_FRAME_COUNT - 1, GAZE_REST_INDEX + scan + nod));
+        speed = 12.0;
+        maxStep = dt * 80.0;
+      } else if (modeRef.current === "listening") {
+        // Attentive forward tilt holding steady contact with subtle breath
+        const breath = Math.sin(tScene * 1.1) * 1.2;
+        goal = Math.max(0, Math.min(GAZE_FRAME_COUNT - 1, 26 + breath));
+        speed = 14.0;
+        maxStep = dt * 70.0;
+      } else if (modeRef.current === "celebrating") {
+        // High-energy celebratory nod & bounce
+        const bounce = Math.sin(tScene * 6.5) * Math.exp(-tScene * 0.45) * 8.5;
+        goal = Math.max(0, Math.min(GAZE_FRAME_COUNT - 1, GAZE_REST_INDEX + bounce));
+        speed = 22.0;
+        maxStep = dt * 120.0;
+        if (tScene > 3.2) {
+          modeRef.current = "gaze";
+          setCurrentScene("gaze");
+        }
+      }
+
       const cur = currentGazeFrameRef.current;
       const diff = goal - cur;
-
-      const speed = modeRef.current === "align_to_saludo" ? 14.0 : 8.5;
       const rawStep = diff * (1 - Math.exp(-dt * speed));
-      const maxStep = dt * (modeRef.current === "align_to_saludo" ? 78.0 : 48.0);
       const step = Math.abs(rawStep) > maxStep ? Math.sign(rawStep) * maxStep : rawStep;
 
       const nextFrame = cur + step;
       currentGazeFrameRef.current = nextFrame;
       drawBlendedSequenceFrame(gazeBitmapsRef.current, nextFrame, "gaze");
 
+      // Check alignment to Saludo trigger
       if (modeRef.current === "align_to_saludo") {
-        if (Math.abs(GAZE_SALUDO_SYNC_INDEX - nextFrame) < 0.35) {
+        if (Math.abs(GAZE_SALUDO_SYNC_INDEX - nextFrame) < 0.45) {
           currentGazeFrameRef.current = GAZE_SALUDO_SYNC_INDEX;
           modeRef.current = "saludo";
+          setCurrentScene("saludo");
           saludoStartTimeRef.current = now;
           drawBlendedSequenceFrame(saludoBitmapsRef.current, 0, "saludo");
         }
@@ -122,6 +193,17 @@ export function useRobotSequenceCanvas() {
         return;
       }
 
+      // Keep loop running for continuous dynamic scenes (explaining, listening, celebrating)
+      if (
+        modeRef.current === "explaining" ||
+        modeRef.current === "listening" ||
+        modeRef.current === "celebrating"
+      ) {
+        animRafRef.current = requestAnimationFrame(tick);
+        return;
+      }
+
+      // In idle gaze, settle loop once goal frame is reached
       if (Math.abs(goal - nextFrame) < 0.04) {
         currentGazeFrameRef.current = goal;
         drawBlendedSequenceFrame(gazeBitmapsRef.current, goal, "gaze");
@@ -135,10 +217,45 @@ export function useRobotSequenceCanvas() {
     animRafRef.current = requestAnimationFrame(tick);
   }, [drawBlendedSequenceFrame]);
 
+  // Pre-fetch single-request DMA binary for Saludo (cached permanently in CacheStorage)
+  const prefetchSaludo = useCallback(async () => {
+    if (isSaludoLoadingRef.current) return;
+    if (saludoBitmapsRef.current[0] && saludoBitmapsRef.current[SALUDO_FRAME_COUNT - 1]) return;
+    isSaludoLoadingRef.current = true;
+
+    try {
+      const blobs = await loadRobotBinaryBundle("/data/robot-saludo.bin", "CSAL");
+      const decodePromises = blobs.map(async (blob, idx) => {
+        const bmp = await createImageBitmap(blob);
+        saludoBitmapsRef.current[idx] = bmp;
+      });
+      await Promise.all(decodePromises);
+    } catch {
+      // Fallback: load saludo individual frames progressively
+      const fallbackPromises: Promise<void>[] = [];
+      for (let f = 1; f <= SALUDO_FRAME_COUNT; f++) {
+        fallbackPromises.push(
+          (async () => {
+            try {
+              const res = await fetch(getSaludoFrameUrl(f));
+              const blob = await res.blob();
+              const bmp = await createImageBitmap(blob);
+              saludoBitmapsRef.current[f - 1] = bmp;
+            } catch {}
+          })(),
+        );
+      }
+      await Promise.all(fallbackPromises);
+    } finally {
+      isSaludoLoadingRef.current = false;
+    }
+  }, []);
+
+  // Main DMA initialization
   useEffect(() => {
     let cancelled = false;
 
-    const loadGazeFrame = async (oneBased: number) => {
+    const loadSingleGaze = async (oneBased: number) => {
       try {
         const res = await fetch(getGazeFrameUrl(oneBased));
         const blob = await res.blob();
@@ -151,73 +268,34 @@ export function useRobotSequenceCanvas() {
         if (oneBased === GAZE_REST_INDEX + 1 && modeRef.current === "gaze") {
           drawBlendedSequenceFrame(gazeBitmapsRef.current, GAZE_REST_INDEX, "gaze");
         }
-      } catch {
-        // Ignore network abort on unmount
-      }
-    };
-
-    const loadSaludoFrame = async (oneBased: number) => {
-      try {
-        const res = await fetch(getSaludoFrameUrl(oneBased));
-        const blob = await res.blob();
-        const bmp = await createImageBitmap(blob);
-        if (cancelled) {
-          bmp.close();
-          return;
-        }
-        saludoBitmapsRef.current[oneBased - 1] = bmp;
-      } catch {
-        // Ignore network abort on unmount
-      }
+      } catch {}
     };
 
     (async () => {
-      // 1. Critical path: Load ONLY the rest frame immediately (0ms instant display)
-      await loadGazeFrame(GAZE_REST_INDEX + 1);
+      // Tier 0: Load rest frame immediately (0ms instant display)
+      await loadSingleGaze(GAZE_REST_INDEX + 1);
 
-      // 2. Load the anchor sync frames
-      await Promise.all([
-        loadGazeFrame(GAZE_SALUDO_SYNC_INDEX + 1),
-        loadSaludoFrame(1),
-      ]);
-
-      // 3. Progressive idle loading: Load gaze frames in gentle batches of 4
-      // yielding back to the main thread between batches to prevent network/CPU spikes
-      const gazeTasks: Array<() => Promise<void>> = [];
-      for (let f = 1; f <= GAZE_FRAME_COUNT; f++) {
-        if (f !== GAZE_REST_INDEX + 1 && f !== GAZE_SALUDO_SYNC_INDEX + 1) {
-          gazeTasks.push(() => loadGazeFrame(f));
-        }
-      }
-
-      const yieldToIdle = () =>
-        new Promise<void>((resolve) => {
-          if (typeof window !== "undefined" && "requestIdleCallback" in window) {
-            (window as any).requestIdleCallback(() => resolve(), { timeout: 1000 });
-          } else {
-            setTimeout(resolve, 80);
+      // Tier 1: Single-request DMA batch loading for all 60 gaze frames
+      try {
+        const gazeBlobs = await loadRobotBinaryBundle("/data/robot-gaze.bin", "CGAZ");
+        if (cancelled) return;
+        const decodePromises = gazeBlobs.map(async (blob, idx) => {
+          if (cancelled) return;
+          const bmp = await createImageBitmap(blob);
+          if (cancelled) {
+            bmp.close();
+            return;
           }
+          gazeBitmapsRef.current[idx] = bmp;
         });
-
-      // Load gaze frames in small batches with idle pauses
-      const batchSize = 4;
-      for (let i = 0; i < gazeTasks.length; i += batchSize) {
-        if (cancelled) break;
-        await Promise.all(gazeTasks.slice(i, i + batchSize).map((fn) => fn()));
-        await yieldToIdle();
-      }
-
-      // 4. Saludo frames: only load once gaze is fully ready, during idle
-      if (!cancelled) {
-        const saludoTasks: Array<() => Promise<void>> = [];
-        for (let f = 2; f <= SALUDO_FRAME_COUNT; f++) {
-          saludoTasks.push(() => loadSaludoFrame(f));
+        await Promise.all(decodePromises);
+        if (!cancelled && modeRef.current === "gaze") {
+          drawBlendedSequenceFrame(gazeBitmapsRef.current, currentGazeFrameRef.current, "gaze");
         }
-        for (let i = 0; i < saludoTasks.length; i += batchSize) {
-          if (cancelled) break;
-          await Promise.all(saludoTasks.slice(i, i + batchSize).map((fn) => fn()));
-          await yieldToIdle();
-        }
+      } catch {
+        // Fallback: Anchor ring frames
+        const anchors = [1, 8, 15, 23, 31, 39, 47, 54, 60];
+        await Promise.all(anchors.map((idx) => loadSingleGaze(idx)));
       }
     })();
 
@@ -232,20 +310,55 @@ export function useRobotSequenceCanvas() {
     };
   }, [drawBlendedSequenceFrame]);
 
+  // Set explicit scene
+  const setScene = useCallback(
+    (scene: RobotDynamicScene) => {
+      if (scene === "saludo") {
+        void prefetchSaludo();
+        if (Math.abs(currentGazeFrameRef.current - GAZE_SALUDO_SYNC_INDEX) < 0.5) {
+          currentGazeFrameRef.current = GAZE_SALUDO_SYNC_INDEX;
+          modeRef.current = "saludo";
+          setCurrentScene("saludo");
+          saludoStartTimeRef.current = performance.now();
+        } else {
+          modeRef.current = "align_to_saludo";
+          setCurrentScene("saludo");
+        }
+      } else {
+        modeRef.current = scene;
+        setCurrentScene(scene);
+        sceneStartTimeRef.current = performance.now();
+      }
+      startLoopIfNeeded();
+    },
+    [prefetchSaludo, startLoopIfNeeded],
+  );
+
   const handleRobotClick = useCallback(() => {
+    void prefetchSaludo();
     if (modeRef.current === "saludo" || modeRef.current === "align_to_saludo") return;
-    if (Math.abs(currentGazeFrameRef.current - GAZE_SALUDO_SYNC_INDEX) < 0.5) {
-      currentGazeFrameRef.current = GAZE_SALUDO_SYNC_INDEX;
-      modeRef.current = "saludo";
-      saludoStartTimeRef.current = performance.now();
+
+    // Cycle dynamically through the scenes on subsequent clicks
+    if (currentScene === "gaze") {
+      setScene("saludo");
+    } else if (currentScene === "saludo") {
+      setScene("explaining");
+    } else if (currentScene === "explaining") {
+      setScene("celebrating");
     } else {
-      modeRef.current = "align_to_saludo";
+      setScene("gaze");
     }
-    startLoopIfNeeded();
-  }, [startLoopIfNeeded]);
+  }, [currentScene, prefetchSaludo, setScene]);
 
   const updateGazeFromUV = useCallback(
     (u: number, v: number) => {
+      // Proactively warm up saludo when cursor is near robot (u > 0.35)
+      if (u > 0.35) {
+        void prefetchSaludo();
+      }
+
+      if (modeRef.current !== "gaze") return;
+
       const verticalBias = (0.5 - v) * 4.5;
       let targetFrame = GAZE_REST_INDEX;
       if (u <= 0.24) {
@@ -258,20 +371,24 @@ export function useRobotSequenceCanvas() {
       targetGazeFrameRef.current = Math.max(0, Math.min(GAZE_FRAME_COUNT - 1, targetFrame));
       startLoopIfNeeded();
     },
-    [startLoopIfNeeded],
+    [prefetchSaludo, startLoopIfNeeded],
   );
 
   const resetGazeToRest = useCallback(() => {
-    targetGazeFrameRef.current = GAZE_REST_INDEX;
-    startLoopIfNeeded();
+    if (modeRef.current === "gaze") {
+      targetGazeFrameRef.current = GAZE_REST_INDEX;
+      startLoopIfNeeded();
+    }
   }, [startLoopIfNeeded]);
 
   return {
     robotCanvasRef,
     robotImgRef,
+    currentScene,
+    setScene,
     handleRobotClick,
     updateGazeFromUV,
     resetGazeToRest,
+    prefetchSaludo,
   };
 }
-

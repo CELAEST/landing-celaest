@@ -17,8 +17,14 @@ export function HeroSection() {
   const frame = useRef(0);
   const pointer = useRef({ x: -9999, y: -9999 });
 
-  const { robotCanvasRef, robotImgRef, handleRobotClick, updateGazeFromUV, resetGazeToRest } =
-    useRobotSequenceCanvas();
+  const {
+    robotCanvasRef,
+    robotImgRef,
+    handleRobotClick,
+    updateGazeFromUV,
+    resetGazeToRest,
+    prefetchSaludo,
+  } = useRobotSequenceCanvas();
 
   const measure = useCallback(() => {
     const root = titleRef.current;
@@ -95,6 +101,7 @@ export function HeroSection() {
           type="button"
           className="intent-robot-hitbox"
           onClick={handleRobotClick}
+          onPointerEnter={prefetchSaludo}
           aria-label={t("robotAria")}
           title={t("robotTitle")}
         />

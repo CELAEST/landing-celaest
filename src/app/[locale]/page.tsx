@@ -16,7 +16,7 @@ import {
   generateSoftwareSchema,
 } from "@/lib/structured-data";
 
-// ISR: Revalidate every hour
+// Page ISR: Revalidate every hour - sync trigger
 export const revalidate = 3600;
 
 interface PageProps {
