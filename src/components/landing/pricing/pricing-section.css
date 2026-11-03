@@ -1,0 +1,319 @@
+/* ==========================================================================
+   CELAEST PRICING SECTION - EDITORIAL PURO ARCHITECTURE (1360px / 85rem)
+   Sibling to PlatformSection & SecuritySection
+   ========================================================================== */
+
+/* Header layout matching Capabilities */
+.pricing-header-layout {
+  border-bottom: 1px solid #24242b;
+  padding-bottom: 31px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.pricing-header-left {
+  max-width: 700px;
+}
+
+.pricing-title {
+  margin: 0 0 16px;
+  font-size: clamp(38px, 4.6vw, 68px);
+  line-height: 0.94;
+  letter-spacing: -2.2px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.pricing-title em {
+  color: #a9a8b5;
+  font-style: normal;
+}
+
+.pricing-subtitle {
+  color: #9998a2;
+  font-size: 17px;
+  line-height: 1.35;
+  letter-spacing: -0.3px;
+  margin: 0;
+  max-width: 720px;
+}
+
+/* ==========================================================================
+   STYLE 1: EDITORIAL PURO (ZERO-BOX TYPOGRAPHY SWITCHER)
+   ========================================================================== */
+
+.sw-editorial-wrap {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.sw-editorial-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sw-editorial-label {
+  font-family: monospace;
+  font-size: 11px;
+  color: #71717a;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.sw-editorial-btn {
+  background: transparent;
+  border: none;
+  color: #71717a;
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 2px;
+  position: relative;
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.sw-editorial-btn:hover {
+  color: #ffffff;
+}
+
+.sw-editorial-btn.active {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.sw-editorial-btn.active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #a855f7;
+  box-shadow: 0 0 8px rgba(168, 85, 247, 0.7);
+}
+
+.sw-editorial-tag {
+  font-family: monospace;
+  font-size: 10px;
+  font-weight: 700;
+  color: #c084fc;
+}
+
+.sw-editorial-divider {
+  width: 1px;
+  height: 18px;
+  background: #24242b;
+}
+
+/* ==========================================================================
+   TRIPTYCH EDITORIAL GRID (3 COLUMNS WITH 1PX HAIRLINES)
+   ========================================================================== */
+
+.pricing-editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid #24242b;
+}
+
+.pricing-editorial-col {
+  min-width: 0;
+  padding: 40px 36px 44px 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.pricing-editorial-col + .pricing-editorial-col {
+  border-left: 1px solid #24242b;
+  padding-left: 36px;
+}
+
+/* Number Hairline Rule */
+.pricing-number-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: monospace;
+  font-size: 19px;
+  font-weight: 700;
+  color: #a855f7;
+  margin-bottom: 16px;
+}
+
+.pricing-number-wrap span.rule {
+  width: 65px;
+  height: 1px;
+  background: #3d3947;
+}
+
+/* ----------------------------------------------------
+   VARIANT 3: NEON LIGHT BAR ON PLAN 02 (MÁS POPULAR)
+   ---------------------------------------------------- */
+.popular-top-neon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #a855f7;
+  box-shadow: 0 0 14px #a855f7;
+}
+
+.popular-label-neon {
+  font-size: 10.5px;
+  font-family: monospace;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #c084fc;
+  margin-left: auto;
+  user-select: none;
+}
+
+.pricing-plan-title {
+  font-size: 32px;
+  line-height: 1.05;
+  letter-spacing: -1.4px;
+  font-weight: 500;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+}
+
+.pricing-plan-desc {
+  font-size: 14px;
+  line-height: 1.45;
+  color: #87838e;
+  margin: 0 0 28px 0;
+  min-height: 40px;
+}
+
+/* Price Block */
+.pricing-price-box {
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing-price-num {
+  font-size: 44px;
+  line-height: 1;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -1.5px;
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: nowrap;
+}
+
+.pricing-price-symbol {
+  font-size: 26px;
+  font-weight: 600;
+  color: #a1a1aa;
+  line-height: 1;
+}
+
+.pricing-price-currency {
+  font-size: 16px;
+  font-weight: 500;
+  color: #a1a1aa;
+  letter-spacing: normal;
+}
+
+.pricing-price-cycle {
+  font-size: 13px;
+  color: #71717a;
+  margin-top: 6px;
+}
+
+/* Features */
+.pricing-feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 36px;
+  border-top: 1px solid #1f1f26;
+  padding-top: 24px;
+}
+
+.pricing-feature-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: #d4d4d8;
+}
+
+.pricing-check-icon {
+  width: 15px;
+  height: 15px;
+  color: #a855f7;
+  flex-shrink: 0;
+  margin-top: 2.5px;
+}
+
+/* Editorial CTA Link */
+.pricing-feature-link {
+  color: #f3f2f5;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14.5px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  width: fit-content;
+  user-select: none;
+  margin-top: auto;
+}
+
+.pricing-feature-link:hover {
+  color: #c084fc;
+}
+
+.pricing-feature-link svg {
+  transition: transform 0.2s ease;
+}
+
+.pricing-feature-link:hover svg {
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   RESPONSIVENESS
+   ========================================================================== */
+
+@media (max-width: 960px) {
+  .pricing-header-layout {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .pricing-editorial-grid {
+    grid-template-columns: 1fr;
+  }
+  .pricing-editorial-col,
+  .pricing-editorial-col + .pricing-editorial-col {
+    border-left: 0;
+    border-top: 1px solid #24242b;
+    padding: 32px 0;
+  }
+  .pricing-editorial-col:first-child {
+    border-top: 0;
+  }
+  .pricing-plan-desc {
+    min-height: 0;
+  }
+}

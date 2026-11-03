@@ -21,3 +21,4 @@
 
 ## 4. Tarjetas de Plataforma (Potencia tu flujo de trabajo)
 - `MembersWidget` implementa `.preview.members-preview` con su mini-sidebar brandeado con isotipo `<Logo color="#f8f7fb" />` + `CELAEST`, compartiendo idéntica altura (261px), borde, gradiente y radio con `PipelineWidget` y `EcosystemWidget`.
+

@@ -103,7 +103,7 @@ export function SecuritySection() {
             {/* Bottom Subtle Explore Link */}
             <div className="sec-stage-foot">
               <a href="#pricing" className="sec-link-explore">
-                <span>{tPlatform("explore")}</span>
+                <span>{t("explore")}</span>
                 <ArrowRight size={14} />
               </a>
             </div>

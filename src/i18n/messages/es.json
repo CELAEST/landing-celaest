@@ -178,6 +178,8 @@
     "title1": "Precios Simples",
     "title2": "y Transparentes",
     "subtitle": "Elige el plan que se ajuste a la escala de tu empresa. Todos los planes incluyen infraestructura en la nube, protección continua y gestión centralizada de licencias y APIs.",
+    "periodLabel": "Periodo:",
+    "currencyLabel": "Moneda:",
     "perMonth": "/mes",
     "plans": {
       "starter": {
@@ -245,6 +247,7 @@
     "title1": "Seguridad de",
     "title2": "Nivel Empresarial",
     "description": "Protección integral para tus activos digitales con cifrado avanzado, licencias verificadas e infraestructura de alta disponibilidad.",
+    "explore": "Explorar arquitectura de seguridad",
     "features": {
       "verified": {
         "title": "Licencias Verificadas",

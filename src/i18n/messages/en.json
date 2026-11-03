@@ -178,6 +178,8 @@
     "title1": "Simple, Transparent",
     "title2": "Pricing",
     "subtitle": "Choose the plan that fits your needs. All plans include lifetime access to purchased assets.",
+    "periodLabel": "Billing:",
+    "currencyLabel": "Currency:",
     "perMonth": "/month",
     "plans": {
       "starter": {
@@ -245,6 +247,7 @@
     "title1": "Enterprise-Grade",
     "title2": "Security",
     "description": "Comprehensive protection for your digital assets with advanced encryption, verified licensing, and high-availability infrastructure.",
+    "explore": "Explore security architecture",
     "features": {
       "verified": {
         "title": "Verified Licensing",

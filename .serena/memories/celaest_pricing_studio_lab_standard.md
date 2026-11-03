@@ -1,15 +1,21 @@
-# CELAEST Lab - Pricing Studio & Master Stage Demarcation
+# Celaest Pricing Section: Production Implementation Standard
 
-## 1. Demarcación Superior en Security Stage
-- Se añadió `border-top: 1px solid #24242b` a `.sec-master-layout` en `src/components/landing/security/security-stage.css` y en `lab`.
-- Cierra perfectamente el marco superior sobre `01 — Licencias Verificadas`, alineándose con la simetría de cabecera de las demás secciones.
-
-## 2. Pricing Studio en Lab (`[13] Pricing Studio`)
-- Archivos creados:
-  - `c:\Users\user\Music\lab\src\components\examples\Example13_PricingStudio.tsx`
-  - `c:\Users\user\Music\lab\src\components\examples\Example13_PricingStudio.css`
-- Integrado en `lab/src/App.tsx` en el puerto `http://localhost:5173/` (tecla rápida `p` o botón en barra superior).
-- Contiene 3 arquetipos interactivos con toggle de moneda (`COP` / `USD`) y ciclo (`Mensual` / `Anual -17%`):
-  1. **Opción A (Tríptico Editorial)**: 3 columnas separadas por líneas de 1px como "Potencia tu flujo de trabajo", números `01 —`, `02 —`, `03 —`, sin cards sobre cards.
-  2. **Opción B (Unified Master Stage)**: Asimetría 42% / 58% como "Seguridad", 3 pilares con indicador neón de 3px a la izquierda y stage heroico de métricas, throughput y matriz de features a la derecha.
-  3. **Opción C (Monolito Preciso)**: Un solo bloque arquitectónico integrado con sutil destaque superior para el plan más popular.
+## Architecture Contract
+- **Archetype**: Tríptico Editorial (Option A), matching `PlatformSection` and `SecuritySection`.
+- **Layout & Width**: `max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8` (1360px container).
+- **Hairlines**:
+  - `border-bottom: 1px solid #24242b` under header.
+  - `border-bottom: 1px solid #24242b` under columns.
+  - `border-left: 1px solid #24242b` between column 01/02 and 02/03.
+- **Controls (Style 1 - Editorial Puro)**:
+  - Zero pill containers, zero chunky white buttons (`bg-white text-black` eradicated).
+  - Pure Swiss typography: `sw-editorial-btn` with active indicator `::after` (2px `#a855f7` neon line + `box-shadow: 0 0 8px rgba(168, 85, 247, 0.7)`).
+  - 1px hairline divider (`sw-editorial-divider`) between Billing Cycle (`PERIODO`) and Currency Switcher (`MONEDA`).
+  - Integrated with `useGeoPricing` for dynamic currency override and billing calculation.
+- **Plan 02 ("Profesional")**:
+  - `popular-top-neon`: 2px top glowing neon bar `#a855f7`.
+  - `popular-label-neon`: Unboxed monospace uppercase badge `MÁS POPULAR` (`text-[#c084fc] font-mono font-bold tracking-[0.22em] text-[10.5px]`).
+- **CTAs**:
+  - Editorial action links `pricing-feature-link` (`Comenzar →` / `Contactar Ventas →`) with animated arrow hover, directly matching `PlatformSection`'s `feature-link`.
+- **i18n & Zero Hardcode**:
+  - All labels mapped to `es.json` and `en.json` under `pricing.*` and `security.*`.
