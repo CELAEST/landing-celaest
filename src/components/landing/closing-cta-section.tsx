@@ -10,8 +10,6 @@ export function ClosingCTASection() {
 
   return (
     <section className="py-14 sm:py-16 lg:py-20 bg-brand-dark text-center flex flex-col items-center justify-center relative overflow-hidden">
-      {/* Section Demarcation Divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent pointer-events-none z-20" />
       {/* Drifting constellation & subtle atmospheric purple glow */}
       <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_90%)]">
         <ConstellationBackground nodeCount={28} nodeAlpha={0.15} />
