@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { Check, ArrowRight } from "lucide-react";
+import { Check, ArrowRight, Globe } from "lucide-react";
 import { SectionReveal } from "@/components/ui/section-reveal";
 import { ConstellationBackground } from "@/components/ui/constellation-background";
 import { useGeoPricing } from "@/hooks/useGeoPricing";
@@ -94,21 +94,42 @@ export function PricingSection() {
               </button>
             </div>
 
-            {/* Currency Switcher */}
-            {showGeoBadge && pricing && (
+            {/* Country Geo Indicator ("Precios según el país") */}
+            <div className="sw-editorial-divider" />
+            <div className="sw-editorial-group" role="group" aria-label="Country pricing">
+              <span className="sw-editorial-geo-badge">
+                <Globe className="w-3.5 h-3.5 text-purple-400 shrink-0" aria-hidden="true" />
+                <span className="sw-editorial-geo-text">
+                  {t("geo.showingIn", {
+                    currency: currency.code,
+                    country:
+                      pricing?.country_name || (locale === "es" ? "Colombia" : "United States"),
+                  })}
+                </span>
+              </span>
+            </div>
+
+            {/* Currency Switcher (if local currency is not USD or forced) */}
+            {(pricing?.currency?.code !== "USD" || isForcedUSD) && (
               <>
                 <div className="sw-editorial-divider" />
                 <div className="sw-editorial-group" role="group" aria-label="Currency selection">
                   <span className="sw-editorial-label">{t("currencyLabel")}</span>
                   <button
+                    type="button"
+                    role="tab"
+                    aria-selected={!isForcedUSD}
                     className={`sw-editorial-btn ${!isForcedUSD ? "active" : ""}`}
                     onClick={() => {
                       if (isForcedUSD) toggleCurrencyOverride();
                     }}
                   >
-                    {pricing.currency.code}
+                    {pricing?.currency?.code ?? (locale === "es" ? "COP" : "USD")}
                   </button>
                   <button
+                    type="button"
+                    role="tab"
+                    aria-selected={isForcedUSD}
                     className={`sw-editorial-btn ${isForcedUSD ? "active" : ""}`}
                     onClick={() => {
                       if (!isForcedUSD) toggleCurrencyOverride();

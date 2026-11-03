@@ -7,7 +7,10 @@ import {
   formatLocalAmountParts,
   getCountryOverrideFromURL,
   getCurrencyOverride,
+  readCache,
   setCurrencyOverride,
+  DEFAULT_ES_PRICING,
+  DEFAULT_EN_PRICING,
   type CurrencyOverride,
   type ResolvedPlanPricing,
   type ResolvedPricingContext,
@@ -70,9 +73,20 @@ interface UseGeoPricingResult {
  *  - Cached via localStorage in the underlying lib so repeat views are instant.
  */
 export function useGeoPricing(locale: string): UseGeoPricingResult {
-  const [pricing, setPricing] = useState<ResolvedPricingContext | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [override, setOverrideState] = useState<CurrencyOverride>(null);
+  const defaultFallback = useMemo(() => {
+    return locale.startsWith("es") ? DEFAULT_ES_PRICING : DEFAULT_EN_PRICING;
+  }, [locale]);
+
+  const [pricing, setPricing] = useState<ResolvedPricingContext>(() => {
+    if (typeof window !== "undefined") {
+      const country = getCountryOverrideFromURL();
+      const cached = readCache(country);
+      if (cached) return cached;
+    }
+    return defaultFallback;
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [override, setOverrideState] = useState<CurrencyOverride>(() => getCurrencyOverride());
 
   // Initial load: fetch resolved pricing once on mount. We don't bother with
   // a SWR-style background refresh because the lib already caches for 1h.
@@ -82,7 +96,7 @@ export function useGeoPricing(locale: string): UseGeoPricingResult {
     setOverrideState(getCurrencyOverride());
 
     fetchGeoPricing({ country }).then((value) => {
-      if (cancelled) return;
+      if (cancelled || !value) return;
       setPricing(value);
       setIsLoading(false);
     });
@@ -127,8 +141,7 @@ export function useGeoPricing(locale: string): UseGeoPricingResult {
       // The original USD price is only used as a fallback when the
       // backend didn't provide an exchange rate or local price (e.g. for
       // unknown countries that already default to USD).
-      const localAmount =
-        cycle === "monthly" ? plan.local_price_monthly : plan.local_price_yearly;
+      const localAmount = cycle === "monthly" ? plan.local_price_monthly : plan.local_price_yearly;
       const usdAmount =
         cycle === "monthly" ? plan.original_price_monthly : plan.original_price_yearly;
       const rate = pricing?.exchange_rate ?? 0;

@@ -17,9 +17,10 @@
 // time — a missing var would otherwise silently disable geo-pricing).
 const DEFAULT_API_BASE_URL = "https://celaest-back.onrender.com";
 
-const API_BASE_URL = (
-  process.env.NEXT_PUBLIC_CELAEST_API_URL || DEFAULT_API_BASE_URL
-).replace(/\/+$/, "");
+const API_BASE_URL = (process.env.NEXT_PUBLIC_CELAEST_API_URL || DEFAULT_API_BASE_URL).replace(
+  /\/+$/,
+  "",
+);
 
 // Cache for 1 hour. Pricing rarely changes intra-session and FX rates are
 // updated daily server-side, so this keeps the landing snappy without
@@ -60,6 +61,106 @@ export interface ResolvedPricingContext {
   plans: ResolvedPlanPricing[];
 }
 
+export const DEFAULT_ES_PRICING: ResolvedPricingContext = {
+  country_code: "CO",
+  country_name: "Colombia",
+  currency: {
+    code: "COP",
+    name: "Peso Colombiano",
+    symbol: "$",
+    decimals: 0,
+    symbol_pos: "before",
+    is_zero_decimal: true,
+  },
+  ppp_factor: 0.35,
+  exchange_rate: 4150,
+  plans: [
+    {
+      plan_id: "starter",
+      plan_code: "starter",
+      plan_name: "Starter",
+      original_price_monthly: 0,
+      original_price_yearly: 0,
+      local_price_monthly: 0,
+      local_price_yearly: 0,
+      currency_code: "COP",
+      is_override: false,
+    },
+    {
+      plan_id: "pro",
+      plan_code: "pro",
+      plan_name: "Pro",
+      original_price_monthly: 29,
+      original_price_yearly: 288,
+      local_price_monthly: 42122,
+      local_price_yearly: 418320,
+      currency_code: "COP",
+      is_override: false,
+    },
+    {
+      plan_id: "enterprise",
+      plan_code: "enterprise",
+      plan_name: "Enterprise",
+      original_price_monthly: 99,
+      original_price_yearly: 990,
+      local_price_monthly: 143798,
+      local_price_yearly: 1437975,
+      currency_code: "COP",
+      is_override: false,
+    },
+  ],
+};
+
+export const DEFAULT_EN_PRICING: ResolvedPricingContext = {
+  country_code: "US",
+  country_name: "United States",
+  currency: {
+    code: "USD",
+    name: "US Dollar",
+    symbol: "$",
+    decimals: 2,
+    symbol_pos: "before",
+    is_zero_decimal: false,
+  },
+  ppp_factor: 1.0,
+  exchange_rate: 1.0,
+  plans: [
+    {
+      plan_id: "starter-usd",
+      plan_code: "starter",
+      plan_name: "Starter",
+      original_price_monthly: 0,
+      original_price_yearly: 0,
+      local_price_monthly: 0,
+      local_price_yearly: 0,
+      currency_code: "USD",
+      is_override: false,
+    },
+    {
+      plan_id: "pro-usd",
+      plan_code: "pro",
+      plan_name: "Pro",
+      original_price_monthly: 29,
+      original_price_yearly: 288,
+      local_price_monthly: 29,
+      local_price_yearly: 288,
+      currency_code: "USD",
+      is_override: false,
+    },
+    {
+      plan_id: "enterprise-usd",
+      plan_code: "enterprise",
+      plan_name: "Enterprise",
+      original_price_monthly: 99,
+      original_price_yearly: 990,
+      local_price_monthly: 99,
+      local_price_yearly: 990,
+      currency_code: "USD",
+      is_override: false,
+    },
+  ],
+};
+
 // --- API envelope helpers ---------------------------------------------------
 
 interface ApiEnvelope<T> {
@@ -69,11 +170,7 @@ interface ApiEnvelope<T> {
 }
 
 function unwrapEnvelope<T>(payload: unknown): T {
-  if (
-    payload &&
-    typeof payload === "object" &&
-    "success" in payload
-  ) {
+  if (payload && typeof payload === "object" && "success" in payload) {
     const env = payload as ApiEnvelope<T>;
     if (env.success !== true) {
       throw new Error(env.error?.message || "API returned an unsuccessful response");
@@ -89,10 +186,7 @@ export function getCountryOverrideFromURL(): string | null {
   if (typeof window === "undefined") return null;
   try {
     const params = new URLSearchParams(window.location.search);
-    const raw =
-      params.get("geoCountry") ||
-      params.get("country") ||
-      null;
+    const raw = params.get("geoCountry") || params.get("country") || null;
     if (!raw) return null;
     const code = raw.trim().toUpperCase();
     // ISO 3166-1 alpha-2: exactly two letters.
@@ -144,7 +238,7 @@ function cacheKey(country: string | null): string {
   return `${CACHE_KEY_PREFIX}${country || "auto"}`;
 }
 
-function readCache(country: string | null): ResolvedPricingContext | null {
+export function readCache(country: string | null): ResolvedPricingContext | null {
   if (typeof window === "undefined") return null;
   try {
     const raw = window.localStorage.getItem(cacheKey(country));
@@ -237,9 +331,7 @@ export function formatLocalAmountParts(
 ): { number: string; code: string; symbol: string; symbolPos: "before" | "after" } {
   const code = currency?.code || "USD";
   const symbol = currency?.symbol || "$";
-  const symbolPos = (currency?.symbol_pos === "after" ? "after" : "before") as
-    | "before"
-    | "after";
+  const symbolPos = (currency?.symbol_pos === "after" ? "after" : "before") as "before" | "after";
   const isZero = currency?.is_zero_decimal ?? false;
   const decimals = isZero ? 0 : (currency?.decimals ?? 2);
 

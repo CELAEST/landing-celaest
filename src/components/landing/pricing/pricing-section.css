@@ -115,6 +115,24 @@
   background: #24242b;
 }
 
+.sw-editorial-geo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: #a9a8b5;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+}
+
+.sw-editorial-geo-badge svg {
+  color: #c084fc;
+}
+
+.sw-editorial-geo-text {
+  color: #e4e4e7;
+}
+
 /* ==========================================================================
    TRIPTYCH EDITORIAL GRID (3 COLUMNS WITH 1PX HAIRLINES)
    ========================================================================== */
