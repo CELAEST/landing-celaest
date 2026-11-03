@@ -143,8 +143,8 @@
   opacity: 0.99;
   pointer-events: none;
   user-select: none;
-  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 52%, rgba(0, 0, 0, 0.6) 68%, rgba(0, 0, 0, 0.15) 85%, transparent 98%);
-  mask-image: linear-gradient(180deg, #000 0%, #000 52%, rgba(0, 0, 0, 0.6) 68%, rgba(0, 0, 0, 0.15) 85%, transparent 98%);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 93%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 93%, transparent 100%);
 }
 
 .intent-robot-canvas {
@@ -529,35 +529,38 @@
   }
 
   .intent-copy {
-    left: 6.8vw;
-    width: 48vw;
+    left: 5vw;
+    width: 44vw;
   }
 
   .intent-title > strong {
-    font-size: clamp(40px, 5.8vw, 76px);
+    font-size: clamp(34px, 5vw, 64px);
   }
 
   .intent-title-result > strong {
-    font-size: clamp(38px, 5.2vw, 68px);
+    font-size: clamp(32px, 4.6vw, 58px);
   }
 
   .intent-robot {
-    left: 18vw;
+    left: auto;
+    right: clamp(-300px, -24vw, -140px);
     top: -6.4%;
-    width: 87vw;
-    height: auto;
+    width: auto;
+    height: clamp(660px, 94vh, 960px);
+    aspect-ratio: 16 / 9;
   }
 
   .intent-robot-hitbox {
-    left: 49vw;
+    left: auto;
+    right: clamp(30px, 5vw, 120px);
     top: 4%;
-    width: 34vw;
+    width: clamp(260px, 32vw, 360px);
     height: 76%;
   }
 
   .intent-ridge {
-    width: max(140%, 1280px);
-    bottom: -5%;
+    width: max(148%, 1360px);
+    bottom: -3%;
   }
 }
 
