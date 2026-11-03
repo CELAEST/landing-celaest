@@ -49,11 +49,8 @@ export function PricingSection() {
   return (
     <section
       id="pricing"
-      className="py-14 sm:py-16 lg:py-20 bg-brand-dark relative overflow-hidden"
+      className="pt-6 sm:pt-8 lg:pt-10 pb-14 sm:pb-16 lg:pb-20 bg-brand-dark relative overflow-hidden"
     >
-      {/* Top Section Demarcation Divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent pointer-events-none z-20" />
-
       {/* Atmospheric constellation background & subtle glow */}
       <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_90%)]">
         <ConstellationBackground nodeCount={36} nodeAlpha={0.16} />

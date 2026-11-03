@@ -40,7 +40,7 @@ export function SecuritySection() {
   return (
     <section
       id="security"
-      className="py-16 sm:py-20 lg:py-24 bg-brand-dark relative overflow-hidden"
+      className="pt-16 sm:pt-20 lg:pt-24 pb-6 sm:pb-8 lg:pb-10 bg-brand-dark relative overflow-hidden"
     >
       {/* Top Section Demarcation Divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent pointer-events-none z-20" />
