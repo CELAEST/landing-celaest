@@ -44,9 +44,6 @@ export function PricingSection() {
     return Math.max(0, Math.round((saved / monthlyAnnualized) * 100));
   }, [pricing]);
 
-  // Whether to show the geo currency switcher
-  const showGeoBadge = Boolean(pricing && (pricing.currency.code !== "USD" || isForcedUSD));
-
   return (
     <section id="pricing" className="pt-12 pb-0 bg-brand-dark relative overflow-hidden">
       {/* Atmospheric constellation background & subtle glow */}

@@ -1,5 +1,3 @@
-import type { Metadata } from "next";
-
 /**
  * JSON-LD Structured Data for CELAEST.
  * Generates Organization + WebSite + FAQPage schemas for rich Google results.

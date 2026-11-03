@@ -13,7 +13,6 @@ import "./security/security-stage.css";
 
 export function SecuritySection() {
   const t = useTranslations("security");
-  const tPlatform = useTranslations("platform");
   const [activePillar, setActivePillar] = useState<ActiveSecurityPillar>("shield");
 
   const pillars = [

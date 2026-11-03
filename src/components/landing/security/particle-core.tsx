@@ -18,10 +18,11 @@ export function ParticleCore({ activeNode }: ParticleCoreProps) {
   // Preload binary security data gently in idle
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const win = window as any;
-      if (typeof win.requestIdleCallback === "function") {
-        const handle = win.requestIdleCallback(() => preloadSecurityParticles(), { timeout: 3000 });
-        return () => win.cancelIdleCallback?.(handle);
+      if ("requestIdleCallback" in window) {
+        const handle = window.requestIdleCallback(() => preloadSecurityParticles(), {
+          timeout: 3000,
+        });
+        return () => window.cancelIdleCallback(handle);
       } else {
         const timer = setTimeout(preloadSecurityParticles, 1500);
         return () => clearTimeout(timer);
@@ -56,13 +57,11 @@ export function ParticleCore({ activeNode }: ParticleCoreProps) {
   }, []);
 
   return (
-    <div ref={wrapperRef} className="relative w-60 h-60 md:w-72 md:h-72 flex items-center justify-center">
-      {mounted && (
-        <ParticleCoreCanvas
-          activeNode={activeNode}
-          visible={visible}
-        />
-      )}
+    <div
+      ref={wrapperRef}
+      className="relative w-60 h-60 md:w-72 md:h-72 flex items-center justify-center"
+    >
+      {mounted && <ParticleCoreCanvas activeNode={activeNode} visible={visible} />}
     </div>
   );
 }

@@ -14,10 +14,9 @@ export function DynamicInfrastructure() {
   // Preload particles binary buffer gently in idle without blocking page load
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const win = window as any;
-      if (typeof win.requestIdleCallback === "function") {
-        const handle = win.requestIdleCallback(() => preloadBrainParticles(), { timeout: 2500 });
-        return () => win.cancelIdleCallback?.(handle);
+      if ("requestIdleCallback" in window) {
+        const handle = window.requestIdleCallback(() => preloadBrainParticles(), { timeout: 2500 });
+        return () => window.cancelIdleCallback(handle);
       } else {
         const timer = setTimeout(preloadBrainParticles, 1200);
         return () => clearTimeout(timer);
