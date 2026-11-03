@@ -44,7 +44,7 @@ export function Footer() {
         style={{ textShadow: "0 2px 16px rgba(0,0,0,0.95), 0 0 4px rgba(0,0,0,0.95)" }}
       >
         {/* Large CELAEST Brand Wordmark - Centered */}
-        <div className="mb-14 sm:mb-20 flex justify-center w-full">
+        <div className="mb-20 sm:mb-28 flex justify-center w-full">
           <FooterWordmark />
         </div>
 
