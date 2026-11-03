@@ -14,10 +14,8 @@ export function PlatformSection() {
   return (
     <section
       id="platform"
-      className="py-14 sm:py-16 lg:py-20 bg-brand-dark relative overflow-hidden"
+      className="pt-4 sm:pt-6 lg:pt-8 pb-14 sm:pb-16 lg:pb-20 bg-brand-dark relative overflow-hidden"
     >
-      {/* Section Demarcation Divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent pointer-events-none z-20" />
       {/* Drifting constellation & subtle atmospheric purple glow */}
       <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_90%)]">
         <ConstellationBackground nodeCount={40} nodeAlpha={0.18} />

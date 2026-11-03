@@ -13,7 +13,7 @@ export function ProductsSection() {
   return (
     <section
       id="products"
-      className="pt-0 pb-16 sm:pb-20 lg:pb-24 bg-brand-dark relative overflow-hidden"
+      className="pt-0 pb-4 sm:pb-6 lg:pb-8 bg-brand-dark relative overflow-hidden"
     >
       {/* Background Glows (Positioned safely below section seam) */}
       <div className="absolute top-[10%] -left-[10%] w-[50%] h-[50%] bg-brand-neon/5 rounded-full blur-[120px] pointer-events-none" />
