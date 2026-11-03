@@ -13,7 +13,6 @@ export function ArchitecturePillarCard({ number, title, desc, icon }: PillarProp
       {/* Stage with Diagonal Number & Centered SVG */}
       <div className="eco-stage-wrap">
         <span className="eco-num-diagonal">{number}</span>
-        <div className="eco-svg-mask-halo" />
         <div className="eco-svg-center-box">{icon}</div>
       </div>
 
