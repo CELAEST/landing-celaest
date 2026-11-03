@@ -13,7 +13,7 @@ export function ProductsSection() {
   return (
     <section
       id="products"
-      className="py-16 sm:py-20 lg:py-24 bg-brand-dark relative overflow-hidden"
+      className="pt-0 pb-16 sm:pb-20 lg:pb-24 bg-brand-dark relative overflow-hidden"
     >
       {/* Section Demarcation Divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent pointer-events-none z-20" />
