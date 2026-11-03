@@ -1,6 +1,14 @@
 "use client";
 
-import { createElement, useEffect, useRef, useState, ReactNode, ElementType } from "react";
+import {
+  createElement,
+  useEffect,
+  useRef,
+  useState,
+  ReactNode,
+  ElementType,
+  HTMLAttributes,
+} from "react";
 
 /**
  * Lightweight CSS-only section reveal component.
@@ -16,12 +24,13 @@ export function SectionReveal({
   className = "",
   delay = 0,
   as = "div",
+  ...rest
 }: {
   children: ReactNode;
   className?: string;
   delay?: number;
   as?: ElementType;
-}) {
+} & HTMLAttributes<HTMLElement>) {
   const ref = useRef<HTMLElement | null>(null);
   const [visible, setVisible] = useState(false);
 
@@ -54,6 +63,7 @@ export function SectionReveal({
       ref,
       className: `section-reveal ${visible ? "is-visible" : ""} ${className}`.trim(),
       style: delay ? { transitionDelay: `${delay}ms` } : undefined,
+      ...rest,
     },
     children,
   );

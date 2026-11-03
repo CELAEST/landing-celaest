@@ -27,6 +27,7 @@ export function PricingSection() {
   const t = useTranslations("pricing");
   const locale = useLocale();
   const [cycle, setCycle] = useState<BillingCycle>("monthly");
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
   const { pricing, currency, isForcedUSD, toggleCurrencyOverride, getPlanPrice } =
     useGeoPricing(locale);
@@ -68,85 +69,82 @@ export function PricingSection() {
             </SectionReveal>
           </div>
 
-          {/* Subheader Controls Bar: Symmetrical & Distributed */}
+          {/* Subheader Controls Bar: Joined in the Center */}
           <SectionReveal delay={120} className="pricing-controls-bar">
-            {/* Left: Geo Country Badge */}
-            <div className="pricing-controls-left">
-              <span className="sw-editorial-geo-badge">
-                <Globe className="w-3.5 h-3.5 text-purple-400 shrink-0" aria-hidden="true" />
-                <span className="sw-editorial-geo-text">
-                  {t("geo.showingIn", {
-                    currency: currency.code,
-                    country:
-                      pricing?.country_name || (locale === "es" ? "Colombia" : "United States"),
-                  })}
-                </span>
+            {/* Geo Country Badge */}
+            <span className="sw-editorial-geo-badge">
+              <Globe className="w-3.5 h-3.5 text-purple-400 shrink-0" aria-hidden="true" />
+              <span className="sw-editorial-geo-text">
+                {t("geo.showingIn", {
+                  currency: currency.code,
+                  country:
+                    pricing?.country_name || (locale === "es" ? "Colombia" : "United States"),
+                })}
               </span>
+            </span>
+
+            <div className="sw-editorial-divider" />
+
+            {/* Billing Cycle */}
+            <div className="sw-editorial-group" role="tablist" aria-label="Billing cycle">
+              <span className="sw-editorial-label">{t("periodLabel")}</span>
+              <button
+                role="tab"
+                aria-selected={cycle === "monthly"}
+                className={`sw-editorial-btn ${cycle === "monthly" ? "active" : ""}`}
+                onClick={() => setCycle("monthly")}
+              >
+                {t("billing.monthly")}
+              </button>
+              <button
+                role="tab"
+                aria-selected={cycle === "yearly"}
+                className={`sw-editorial-btn ${cycle === "yearly" ? "active" : ""}`}
+                onClick={() => setCycle("yearly")}
+              >
+                {t("billing.yearly")}
+                {yearlySavingsPercent > 0 && (
+                  <span className="sw-editorial-tag">-{yearlySavingsPercent}%</span>
+                )}
+              </button>
             </div>
 
-            {/* Right: Period & Currency Switchers */}
-            <div className="pricing-controls-right">
-              {/* Billing Cycle */}
-              <div className="sw-editorial-group" role="tablist" aria-label="Billing cycle">
-                <span className="sw-editorial-label">{t("periodLabel")}</span>
-                <button
-                  role="tab"
-                  aria-selected={cycle === "monthly"}
-                  className={`sw-editorial-btn ${cycle === "monthly" ? "active" : ""}`}
-                  onClick={() => setCycle("monthly")}
-                >
-                  {t("billing.monthly")}
-                </button>
-                <button
-                  role="tab"
-                  aria-selected={cycle === "yearly"}
-                  className={`sw-editorial-btn ${cycle === "yearly" ? "active" : ""}`}
-                  onClick={() => setCycle("yearly")}
-                >
-                  {t("billing.yearly")}
-                  {yearlySavingsPercent > 0 && (
-                    <span className="sw-editorial-tag">-{yearlySavingsPercent}%</span>
-                  )}
-                </button>
-              </div>
-
-              {/* Currency Switcher */}
-              {(pricing?.currency?.code !== "USD" || isForcedUSD) && (
-                <>
-                  <div className="sw-editorial-divider" />
-                  <div className="sw-editorial-group" role="group" aria-label="Currency selection">
-                    <span className="sw-editorial-label">{t("currencyLabel")}</span>
-                    <button
-                      type="button"
-                      role="tab"
-                      aria-selected={!isForcedUSD}
-                      className={`sw-editorial-btn ${!isForcedUSD ? "active" : ""}`}
-                      onClick={() => {
-                        if (isForcedUSD) toggleCurrencyOverride();
-                      }}
-                    >
-                      {pricing?.currency?.code ?? (locale === "es" ? "COP" : "USD")}
-                    </button>
-                    <button
-                      type="button"
-                      role="tab"
-                      aria-selected={isForcedUSD}
-                      className={`sw-editorial-btn ${isForcedUSD ? "active" : ""}`}
-                      onClick={() => {
-                        if (!isForcedUSD) toggleCurrencyOverride();
-                      }}
-                    >
-                      USD
-                    </button>
-                  </div>
-                </>
-              )}
-            </div>
+            {/* Currency Switcher */}
+            {(pricing?.currency?.code !== "USD" || isForcedUSD) && (
+              <>
+                <div className="sw-editorial-divider" />
+                <div className="sw-editorial-group" role="group" aria-label="Currency selection">
+                  <span className="sw-editorial-label">{t("currencyLabel")}</span>
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={!isForcedUSD}
+                    className={`sw-editorial-btn ${!isForcedUSD ? "active" : ""}`}
+                    onClick={() => {
+                      if (isForcedUSD) toggleCurrencyOverride();
+                    }}
+                  >
+                    {pricing?.currency?.code ?? (locale === "es" ? "COP" : "USD")}
+                  </button>
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={isForcedUSD}
+                    className={`sw-editorial-btn ${isForcedUSD ? "active" : ""}`}
+                    onClick={() => {
+                      if (!isForcedUSD) toggleCurrencyOverride();
+                    }}
+                  >
+                    USD
+                  </button>
+                </div>
+              </>
+            )}
           </SectionReveal>
         </header>
 
         {/* 3-Column Triptych Grid */}
-        <div className="pricing-editorial-grid">
+        <div className="pricing-editorial-grid" onMouseLeave={() => setHoveredIdx(null)}>
           {PLANS.map((plan, idx) => {
             const features = t.raw(`plans.${plan.key}.features`) as string[];
             const fallbackPrice = t(`plans.${plan.key}.price`);
@@ -155,10 +153,18 @@ export function PricingSection() {
             const resolved =
               isCustom || !plan.backendCode ? null : getPlanPrice(plan.backendCode, cycle);
 
+            const isNeonActive = hoveredIdx !== null ? hoveredIdx === idx : Boolean(plan.popular);
+
             return (
-              <SectionReveal key={plan.key} delay={idx * 100} className="pricing-editorial-col">
-                {/* Plan 02: Línea Neón Superior Elegida */}
-                {plan.popular && <div className="popular-top-neon" />}
+              <SectionReveal
+                key={plan.key}
+                delay={idx * 100}
+                className={`pricing-editorial-col ${isNeonActive ? "is-neon-active" : ""}`}
+                data-popular={plan.popular ? "true" : "false"}
+                onMouseEnter={() => setHoveredIdx(idx)}
+              >
+                {/* Dynamic Neon Light Bar */}
+                <div className={`card-top-neon ${isNeonActive ? "active" : ""}`} />
 
                 <div>
                   {/* Number Hairline Rule + MÁS POPULAR badge */}
