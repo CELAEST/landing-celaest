@@ -6,6 +6,7 @@
 .sec-master-layout {
   display: grid;
   grid-template-columns: 44% 56%;
+  border-top: 1px solid #24242b;
   border-bottom: 1px solid #24242b;
   min-height: 520px;
 }
@@ -167,3 +168,4 @@
     min-height: 340px;
   }
 }
+
