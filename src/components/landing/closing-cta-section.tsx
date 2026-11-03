@@ -9,7 +9,10 @@ export function ClosingCTASection() {
   const t = useTranslations("faq.cta");
 
   return (
-    <section className="py-14 sm:py-16 lg:py-20 bg-brand-dark text-center flex flex-col items-center justify-center relative overflow-hidden">
+    <section
+      id="closing-cta"
+      className="pt-12 pb-12 bg-brand-dark text-center flex flex-col items-center justify-center relative overflow-hidden"
+    >
       {/* Drifting constellation & subtle atmospheric purple glow */}
       <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_90%)]">
         <ConstellationBackground nodeCount={28} nodeAlpha={0.15} />
