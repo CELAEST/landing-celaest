@@ -14,7 +14,7 @@ export function PlatformSection() {
   return (
     <section
       id="platform"
-      className="pt-4 sm:pt-6 lg:pt-8 pb-14 sm:pb-16 lg:pb-20 bg-brand-dark relative overflow-hidden"
+      className="pt-4 sm:pt-6 lg:pt-8 pb-0 bg-brand-dark relative overflow-hidden"
     >
       {/* Drifting constellation & subtle atmospheric purple glow */}
       <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_90%)]">
@@ -39,7 +39,7 @@ export function PlatformSection() {
         </header>
 
         {/* 3 Columns Feature Grid - Exact replicar-diseno-web layout */}
-        <div className="feature-grid">
+        <div className="feature-grid" style={{ borderBottom: "1px solid #24242b" }}>
           {/* Column 01: Centralized Management */}
           <article className="feature-col">
             <div>

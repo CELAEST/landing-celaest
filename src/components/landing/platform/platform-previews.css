@@ -54,11 +54,12 @@
 .feature-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid #24242b;
 }
 
 .feature-col {
   min-width: 0;
-  padding: 37px 35px 0 0;
+  padding: 37px 35px 44px 0;
   position: relative;
   display: flex;
   flex-direction: column;
