@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { DynamicInfrastructure } from "./dynamic-infrastructure";
 import { ConstellationBackground } from "@/components/ui/constellation-background";
+import "./products.css";
 
 export function ProductsSection() {
   const t = useTranslations("products");
@@ -12,7 +13,7 @@ export function ProductsSection() {
   return (
     <section
       id="products"
-      className="pt-24 sm:pt-28 lg:pt-32 pb-14 sm:pb-16 lg:pb-20 bg-brand-dark relative overflow-hidden"
+      className="py-16 sm:py-20 lg:py-24 bg-brand-dark relative overflow-hidden"
     >
       {/* Section Demarcation Divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent pointer-events-none z-20" />
@@ -27,9 +28,10 @@ export function ProductsSection() {
       </div>
 
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-10 sm:gap-12 lg:gap-14">
+        {/* Canonical Divided Layout (44% Content / 56% 3D Brain) */}
+        <div className="prod-master-layout">
           {/* LEFT HALF: Content & CTA */}
-          <div className="w-full lg:w-[45%] flex flex-col items-start text-left shrink-0">
+          <div className="prod-content-col">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -69,7 +71,7 @@ export function ProductsSection() {
           </div>
 
           {/* RIGHT HALF: Ultra-Premium B2B Infrastructure Diagram */}
-          <div className="w-full lg:w-[55%] relative flex items-center justify-center lg:justify-end">
+          <div className="prod-stage-col">
             <DynamicInfrastructure />
           </div>
         </div>
