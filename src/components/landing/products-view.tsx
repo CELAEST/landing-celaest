@@ -26,7 +26,7 @@ export function ProductsSection() {
 
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Canonical Divided Layout (44% Content / 56% 3D Brain) */}
-        <div className="prod-master-layout">
+        <div className="prod-master-layout" style={{ borderBottom: "1px solid #24242b" }}>
           {/* LEFT HALF: Content & CTA */}
           <div className="prod-content-col">
             <motion.h2
