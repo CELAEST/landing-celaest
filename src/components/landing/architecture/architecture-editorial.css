@@ -86,43 +86,47 @@
   padding: 48px 0 40px;
 }
 
-/* Línea Láser Continua detrás del centro de los SVGs */
-.eco-master-laser-line {
+/* Conectores Láser Segmentados entre Pilares Adyacentes (No cruzan los SVGs) */
+.eco-pillar-connector {
   position: absolute;
-  top: 100px; /* Exact vertical center of .eco-stage-wrap */
-  left: 0;
-  right: 0;
+  top: 52px; /* Centro vertical exacto de .eco-stage-wrap (104px / 2) */
+  left: calc(50% + 56px);
+  width: calc(100% + 28px - 112px);
   height: 1px;
   background: #24242b;
   z-index: 1;
   pointer-events: none;
 }
 
-@keyframes eco-laser-sweep {
+.eco-connector-photon {
+  position: absolute;
+  top: -1px;
+  height: 3px;
+  width: 52px;
+  background: linear-gradient(90deg, transparent, #a855f7 50%, transparent);
+  box-shadow: 0 0 12px #a855f7;
+  animation: eco-segment-pulse 3.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes eco-segment-pulse {
   0% {
     left: -10%;
     opacity: 0;
   }
-  15% {
+  6% {
     opacity: 1;
   }
-  85% {
+  26% {
     opacity: 1;
+  }
+  32% {
+    left: 100%;
+    opacity: 0;
   }
   100% {
     left: 100%;
     opacity: 0;
   }
-}
-
-.eco-laser-photon {
-  position: absolute;
-  top: -1px;
-  height: 3px;
-  width: 180px;
-  background: linear-gradient(90deg, transparent, #a855f7 50%, transparent);
-  box-shadow: 0 0 14px #a855f7;
-  animation: eco-laser-sweep 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 .eco-grid-open {
@@ -140,7 +144,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 0 12px;
+  padding: 0;
 }
 
 /* Stage Wrap for Diagonal Number & Centered SVG */
@@ -159,7 +163,7 @@
 .eco-num-diagonal {
   position: absolute;
   top: 0;
-  left: 44px;
+  left: 56px;
   font-family: monospace;
   font-size: 16px;
   font-weight: 700;
@@ -203,6 +207,7 @@
   min-height: 50px;
   text-align: center;
   white-space: pre-line;
+  padding: 0 12px;
 }
 
 .eco-pillar-desc-clean {
@@ -340,7 +345,7 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 36px;
   }
-  .eco-master-laser-line {
+  .eco-pillar-connector {
     display: none;
   }
   .eco-impact-grid-closed {

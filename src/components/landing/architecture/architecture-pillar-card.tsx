@@ -5,15 +5,34 @@ interface PillarProps {
   title: string;
   desc: string;
   icon: ReactNode;
+  showConnector?: boolean;
+  connectorIndex?: number;
 }
 
-export function ArchitecturePillarCard({ number, title, desc, icon }: PillarProps) {
+export function ArchitecturePillarCard({
+  number,
+  title,
+  desc,
+  icon,
+  showConnector = false,
+  connectorIndex = 0,
+}: PillarProps) {
   return (
     <article className="eco-col-open">
-      {/* Stage with Diagonal Number & Centered SVG */}
+      {/* Stage with Diagonal Number, Centered SVG & Segmented Connector */}
       <div className="eco-stage-wrap">
         <span className="eco-num-diagonal">{number}</span>
         <div className="eco-svg-center-box">{icon}</div>
+
+        {/* Segmented Laser Bridge (only between pillars, does not cross SVGs) */}
+        {showConnector && (
+          <div className="eco-pillar-connector" aria-hidden="true">
+            <div
+              className="eco-connector-photon"
+              style={{ animationDelay: `${connectorIndex * 1.2}s` }}
+            />
+          </div>
+        )}
       </div>
 
       {/* Title & Description (Centered & Symmetrical) */}
