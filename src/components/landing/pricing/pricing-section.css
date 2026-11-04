@@ -367,12 +367,14 @@
   }
   .pricing-editorial-grid {
     grid-template-columns: 1fr;
+    max-width: 480px;
+    margin: 0 auto;
   }
   .pricing-editorial-col,
   .pricing-editorial-col + .pricing-editorial-col {
     border-left: 0;
     border-top: 1px solid #24242b;
-    padding: 32px 0;
+    padding: 32px 20px;
   }
   .pricing-editorial-col:first-child {
     border-top: 0;
