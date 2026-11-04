@@ -1,6 +1,7 @@
 import { setRequestLocale } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 import { Header } from "@/components/landing/header";
+import { SectionProgressNav } from "@/components/landing/section-progress-nav";
 import { HeroSection } from "@/components/landing/hero-section";
 import { VolumetricAura } from "@/components/landing/lab";
 import { ProductsSection } from "@/components/landing/products-view";
@@ -49,6 +50,7 @@ export default async function HomePage({ params }: PageProps) {
       />
 
       <main>
+        <SectionProgressNav />
         <HeroSection />
         <div className="cv-section">
           <ProductsSection />

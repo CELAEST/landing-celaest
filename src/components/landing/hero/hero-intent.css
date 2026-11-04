@@ -208,49 +208,6 @@
   pointer-events: none;
 }
 
-.intent-progress {
-  position: absolute;
-  z-index: 12;
-  top: 18.5%;
-  bottom: 9%;
-  left: clamp(28px, 2.4vw, 42px);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  color: rgba(234, 231, 242, 0.55);
-  font-family: var(--font-display), "Space Grotesk", sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-}
-
-.intent-progress span.is-active {
-  color: #c4a6ff;
-}
-
-.intent-progress span.is-active::after {
-  content: "";
-  display: block;
-  width: 8px;
-  height: 8px;
-  margin: 8px 0 0 4px;
-  border-radius: 50%;
-  background: #a855f7;
-  box-shadow: 0 0 14px rgba(168, 85, 247, 0.8);
-}
-
-.intent-progress i {
-  width: 1px;
-  height: clamp(24px, 5vw, 66px);
-  margin-left: 4px;
-  background: linear-gradient(180deg, rgba(185, 167, 224, 0.65), rgba(185, 167, 224, 0.13));
-}
-
-.intent-progress i.intent-progress-last {
-  flex: 1;
-  min-height: 36px;
-}
-
 .intent-copy {
   position: absolute;
   z-index: 10;

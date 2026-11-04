@@ -1,0 +1,153 @@
+.intent-progress-fixed {
+  position: fixed;
+  z-index: 40;
+  top: clamp(140px, 18.5vh, 180px);
+  left: clamp(28px, 2.4vw, 42px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  pointer-events: auto;
+  user-select: none;
+  font-family: var(--font-display), "Space Grotesk", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  transition: opacity 350ms cubic-bezier(0.16, 1, 0.3, 1), transform 350ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.intent-progress-fixed.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+}
+
+.intent-progress-track {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.intent-progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.intent-progress-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  color: rgba(234, 231, 242, 0.55);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  outline: none;
+  transition: color 260ms ease, text-shadow 260ms ease, transform 260ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.intent-progress-btn:hover,
+.intent-progress-btn:focus-visible {
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(168, 85, 247, 0.65);
+  transform: translateX(1px);
+}
+
+.intent-progress-btn.is-active {
+  color: #c4a6ff;
+  font-weight: 500;
+  text-shadow: 0 0 10px rgba(168, 85, 247, 0.55);
+}
+
+/* Floating animated purple glider dot */
+.intent-progress-glider {
+  position: absolute;
+  left: 0.5px;
+  top: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #a855f7;
+  box-shadow:
+    0 0 14px rgba(168, 85, 247, 0.85),
+    0 0 4px rgba(255, 255, 255, 0.9);
+  pointer-events: none;
+  will-change: transform;
+  transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1), opacity 250ms ease;
+}
+
+/* Vertical line segments connecting the numbers */
+.intent-progress-line {
+  display: block;
+  width: 1px;
+  height: clamp(24px, 5vw, 66px);
+  margin-left: 4px;
+  background: linear-gradient(180deg, rgba(185, 167, 224, 0.65), rgba(185, 167, 224, 0.13));
+}
+
+.intent-progress-line-last {
+  display: block;
+  width: 1px;
+  height: clamp(36px, 6vw, 76px);
+  margin-left: 4px;
+  background: linear-gradient(180deg, rgba(185, 167, 224, 0.45), transparent);
+}
+
+/* Elegant floating tooltip on hover */
+.intent-progress-label {
+  position: absolute;
+  left: calc(100% + 14px);
+  top: 50%;
+  transform: translateY(-50%) translateX(-6px);
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ede9fe;
+  padding: 4px 10px;
+  background: rgba(14, 11, 26, 0.88);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-radius: 999px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 10px rgba(168, 85, 247, 0.2);
+  transition: opacity 220ms ease, transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (hover: hover) {
+  .intent-progress-btn:hover .intent-progress-label {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+@media (max-width: 1120px) {
+  .intent-progress-fixed {
+    left: 2vw;
+  }
+}
+
+@media (max-width: 760px) {
+  .intent-progress-fixed {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intent-progress-glider,
+  .intent-progress-btn,
+  .intent-progress-label,
+  .intent-progress-fixed {
+    transition: none !important;
+  }
+}

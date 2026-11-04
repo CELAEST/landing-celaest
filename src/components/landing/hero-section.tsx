@@ -106,17 +106,6 @@ export function HeroSection() {
           title={t("robotTitle")}
         />
 
-        <aside className="intent-progress" aria-hidden="true">
-          <span className="is-active">01</span>
-          <i />
-          <span>02</span>
-          <i />
-          <span>03</span>
-          <i />
-          <span>04</span>
-          <i className="intent-progress-last" />
-        </aside>
-
         <HeroIntentCopy
           titleRef={titleRef}
           kickerLine1={t("kickerLine1")}
