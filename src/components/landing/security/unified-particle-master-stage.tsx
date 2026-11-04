@@ -307,10 +307,10 @@ export function UnifiedParticleMasterStage({ activePillar }: UnifiedParticleMast
       onPointerEnter={() => setIsHovered(true)}
       onPointerLeave={() => setIsHovered(false)}
       onPointerMove={handlePointerMove}
+      className="sec-stage-canvas-inner"
       style={{
         position: "relative",
         width: "100%",
-        height: "440px",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",

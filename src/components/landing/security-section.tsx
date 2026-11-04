@@ -98,6 +98,14 @@ export function SecuritySection() {
             </div>
           </div>
         </SectionReveal>
+
+        {/* Mobile-only Explore Link */}
+        <div className="sec-mobile-foot">
+          <a href="#pricing" className="sec-link-explore">
+            <span>{t("explore")}</span>
+            <ArrowRight size={14} />
+          </a>
+        </div>
       </div>
     </section>
   );
