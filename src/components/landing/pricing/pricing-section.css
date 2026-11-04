@@ -57,6 +57,10 @@
   gap: 20px;
 }
 
+.pricing-switches-group {
+  display: contents;
+}
+
 /* ==========================================================================
    STYLE 1: EDITORIAL PURO (ZERO-BOX TYPOGRAPHY SWITCHER)
    ========================================================================== */
@@ -386,7 +390,32 @@
 
 @media (max-width: 640px) {
   .pricing-controls-bar {
-    justify-content: center;
-    gap: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+  .sw-editorial-divider {
+    display: none;
+  }
+  .sw-editorial-geo-badge {
+    font-size: 12.5px;
+    color: #a9a8b5;
+    text-align: center;
+  }
+  .pricing-switches-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .pricing-switches-group .sw-editorial-group {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .pricing-switches-group .sw-editorial-label {
+    width: 98px;
+    flex-shrink: 0;
   }
 }

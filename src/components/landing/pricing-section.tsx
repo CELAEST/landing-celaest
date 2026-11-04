@@ -82,61 +82,63 @@ export function PricingSection() {
 
             <div className="sw-editorial-divider" />
 
-            {/* Billing Cycle */}
-            <div className="sw-editorial-group" role="tablist" aria-label="Billing cycle">
-              <span className="sw-editorial-label">{t("periodLabel")}</span>
-              <button
-                role="tab"
-                aria-selected={cycle === "monthly"}
-                className={`sw-editorial-btn ${cycle === "monthly" ? "active" : ""}`}
-                onClick={() => setCycle("monthly")}
-              >
-                {t("billing.monthly")}
-              </button>
-              <button
-                role="tab"
-                aria-selected={cycle === "yearly"}
-                className={`sw-editorial-btn ${cycle === "yearly" ? "active" : ""}`}
-                onClick={() => setCycle("yearly")}
-              >
-                {t("billing.yearly")}
-                {yearlySavingsPercent > 0 && (
-                  <span className="sw-editorial-tag">-{yearlySavingsPercent}%</span>
-                )}
-              </button>
-            </div>
+            <div className="pricing-switches-group">
+              {/* Billing Cycle */}
+              <div className="sw-editorial-group" role="tablist" aria-label="Billing cycle">
+                <span className="sw-editorial-label">{t("periodLabel")}</span>
+                <button
+                  role="tab"
+                  aria-selected={cycle === "monthly"}
+                  className={`sw-editorial-btn ${cycle === "monthly" ? "active" : ""}`}
+                  onClick={() => setCycle("monthly")}
+                >
+                  {t("billing.monthly")}
+                </button>
+                <button
+                  role="tab"
+                  aria-selected={cycle === "yearly"}
+                  className={`sw-editorial-btn ${cycle === "yearly" ? "active" : ""}`}
+                  onClick={() => setCycle("yearly")}
+                >
+                  {t("billing.yearly")}
+                  {yearlySavingsPercent > 0 && (
+                    <span className="sw-editorial-tag">-{yearlySavingsPercent}%</span>
+                  )}
+                </button>
+              </div>
 
-            {/* Currency Switcher */}
-            {(pricing?.currency?.code !== "USD" || isForcedUSD) && (
-              <>
-                <div className="sw-editorial-divider" />
-                <div className="sw-editorial-group" role="group" aria-label="Currency selection">
-                  <span className="sw-editorial-label">{t("currencyLabel")}</span>
-                  <button
-                    type="button"
-                    role="tab"
-                    aria-selected={!isForcedUSD}
-                    className={`sw-editorial-btn ${!isForcedUSD ? "active" : ""}`}
-                    onClick={() => {
-                      if (isForcedUSD) toggleCurrencyOverride();
-                    }}
-                  >
-                    {pricing?.currency?.code ?? (locale === "es" ? "COP" : "USD")}
-                  </button>
-                  <button
-                    type="button"
-                    role="tab"
-                    aria-selected={isForcedUSD}
-                    className={`sw-editorial-btn ${isForcedUSD ? "active" : ""}`}
-                    onClick={() => {
-                      if (!isForcedUSD) toggleCurrencyOverride();
-                    }}
-                  >
-                    USD
-                  </button>
-                </div>
-              </>
-            )}
+              {/* Currency Switcher */}
+              {(pricing?.currency?.code !== "USD" || isForcedUSD) && (
+                <>
+                  <div className="sw-editorial-divider" />
+                  <div className="sw-editorial-group" role="group" aria-label="Currency selection">
+                    <span className="sw-editorial-label">{t("currencyLabel")}</span>
+                    <button
+                      type="button"
+                      role="tab"
+                      aria-selected={!isForcedUSD}
+                      className={`sw-editorial-btn ${!isForcedUSD ? "active" : ""}`}
+                      onClick={() => {
+                        if (isForcedUSD) toggleCurrencyOverride();
+                      }}
+                    >
+                      {pricing?.currency?.code ?? (locale === "es" ? "COP" : "USD")}
+                    </button>
+                    <button
+                      type="button"
+                      role="tab"
+                      aria-selected={isForcedUSD}
+                      className={`sw-editorial-btn ${isForcedUSD ? "active" : ""}`}
+                      onClick={() => {
+                        if (!isForcedUSD) toggleCurrencyOverride();
+                      }}
+                    >
+                      USD
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
           </SectionReveal>
         </header>
 
