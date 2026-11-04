@@ -40,7 +40,7 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 h-[72px] sm:h-[82px] flex items-center justify-between px-5 sm:px-8 md:px-[clamp(26px,7.9vw,138px)] transition-all duration-500 ease-in-out",
+        "fixed top-0 left-0 right-0 z-50 h-[64px] sm:h-[82px] flex items-center justify-between px-3.5 sm:px-8 md:px-[clamp(26px,7.9vw,138px)] transition-all duration-500 ease-in-out",
         isScrolled
           ? "bg-[#020202]/90 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.6)]"
           : "bg-transparent",
@@ -48,26 +48,26 @@ export function Header() {
     >
       {/* Brand Logo & Name */}
       <a
-        className="inline-flex items-center gap-3 text-[#f8f7fb] text-[14px] sm:text-[15px] font-semibold tracking-[0.38em] sm:tracking-[0.42em] no-underline transition-all hover:drop-shadow-[0_0_14px_rgba(167,139,250,0.45)] notranslate group"
+        className="inline-flex items-center gap-2 sm:gap-3 text-[#f8f7fb] text-[13px] sm:text-[15px] font-semibold tracking-[0.3em] sm:tracking-[0.42em] no-underline transition-all hover:drop-shadow-[0_0_14px_rgba(167,139,250,0.45)] notranslate group shrink-0"
         href="#intent-hero"
         aria-label="CELAEST"
         translate="no"
         onClick={handleLogoClick}
       >
-        <span className="inline-flex w-[19px] sm:w-[21px] h-[25px] sm:h-[27px] flex-shrink-0 filter drop-shadow-[0_0_12px_rgba(167,139,250,0.45)] transition-transform duration-300 group-hover:scale-105">
+        <span className="inline-flex w-[18px] sm:w-[21px] h-[23px] sm:h-[27px] flex-shrink-0 filter drop-shadow-[0_0_12px_rgba(167,139,250,0.45)] transition-transform duration-300 group-hover:scale-105">
           <Logo color="#f8f7fb" />
         </span>
         <span>CELAEST</span>
       </a>
 
       {/* Header Actions (Language, Sign In, Sign Up) */}
-      <div className="inline-flex items-center gap-2 sm:gap-4">
+      <div className="inline-flex items-center gap-1 sm:gap-3 shrink-0">
         <LanguageSelector />
 
         {/* Login / Sign In */}
         <a
           href={`${DASHBOARD_URL}?mode=signin`}
-          className="text-[13px] sm:text-sm font-medium text-white/75 hover:text-white px-2.5 sm:px-3.5 py-1.5 rounded-full hover:bg-white/[0.06] transition-all duration-200"
+          className="text-[12px] sm:text-sm font-medium text-white/75 hover:text-white px-2 sm:px-3.5 py-1.5 rounded-full hover:bg-white/[0.06] transition-all duration-200 whitespace-nowrap"
         >
           {t("signIn")}
         </a>
@@ -75,10 +75,15 @@ export function Header() {
         {/* Register / Sign Up */}
         <a
           href={`${DASHBOARD_URL}?mode=signup`}
-          className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-1.5 sm:py-2.5 rounded-full border border-white/30 bg-white/[0.06] hover:bg-white/[0.14] hover:border-white/70 text-white text-[12px] sm:text-[13px] font-medium tracking-tight backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.22)] hover:shadow-[0_6px_20px_rgba(167,139,250,0.3),inset_0_1px_0_rgba(255,255,255,0.4)] hover:-translate-y-0.5 transition-all duration-200"
+          className="inline-flex items-center gap-1 sm:gap-2 px-2.5 sm:px-5 py-1.5 sm:py-2.5 rounded-full border border-white/30 bg-white/[0.06] hover:bg-white/[0.14] hover:border-white/70 text-white text-[11.5px] sm:text-[13px] font-medium tracking-tight backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.22)] hover:shadow-[0_6px_20px_rgba(167,139,250,0.3),inset_0_1px_0_rgba(255,255,255,0.4)] hover:-translate-y-0.5 transition-all duration-200 whitespace-nowrap"
         >
           <span>{t("signUp")}</span>
-          <ArrowUpRight aria-hidden="true" size={14} strokeWidth={1.75} className="text-white/80" />
+          <ArrowUpRight
+            aria-hidden="true"
+            size={13}
+            strokeWidth={1.75}
+            className="text-white/80 shrink-0"
+          />
         </a>
       </div>
     </header>
