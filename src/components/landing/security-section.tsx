@@ -62,7 +62,7 @@ export function SecuritySection() {
         </div>
 
         {/* Master Asymmetric Stage Layout (Zero cards over cards) */}
-        <div className="sec-master-layout">
+        <SectionReveal delay={120} className="sec-master-layout">
           {/* Left Column: 3 Pillars with Clean Typography */}
           <div className="sec-pillar-list">
             {pillars.map((p) => {
@@ -97,7 +97,7 @@ export function SecuritySection() {
               </a>
             </div>
           </div>
-        </div>
+        </SectionReveal>
       </div>
     </section>
   );

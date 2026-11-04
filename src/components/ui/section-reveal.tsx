@@ -51,7 +51,7 @@ export function SectionReveal({
           }
         }
       },
-      { rootMargin: "250px 0px 250px 0px", threshold: 0 },
+      { rootMargin: "0px 0px -60px 0px", threshold: 0.05 },
     );
     io.observe(node);
     return () => io.disconnect();
@@ -62,7 +62,10 @@ export function SectionReveal({
     {
       ref,
       className: `section-reveal ${visible ? "is-visible" : ""} ${className}`.trim(),
-      style: delay ? { transitionDelay: `${delay}ms` } : undefined,
+      style: {
+        ...(delay ? { transitionDelay: `${delay}ms` } : {}),
+        ...(visible ? { willChange: "auto" } : {}),
+      },
       ...rest,
     },
     children,

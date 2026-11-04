@@ -61,10 +61,10 @@ export function PlatformCard({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.55, delay: index * 0.12 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.75, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
       className="h-full [perspective:1000px]"
     >
       <motion.div

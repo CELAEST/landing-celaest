@@ -3,6 +3,7 @@
 import React from "react";
 import { useTranslations } from "next-intl";
 import { ConstellationBackground } from "@/components/ui/constellation-background";
+import { SectionReveal } from "@/components/ui/section-reveal";
 import "./architecture/architecture-icons.css";
 import "./architecture/architecture-editorial.css";
 import { ArchitectureHeader } from "./architecture/architecture-header";
@@ -30,34 +31,40 @@ export function ArchitectureSection() {
       <div className="eco-section-glow" />
 
       <div className="eco-container">
-        <ArchitectureHeader
-          titleLead={t("titleLead")}
-          titleAccent={t("titleAccent")}
-          subtitle={t("subtitle")}
-        />
+        <SectionReveal>
+          <ArchitectureHeader
+            titleLead={t("titleLead")}
+            titleAccent={t("titleAccent")}
+            subtitle={t("subtitle")}
+          />
+        </SectionReveal>
 
-        <ArchitecturePillarsGrid pillars={pillars} />
+        <SectionReveal delay={100}>
+          <ArchitecturePillarsGrid pillars={pillars} />
+        </SectionReveal>
 
-        <ArchitectureImpact
-          badge={t("impact.badge")}
-          leadTitle={t("impact.leadTitle")}
-          leadAccent={t("impact.leadAccent")}
-          debt={{
-            value: t("impact.metrics.debt.value"),
-            label: t("impact.metrics.debt.label"),
-            desc: t("impact.metrics.debt.desc"),
-          }}
-          efficiency={{
-            value: t("impact.metrics.efficiency.value"),
-            label: t("impact.metrics.efficiency.label"),
-            desc: t("impact.metrics.efficiency.desc"),
-          }}
-          scalability={{
-            value: t("impact.metrics.scalability.value"),
-            label: t("impact.metrics.scalability.label"),
-            desc: t("impact.metrics.scalability.desc"),
-          }}
-        />
+        <SectionReveal delay={180}>
+          <ArchitectureImpact
+            badge={t("impact.badge")}
+            leadTitle={t("impact.leadTitle")}
+            leadAccent={t("impact.leadAccent")}
+            debt={{
+              value: t("impact.metrics.debt.value"),
+              label: t("impact.metrics.debt.label"),
+              desc: t("impact.metrics.debt.desc"),
+            }}
+            efficiency={{
+              value: t("impact.metrics.efficiency.value"),
+              label: t("impact.metrics.efficiency.label"),
+              desc: t("impact.metrics.efficiency.desc"),
+            }}
+            scalability={{
+              value: t("impact.metrics.scalability.value"),
+              label: t("impact.metrics.scalability.label"),
+              desc: t("impact.metrics.scalability.desc"),
+            }}
+          />
+        </SectionReveal>
       </div>
     </section>
   );

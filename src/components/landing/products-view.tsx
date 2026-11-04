@@ -27,9 +27,10 @@ export function ProductsSection() {
           {/* LEFT HALF: Content & CTA */}
           <div className="prod-content-col">
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 26 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
               className="landing-section-title mb-6"
             >
               <span className="text-white font-semibold">{t("title1")} </span>
@@ -37,20 +38,20 @@ export function ProductsSection() {
             </motion.h2>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 26 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="text-brand-slate-light text-base sm:text-lg md:text-xl leading-relaxed mb-10 max-w-xl"
             >
               {t("subtitle")}
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 26 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.75, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             >
               <a
                 href="https://celaest-dashboard.vercel.app/?tab=marketplace"
@@ -65,9 +66,15 @@ export function ProductsSection() {
           </div>
 
           {/* RIGHT HALF: Ultra-Premium B2B Infrastructure Diagram */}
-          <div className="prod-stage-col">
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="prod-stage-col"
+          >
             <DynamicInfrastructure />
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
