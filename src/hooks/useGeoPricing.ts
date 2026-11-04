@@ -77,16 +77,9 @@ export function useGeoPricing(locale: string): UseGeoPricingResult {
     return locale.startsWith("es") ? DEFAULT_ES_PRICING : DEFAULT_EN_PRICING;
   }, [locale]);
 
-  const [pricing, setPricing] = useState<ResolvedPricingContext>(() => {
-    if (typeof window !== "undefined") {
-      const country = getCountryOverrideFromURL();
-      const cached = readCache(country);
-      if (cached) return cached;
-    }
-    return defaultFallback;
-  });
+  const [pricing, setPricing] = useState<ResolvedPricingContext>(defaultFallback);
   const [isLoading, setIsLoading] = useState(false);
-  const [override, setOverrideState] = useState<CurrencyOverride>(() => getCurrencyOverride());
+  const [override, setOverrideState] = useState<CurrencyOverride>(null);
 
   // Initial load: fetch resolved pricing once on mount. We don't bother with
   // a SWR-style background refresh because the lib already caches for 1h.
@@ -94,6 +87,12 @@ export function useGeoPricing(locale: string): UseGeoPricingResult {
     let cancelled = false;
     const country = getCountryOverrideFromURL();
     setOverrideState(getCurrencyOverride());
+
+    // Instant client hydration update from local cache
+    const cached = readCache(country);
+    if (cached) {
+      setPricing(cached);
+    }
 
     fetchGeoPricing({ country }).then((value) => {
       if (cancelled || !value) return;

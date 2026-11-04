@@ -71,7 +71,7 @@ export function PricingSection() {
             {/* Geo Country Badge */}
             <span className="sw-editorial-geo-badge">
               <Globe className="w-3.5 h-3.5 text-purple-400 shrink-0" aria-hidden="true" />
-              <span className="sw-editorial-geo-text">
+              <span className="sw-editorial-geo-text" suppressHydrationWarning>
                 {t("geo.showingIn", {
                   currency: currency.code,
                   country:
@@ -177,7 +177,7 @@ export function PricingSection() {
 
                   {/* Clean Price Block */}
                   <div className="pricing-price-box">
-                    <div className="pricing-price-num">
+                    <div className="pricing-price-num" suppressHydrationWarning>
                       {isCustom ? (
                         fallbackPrice
                       ) : resolved ? (

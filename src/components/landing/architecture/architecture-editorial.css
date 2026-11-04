@@ -26,13 +26,23 @@
   z-index: 1;
 }
 
-/* Master Container (1360px / 85rem) */
+/* Master Container (1360px / 85rem) with Fluid Lateral Clearance */
 .eco-container {
   max-width: 85rem;
   margin: 0 auto;
-  padding: 0 32px;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: max(32px, calc(clamp(96px, 8.6vw, 136px) - max(0px, (100vw - 85rem) / 2)));
+  padding-right: max(32px, calc(clamp(96px, 8.6vw, 136px) - max(0px, (100vw - 85rem) / 2)));
   position: relative;
   z-index: 10;
+}
+
+@media (max-width: 760px) {
+  .eco-container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
 }
 
 /* Header - Centered & Symmetrical */

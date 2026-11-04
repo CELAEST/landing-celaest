@@ -68,11 +68,13 @@
     #platform > div.max-w-\[85rem\],
     #security > div.max-w-\[85rem\],
     #pricing > div.max-w-\[85rem\],
+    #architecture .eco-container,
     .cv-section > section > div.max-w-\[85rem\],
     .cv-section > div.max-w-\[85rem\],
+    .cv-section .eco-container,
     .eco-container {
-      padding-left: max(32px, calc(clamp(96px, 8.6vw, 136px) - max(0px, (100vw - 85rem) / 2)));
-      padding-right: max(32px, calc(clamp(96px, 8.6vw, 136px) - max(0px, (100vw - 85rem) / 2)));
+      padding-left: max(32px, calc(clamp(96px, 8.6vw, 136px) - max(0px, (100vw - 85rem) / 2))) !important;
+      padding-right: max(32px, calc(clamp(96px, 8.6vw, 136px) - max(0px, (100vw - 85rem) / 2))) !important;
     }
   }
 
