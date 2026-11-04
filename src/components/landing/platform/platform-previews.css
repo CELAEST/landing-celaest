@@ -760,13 +760,125 @@
   .mini-sidebar {
     width: 100px;
   }
-  .asset-nav {
-    width: 96px;
+
+  /* --- 02. PIPELINE PREVIEW MOBILE ADAPTATION --- */
+  .flow-toolbar {
+    width: 40px;
+    gap: 12px;
+    padding-top: 14px;
   }
-  .flow-node {
-    width: 145px;
+  .flow-tool-active {
+    width: 24px;
+    height: 24px;
+  }
+  .flow-node.trigger {
+    width: 138px;
+    height: 44px;
+    padding: 0 10px;
+    gap: 8px;
+  }
+  .flow-node.action {
+    top: 86px;
+    width: 148px;
+    height: 44px;
+    padding: 0 10px;
+    gap: 8px;
+  }
+  .wire-v1-wrap {
+    top: 62px;
+    height: 24px;
+  }
+  .wire-branch-svg {
+    top: 130px;
+    width: 206px;
   }
   .flow-node.result {
+    top: 164px;
+    height: 40px;
+    padding: 0 8px;
+    gap: 6px;
+  }
+  .flow-node.result b {
+    font-size: 9.5px;
+  }
+  .flow-node.result.success {
+    left: calc(50% - 60px);
+    width: 102px;
+  }
+  .flow-node.result.error {
+    left: calc(50% + 60px);
+    width: 118px;
+  }
+  .success-icon,
+  .error-icon {
+    width: 19px;
+    height: 19px;
+  }
+
+  /* --- 03. ASSETS / ECOSYSTEM PREVIEW MOBILE ADAPTATION --- */
+  .assets-preview {
+    padding: 10px 11px;
+  }
+  .library-top {
+    gap: 8px;
+  }
+  .library-body {
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .asset-nav {
+    width: 86px;
+    gap: 1px;
+  }
+  .asset-nav-item {
+    height: 28px;
+    padding-left: 6px;
+    gap: 6px;
+    font-size: 9.5px;
+  }
+  .asset-grid {
+    gap: 8px;
+  }
+  .asset-card {
+    min-width: 0;
+    height: 82px;
+    padding: 8px 8px;
+    border-radius: 12px;
+  }
+  .asset-icon-row {
+    height: 18px;
+  }
+  .asset-title {
+    font-size: 10px;
+  }
+  .asset-version {
+    font-size: 9px;
+  }
+  .asset-download svg {
+    width: 11px;
+    height: 11px;
+  }
+}
+
+@media (max-width: 360px) {
+  .flow-toolbar {
+    width: 36px;
+  }
+  .flow-node.result.success {
+    left: calc(50% - 56px);
+    width: 96px;
+  }
+  .flow-node.result.error {
+    left: calc(50% + 56px);
     width: 112px;
+  }
+  .wire-branch-svg {
+    width: 192px;
+  }
+  .asset-nav {
+    width: 80px;
+  }
+  .asset-card {
+    padding: 7px 6px;
   }
 }
