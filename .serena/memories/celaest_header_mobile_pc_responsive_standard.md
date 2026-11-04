@@ -1,20 +1,23 @@
-# Standard de Header Responsivo y Prevencion de Envoltura (CELAEST)
+# Standard de Header Responsivo y Multilingüe (CELAEST)
 
 ## Contexto
-En dispositivos moviles (< 400px, 390px iPhone, 360px Android), el navbar superior (`header.tsx`) sufria envoltura de texto no deseada:
-1. "Sign In" se dividia verticalmente en dos lineas (`Sign\nIn`).
-2. El boton "Sign Up ↗" se rompia en dos lineas (`Sign\nUp ↗`), generando un boton vertical deformado en vez de una capsula horizontal elegante.
-3. El ancho total intrinsico (Logo con tracking de 0.42em + LanguageSelector + Sign In + Sign Up + padding px-5) sobrepasaba los 360px-390px disponibles.
+En dispositivos móviles (< 400px, 390px iPhone, 360px Android), el navbar superior (`header.tsx`) presentaba recortes visuales en el extremo derecho cuando se visualizaba en español (`/es`):
+1. En español, `"Iniciar Sesión"` (14 caracteres) y `"Registrarse ↗"` (11 caracteres) son significativamente más largos que en inglés (`"Sign In"` y `"Sign Up ↗"`).
+2. El botón `"Registrarse ↗"` se cortaba en el borde derecho de la pantalla (flecha recortada y curvatura derecha fuera del viewport).
+3. El ancho intrínseco combinado (Logo tracking + LanguageSelector + Iniciar Sesión + Registrarse + paddings) superaba los 360px-390px.
 
-## Solucion Quirurgica sin Modificar PC
-Se conservo 100% intacta la composicion y medidas de PC usando modificadores Tailwind `sm:` y `md:`:
-- `<header>`: `h-[64px] sm:h-[82px] px-3.5 sm:px-8 md:px-[clamp(26px,7.9vw,138px)]`
-- Logo CELAEST: `text-[13px] sm:text-[15px] tracking-[0.3em] sm:tracking-[0.42em] shrink-0`
-- LanguageSelector: `gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm whitespace-nowrap`
-- Sign In: `whitespace-nowrap px-2 sm:px-3.5 text-[12px] sm:text-sm`
-- Sign Up: `whitespace-nowrap px-2.5 sm:px-5 py-1.5 sm:py-2.5 text-[11.5px] sm:text-[13px]` con icono `shrink-0`
+## Solución Quirúrgica y Desacoplada (Mobile-Only)
+Se preservó el 100% del diseño de PC mediante modificadores `sm:` y `md:`:
+- `<header>`: `h-[64px] sm:h-[82px] px-3 sm:px-8 md:px-[clamp(26px,7.9vw,138px)]`
+- Logo CELAEST: `gap-1.5 sm:gap-3 text-[12px] sm:text-[15px] tracking-[0.18em] sm:tracking-[0.42em] shrink-0`
+- Bird Logo icon: `w-[16px] sm:w-[21px] h-[21px] sm:h-[27px]`
+- LanguageSelector: `gap-1 sm:gap-2 px-1.5 sm:px-3 py-1 sm:py-2 text-[11px] sm:text-sm whitespace-nowrap` con iconos `w-3 sm:w-4 h-3 sm:h-4`
+- Sign In (`Iniciar Sesión` / `Sign In`): `whitespace-nowrap px-1.5 sm:px-3.5 py-1 sm:py-1.5 text-[11px] sm:text-sm`
+- Sign Up (`Registrarse ↗` / `Sign Up ↗`): `whitespace-nowrap px-2.5 sm:px-5 py-1 sm:py-2.5 text-[11px] sm:text-[13px] gap-1 sm:gap-2` con `ArrowUpRight` `w-3 sm:w-3.5 h-3 sm:h-3.5`
 
 ## Calidad y Validaciones
-- Mobile (360px y 390px): Todos los elementos caben comodamente en una sola linea horizontal sin cortes ni saltos de linea.
-- PC (>= 640px / 1366px / 1920px): Altura 82px, tracking 0.42em, padding desktop original 100% invariante.
-- Tests: Vitest 11/11 pasados, type-check 0 errores, build SSG 11/11 paginas estaticas.
+- Mobile (360px y 390px): Tanto en inglés como en español (`/en` y `/es`), todos los elementos caben con holgura sin desborde horizontal ni saltos de línea.
+- PC (>= 640px / 1366px / 1920px): Altura 82px, tracking 0.42em, tamaños de fuente y paddings de desktop 100% idénticos e intactos.
+- Tests: Vitest 12/12 pasados con nuevo test unitario `__tests__/components/header.test.tsx`.
+- Type-check: 0 errores.
+- Build Next.js: 11/11 rutas SSG generadas exitosamente.

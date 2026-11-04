@@ -41,7 +41,7 @@ export function LanguageSelector() {
         onClick={() => setIsOpen(!isOpen)}
         disabled={isPending}
         className={cn(
-          "flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg hover:bg-white/10 transition-all duration-300 group whitespace-nowrap",
+          "flex items-center gap-1 sm:gap-2 px-1.5 sm:px-3 py-1 sm:py-2 rounded-lg hover:bg-white/10 transition-all duration-300 group whitespace-nowrap",
           isPending && "opacity-70 cursor-wait",
         )}
         aria-label={`Language: ${localeCodes[locale]}`}
@@ -52,12 +52,12 @@ export function LanguageSelector() {
         ) : (
           <Globe className="w-3.5 sm:w-4 h-3.5 sm:h-4 text-brand-soft group-hover:text-brand-mint transition-colors" />
         )}
-        <span className="text-xs sm:text-sm font-medium text-brand-soft group-hover:text-brand-mint transition-colors">
+        <span className="text-[11px] sm:text-sm font-medium text-brand-soft group-hover:text-brand-mint transition-colors">
           {localeCodes[locale]}
         </span>
         <ChevronDown
           className={cn(
-            "w-3.5 sm:w-4 h-3.5 sm:h-4 text-brand-soft group-hover:text-brand-mint transition-all duration-300",
+            "w-3 sm:w-4 h-3 sm:h-4 text-brand-soft group-hover:text-brand-mint transition-all duration-300",
             isOpen && "rotate-180",
           )}
         />
