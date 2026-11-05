@@ -1,35 +1,32 @@
-# Standard de Calibración Fluida e Intermedia para PlatformSection (CELAEST)
+# Standard de Calibración Fluida y Alineación Geométrica de Platform Widgets (CELAEST)
 
 ## Contexto y Diagnóstico
-Al redimensionar el navegador o abrir la consola de desarrollo (DevTools anclado a la derecha en pantallas de 1920x1080 o laptops de 1366x768 / 1440x900), el viewport de la página se reduce a anchos intermedios (1350px, 1200px, 1120px, 1085px).
-En este rango, la sección "Potencia tu flujo de trabajo" (`PlatformSection`, `#platform`) forzaba 3 columnas fijas con dimensiones rígidas de desktop:
-- **Columna 01 (MembersWidget)**: El sidebar fijo de 116px y badges de estado comprimían los nombres de los miembros (`b`) hasta 0px de ancho disponible (`text-overflow: ellipsis` forzado).
-- **Columna 02 (PipelineWidget)**: El Wishbone SVG de conexión ramificada (`width: 250px`) y los nodos de resultado (`Completado`: 112px, `Error / Reintentar`: 122px a `calc(50% ± 63px)`) sobrepasaban el ancho del lienzo de la columna (177px - 225px), provocando que el borde y los textos del nodo de error se cortaran en el borde derecho por `overflow: hidden`.
-- **Columna 03 (EcosystemWidget)**: Las tarjetas en grid 2x2 (`Auto Sync`, `Data Fetcher`, `Sheets Bridge`, `Slack Connector`) quedaban aplastadas a 55px-60px con solapamiento visual.
+1. **Desalineación de Zócalos en PC Desktop (1920px / 1600px)**:
+   - En el SVG `wire-branch-svg` (`viewBox="0 0 250 36"`), los zócalos de conexión a los nodos inferiores están ubicados en `x = 52` (izquierda) y `x = 198` (derecha).
+   - Con respecto al centro (`x = 125`), la distancia física es exactamente `125 - 52 = 73px` y `198 - 125 = 73px` (ratio `73 / 250 = 0.292`).
+   - Sin embargo, las tarjetas de resultado en base desktop tenían `left: calc(50% - 63px)` y `left: calc(50% + 63px)`.
+   - Esto provocaba un desfase de 10 píxeles (`diffSuccess: +10px`, `diffError: -10px`), haciendo que las terminaciones moradas de los cables cayeran sobre el borde interno de las tarjetas en lugar de entrar exactamente por el centro superior de cada una.
 
-## Solución Desacoplada sin Modificar PC Pantalla Completa ni Mobile
-Sin alterar el diseño móvil (< 640px / <= 500px) ni el de PC pantalla completa (>= 1440px / 1920px):
-1. **Breakpoint Intermedio (@media (max-width: 1380px))**:
-   - Relleno de columna simétrico: `padding: 32px 16px 40px 0;` y borde divisorio con `padding-left: 16px;`.
-   - Títulos fluidos: `.feature-heading` escalado a `clamp(26px, 2.3vw, 32px)` con `letter-spacing: -1.2px`.
-2. **MembersWidget Calibrado**:
-   - Sidebar optimizado a `100px` con padding suave `16px 7px 12px`.
-   - Badges y roles compactados (`active-badge: 38px`, `small: 34px`), garantizando al menos 60px-80px de espacio libre para nombres legibles sin truncamiento prematuro.
-3. **PipelineWidget Matemáticamente Alineado**:
-   - Toolbar a `38px` (herramienta activa `24px`).
-   - Nodos Trigger y Action a `136px` y `144px`.
-   - Wishbone SVG a `196px`.
-   - Nodos de resultado simétricos: `success` (98px) a `calc(50% - 57px)` y `error` (110px) a `calc(50% + 57px)`, alineados exactamente a los zócalos del SVG y manteniendo un margen lateral de 18px-45px libre de cortes en todo el espectro.
-4. **EcosystemWidget**:
-   - Sidebar de navegación de categorías a `74px` (70px en <= 1150px).
-   - Grid con gap de 6px y tarjetas con padding `7px 7px`, permitiendo que las 4 tarjetas mantengan sus títulos y botones de descarga perfectamente visibles.
-5. **Transición Continua (@media (max-width: 1150px) y @media (max-width: 1080px))**:
-   - Amortiguador fino a `1150px` con padding de 12px.
-   - En `<= 1080px`, transición suave a 1 columna apilada (`grid-template-columns: 1fr; gap: 32px`) con `.preview { max-width: 520px; }`.
+2. **Alineación Geométrica en Todos los Viewports**:
+   - Para cualquier ancho $W$ del SVG `wire-branch-svg`, la posición central del nodo correspondiente DEBE satisfacer:
+     $$\text{Offset} = 0.292 \times W$$
+   - **Base Desktop ($W = 250\text{px}$)**: Offset $= 73\text{px}$ (`calc(50% ± 73px)`).
+   - **Intermedio DevTools ($W = 196\text{px}$ en $\le 1480\text{px}$)**: Offset $= 57.2\text{px} \approx 57\text{px}$ (`calc(50% ± 57px)`).
+   - **Mobile Estándar ($W = 206\text{px}$ en $\le 500\text{px}$)**: Offset $= 60.1\text{px} \approx 60\text{px}$ (`calc(50% ± 60px)`).
+   - **Mobile Compacto ($W = 192\text{px}$ en $\le 360\text{px}$)**: Offset $= 56.0\text{px} \approx 56\text{px}$ (`calc(50% ± 56px)`).
 
-## Verificación Blackbox en Chrome Vivo
-- Viewports verificados: 1920px, 1440px, 1350px, 1200px, 1120px, 1085px, 960px, 800px, 500px, 390px, 360px.
-- `clipsLeft: false` y `clipsRight: false` en todos los nodos y tarjetas.
-- 12/12 pruebas unitarias de Vitest aprobadas.
-- Type-check de TypeScript 100% aprobado.
-- Build Next.js SSG de 11/11 rutas estáticas compilado sin errores.
+## Validación Automatizada de Alineación y Cero Cortes
+Medición con Playwright de los centroides de tarjeta versus los zócalos del cable en 11 resoluciones en Chrome vivo:
+- `1920px`: `diffSuccess: 0px, diffError: 0px, marginCanvasLeft: 27px, marginCanvasRight: 22px`
+- `1600px`: `diffSuccess: 0px, diffError: 0px, marginCanvasLeft: 27px, marginCanvasRight: 22px`
+- `1440px`: `diffSuccess: 0px, diffError: 0px, marginCanvasLeft: 56px, marginCanvasRight: 50px`
+- `1350px`: `diffSuccess: 0px, diffError: 0px, marginCanvasLeft: 44px, marginCanvasRight: 38px`
+- `1200px`: `diffSuccess: 0px, diffError: 0px, marginCanvasLeft: 23px, marginCanvasRight: 17px`
+- `1120px`: `diffSuccess: 0px, diffError: 0px, marginCanvasLeft: 16px, marginCanvasRight: 10px`
+- `1085px`: `diffSuccess: 0px, diffError: 0px, marginCanvasLeft: 10px, marginCanvasRight: 4px`
+- `960px`:  `diffSuccess: 0px, diffError: 0px, marginCanvasLeft: 134px, marginCanvasRight: 128px`
+- `500px`:  `diffSuccess: 0px, diffError: 0px, marginCanvasLeft: 102px, marginCanvasRight: 94px`
+- `390px`:  `diffSuccess: 0px, diffError: 0px, marginCanvasLeft: 47px, marginCanvasRight: 39px`
+- `360px`:  `diffSuccess: 0px, diffError: 0px, marginCanvasLeft: 41px, marginCanvasRight: 33px`
+
+Cero desfase en todos los casos: el cable conecta matemáticamente en el centro de las tarjetas y nunca se sale del marco del widget.

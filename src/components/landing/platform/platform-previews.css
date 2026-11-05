@@ -525,11 +525,11 @@
   gap: 8px;
 }
 .flow-node.result.success {
-  left: calc(50% - 63px);
+  left: calc(50% - 73px);
   width: 112px;
 }
 .flow-node.result.error {
-  left: calc(50% + 63px);
+  left: calc(50% + 73px);
   width: 122px;
 }
 
@@ -733,7 +733,7 @@
    RESPONSIVENESS
    ========================================================================== */
 
-@media (max-width: 1380px) {
+@media (max-width: 1480px) {
   .feature-col {
     padding: 32px 16px 40px 0;
   }
