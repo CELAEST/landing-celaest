@@ -733,6 +733,148 @@
    RESPONSIVENESS
    ========================================================================== */
 
+@media (max-width: 1380px) {
+  .feature-col {
+    padding: 32px 16px 40px 0;
+  }
+  .feature-col + .feature-col {
+    padding-left: 16px;
+  }
+  .feature-heading {
+    font-size: clamp(26px, 2.3vw, 32px);
+    letter-spacing: -1.2px;
+  }
+
+  /* --- 01. MEMBERS PREVIEW INTERMEDIATE ADAPTATION --- */
+  .mini-sidebar {
+    width: 100px;
+    padding: 16px 7px 12px;
+  }
+  .preview-main {
+    padding: 16px 10px;
+  }
+  .member-row {
+    gap: 6px;
+  }
+  .member-row b {
+    font-size: 9px;
+  }
+  .member-row small {
+    width: 34px;
+    font-size: 8px;
+  }
+  .active-badge {
+    width: 38px;
+    gap: 3.5px;
+  }
+  .active-text {
+    font-size: 7.5px;
+  }
+
+  /* --- 02. PIPELINE PREVIEW INTERMEDIATE ADAPTATION --- */
+  .flow-toolbar {
+    width: 38px;
+    gap: 12px;
+    padding-top: 14px;
+  }
+  .flow-tool-active {
+    width: 24px;
+    height: 24px;
+  }
+  .flow-node.trigger {
+    width: 136px;
+    height: 44px;
+    padding: 0 10px;
+    gap: 8px;
+  }
+  .flow-node.action {
+    top: 86px;
+    width: 144px;
+    height: 44px;
+    padding: 0 10px;
+    gap: 8px;
+  }
+  .wire-v1-wrap {
+    top: 62px;
+    height: 24px;
+  }
+  .wire-branch-svg {
+    top: 130px;
+    width: 196px;
+  }
+  .flow-node.result {
+    top: 164px;
+    height: 40px;
+    padding: 0 8px;
+    gap: 6px;
+  }
+  .flow-node.result b {
+    font-size: 9px;
+  }
+  .flow-node.result.success {
+    left: calc(50% - 57px);
+    width: 98px;
+  }
+  .flow-node.result.error {
+    left: calc(50% + 57px);
+    width: 110px;
+  }
+  .success-icon,
+  .error-icon {
+    width: 19px;
+    height: 19px;
+  }
+
+  /* --- 03. ASSETS / ECOSYSTEM PREVIEW INTERMEDIATE ADAPTATION --- */
+  .asset-nav {
+    width: 74px;
+    gap: 1px;
+  }
+  .asset-nav-item {
+    height: 28px;
+    padding-left: 5px;
+    gap: 5px;
+    font-size: 9px;
+  }
+  .asset-grid {
+    gap: 6px;
+  }
+  .asset-card {
+    min-width: 0;
+    height: 82px;
+    padding: 7px 7px;
+    border-radius: 12px;
+  }
+  .asset-icon-row {
+    height: 18px;
+  }
+  .asset-title {
+    font-size: 10px;
+  }
+  .asset-version {
+    font-size: 9px;
+  }
+  .asset-download svg {
+    width: 11px;
+    height: 11px;
+  }
+}
+
+@media (max-width: 1150px) {
+  .feature-col {
+    padding: 30px 12px 36px 0;
+  }
+  .feature-col + .feature-col {
+    padding-left: 12px;
+  }
+  .mini-sidebar {
+    width: 94px;
+  }
+  .asset-nav {
+    width: 70px;
+  }
+}
+
 @media (max-width: 1080px) {
   .feature-grid {
     grid-template-columns: 1fr;
