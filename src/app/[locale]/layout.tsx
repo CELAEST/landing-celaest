@@ -116,16 +116,19 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${inter.variable} ${spaceGrotesk.variable}`}>
+    <html
+      lang={locale}
+      className={`${inter.variable} ${spaceGrotesk.variable}`}
+      style={{ backgroundColor: "#020202", colorScheme: "dark" }}
+    >
       <head>
-        <link
-          rel="preload"
-          as="image"
-          href="/robot_hero_gaze/gaze_018.webp"
-          type="image/webp"
-        />
+        <link rel="preload" as="image" href="/robot_hero_gaze/gaze_018.webp" type="image/webp" />
       </head>
-      <body className="font-sans antialiased" suppressHydrationWarning>
+      <body
+        className="font-sans antialiased bg-[#020202] text-brand-ice"
+        style={{ backgroundColor: "#020202" }}
+        suppressHydrationWarning
+      >
         <NextIntlClientProvider messages={messages}>
           {children}
           <Analytics />

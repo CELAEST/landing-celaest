@@ -13,11 +13,7 @@ export function HeroArtStage({ robotImgRef, robotCanvasRef }: HeroArtStageProps)
     <div className="intent-art" aria-hidden="true">
       <div className="intent-art-glow" />
 
-      <svg
-        className="intent-structure"
-        viewBox="0 0 1680 820"
-        preserveAspectRatio="xMidYMid slice"
-      >
+      <svg className="intent-structure" viewBox="0 0 1680 820" preserveAspectRatio="xMidYMid slice">
         <defs>
           <linearGradient id="intent-monolith" x1="0" x2="1" y1="0" y2="1">
             <stop offset="0" stopColor="#080912" />
@@ -46,11 +42,7 @@ export function HeroArtStage({ robotImgRef, robotCanvasRef }: HeroArtStageProps)
             </feMerge>
           </filter>
           {/* Curved path along monolith surface for organic branding track */}
-          <path
-            id="monolith-text-curve"
-            d="M1226 418 C 1268 248, 1322 95, 1414 -64"
-            fill="none"
-          />
+          <path id="monolith-text-curve" d="M1226 418 C 1268 248, 1322 95, 1414 -64" fill="none" />
         </defs>
 
         <path
@@ -74,12 +66,7 @@ export function HeroArtStage({ robotImgRef, robotCanvasRef }: HeroArtStageProps)
           opacity=".45"
         />
         {/* Brand track adapted to curve: CELAEST */}
-        <text
-          fill="#c4bfd5"
-          opacity=".58"
-          fontSize="10"
-          letterSpacing="5"
-        >
+        <text fill="#c4bfd5" opacity=".58" fontSize="10" letterSpacing="5">
           <textPath href="#monolith-text-curve" startOffset="140px">
             CELAEST
           </textPath>
@@ -95,12 +82,7 @@ export function HeroArtStage({ robotImgRef, robotCanvasRef }: HeroArtStageProps)
         </g>
 
         {/* Brand track adapted to curve: SYSTEMS */}
-        <text
-          fill="#c4bfd5"
-          opacity=".58"
-          fontSize="10"
-          letterSpacing="5"
-        >
+        <text fill="#c4bfd5" opacity=".58" fontSize="10" letterSpacing="5">
           <textPath href="#monolith-text-curve" startOffset="244px">
             SYSTEMS
           </textPath>
@@ -110,7 +92,7 @@ export function HeroArtStage({ robotImgRef, robotCanvasRef }: HeroArtStageProps)
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         ref={robotImgRef}
-        className="intent-robot"
+        className="intent-robot intent-robot-img"
         src="/robot_hero_gaze/gaze_018.webp"
         alt=""
         fetchPriority="high"
@@ -131,4 +113,3 @@ export function HeroArtStage({ robotImgRef, robotCanvasRef }: HeroArtStageProps)
     </div>
   );
 }
-

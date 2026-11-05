@@ -84,7 +84,7 @@ export function useRobotSequenceCanvas() {
       if (!canvas) return false;
       let ctx = robotCtxRef.current;
       if (!ctx) {
-        ctx = canvas.getContext("2d", { alpha: true, desynchronized: true });
+        ctx = canvas.getContext("2d", { alpha: true });
         robotCtxRef.current = ctx;
       }
       if (!ctx) return false;
@@ -104,7 +104,16 @@ export function useRobotSequenceCanvas() {
         prefix === "saludo" ? String(Math.round(clamped) + 1) : `gaze-${Math.round(clamped) + 1}`;
 
       if (robotImgRef.current) {
-        robotImgRef.current.style.opacity = "0";
+        const isAtRest = prefix === "gaze" && Math.abs(clamped - GAZE_REST_INDEX) < 0.2;
+        if (isAtRest) {
+          if (robotImgRef.current.style.opacity !== "1") {
+            robotImgRef.current.style.opacity = "1";
+          }
+        } else {
+          if (robotImgRef.current.style.opacity !== "0") {
+            robotImgRef.current.style.opacity = "0";
+          }
+        }
       }
       return true;
     },
@@ -302,6 +311,9 @@ export function useRobotSequenceCanvas() {
     return () => {
       cancelled = true;
       if (animRafRef.current) cancelAnimationFrame(animRafRef.current);
+      if (robotImgRef.current) {
+        robotImgRef.current.style.opacity = "1";
+      }
       gazeBitmapsRef.current.forEach((bmp) => bmp?.close());
       saludoBitmapsRef.current.forEach((bmp) => bmp?.close());
       gazeBitmapsRef.current = Array(GAZE_FRAME_COUNT).fill(null);
