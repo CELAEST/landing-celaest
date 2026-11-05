@@ -44,13 +44,13 @@ export async function generateMetadata({
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://landing-celaest.vercel.app";
 
   const titles = {
-    en: "CELAEST - Enterprise AI Systems & Digital Asset Marketplace",
-    es: "CELAEST - Sistemas de IA para Empresas y Activos Digitales",
+    en: "CELAEST - AI Systems for Everyone & Digital Asset Marketplace",
+    es: "CELAEST - Sistemas de IA para Todos y Activos Digitales",
   };
 
   const descriptions = {
-    en: "We design, implement, and scale AI systems that turn processes into real results for your business.",
-    es: "Diseñamos, implementamos y escalamos sistemas de IA que convierten procesos en resultados reales para tu negocio.",
+    en: "We design, implement, and scale AI systems that turn processes into real results for your business and daily life.",
+    es: "Diseñamos, implementamos y escalamos sistemas de IA que convierten procesos en resultados reales para tu negocio y tu vida diaria.",
   };
 
   const title = titles[locale as keyof typeof titles] ?? titles.es;
