@@ -340,8 +340,13 @@ export function UnifiedParticleMasterStage({ activePillar }: UnifiedParticleMast
 
       {data && (
         <Canvas
+          dpr={[1, 1.5]}
           camera={{ position: [0, 0, 4.2], fov: 42 }}
-          gl={{ antialias: true, alpha: true }}
+          gl={{
+            antialias: true,
+            alpha: true,
+            powerPreference: "high-performance",
+          }}
           style={{ width: "100%", height: "100%" }}
         >
           <MasterParticleMesh

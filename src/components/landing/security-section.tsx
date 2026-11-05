@@ -1,15 +1,26 @@
 "use client";
 
 import React, { useState } from "react";
+import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { ArrowRight } from "lucide-react";
 import { ConstellationBackground } from "@/components/ui/constellation-background";
 import { SectionReveal } from "@/components/ui/section-reveal";
-import {
-  UnifiedParticleMasterStage,
-  type ActiveSecurityPillar,
-} from "./security/unified-particle-master-stage";
+import type { ActiveSecurityPillar } from "./security/unified-particle-master-stage";
 import "./security/security-stage.css";
+
+const UnifiedParticleMasterStage = dynamic(
+  () =>
+    import("./security/unified-particle-master-stage").then((m) => m.UnifiedParticleMasterStage),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-full flex items-center justify-center min-h-[360px]">
+        <div className="w-48 h-48 rounded-full border border-violet-500/20 bg-violet-950/10 animate-pulse" />
+      </div>
+    ),
+  },
+);
 
 export function SecuritySection() {
   const t = useTranslations("security");

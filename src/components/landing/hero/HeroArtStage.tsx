@@ -107,7 +107,7 @@ export function HeroArtStage({ robotImgRef, robotCanvasRef }: HeroArtStageProps)
       />
 
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="intent-ridge" src="/ridge_shadowed.png" alt="" decoding="async" />
+      <img className="intent-ridge" src="/ridge_shadowed.webp" alt="" decoding="async" />
 
       <div className="intent-art-vignette" />
     </div>
