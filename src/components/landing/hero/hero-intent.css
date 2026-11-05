@@ -137,8 +137,9 @@
   z-index: 2;
   left: 18vw;
   top: -6.4%;
-  width: 87vw;
-  height: auto;
+  width: auto;
+  height: max(calc(87vw * 9 / 16), 94vh);
+  aspect-ratio: 16 / 9;
   max-width: none;
   opacity: 0.99;
   pointer-events: none;
@@ -477,7 +478,7 @@
   to { transform: scaleX(1); }
 }
 
-@media (max-width: 1240px) {
+@media (max-width: 1480px) {
   .intent-header {
     padding-inline: 5vw;
   }
