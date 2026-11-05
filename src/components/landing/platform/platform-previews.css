@@ -521,16 +521,16 @@
 .flow-node.result {
   top: 182px;
   height: 44px;
-  padding: 0 10px;
+  padding: 0 11px;
   gap: 8px;
 }
 .flow-node.result.success {
   left: calc(50% - 73px);
-  width: 112px;
+  width: 114px;
 }
 .flow-node.result.error {
   left: calc(50% + 73px);
-  width: 122px;
+  width: 136px;
 }
 
 .success-icon {
@@ -564,7 +564,7 @@
 }
 
 .flow-node.result b {
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 600;
   color: #ffffff;
   letter-spacing: -0.2px;
@@ -805,11 +805,11 @@
   .flow-node.result {
     top: 164px;
     height: 40px;
-    padding: 0 8px;
+    padding: 0 9px;
     gap: 6px;
   }
   .flow-node.result b {
-    font-size: 9px;
+    font-size: 8.5px;
   }
   .flow-node.result.success {
     left: calc(50% - 57px);
@@ -817,7 +817,7 @@
   }
   .flow-node.result.error {
     left: calc(50% + 57px);
-    width: 110px;
+    width: 114px;
   }
   .success-icon,
   .error-icon {
@@ -872,6 +872,17 @@
   }
   .asset-nav {
     width: 70px;
+  }
+  .wire-branch-svg {
+    width: 184px;
+  }
+  .flow-node.result.success {
+    left: calc(50% - 54px);
+    width: 96px;
+  }
+  .flow-node.result.error {
+    left: calc(50% + 54px);
+    width: 112px;
   }
 }
 
