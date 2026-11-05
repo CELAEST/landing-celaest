@@ -29,7 +29,16 @@
   padding: 24px 0 24px 32px;
 }
 
-@media (max-width: 1024px) {
+@media (min-width: 1081px) and (max-width: 1240px) {
+  .prod-content-col {
+    padding: 44px 32px 44px 0;
+  }
+  .prod-stage-col {
+    padding: 20px 0 20px 24px;
+  }
+}
+
+@media (max-width: 1080px) {
   .prod-master-layout {
     grid-template-columns: 1fr;
   }
