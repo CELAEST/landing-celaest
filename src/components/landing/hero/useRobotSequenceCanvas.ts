@@ -39,13 +39,20 @@ function findBestBitmap(
   return null;
 }
 
+let globalGazeBitmaps: Array<ImageBitmap | null> | null = null;
+let globalSaludoBitmaps: Array<ImageBitmap | null> | null = null;
+
 export function useRobotSequenceCanvas() {
   const robotCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const robotCtxRef = useRef<CanvasRenderingContext2D | null>(null);
   const robotImgRef = useRef<HTMLImageElement | null>(null);
 
-  const saludoBitmapsRef = useRef<Array<ImageBitmap | null>>(Array(SALUDO_FRAME_COUNT).fill(null));
-  const gazeBitmapsRef = useRef<Array<ImageBitmap | null>>(Array(GAZE_FRAME_COUNT).fill(null));
+  const saludoBitmapsRef = useRef<Array<ImageBitmap | null>>(
+    globalSaludoBitmaps || Array(SALUDO_FRAME_COUNT).fill(null),
+  );
+  const gazeBitmapsRef = useRef<Array<ImageBitmap | null>>(
+    globalGazeBitmaps || Array(GAZE_FRAME_COUNT).fill(null),
+  );
   const isSaludoLoadingRef = useRef<boolean>(false);
 
   const animRafRef = useRef<number>(0);
@@ -239,6 +246,7 @@ export function useRobotSequenceCanvas() {
         saludoBitmapsRef.current[idx] = bmp;
       });
       await Promise.all(decodePromises);
+      globalSaludoBitmaps = saludoBitmapsRef.current;
     } catch {
       // Fallback: load saludo individual frames progressively
       const fallbackPromises: Promise<void>[] = [];
@@ -263,6 +271,13 @@ export function useRobotSequenceCanvas() {
   // Main DMA initialization
   useEffect(() => {
     let cancelled = false;
+
+    // Fast-path: If cursor gaze frames are already cached in module memory, reuse instantly (0ms)
+    if (globalGazeBitmaps && globalGazeBitmaps[GAZE_REST_INDEX]) {
+      gazeBitmapsRef.current = globalGazeBitmaps;
+      drawBlendedSequenceFrame(globalGazeBitmaps, currentGazeFrameRef.current, "gaze");
+      return;
+    }
 
     const loadSingleGaze = async (oneBased: number) => {
       try {
@@ -298,6 +313,7 @@ export function useRobotSequenceCanvas() {
           gazeBitmapsRef.current[idx] = bmp;
         });
         await Promise.all(decodePromises);
+        globalGazeBitmaps = gazeBitmapsRef.current;
         if (!cancelled && modeRef.current === "gaze") {
           drawBlendedSequenceFrame(gazeBitmapsRef.current, currentGazeFrameRef.current, "gaze");
         }
@@ -314,10 +330,6 @@ export function useRobotSequenceCanvas() {
       if (robotImgRef.current) {
         robotImgRef.current.style.opacity = "1";
       }
-      gazeBitmapsRef.current.forEach((bmp) => bmp?.close());
-      saludoBitmapsRef.current.forEach((bmp) => bmp?.close());
-      gazeBitmapsRef.current = Array(GAZE_FRAME_COUNT).fill(null);
-      saludoBitmapsRef.current = Array(SALUDO_FRAME_COUNT).fill(null);
       robotCtxRef.current = null;
     };
   }, [drawBlendedSequenceFrame]);
