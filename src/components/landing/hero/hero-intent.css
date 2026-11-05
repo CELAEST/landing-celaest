@@ -503,18 +503,20 @@
 
   .intent-robot {
     left: auto;
-    right: clamp(-200px, -15vw, -40px);
-    top: -4%;
+    right: clamp(-360px, -28vw, -140px);
+    top: auto;
+    bottom: -2%;
     width: auto;
-    height: clamp(500px, 80vh, 760px);
+    height: clamp(660px, 94vh, 980px);
     aspect-ratio: 16 / 9;
-    opacity: 0.88;
+    opacity: 0.92;
   }
 
   .intent-robot-hitbox {
     left: auto;
-    right: clamp(20px, 4vw, 80px);
-    top: 4%;
+    right: clamp(40px, 6vw, 120px);
+    top: auto;
+    bottom: 4%;
     width: clamp(220px, 28vw, 320px);
     height: 72%;
   }
