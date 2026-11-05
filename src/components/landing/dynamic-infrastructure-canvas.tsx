@@ -1,7 +1,7 @@
 "use client";
 
 import React, { Suspense, useRef, useState, useMemo, useEffect } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { getBrainParticleData, BrainParticleData } from "./brain-data-loader";
 
@@ -11,7 +11,7 @@ import { getBrainParticleData, BrainParticleData } from "./brain-data-loader";
 // =====================================================================
 
 const LAYER_A_COUNT = 18000; // estructura (Particle Emitter 2)
-const LAYER_B_COUNT = 9000;  // superficie con flujo (Particle Emitter)
+const LAYER_B_COUNT = 9000; // superficie con flujo (Particle Emitter)
 
 const VERTEX_SHADER = /* glsl */ `
   uniform float uTime;
@@ -261,8 +261,14 @@ const ParticleBrain = ({
   scaleMultiplier?: number;
   data: BrainParticleData;
 }) => {
+  const { viewport } = useThree();
+  // Auto-fit: The brain model spans ~6.2 units horizontally in local coordinate space.
+  // When canvas aspect ratio narrows, scale down proportionally so particles NEVER clip at the camera frustum boundary.
+  const autoFitScale = Math.min(1, Math.max(0.65, viewport.width / 7.6));
+  const effectiveScale = scaleMultiplier * autoFitScale;
+
   return (
-    <group rotation={[0, 0.35, 0]} scale={[scaleMultiplier, scaleMultiplier, scaleMultiplier]}>
+    <group rotation={[0, 0.35, 0]} scale={[effectiveScale, effectiveScale, effectiveScale]}>
       {/* Capa A · Estructura densa interior */}
       <ParticleLayer
         count={LAYER_A_COUNT}
@@ -274,7 +280,7 @@ const ParticleBrain = ({
           colorMain: "#FFFFFF",
           colorAccent: "#E2E8F0",
           accentMix: 0.18,
-          drift: 0.10,
+          drift: 0.1,
           size: 1.7,
           lifeSpeed: 0.12,
         }}
@@ -289,7 +295,7 @@ const ParticleBrain = ({
         config={{
           colorMain: "#F8FAFC",
           colorAccent: "#CBD5E1",
-          accentMix: 0.30,
+          accentMix: 0.3,
           drift: 0.28,
           size: 2.2,
           lifeSpeed: 0.18,

@@ -24,13 +24,19 @@ export function DynamicInfrastructure() {
     }
   }, []);
 
-  // Responsive scale handler
+  // Responsive scale handler based on actual container bounds
   useEffect(() => {
+    const el = wrapperRef.current;
+    if (!el) return;
+
     const handleResize = () => {
-      if (window.innerWidth < 480) {
-        setScaleMultiplier(0.9);
-      } else if (window.innerWidth < 768) {
-        setScaleMultiplier(0.95);
+      const w = el.clientWidth || window.innerWidth;
+      if (w < 400) {
+        setScaleMultiplier(0.8);
+      } else if (w < 550) {
+        setScaleMultiplier(0.88);
+      } else if (w < 700) {
+        setScaleMultiplier(0.94);
       } else {
         setScaleMultiplier(1);
       }
