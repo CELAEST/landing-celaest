@@ -23,8 +23,8 @@
 /* Master Header: Symmetrical, Clean, Demarcated with Laser Hairline */
 .legal-editorial-header {
   border-bottom: 1px solid #24242b;
-  padding-bottom: 48px;
-  margin-bottom: 0;
+  padding-bottom: 40px;
+  margin-bottom: 32px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -34,17 +34,17 @@
 .legal-editorial-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   font-family: monospace;
   font-size: 11px;
   color: #71717a;
   text-transform: uppercase;
   letter-spacing: 0.22em;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
 .legal-editorial-eyebrow .rule {
-  width: 48px;
+  width: 32px;
   height: 1px;
   background: #3d3947;
 }
@@ -93,13 +93,12 @@
 }
 
 /* ==========================================================================
-   TETRALOGÍA SWITCHER: DOUBLE-HAIRLINE FRAMED BAR (01 / 02 / 03 / 04)
+   TETRALOGÍA SWITCHER: ZERO-BOX TYPOGRAPHIC BAR (01 / 02 / 03 / 04)
    ========================================================================== */
 .legal-tetralogy-bar {
-  border-top: 1px solid #24242b;
   border-bottom: 1px solid #24242b;
-  padding: 18px 0;
-  margin-bottom: 56px;
+  padding-bottom: 20px;
+  margin-bottom: 48px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -114,7 +113,7 @@
 .legal-tetralogy-nav {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 24px;
   flex-wrap: nowrap;
 }
 
@@ -127,7 +126,7 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #71717a;
-  padding: 4px 0;
+  padding: 6px 0;
   position: relative;
   text-decoration: none;
   transition: color 0.2s ease;
@@ -160,7 +159,7 @@
 .legal-tetralogy-link.active::after {
   content: "";
   position: absolute;
-  bottom: -19px;
+  bottom: -21px;
   left: 0;
   right: 0;
   height: 2px;
@@ -176,48 +175,29 @@
 }
 
 /* ==========================================================================
-   EDITORIAL MASTER GRID: CONTINUOUS ARCHITECTURAL BORDER DIVIDER
+   EDITORIAL MASTER GRID: 2-COLUMN DIVIDED READING ARCHITECTURE
    ========================================================================== */
 .legal-editorial-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 280px;
-  gap: 0;
+  gap: 64px;
   align-items: start;
-}
-
-.legal-editorial-content {
-  padding-right: 56px;
-  border-right: 1px solid #24242b;
 }
 
 @media (max-width: 1024px) {
   .legal-editorial-grid {
     grid-template-columns: 1fr;
-  }
-  .legal-editorial-content {
-    padding-right: 0;
-    border-right: none;
+    gap: 40px;
   }
 }
 
-/* Inter-Clause Article Separation */
-.legal-section-article {
-  border-bottom: 1px solid #1a1a22;
-  padding-bottom: 52px;
-  margin-bottom: 0;
-}
-
-.legal-section-article:last-child {
-  border-bottom: none;
-}
-
-/* Section Rule Wrap with Flexible Laser Line */
+/* Section Rule Wrap */
 .legal-section-rule-wrap {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 20px;
-  padding-top: 52px;
+  margin-bottom: 16px;
+  padding-top: 48px;
 }
 
 .legal-section-article:first-child .legal-section-rule-wrap {
@@ -233,9 +213,9 @@
 }
 
 .legal-section-rule-wrap .rule {
-  flex: 1;
+  width: 65px;
   height: 1px;
-  background: #24242b;
+  background: #3d3947;
 }
 
 .legal-section-tag {
@@ -245,7 +225,7 @@
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: #71717a;
-  flex-shrink: 0;
+  margin-left: auto;
 }
 
 .legal-section-title {
@@ -258,7 +238,7 @@
   margin-bottom: 20px;
 }
 
-/* Editorial Lead / Summary - PURE TYPOGRAPHY */
+/* Editorial Lead / Summary - PURE TYPOGRAPHY, ZERO CARDS */
 .legal-section-lead {
   font-size: 16px;
   line-height: 1.65;
@@ -313,16 +293,6 @@
 .legal-sticky-index {
   position: sticky;
   top: 110px;
-  padding-left: 48px;
-}
-
-@media (max-width: 1024px) {
-  .legal-sticky-index {
-    padding-left: 0;
-    margin-top: 48px;
-    padding-top: 32px;
-    border-top: 1px solid #24242b;
-  }
 }
 
 .legal-index-eyebrow {
@@ -357,11 +327,11 @@
   display: flex;
   align-items: baseline;
   gap: 12px;
-  padding: 8px 0;
+  padding: 6px 0;
   color: #71717a;
   font-size: 13px;
   text-decoration: none;
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition: color 0.2s ease;
   line-height: 1.4;
 }
 
@@ -375,7 +345,6 @@
 
 .legal-index-link:hover {
   color: #ffffff;
-  transform: translateX(3px);
 }
 
 .legal-index-link:hover .num {

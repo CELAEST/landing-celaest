@@ -44,7 +44,7 @@ export default async function LicensePage({ params }: { params: Promise<{ locale
 
       <div className="legal-editorial-grid">
         {/* Main Document Body */}
-        <div className="w-full legal-editorial-content">
+        <div className="w-full">
           {sections.map((section) => (
             <LegalSectionView key={section.id} section={section} />
           ))}
