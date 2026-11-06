@@ -423,7 +423,7 @@
         "items": [
           "Excel Macros",
           "Python Scripts",
-          "AI Mesh & Agents",
+          "Asset Catalog",
           "Plans & Pricing",
           "Enterprise Solutions"
         ]
@@ -432,8 +432,8 @@
         "title": "Platform",
         "items": [
           "System Architecture",
-          "AI Mesh",
-          "Security",
+          "AI Mesh & Agents",
+          "Security & Isolation",
           "Commercial Inquiries"
         ]
       },
@@ -441,7 +441,7 @@
         "title": "Support",
         "items": [
           "Frequently Asked Questions",
-          "Documentation",
+          "Technical Documentation",
           "Help Desk"
         ]
       },

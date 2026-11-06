@@ -4,7 +4,6 @@ import React from "react";
 import { useTranslations } from "next-intl";
 import { SectionHeader } from "@/components/ui/section-header";
 import { FAQAccordion, type FAQItem } from "./faq/faq-accordion";
-import { FAQEditorialCTA } from "./faq/faq-editorial-cta";
 
 export function FAQSection() {
   const t = useTranslations("faq");
@@ -27,9 +26,6 @@ export function FAQSection() {
 
         {/* FAQ Accordion */}
         <FAQAccordion items={faqs} />
-
-        {/* Minimalist Open Editorial CTA (Get Started & Contact Sales) */}
-        <FAQEditorialCTA />
       </div>
     </section>
   );

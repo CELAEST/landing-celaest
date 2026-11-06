@@ -423,7 +423,7 @@
         "items": [
           "Macros Excel",
           "Scripts Python",
-          "Malla IA & Agentes",
+          "Catálogo de Assets",
           "Planes & Precios",
           "Soluciones Enterprise"
         ]
@@ -431,9 +431,9 @@
       "company": {
         "title": "Plataforma",
         "items": [
-          "Visión del Sistema",
-          "Malla IA",
-          "Seguridad",
+          "Arquitectura del Sistema",
+          "Malla IA & Agentes",
+          "Seguridad & Aislamiento",
           "Contacto Comercial"
         ]
       },
@@ -441,7 +441,7 @@
         "title": "Soporte",
         "items": [
           "Preguntas Frecuentes",
-          "Documentación",
+          "Documentación Técnica",
           "Mesa de Ayuda"
         ]
       },

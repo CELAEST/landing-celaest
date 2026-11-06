@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Twitter, Linkedin, Github, Mail } from "lucide-react";
+import { Github, Mail } from "lucide-react";
 import { ConstellationBackground } from "@/components/ui/constellation-background";
 import { FooterBrandColumn } from "./footer/footer-brand-column";
 import { FooterLinks } from "./footer/footer-links";
@@ -20,8 +20,6 @@ export function Footer() {
   }));
 
   const socialLinks = [
-    { icon: Twitter, href: "https://twitter.com/celaest", label: "Twitter" },
-    { icon: Linkedin, href: "https://linkedin.com/company/celaest", label: "LinkedIn" },
     { icon: Github, href: "https://github.com/celaest", label: "GitHub" },
     { icon: Mail, href: `mailto:${SUPPORT_EMAIL}`, label: "Email" },
   ];

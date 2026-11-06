@@ -19,8 +19,9 @@ function getFooterHref(key: string, index: number): string {
     switch (index) {
       case 0:
       case 1:
-      case 2:
         return "/#products";
+      case 2:
+        return `${DASHBOARD_URL}/?tab=marketplace`;
       case 3:
         return "/#pricing";
       case 4:
