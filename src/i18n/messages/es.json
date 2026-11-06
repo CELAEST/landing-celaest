@@ -421,11 +421,9 @@
       "product": {
         "title": "Producto",
         "items": [
-          "Macros Excel",
-          "Scripts Python",
           "Catálogo de Assets",
-          "Planes & Precios",
-          "Soluciones Enterprise"
+          "Macros & Scripts",
+          "Planes & Precios"
         ]
       },
       "company": {
@@ -433,16 +431,14 @@
         "items": [
           "Arquitectura del Sistema",
           "Malla IA & Agentes",
-          "Seguridad & Aislamiento",
-          "Contacto Comercial"
+          "Seguridad & Aislamiento"
         ]
       },
       "support": {
         "title": "Soporte",
         "items": [
           "Preguntas Frecuentes",
-          "Documentación Técnica",
-          "Mesa de Ayuda"
+          "Documentación Técnica"
         ]
       },
       "legal": {
@@ -476,7 +472,8 @@
       "contactLegal": "¿Preguntas sobre cumplimiento o términos empresariales?",
       "contactLegalBtn": "Contactar con Legal",
       "tableOfContents": "Índice de Cláusulas",
-      "refunds": "Política de Reembolsos"
+      "refunds": "Política de Reembolsos",
+      "faq": "FAQ"
     },
     "terms": {
       "title": "Términos de Servicio",
@@ -944,6 +941,68 @@
             "Lo dispuesto en esta política se entiende sin perjuicio de los derechos imperativos que la legislación aplicable reconozca al consumidor.",
             "En la República de Colombia, el derecho de retracto previsto en el artículo 47 de la Ley 1480 de 2011 podrá ejercerse dentro de los cinco (5) días hábiles siguientes a la compra. No obstante, conforme a la excepción consagrada en el numeral 1 del mismo artículo, el derecho de retracto NO aplica cuando el servicio digital ha comenzado a prestarse con el acuerdo expreso del consumidor.",
             "Al tratarse de activos de código abierto, macros y servicios de Malla IA accesibles de forma inmediata tras la confirmación del pago, el Usuario consiente de manera expresa e informada que el servicio comienza a ejecutarse instantáneamente, perfeccionándose la excepción legal al derecho de retracto."
+          ]
+        }
+      ]
+    },
+    "faq": {
+      "badge": "BASE DE CONOCIMIENTO Y ASISTENCIA TÉCNICA",
+      "title": "Preguntas Frecuentes",
+      "subtitle": "Respuestas oficiales sobre licenciamiento de código, modelo de suscripción, seguridad de inferencia y despliegue local.",
+      "description": "Documento oficial de preguntas frecuentes y soporte técnico de la plataforma CELAEST.",
+      "lastUpdated": "21 de agosto de 2026",
+      "sections": [
+        {
+          "id": "suscripcion-y-entrega",
+          "number": "01",
+          "title": "Modelo de Suscripción, Assets y Entrega de Código",
+          "summary": "Acceso inmediato al repositorio GitHub, plantillas Excel con macros VBA desbloqueadas, scripts de Python documentados y cuotas de inferencia en la Malla IA.",
+          "paragraphs": [
+            "Cada suscripción en CELAEST otorga acceso según el nivel contratado (Starter, Pro o Enterprise) a nuestra biblioteca curada de automatizaciones empresariales, macros de Excel con código VBA 100% auditable y scripts de Python listos para producción.",
+            "La entrega es instantánea: al confirmar el pago a través de Stripe, el acceso al código fuente, manuales de despliegue y cuotas mensuales de procesamiento en la Malla IA multi-proveedor queda habilitado en el Dashboard del usuario sin demoras ni periodos de espera.",
+            "Los suscriptores activos conservan acceso a todas las actualizaciones, parches de seguridad y nuevas macros o scripts lanzados durante la vigencia de su suscripción."
+          ]
+        },
+        {
+          "id": "reembolsos-y-garantias",
+          "number": "02",
+          "title": "Política de Reembolsos y Excepción por Código Fuente Inmediato",
+          "summary": "Los pagos son definitivos al tratarse de software ejecutable y código fuente abierto puesto a disposición de forma instantánea tras la confirmación de compra.",
+          "paragraphs": [
+            "Conforme al artículo 47 de la Ley 1480 de 2011 y los estándares internacionales de comercio electrónico, los servicios y bienes digitales cuya prestación y descarga comienza inmediatamente con el consentimiento expreso del usuario están exentos de retracto y no admiten reembolsos.",
+            "La única excepción aplicable es la presencia de un defecto técnico sustancial imputable exclusivamente a la Plataforma que impida su uso y que nuestro equipo de soporte no logre subsanar dentro de los diez (10) días hábiles siguientes al reporte oficial.",
+            "No procede reembolso por falta de uso, cambio de opinión, desconocimiento de Excel o Python, ni por renovaciones no canceladas antes de su fecha de corte."
+          ]
+        },
+        {
+          "id": "ejecucion-local-y-cloud",
+          "number": "03",
+          "title": "Ejecución Local, Sandboxing y Conectividad Cloud",
+          "summary": "Las macros y scripts se ejecutan 100% en la máquina local o servidor privado del cliente tras la descarga, garantizando soberanía operativa.",
+          "paragraphs": [
+            "Todas las macros de Excel y los scripts de automatización en Python están diseñados para operar de forma totalmente independiente dentro de su infraestructura o entorno local una vez descargados, sin requerir conexión constante a nuestros servidores.",
+            "La conectividad hacia la nube de CELAEST solo es necesaria cuando se utilizan funciones avanzadas de la Malla IA (como cascadas de fallback, embeddings o enrutamiento dinámico de modelos), o al consultar y actualizar assets desde el catálogo de la plataforma."
+          ]
+        },
+        {
+          "id": "soberania-de-claves-byok",
+          "number": "04",
+          "title": "Integración BYOK (Bring Your Own Key) y Credenciales Propias",
+          "summary": "El cliente puede vincular sus propias claves de API de OpenAI, Anthropic o DeepSeek, facturando el cómputo directamente a sus cuentas corporativas.",
+          "paragraphs": [
+            "La arquitectura de CELAEST admite la modalidad Bring Your Own Key (BYOK), permitiendo que equipos técnicos conecten sus claves de API directas para mantener control total sobre los costos y los acuerdos de procesamiento de datos con los proveedores de LLM.",
+            "Sus claves se almacenan cifradas en reposo mediante AES-256 y nunca son visibles ni compartidas con terceros. En modalidad BYOK, el consumo de tokens es facturado directamente por el proveedor del modelo a su cuenta corporativa sin recargos por intermediación."
+          ]
+        },
+        {
+          "id": "seguridad-y-cero-entrenamiento",
+          "number": "05",
+          "title": "Seguridad, Aislamiento y Política de Cero-Entrenamiento",
+          "summary": "Garantía contractual de que ningún prompt, código fuente o dato de inferencia es utilizado para entrenar modelos públicos o comerciales.",
+          "paragraphs": [
+            "Mantenemos una política corporativa estricta de No-Entrenamiento (Zero-Training): los datos de entrada, prompts, archivos subidos y resultados de ejecución jamás se transfieren a terceros para entrenamiento o ajuste de modelos fundacionales.",
+            "Toda la comunicación está protegida con cifrado TLS 1.3 en tránsito y aislamiento riguroso por tenant a nivel de base de datos relacional (PostgreSQL con Row Level Security y verificación por user_id).",
+            "Para organizaciones que requieren aislamiento físico o normativo absoluto, el plan Enterprise permite el despliegue soberano On-Premise o en VPC privada (Air-Gapped)."
           ]
         }
       ]

@@ -10,6 +10,7 @@ interface LegalTabsProps {
     refunds: string;
     license: string;
     cookies: string;
+    faq: string;
   };
 }
 
@@ -46,6 +47,12 @@ export function LegalTabs({ navLabels }: LegalTabsProps) {
       num: "05",
       label: navLabels.cookies,
       active: pathname.includes("/legal/cookies"),
+    },
+    {
+      href: "/legal/faq",
+      num: "06",
+      label: navLabels.faq,
+      active: pathname.includes("/legal/faq"),
     },
   ];
 

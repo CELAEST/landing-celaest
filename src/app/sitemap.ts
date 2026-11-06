@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/legal/refunds", changeFrequency: "monthly" as const, priority: 0.3 },
     { path: "/legal/license", changeFrequency: "monthly" as const, priority: 0.3 },
     { path: "/legal/cookies", changeFrequency: "monthly" as const, priority: 0.3 },
+    { path: "/legal/faq", changeFrequency: "weekly" as const, priority: 0.4 },
   ];
 
   const entries: MetadataRoute.Sitemap = [];
