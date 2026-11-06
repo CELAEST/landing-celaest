@@ -472,8 +472,7 @@
       "contactLegal": "Questions about compliance or enterprise terms?",
       "contactLegalBtn": "Contact Legal Team",
       "tableOfContents": "Table of Contents",
-      "refunds": "Refund Policy",
-      "faq": "FAQ"
+      "refunds": "Refund Policy"
     },
     "terms": {
       "title": "Terms of Service",
@@ -941,68 +940,6 @@
             "The provisions of this policy are without prejudice to mandatory statutory consumer rights under applicable legislation.",
             "In Colombia, the statutory right of withdrawal (derecho de retracto) pursuant to Article 47 of Law 1480 of 2011 may be exercised within five (5) business days following purchase. However, pursuant to paragraph 1 of Article 47, the right of withdrawal is expressly inapplicable to contracts where digital performance commences immediately with the consumer's express agreement.",
             "Given that CELAEST software assets and AI Mesh compute are delivered and activated immediately upon payment authorization, Customer explicitly agrees and consents to immediate performance, perfecting the statutory exception to withdrawal."
-          ]
-        }
-      ]
-    },
-    "faq": {
-      "badge": "KNOWLEDGE BASE & TECHNICAL SUPPORT",
-      "title": "Frequently Asked Questions",
-      "subtitle": "Official answers regarding code licensing, subscription models, inference security, and local deployment.",
-      "description": "Official frequently asked questions and technical documentation for the CELAEST platform.",
-      "lastUpdated": "August 21, 2026",
-      "sections": [
-        {
-          "id": "subscriptions-and-delivery",
-          "number": "01",
-          "title": "Subscription Model, Assets, and Immediate Code Delivery",
-          "summary": "Instant access to the GitHub repository, unlocked Excel VBA macro templates, documented Python scripts, and AI Mesh inference quotas.",
-          "paragraphs": [
-            "Each CELAEST subscription grants tier-based access (Starter, Pro, or Enterprise) to our curated library of enterprise automations, Excel macros with 100% auditable VBA source code, and production-ready Python scripts.",
-            "Delivery is immediate: upon payment confirmation through Stripe, access to source code, deployment guides, and monthly multi-provider AI Mesh quotas is provisioned instantly in the customer dashboard without delay.",
-            "Active subscribers retain full access to all updates, security patches, and newly released macros and scripts throughout their subscription term."
-          ]
-        },
-        {
-          "id": "refunds-and-warranties",
-          "number": "02",
-          "title": "Refund Policy & Immediate Digital Source Code Exception",
-          "summary": "Payments are final and non-refundable due to the immediate digital delivery and execution of source code assets.",
-          "paragraphs": [
-            "In accordance with Article 47 of Law 1480 of 2011 and international electronic commerce standards, digital goods and services whose performance begins immediately upon express customer consent are exempt from statutory withdrawal and do not qualify for refunds.",
-            "The sole admissible exception is a verifiable technical defect attributable exclusively to the Platform that substantially prevents service use and remains unresolved by our support engineering team within ten (10) business days following official submission.",
-            "Refunds are strictly denied for lack of usage, change of mind, lack of familiarity with Excel or Python, or renewals not cancelled prior to billing dates."
-          ]
-        },
-        {
-          "id": "local-execution-and-cloud",
-          "number": "03",
-          "title": "Local Execution, Sandboxing, and Cloud Connectivity",
-          "summary": "Macros and scripts execute 100% locally on the customer machine or private server once downloaded, ensuring operational sovereignty.",
-          "paragraphs": [
-            "All Excel macros and Python automation scripts are architected to operate fully independently within your local infrastructure or workstation once downloaded, requiring zero continuous server connectivity.",
-            "Connection to CELAEST cloud infrastructure is only required when invoking advanced AI Mesh capabilities (such as fallback cascades, embeddings, or dynamic model routing), or when synchronizing updates from the asset marketplace."
-          ]
-        },
-        {
-          "id": "byok-key-sovereignty",
-          "number": "04",
-          "title": "BYOK (Bring Your Own Key) Integration & API Sovereignty",
-          "summary": "Customers can link their direct API keys from OpenAI, Anthropic, or DeepSeek, billing raw compute directly to their corporate accounts.",
-          "paragraphs": [
-            "The CELAEST architecture supports Bring Your Own Key (BYOK), enabling enterprise teams to connect direct model API credentials and maintain granular control over costs and data processing agreements with LLM vendors.",
-            "Credentials are encrypted at rest using AES-256 and are never exposed or shared with third parties. In BYOK mode, token consumption is billed directly by the model provider to your corporate account without intermediary surcharges."
-          ]
-        },
-        {
-          "id": "security-and-zero-training",
-          "number": "05",
-          "title": "Security, Isolation, and Strict Zero-Training Policy",
-          "summary": "Contractual guarantee that zero prompts, source code, or inference payloads are ever utilized to train public or proprietary models.",
-          "paragraphs": [
-            "We enforce a binding corporate Zero-Training policy: input payloads, prompts, uploaded scripts, and execution outputs are never transferred to third parties for foundational model training or fine-tuning.",
-            "All data in transit is protected via TLS 1.3 encryption, and data at rest is isolated by tenant across relational databases (PostgreSQL with Row Level Security enforced via user_id).",
-            "For enterprises requiring absolute physical or compliance isolation, the Enterprise plan enables sovereign On-Premise or private VPC (Air-Gapped) deployments."
           ]
         }
       ]

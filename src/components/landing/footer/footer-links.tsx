@@ -50,11 +50,11 @@ function resolveFooterLink(key: string, index: number): ResolvedLink {
   if (key === "support") {
     switch (index) {
       case 0:
-        return { href: "/legal/faq", type: "legal" };
+        return { href: "/faq", type: "legal" };
       case 1:
         return { href: `${DASHBOARD_URL}/?tab=docs`, type: "external" };
       default:
-        return { href: "/legal/faq", type: "legal" };
+        return { href: "/faq", type: "legal" };
     }
   }
 

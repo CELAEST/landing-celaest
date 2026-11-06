@@ -16,7 +16,6 @@ export default async function LegalLayout({ children }: { children: React.ReactN
     refunds: t("refunds"),
     license: t("license"),
     cookies: t("cookies"),
-    faq: t("faq"),
   };
 
   return (
