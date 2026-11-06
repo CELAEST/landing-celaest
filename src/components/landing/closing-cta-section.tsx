@@ -4,6 +4,7 @@ import React from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { ConstellationBackground } from "@/components/ui/constellation-background";
+import { SUPPORT_EMAIL } from "@/lib/constants";
 
 export function ClosingCTASection() {
   const t = useTranslations("faq.cta");
@@ -44,7 +45,7 @@ export function ClosingCTASection() {
 
           {/* Secondary Pill: Dark sleek pill */}
           <a
-            href="mailto:support@celaest.com"
+            href={`mailto:${SUPPORT_EMAIL}`}
             className="inline-flex items-center justify-center px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-[#18181b] hover:bg-[#27272a] text-white border border-white/10 font-medium text-sm sm:text-base transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
           >
             {t("contactSales")}

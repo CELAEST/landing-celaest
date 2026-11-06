@@ -1,0 +1,21 @@
+# Critical Architecture Contract: Pathway Node Indexing & Multi-Base Routing
+
+- **Zero-Indexed Node Convention**:
+  - `node.orderIndex === 0` -> **Base 01**: *"El Orden Mágico: Quién + Acción"*
+  - `node.orderIndex === 1` -> **Base 02**: *"El 'It' Fantasma: Frases sin Persona Humana"*
+  - `node.orderIndex === 2` -> **Base 03**: *"Ser o Estar sin Enredos (Am · Is · Are)"*
+  - `Base ${node.orderIndex + 1}` matches the human-facing base numbers 1, 2, 3...
+- **Anti-Pattern (Root Cause Solved)**:
+  - Checking `node.orderIndex === 1` for Base 01 was an off-by-one bug that caused Base 02 (`orderIndex === 1`) to execute the Base 01 masterclass branch.
+- **Resolution**:
+  - Always guard with both 0-indexed `orderIndex` and title match fallback:
+    - Base 01: `node.orderIndex === 0 || topicTitle.toLowerCase().includes("orden mágico")`
+    - Base 02: `node.orderIndex === 1 || topicTitle.toLowerCase().includes("it' fantasma") || topicTitle.toLowerCase().includes("el it fantasma")`
+  - Applied across:
+    - `PathwayLectureEngine.ts`
+    - `useLiveClassChoreography.ts`
+    - `usePathwayStageSession.ts`
+- **Verification**:
+  - `npx tsc --noEmit`: 0 errors.
+  - `PathwayStudioView.test.tsx`: 100% pass.
+  - `PathwayLectureEngine.test.ts`: 100% pass.

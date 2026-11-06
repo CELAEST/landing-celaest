@@ -6,6 +6,7 @@ import { Check, ArrowRight, Globe } from "lucide-react";
 import { SectionReveal } from "@/components/ui/section-reveal";
 import { ConstellationBackground } from "@/components/ui/constellation-background";
 import { useGeoPricing } from "@/hooks/useGeoPricing";
+import { DASHBOARD_URL, SUPPORT_EMAIL } from "@/lib/constants";
 import "./pricing/pricing-section.css";
 
 interface Plan {
@@ -228,8 +229,8 @@ export function PricingSection() {
                 <a
                   href={
                     isCustom
-                      ? "#contact"
-                      : `https://celaest-dashboard.vercel.app/?mode=signup&plan=${plan.backendCode}&billing_cycle=${cycle}`
+                      ? `mailto:${SUPPORT_EMAIL}?subject=Consulta%20Plan%20Enterprise`
+                      : `${DASHBOARD_URL}/?mode=signup&plan=${plan.backendCode}&billing_cycle=${cycle}`
                   }
                   className="pricing-feature-link group/link"
                 >

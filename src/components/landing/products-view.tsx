@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { DynamicInfrastructure } from "./dynamic-infrastructure";
 import { ConstellationBackground } from "@/components/ui/constellation-background";
+import { DASHBOARD_URL } from "@/lib/constants";
 import "./products.css";
 
 export function ProductsSection() {
@@ -54,7 +55,7 @@ export function ProductsSection() {
               transition={{ duration: 0.75, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             >
               <a
-                href="https://celaest-dashboard.vercel.app/?tab=marketplace"
+                href={`${DASHBOARD_URL}/?tab=marketplace`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-8 py-3.5 bg-neutral-200 text-neutral-900 font-medium rounded-full hover:bg-white transition-colors duration-300 gap-2.5 group"

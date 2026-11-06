@@ -36,16 +36,21 @@ export function FooterBrandColumn({ description, socialLinks }: FooterBrandColum
       </div>
       <p className="text-zinc-300 text-xs leading-relaxed mb-5">{description}</p>
       <div className="flex gap-2">
-        {socialLinks.map(({ icon: Icon, href, label }) => (
-          <Link
-            key={label}
-            href={href}
-            className="w-9 h-9 bg-black/25 rounded-lg flex items-center justify-center hover:bg-brand-neon/10 text-zinc-300 hover:text-white transition-all duration-300 border border-white/10 hover:border-brand-neon/20 backdrop-blur-[2px]"
-            aria-label={label}
-          >
-            <Icon className="w-4 h-4" />
-          </Link>
-        ))}
+        {socialLinks.map(({ icon: Icon, href, label }) => {
+          const isExternal = href.startsWith("http");
+          return (
+            <Link
+              key={label}
+              href={href}
+              target={isExternal ? "_blank" : undefined}
+              rel={isExternal ? "noopener noreferrer" : undefined}
+              className="w-9 h-9 bg-black/25 rounded-lg flex items-center justify-center hover:bg-brand-neon/10 text-zinc-300 hover:text-white transition-all duration-300 border border-white/10 hover:border-brand-neon/20 backdrop-blur-[2px]"
+              aria-label={label}
+            >
+              <Icon className="w-4 h-4" />
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ import { FooterBrandColumn } from "./footer/footer-brand-column";
 import { FooterLinks } from "./footer/footer-links";
 import { FooterWordmark } from "./footer/footer-wordmark";
 import { FooterBottomBar } from "./footer/footer-bottom-bar";
+import { SUPPORT_EMAIL } from "@/lib/constants";
 
 export function Footer() {
   const t = useTranslations("footer");
@@ -19,10 +20,10 @@ export function Footer() {
   }));
 
   const socialLinks = [
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Github, href: "#", label: "GitHub" },
-    { icon: Mail, href: "#", label: "Email" },
+    { icon: Twitter, href: "https://twitter.com/celaest", label: "Twitter" },
+    { icon: Linkedin, href: "https://linkedin.com/company/celaest", label: "LinkedIn" },
+    { icon: Github, href: "https://github.com/celaest", label: "GitHub" },
+    { icon: Mail, href: `mailto:${SUPPORT_EMAIL}`, label: "Email" },
   ];
 
   return (

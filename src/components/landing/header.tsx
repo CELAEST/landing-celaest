@@ -6,8 +6,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
 import { LanguageSelector } from "./language-selector";
 import { cn } from "@/lib/utils";
-
-const DASHBOARD_URL = "https://celaest-dashboard.vercel.app/";
+import { DASHBOARD_URL } from "@/lib/constants";
 
 export function Header() {
   const t = useTranslations("nav");
@@ -66,7 +65,7 @@ export function Header() {
 
         {/* Login / Sign In */}
         <a
-          href={`${DASHBOARD_URL}?mode=signin`}
+          href={`${DASHBOARD_URL}/?mode=signin`}
           className="text-[11px] sm:text-sm font-medium text-white/75 hover:text-white px-1.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full hover:bg-white/[0.06] transition-all duration-200 whitespace-nowrap"
         >
           {t("signIn")}
@@ -74,7 +73,7 @@ export function Header() {
 
         {/* Register / Sign Up */}
         <a
-          href={`${DASHBOARD_URL}?mode=signup`}
+          href={`${DASHBOARD_URL}/?mode=signup`}
           className="inline-flex items-center gap-1 sm:gap-2 px-2.5 sm:px-5 py-1 sm:py-2.5 rounded-full border border-white/30 bg-white/[0.06] hover:bg-white/[0.14] hover:border-white/70 text-white text-[11px] sm:text-[13px] font-medium tracking-tight backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.22)] hover:shadow-[0_6px_20px_rgba(167,139,250,0.3),inset_0_1px_0_rgba(255,255,255,0.4)] hover:-translate-y-0.5 transition-all duration-200 whitespace-nowrap"
         >
           <span>{t("signUp")}</span>

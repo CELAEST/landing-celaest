@@ -4,6 +4,7 @@ import React, { useRef, useState, useCallback } from "react";
 import Image from "next/image";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Layers, Zap, Shield, ArrowRight } from "lucide-react";
+import { DASHBOARD_URL } from "@/lib/constants";
 
 interface PlatformCardProps {
   id: "management" | "workflow" | "ecosystem";
@@ -23,7 +24,7 @@ export function PlatformCard({
   image,
   icon,
   exploreLabel,
-  href = "https://celaest-dashboard.vercel.app/?tab=marketplace",
+  href = `${DASHBOARD_URL}/?tab=marketplace`,
   index,
 }: PlatformCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);

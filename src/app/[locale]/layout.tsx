@@ -6,6 +6,7 @@ import { Inter, Space_Grotesk } from "next/font/google";
 
 import { Analytics } from "@/components/analytics";
 import { routing, type Locale } from "@/i18n/routing";
+import { SITE_URL } from "@/lib/constants";
 import "@/styles/globals.css";
 
 const inter = Inter({
@@ -41,7 +42,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://landing-celaest.vercel.app";
+  const baseUrl = SITE_URL;
 
   const titles = {
     en: "CELAEST - AI Systems for Everyone & Digital Asset Marketplace",

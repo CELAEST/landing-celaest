@@ -3,6 +3,8 @@
  * Generates Organization + WebSite + FAQPage schemas for rich Google results.
  */
 
+import { SITE_URL, SUPPORT_EMAIL } from "./constants";
+
 interface FAQItem {
   question: string;
   answer: string;
@@ -13,8 +15,8 @@ export function generateOrganizationSchema(): Record<string, unknown> {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "CELAEST",
-    url: "https://celaest.com",
-    logo: "https://celaest.com/icon.svg",
+    url: SITE_URL,
+    logo: `${SITE_URL}/icon.svg`,
     sameAs: [
       "https://twitter.com/celaest",
       "https://linkedin.com/company/celaest",
@@ -22,7 +24,7 @@ export function generateOrganizationSchema(): Record<string, unknown> {
     ],
     contactPoint: {
       "@type": "ContactPoint",
-      email: "support@celaest.com",
+      email: SUPPORT_EMAIL,
       contactType: "customer support",
     },
   };
@@ -33,10 +35,10 @@ export function generateWebSiteSchema(): Record<string, unknown> {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "CELAEST",
-    url: "https://celaest.com",
+    url: SITE_URL,
     potentialAction: {
       "@type": "SearchAction",
-      target: "https://celaest.com/search?q={search_term_string}",
+      target: `${SITE_URL}/search?q={search_term_string}`,
       "query-input": "required name=search_term_string",
     },
   };
