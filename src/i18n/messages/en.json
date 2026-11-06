@@ -252,7 +252,7 @@
     "features": {
       "verified": {
         "title": "Verified Licensing",
-        "description": "Each license is cryptographically validated with IP binding and activation control to prevent unauthorized use."
+        "description": "Corporate license traceability, verified code integrity, and authenticated download controls."
       },
       "encryption": {
         "title": "End-to-End Encryption",
@@ -527,7 +527,7 @@
             "Our architecture operates across three distinct isolation tiers:"
           ],
           "points": [
-            "Cloud Mesh B2B (Starter & Pro): Ephemeral RAM-based inference across commercial enterprise APIs bound by Zero Data Retention agreements with Anthropic, OpenAI, and Google Vertex.",
+            "Cloud Mesh B2B (Starter & Pro): Ephemeral RAM-based inference across commercial enterprise APIs bound by strict Zero-Training policies guaranteeing your data never trains public models.",
             "BYOK (Bring Your Own Key): Customer connects direct API credentials, governed by direct DPA agreements maintained between Customer and frontier model providers.",
             "On-Premise Sovereign (Enterprise): Models and inferencing executed 100% within Customer's private cloud or air-gapped infrastructure without external internet outbound."
           ]
@@ -546,7 +546,7 @@
         {
           "id": "facturacion",
           "number": "06",
-          "title": "Billing, Merchant of Record, and Auto-Renewals",
+          "title": "Plans, Billing, Payment Gateway, and Auto-Renewals",
           "summary": "PCI-DSS certified payment processing, global gateways, and direct Colombian rails. Subscriptions renew automatically.",
           "paragraphs": [
             "Subscriptions renew automatically at the conclusion of each billing cycle (monthly or annual) using the saved payment method, unless cancelled by Customer prior to the scheduled renewal date. Timely cancellation is Customer's sole duty.",
@@ -587,7 +587,7 @@
           "summary": "99.9% uptime target on core infrastructure with dedicated Enterprise SLAs and compensation schedules.",
           "paragraphs": [
             "CELAEST maintains a resilient multi-region cloud architecture engineered to deliver at least 99.9% monthly availability on core services.",
-            "Enterprise tiers include bespoke Service Level Agreements with 24/7 dedicated engineering support and contractual downtime credits."
+            "For Enterprise corporate customers, dedicated Service Level Agreements apply with priority 24/7 engineering support and customized service conditions pursuant to individual master agreements."
           ]
         },
         {
@@ -667,7 +667,7 @@
           "summary": "Customer prompts, proprietary source code, and enterprise files are NEVER used to train or fine-tune public AI models.",
           "paragraphs": [
             "CELAEST maintains an unyielding policy of Workload Confidentiality: no prompt, corporate file, or code fragment routed through our AI Mesh is ever utilized to train, fine-tune, or reinforce public foundational models of OpenAI, Anthropic, Google Vertex, or third parties.",
-            "Unlike mass-market consumer tools, our integrations operate exclusively across commercial B2B APIs under contractual Zero Data Retention terms in ephemeral memory."
+            "Unlike mass-market consumer tools, our integrations operate exclusively across commercial B2B APIs with binding Zero-Training commitments, processing workloads ephemerally in active memory."
           ]
         },
         {
@@ -924,10 +924,10 @@
           "id": "tiempos",
           "number": "07",
           "title": "Processing and Financial Settlement Timelines",
-          "summary": "Settled via certified Merchant of Record gateways (Stripe/Polar) or direct Colombian bank rails (Bre-B) within standard banking timeframes.",
+          "summary": "Refunds executed via the Stripe payment gateway or local bank transfers in Colombia within standard business timeframes.",
           "paragraphs": [
-            "When legally warranted under Section 02, refunds are settled through the Stripe payment gateway directly back to the original payment instrument.",
-            "For transactions completed via direct bank transfers in Colombia (such as Bre-B or domestic ACH transfers), refunds are processed via electronic transfer to the origin bank account following identity and ownership verification."
+            "When legally warranted under Section 02, refunds are executed through the Stripe payment gateway directly back to the original payment instrument.",
+            "For transactions completed via direct electronic bank transfers in Colombia, refunds are processed via electronic transfer to the origin bank account following identity verification."
           ],
           "points": [
             "Technical engineering evaluation: Up to five (5) business days.",

@@ -252,7 +252,7 @@
     "features": {
       "verified": {
         "title": "Licencias Verificadas",
-        "description": "Cada licencia es validada criptográficamente con binding de IP y control de activaciones para prevenir uso no autorizado."
+        "description": "Trazabilidad de licencias corporativas, verificación de integridad de código y control de descargas autenticadas."
       },
       "encryption": {
         "title": "Cifrado End-to-End",
@@ -527,7 +527,7 @@
             "La arquitectura opera bajo tres niveles claramente delimitados:"
           ],
           "points": [
-            "Modalidad Cloud Mesh B2B (Starter y Pro): Inferencia efímera en memoria RAM mediante APIs empresariales B2B con acuerdos vinculantes de Cero Retención de Datos (Zero Data Retention) con Anthropic, OpenAI y Google Vertex.",
+            "Modalidad Cloud Mesh B2B (Starter y Pro): Inferencia efímera en memoria RAM mediante APIs comerciales B2B bajo estrictas políticas de No-Entrenamiento (Zero-Training) que garantizan que sus datos nunca alimentan modelos públicos.",
             "Modalidad BYOK (Bring Your Own Key): El Cliente vincula sus propias credenciales directas de API, rigiéndose la telemetría y retención por los acuerdos directos DPA que mantenga con sus proveedores.",
             "Modalidad On-Premise Soberana (Enterprise): Modelos e infraestructura ejecutados 100% dentro del perímetro privado o VPC local del Cliente, con aislamiento absoluto sin salida de datos a internet (Air-Gapped)."
           ]
@@ -546,7 +546,7 @@
         {
           "id": "facturacion",
           "number": "06",
-          "title": "Planes, Facturación, Merchant of Record y Renovaciones",
+          "title": "Planes, Facturación, Pasarela de Pagos y Renovaciones",
           "summary": "Procesamiento seguro PCI-DSS, pasarelas globales y transferencias directas en Colombia. Las suscripciones se renuevan automáticamente.",
           "paragraphs": [
             "Las suscripciones se renuevan de forma automática al finalizar cada ciclo (mensual o anual) utilizando el método de pago registrado, hasta que el Usuario la cancele desde su panel. La cancelación oportuna antes de la fecha de corte es responsabilidad exclusiva del Cliente.",
@@ -587,7 +587,7 @@
           "summary": "Compromiso de disponibilidad del 99.9% en servicios core y acuerdos SLA dedicados en contratos Enterprise.",
           "paragraphs": [
             "CELAEST implementa una infraestructura distribuida de alta disponibilidad orientada a ofrecer una tasa mensual de operatividad de al menos el 99.9% en sus servicios troncales.",
-            "Para clientes Enterprise, aplican los Acuerdos de Nivel de Servicio (SLA) específicos con soporte prioritario 24/7 y compensaciones económicas según anexo contractual."
+            "Para clientes corporativos Enterprise, aplican Acuerdos de Nivel de Servicio (SLA) dedicados con soporte de ingeniería prioritario 24/7 y condiciones específicas de servicio según contrato marco individual."
           ]
         },
         {
@@ -667,7 +667,7 @@
           "summary": "Sus prompts, código fuente y documentos empresariales NUNCA se usan para entrenar o ajustar modelos públicos de inteligencia artificial.",
           "paragraphs": [
             "CELAEST mantiene una política inquebrantable de Confidencialidad Absoluta de Cargas de Trabajo: ningún prompt, archivo o fragmento de código procesado a través de nuestra Malla IA es empleado para re-entrenar, ajustar (fine-tune) o mejorar modelos fundacionales de OpenAI, Anthropic, Google Vertex u otros proveedores.",
-            "A diferencia de plataformas gratuitas de consumo masivo, nuestras integraciones se realizan exclusivamente a través de APIs comerciales B2B bajo acuerdos vinculantes de No-Retención de Datos (Zero Data Retention) en memoria activa efímera."
+            "A diferencia de plataformas gratuitas de consumo masivo, nuestras integraciones se realizan exclusivamente a través de APIs comerciales B2B con políticas vinculantes de No-Entrenamiento, procesando las cargas de trabajo de forma efímera en memoria activa."
           ]
         },
         {
@@ -924,10 +924,10 @@
           "id": "tiempos",
           "number": "07",
           "title": "Procesamiento y Tiempos de Acreditación Bancaria",
-          "summary": "Devoluciones ejecutadas por el Merchant of Record (Stripe / pasarelas) o transferencias locales en Colombia (Bre-B) en plazos bancarios estándar.",
+          "summary": "Devoluciones ejecutadas a través de la pasarela de pagos Stripe o transferencias bancarias en Colombia en plazos estándar.",
           "paragraphs": [
             "La devolución, cuando proceda legalmente según la sección 02, la ejecuta la pasarela de pagos Stripe al mismo método de pago original.",
-            "Para pagos liquidados mediante transferencias bancarias en Colombia (incluyendo Bre-B o transferencias interbancarias directas), la devolución se tramitará mediante transferencia electrónica a la cuenta bancaria de origen previa validación de titularidad."
+            "Para pagos liquidados mediante transferencias electrónicas bancarias en Colombia, la devolución se tramitará mediante transferencia electrónica a la cuenta bancaria de origen previa validación de titularidad."
           ],
           "points": [
             "Revisión y validación técnica de la solicitud: Hasta cinco (5) días hábiles.",

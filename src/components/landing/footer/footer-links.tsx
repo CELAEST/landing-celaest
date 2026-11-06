@@ -2,14 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import {
-  DASHBOARD_URL,
-  SUPPORT_EMAIL,
-  CAREERS_EMAIL,
-  PRESS_EMAIL,
-  PARTNERS_EMAIL,
-  STATUS_URL,
-} from "@/lib/constants";
+import { DASHBOARD_URL, SUPPORT_EMAIL } from "@/lib/constants";
 
 interface LinkGroupData {
   key: string;
