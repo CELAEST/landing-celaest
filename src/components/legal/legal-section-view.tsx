@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useLocale } from "next-intl";
 
 export interface LegalSectionData {
   id: string;
@@ -17,13 +18,18 @@ interface LegalSectionViewProps {
 }
 
 export function LegalSectionView({ section }: LegalSectionViewProps) {
+  const locale = useLocale();
+  const sectionLabel = locale === "en" ? "SECTION" : "SECCIÓN";
+
   return (
     <article id={section.id} className="legal-section-article scroll-mt-28">
       {/* Symmetrical Numeral + Hairline Rule */}
       <div className="legal-section-rule-wrap">
         <strong className="legal-section-num">{section.number}</strong>
         <span className="rule" />
-        <span className="legal-section-tag">SECCIÓN {section.number}</span>
+        <span className="legal-section-tag">
+          {sectionLabel} {section.number}
+        </span>
       </div>
 
       {/* Title */}

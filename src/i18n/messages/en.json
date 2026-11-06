@@ -230,7 +230,7 @@
     "mostPopular": "Most Popular",
     "getStarted": "Get Started",
     "contactSales": "Contact Sales",
-    "guarantee": "All plans include a 30-day money-back guarantee. No questions asked.",
+    "guarantee": "Immediate access upon payment. Final sales on digital software assets and AI Mesh compute pursuant to our Refund Policy.",
     "perYear": "/year",
     "billing": {
       "monthly": "Monthly",
@@ -256,7 +256,7 @@
       },
       "encryption": {
         "title": "End-to-End Encryption",
-        "description": "Data in transit and at rest protected with AES-256 and TLS 1.3. GDPR and SOC 2 Type II compliant."
+        "description": "Data in transit and at rest secured with AES-256 and TLS 1.3 on cloud infrastructure meeting global standards (Cloudflare, Vercel, AWS)."
       },
       "infrastructure": {
         "title": "Resilient Infrastructure",
@@ -373,8 +373,8 @@
         "answer": "Each purchase includes a commercial license for the number of users specified in your plan. You get lifetime access to the purchased asset, including all future updates. Enterprise plans offer custom licensing options including white-label rights and unlimited user licenses."
       },
       {
-        "question": "Can I get a refund if the product doesn't work for me?",
-        "answer": "Yes! We offer a 30-day money-back guarantee on all purchases. If you're not satisfied with any product, contact our support team within 30 days for a full refund, no questions asked."
+        "question": "Can I request a refund if a product does not meet my expectations?",
+        "answer": "Because our digital assets (open-source Excel macros, Python scripts) and AI Mesh compute are delivered and accessible immediately upon payment, all purchases are final and non-refundable. Refunds apply solely in the event of an unresolvable demonstrable platform defect (see our Refund Policy)."
       },
       {
         "question": "Do you provide technical support?",
@@ -423,36 +423,33 @@
         "items": [
           "Excel Macros",
           "Python Scripts",
-          "Business Software",
-          "Pricing",
-          "Enterprise"
+          "AI Mesh & Agents",
+          "Plans & Pricing",
+          "Enterprise Solutions"
         ]
       },
       "company": {
-        "title": "Company",
+        "title": "Platform",
         "items": [
-          "About Us",
-          "Blog",
-          "Careers",
-          "Press Kit",
-          "Partners"
+          "System Architecture",
+          "AI Mesh",
+          "Security",
+          "Commercial Inquiries"
         ]
       },
       "support": {
         "title": "Support",
         "items": [
+          "Frequently Asked Questions",
           "Documentation",
-          "Help Center",
-          "Contact Us",
-          "Status",
-          "API"
+          "Help Desk"
         ]
       },
       "legal": {
         "title": "Legal",
         "items": [
-          "Privacy Policy",
           "Terms of Service",
+          "Privacy Policy",
           "Refund Policy",
           "License Agreement",
           "Cookie Policy"
@@ -494,7 +491,7 @@
           "title": "Subject Matter, Acceptance, and Evidentiary Electronic Consent",
           "summary": "CELAEST operates from Colombia with global scope. Account creation and purchases establish binding consent under Law 527 of 1999.",
           "paragraphs": [
-            "These Terms of Service (hereinafter, the \"Terms\") govern access to and usage of the web platform, APIs, and enterprise services provided by CELAEST (hereinafter, \"the Platform\"), headquartered in the Republic of Colombia with international delivery.",
+            "These Terms of Service (hereinafter, the \"Terms\") govern access to and usage of the web platform, APIs, and enterprise services provided under the CELAEST brand (hereinafter, \"the Platform\"), operated commercially from the Republic of Colombia with international delivery.",
             "By accessing, registering, or purchasing digital assets or compute on the Platform, Customer declares full understanding and acceptance of these Terms, the Privacy Policy, and the Refund Policy, constituting a legally enforceable contract.",
             "Electronic Evidentiary Consent: Pursuant to Law 527 of 1999 on Data Messages and Electronic Commerce, CELAEST electronically records timestamps, contract versions, IP addresses, and device fingerprints upon registration and checkout, constituting full legal proof of agreement."
           ]
@@ -552,8 +549,8 @@
           "title": "Billing, Merchant of Record, and Auto-Renewals",
           "summary": "PCI-DSS certified payment processing, global gateways, and direct Colombian rails. Subscriptions renew automatically.",
           "paragraphs": [
-            "Subscriptions renew automatically at the expiration of each billing cycle (monthly or annual) using the saved payment method, unless cancelled by the Customer prior to the renewal date. Timely cancellation is the Customer's sole duty.",
-            "Transactions are handled by PCI-DSS compliant Merchant of Record providers (Polar, Stripe, or certified partners), or via Colombian instant bank rails (Bre-B/ACH). CELAEST never stores complete credit card numbers or CVV security codes."
+            "Subscriptions renew automatically at the conclusion of each billing cycle (monthly or annual) using the saved payment method, unless cancelled by Customer prior to the scheduled renewal date. Timely cancellation is Customer's sole duty.",
+            "Credit and debit card transactions are processed securely through Stripe, a PCI-DSS Level 1 certified tokenized payment gateway, or via direct electronic bank transfers in Colombia where available. CELAEST never stores complete credit card numbers or CVV verification codes on its servers."
           ]
         },
         {
@@ -564,7 +561,7 @@
           "paragraphs": [
             "All rules governing refunds and cancellations are controlled exclusively by the CELAEST Refund Policy, which is incorporated into this agreement by reference.",
             "General Rule: All sales are final and non-refundable. Refunds apply solely upon demonstrable technical defects attributable to CELAEST unresolved after ten (10) business days following a support report to support@celaest.com.",
-            "Pursuant to Article 47 of Colombian Law 1480 of 2011, statutory withdrawal is inapplicable to immediately executed digital services. Submitting abusive credit card chargebacks without exhausting support triggers immediate account termination and damage recovery."
+            "Pursuant to Article 47 of Colombian Law 1480 of 2011, statutory withdrawal is inapplicable to immediately executed digital services. Customer agrees to seek resolution first via official CELAEST support; abusive or fraudulent chargebacks trigger account termination, without prejudice to statutory payment reversion rights under Article 51 of Law 1480 of 2011 for unauthorized fraudulent transactions."
           ]
         },
         {
@@ -600,7 +597,7 @@
           "summary": "Provided 'as is'. Consequential damages excluded and aggregate liability capped at fees paid in preceding 6 to 12 months.",
           "paragraphs": [
             "To the maximum extent permitted by applicable law, CELAEST shall not be liable for indirect, punitive, or consequential damages, lost profits, or data corruption arising from script executions without sandbox validation on Customer's systems.",
-            "CELAEST's total aggregate liability arising out of or related to this agreement shall not exceed the total fees actually paid by Customer to CELAEST during the six (6) to twelve (12) months preceding the incident giving rise to liability."
+            "CELAEST's total aggregate liability arising out of or related to this agreement shall not exceed the total fees actually paid by Customer to CELAEST during the six (6) months preceding the incident giving rise to liability."
           ]
         },
         {
@@ -628,9 +625,9 @@
           "title": "Data Controller and Guiding Privacy Principles",
           "summary": "CELAEST operates as Data Controller under Colombian Law 1581 of 2012, with complete alignment with GDPR and CCPA international standards.",
           "paragraphs": [
-            "CELAEST (hereinafter, \"the Platform\"), operated from headquarters in the Republic of Colombia with international scope, acts as Data Controller for personal and corporate data collected via its web applications and APIs.",
-            "Our operations strictly comply with Statutory Law 1581 of 2012, Regulatory Decree 1377 of 2013, and concordant Colombian data protection regulations (Habeas Data), alongside complete compatibility with the European Union General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA).",
-            "Data Protection Officer (DPO): For regulatory inquiries or exercising rights, contact privacidad@celaest.com."
+            "CELAEST (hereinafter, \"the Platform\"), operated commercially from the Republic of Colombia with international scope, acts as Data Controller for personal and corporate data collected via its web applications and APIs.",
+            "Our operations strictly comply with Statutory Law 1581 of 2012, Regulatory Decree 1377 of 2013, and concordant Colombian data protection regulations (Habeas Data), alongside compatibility with the European Union General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA).",
+            "Data Protection Officer (DPO): For regulatory inquiries or exercising statutory rights, contact privacidad@celaest.com."
           ]
         },
         {
@@ -681,7 +678,7 @@
           "paragraphs": [
             "JSON Web Tokens (JWT): We utilize JWT tokens to govern session authentication securely, featuring limited expiration windows and automated invalidation upon logout.",
             "Local Storage (localStorage): We employ browser local storage solely to store interface themes (dark/light mode) and temporary editor scratchpad states to prevent code loss.",
-            "Zero Advertising Tracking Policy: We do not deploy third-party advertising cookies or trade corporate behavioral data with ad brokers."
+            "Web Analytics and Zero Ad-Tracking Policy: We employ Google Analytics 4 (GA4) with IP anonymization to evaluate technical performance and aggregated usage. We do not deploy third-party advertising cookies or trade corporate behavioral data with ad brokers."
           ]
         },
         {
@@ -801,8 +798,8 @@
           "title": "What are Cookies and Local Storage",
           "summary": "Technical identifiers required to maintain secure authentication, CSRF defense, and interface preferences.",
           "paragraphs": [
-            "Cookies are small text files stored in your browser to maintain state during visits. CELAEST utilizes cookies exclusively for security, operational integrity, and user preference persistence.",
-            "We enforce a strict Zero Third-Party Advertising policy: we do not sell telemetry to data brokers or employ cross-site ad trackers."
+            "Cookies are small text files stored in your browser to remember session and visit telemetry. At CELAEST, we employ them exclusively for security, technical performance, aggregated analytics, and interface personalization.",
+            "We enforce a strict Zero Third-Party Advertising Policy: we never sell corporate data to advertising brokers or utilize cross-site tracking cookies for marketing targeting."
           ]
         },
         {
@@ -814,9 +811,9 @@
             "We group our cookies into two distinct categories:"
           ],
           "points": [
-            "Essential Technical Cookies: Mandatory for secure authentication, CSRF mitigation, CDN load balancing, and active session tokens.",
-            "Preference Cookies: Retain your language selection (Spanish / English) and interface theme settings across sessions.",
-            "Aggregated Telemetry (Plausible / First-party): Measures page load latency in an aggregated, non-PII manner without persistent tracking."
+            "Essential Technical Cookies: Indispensable for secure JWT authentication, CSRF mitigation, load balancing, and dashboard session persistence.",
+            "Preference Storage: Retains language selections (Spanish / English) and interface themes across visits via localStorage.",
+            "Aggregated Technical Analytics (Google Analytics 4): Measures page loading latency, browser types, and aggregated navigation patterns with IP anonymization enabled. You may configure or decline this analytics telemetry via the cookie banner or browser settings."
           ]
         },
         {
@@ -920,7 +917,7 @@
           "paragraphs": [
             "Refund applications are handled exclusively via the CELAEST corporate support desk. There is no automated self-service refund mechanism. Customers must submit requests from their registered corporate email to support@celaest.com.",
             "Submissions must include: 1) Order ID and transaction receipt; 2) Reference to the previously submitted technical bug report; 3) Detailed description and evidence of the 10 business days elapsed without remediation. Incomplete requests will be rejected.",
-            "Prohibition of Abusive Chargebacks: Initiating a payment dispute or bank chargeback without exhausting the official support channel is deemed a bad-faith breach of contract. Such action empowers CELAEST to permanently terminate the account, revoke software licenses, and recover all incurred dispute fees, bank fines, and legal collection costs."
+            "Prohibition of Abusive Chargebacks: Initiating a payment dispute or bank chargeback without exhausting official support channels empowers CELAEST to suspend the offending account and recover collection costs, without prejudice to statutory payment reversion rights under Article 51 of Colombian Law 1480 of 2011 for unauthorized fraudulent transactions."
           ]
         },
         {
@@ -929,7 +926,7 @@
           "title": "Processing and Financial Settlement Timelines",
           "summary": "Settled via certified Merchant of Record gateways (Stripe/Polar) or direct Colombian bank rails (Bre-B) within standard banking timeframes.",
           "paragraphs": [
-            "Approved refunds are executed through the payment processor or Merchant of Record that facilitated the original transaction (Stripe, Polar, or certified payment partners). Funds return to the original payment instrument.",
+            "When legally warranted under Section 02, refunds are settled through the Stripe payment gateway directly back to the original payment instrument.",
             "For transactions completed via direct bank transfers in Colombia (such as Bre-B or domestic ACH transfers), refunds are processed via electronic transfer to the origin bank account following identity and ownership verification."
           ],
           "points": [

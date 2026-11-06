@@ -40,32 +40,26 @@ function getFooterHref(key: string, index: number): string {
   if (key === "company") {
     switch (index) {
       case 0:
-        return "/#intent-hero";
+        return "/#architecture";
       case 1:
         return "/#platform";
       case 2:
-        return `mailto:${CAREERS_EMAIL}`;
+        return "/#security";
       case 3:
-        return `mailto:${PRESS_EMAIL}`;
-      case 4:
-        return `mailto:${PARTNERS_EMAIL}`;
+        return `mailto:${SUPPORT_EMAIL}?subject=Contacto%20Comercial`;
       default:
-        return "/#intent-hero";
+        return "/#architecture";
     }
   }
 
   if (key === "support") {
     switch (index) {
       case 0:
-        return `${DASHBOARD_URL}/?tab=docs`;
+        return "/#faq";
       case 1:
-        return `mailto:${SUPPORT_EMAIL}?subject=Ayuda`;
+        return `${DASHBOARD_URL}/?tab=docs`;
       case 2:
-        return `mailto:${SUPPORT_EMAIL}?subject=Contacto`;
-      case 3:
-        return STATUS_URL;
-      case 4:
-        return "/#platform";
+        return `mailto:${SUPPORT_EMAIL}?subject=Soporte%20Tecnico`;
       default:
         return `mailto:${SUPPORT_EMAIL}`;
     }
@@ -74,9 +68,9 @@ function getFooterHref(key: string, index: number): string {
   if (key === "legal") {
     switch (index) {
       case 0:
-        return "/legal/privacy";
-      case 1:
         return "/legal/terms";
+      case 1:
+        return "/legal/privacy";
       case 2:
         return "/legal/refunds";
       case 3:
@@ -84,7 +78,7 @@ function getFooterHref(key: string, index: number): string {
       case 4:
         return "/legal/cookies";
       default:
-        return "/legal/privacy";
+        return "/legal/terms";
     }
   }
 

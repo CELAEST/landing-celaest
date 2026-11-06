@@ -15,9 +15,16 @@ export function Analytics() {
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
+          gtag('consent', 'default', {
+            'analytics_storage': (typeof window !== 'undefined' && localStorage.getItem('celaest_cookie_consent') === 'essential') ? 'denied' : 'granted',
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied'
+          });
           gtag('js', new Date());
           gtag('config', '${gaId}', {
             page_path: window.location.pathname,
+            anonymize_ip: true
           });
         `}
       </Script>

@@ -230,7 +230,7 @@
     "mostPopular": "Más Popular",
     "getStarted": "Comenzar",
     "contactSales": "Contactar Ventas",
-    "guarantee": "Todos los planes incluyen una garantía de devolución de dinero de 30 días. Sin preguntas.",
+    "guarantee": "Activación inmediata tras el pago. Pagos definitivos en productos digitales y Malla IA conforme a nuestra Política de Reembolsos.",
     "perYear": "/año",
     "billing": {
       "monthly": "Mensual",
@@ -256,7 +256,7 @@
       },
       "encryption": {
         "title": "Cifrado End-to-End",
-        "description": "Datos en tránsito y en reposo protegidos con AES-256 y TLS 1.3. Cumplimiento GDPR y SOC 2 Type II."
+        "description": "Datos en tránsito y en reposo protegidos con AES-256 y TLS 1.3 sobre infraestructura cloud con estándares globales (Cloudflare, Vercel, AWS)."
       },
       "infrastructure": {
         "title": "Infraestructura Resiliente",
@@ -373,8 +373,8 @@
         "answer": "Cada compra o suscripción activa incluye una licencia comercial para el número de usuarios especificado en tu plan. Obtienes acceso continuo al repositorio del activo, gestión centralizada desde tu dashboard, integración API y todas las actualizaciones futuras. Los planes empresariales ofrecen opciones de licenciamiento personalizadas que incluyen derechos de marca blanca y licencias de usuario ilimitadas."
       },
       {
-        "question": "¿Puedo obtener un reembolso si el producto no me funciona?",
-        "answer": "¡Sí! Ofrecemos una garantía de devolución de dinero de 30 días en todas las compras. Si no estás satisfecho con algún producto, contacta a nuestro equipo de soporte dentro de los 30 días para obtener un reembolso completo, sin preguntas."
+        "question": "¿Puedo solicitar un reembolso si el producto no cumple mis expectativas?",
+        "answer": "Al tratarse de activos digitales, código fuente abierto (macros Excel, scripts Python) y consumo de inferencia en Malla IA de entrega inmediata tras el pago, todas las compras son definitivas y no reembolsables. Únicamente se admiten reembolsos en caso de fallo técnico demostrable e insubsanable de la plataforma que no pueda ser resuelto por soporte (consulta nuestra Política de Reembolsos)."
       },
       {
         "question": "¿Proporcionan soporte técnico?",
@@ -423,36 +423,33 @@
         "items": [
           "Macros Excel",
           "Scripts Python",
-          "Software Empresarial",
-          "Precios",
-          "Enterprise"
+          "Malla IA & Agentes",
+          "Planes & Precios",
+          "Soluciones Enterprise"
         ]
       },
       "company": {
-        "title": "Empresa",
+        "title": "Plataforma",
         "items": [
-          "Nosotros",
-          "Blog",
-          "Carreras",
-          "Kit de Prensa",
-          "Socios"
+          "Visión del Sistema",
+          "Malla IA",
+          "Seguridad",
+          "Contacto Comercial"
         ]
       },
       "support": {
         "title": "Soporte",
         "items": [
+          "Preguntas Frecuentes",
           "Documentación",
-          "Centro de Ayuda",
-          "Contáctanos",
-          "Estado",
-          "API"
+          "Mesa de Ayuda"
         ]
       },
       "legal": {
         "title": "Legal",
         "items": [
-          "Política de Privacidad",
           "Términos de Servicio",
+          "Política de Privacidad",
           "Política de Reembolsos",
           "Acuerdo de Licencia",
           "Política de Cookies"
@@ -494,7 +491,7 @@
           "title": "Objeto, Aceptación y Consentimiento Probatorio Electrónico",
           "summary": "CELAEST opera desde Colombia. La creación de cuenta o compra registra consentimiento vinculante conforme a la Ley 527 de 1999.",
           "paragraphs": [
-            "Los presentes Términos de Servicio (en adelante, los \"Términos\") regulan el acceso y uso de la plataforma web, APIs y servicios empresariales provistos por CELAEST (en adelante, \"la Plataforma\"), con domicilio principal en la República de Colombia y alcance internacional.",
+            "Los presentes Términos de Servicio (en adelante, los \"Términos\") regulan el acceso y uso de la plataforma web, APIs y servicios empresariales provistos bajo la marca CELAEST (en adelante, \"la Plataforma\"), operada comercialmente desde la República de Colombia con alcance internacional.",
             "Al acceder, navegar, registrarse o adquirir cualquier funcionalidad o activo en la Plataforma, el Cliente o Usuario declara haber leído, comprendido y aceptado en su totalidad estos Términos, la Política de Privacidad y la Política de Reembolsos, las cuales constituyen un contrato vinculante.",
             "Registro de Consentimiento Probatorio: De conformidad con la Ley 527 de 1999 sobre mensajes de datos y comercio electrónico, CELAEST registra electrónicamente la fecha, hora, versión exacta aceptada, dirección IP y huella técnica del dispositivo desde el cual se otorga el consentimiento al crear una cuenta o realizar una compra, sirviendo como plena prueba jurídica."
           ]
@@ -552,8 +549,8 @@
           "title": "Planes, Facturación, Merchant of Record y Renovaciones",
           "summary": "Procesamiento seguro PCI-DSS, pasarelas globales y transferencias directas en Colombia. Las suscripciones se renuevan automáticamente.",
           "paragraphs": [
-            "Las suscripciones se renuevan de forma automática al finalizar cada ciclo (mensual o anual) utilizando el método de pago registrado, hasta que el Usuario la cancele desde su panel. La cancelación oportuna antes de la fecha de corte es responsabilidad del Cliente.",
-            "Las transacciones son gestionadas por procesadores de pago certificados PCI-DSS que actúan como Merchant of Record (Polar, Stripe u homólogos), o mediante transferencias locales inmediatas en Colombia (Bre-B / ACH). CELAEST en ningún momento almacena números completos de tarjeta de crédito o códigos de seguridad CVV."
+            "Las suscripciones se renuevan de forma automática al finalizar cada ciclo (mensual o anual) utilizando el método de pago registrado, hasta que el Usuario la cancele desde su panel. La cancelación oportuna antes de la fecha de corte es responsabilidad exclusiva del Cliente.",
+            "Las transacciones con tarjeta de crédito o débito son procesadas a través de Stripe, pasarela de pagos tokenizados certificada PCI-DSS Nivel 1, o mediante transferencias electrónicas bancarias en Colombia cuando estén habilitadas. CELAEST en ningún momento almacena números completos de tarjeta de crédito o códigos de seguridad CVV en sus servidores."
           ]
         },
         {
@@ -564,7 +561,7 @@
           "paragraphs": [
             "El régimen aplicable a reembolsos, cancelaciones y devoluciones se rige de forma exclusiva por la Política de Reembolsos de CELAEST, la cual se incorpora a este contrato por remisión directa.",
             "Regla General: Los pagos son definitivos y no reembolsables. Únicamente procederá reembolso ante un fallo técnico demostrable e imputable a CELAEST que impida sustancialmente el servicio y no sea resuelto en diez (10) días hábiles tras reporte a support@celaest.com.",
-            "Conforme al artículo 47 de la Ley 1480 de 2011 de Colombia, el derecho de retracto no aplica a servicios digitales de ejecución inmediata consentida. Queda estrictamente prohibido iniciar contracargos bancarios sin agotar el canal de soporte, conllevando dicha conducta la suspensión definitiva de la cuenta y el cobro de daños."
+            "Conforme al artículo 47 de la Ley 1480 de 2011 de Colombia, el derecho de retracto no aplica a servicios y software digital de ejecución inmediata consentida. El Usuario se compromete a acudir en primera instancia a los canales de soporte de CELAEST; los contracargos bancarios fraudulentos o infundados darán lugar a la suspensión de la cuenta, sin perjuicio de los supuestos legales de reversión de pago previstos en el artículo 51 de la Ley 1480 de 2011 para transacciones fraudulentas o no consentidas."
           ]
         },
         {
@@ -600,7 +597,7 @@
           "summary": "Software provisto 'tal cual'. Exclusión de daños indirectos y límite económico máximo equivalente a los pagos de los últimos 6 a 12 meses.",
           "paragraphs": [
             "En la máxima medida permitida por las leyes aplicables, CELAEST no será responsable por daños indirectos, lucro cesante, pérdidas de negocio o corrupción de bases de datos locales derivada de la ejecución de macros o scripts sin validación previa en sandbox por parte del Cliente.",
-            "La responsabilidad total acumulada de CELAEST ante cualquier reclamación quedará limitada al monto total efectivamente abonado por el Cliente durante los seis (6) a doce (12) meses inmediatamente anteriores al hecho que suscite la reclamación."
+            "La responsabilidad total acumulada de CELAEST ante cualquier reclamación quedará limitada al monto total efectivamente abonado por el Cliente durante los seis (6) meses inmediatamente anteriores al hecho que suscite la reclamación."
           ]
         },
         {
@@ -628,8 +625,8 @@
           "title": "Responsable del Tratamiento y Principios Rectores de Habeas Data",
           "summary": "CELAEST opera como responsable del tratamiento bajo la Ley 1581 de 2012 de Colombia, con plena armonización internacional (GDPR y CCPA).",
           "paragraphs": [
-            "CELAEST (en adelante, \"la Plataforma\"), operada con domicilio principal en la República de Colombia, actúa como responsable del tratamiento de los datos personales y corporativos recopilados a través de sus servicios web y APIs.",
-            "Nuestras operaciones se rigen rigurosamente por la Ley Estatutaria 1581 de 2012, el Decreto Reglamentario 1377 de 2013 y demás normas colombianas de protección de datos (Habeas Data), garantizando asimismo cumplimiento con el Reglamento General de Protección de Datos (GDPR) de la Unión Europea y la Ley de Privacidad del Consumidor de California (CCPA).",
+            "CELAEST (en adelante, \"la Plataforma\"), operada comercialmente con domicilio principal en la República de Colombia, actúa como responsable del tratamiento de los datos personales y corporativos recopilados a través de sus servicios web y APIs.",
+            "Nuestras operaciones se rigen rigurosamente por la Ley Estatutaria 1581 de 2012, el Decreto Reglamentario 1377 de 2013 y demás normas colombianas de protección de datos (Habeas Data), garantizando asimismo compatibilidad con el Reglamento General de Protección de Datos (GDPR) de la Unión Europea y la Ley de Privacidad del Consumidor de California (CCPA).",
             "Oficial de Protección de Datos (DPO): Para cualquier ejercicio de derechos o requerimiento legal, puede dirigirse formalmente a privacidad@celaest.com."
           ]
         },
@@ -681,7 +678,7 @@
           "paragraphs": [
             "JSON Web Tokens (JWT): Empleamos tokens JWT para gestionar las sesiones de autenticación de forma segura y cifrada, con tiempo de expiración limitado e invalidación automática al cerrar sesión.",
             "Almacenamiento Local (localStorage): Utilizamos el almacenamiento local del navegador exclusivamente para preservar preferencias de interfaz (modo oscuro/claro) y el estado temporal de edición para evitar pérdidas de código.",
-            "Política de Cero Rastreo Publicitario: No utilizamos cookies de terceros con fines publicitarios ni vendemos datos de navegación a intermediarios de marketing (ad brokers)."
+            "Analítica Web y Política Cero Publicidad: Empleamos Google Analytics 4 (GA4) con anonimización de direcciones IP para medir rendimiento técnico y navegación agregada. No utilizamos cookies de terceros con fines publicitarios ni comercializamos datos de navegación con intermediarios de marketing (ad brokers)."
           ]
         },
         {
@@ -801,8 +798,8 @@
           "title": "Qué son las Cookies y Tecnologías de Almacenamiento",
           "summary": "Identificadores técnicos necesarios para mantener su sesión activa, proteger su cuenta y recordar su idioma.",
           "paragraphs": [
-            "Las cookies son pequeños archivos de texto que los sitios web almacenan en su navegador para recordar información sobre su visita. En CELAEST, las utilizamos exclusivamente con propósitos de seguridad, rendimiento y personalización de interfaz.",
-            "Nos regimos por una política de Cero Publicidad de Terceros: no vendemos datos a intermediarios publicitarios ni empleamos cookies de rastreo intersitio (cross-site tracking)."
+            "Las cookies son pequeños archivos de texto que los sitios web almacenan en su navegador para recordar información sobre su sesión y visita. En CELAEST, las utilizamos exclusivamente con propósitos de seguridad, rendimiento, analítica técnica agregada y personalización de interfaz.",
+            "Nos regimos por una política de Cero Publicidad de Terceros: no vendemos datos a intermediarios publicitarios ni empleamos cookies de rastreo intersitio con fines comerciales de marketing."
           ]
         },
         {
@@ -814,9 +811,9 @@
             "Clasificamos nuestras cookies en dos únicos grupos:"
           ],
           "points": [
-            "Cookies Técnicas Esenciales: Imprescindibles para la autenticación segura, prevención de ataques CSRF, balanceo de carga y persistencia de su sesión en el panel.",
-            "Cookies de Preferencias: Guardan su selección de idioma (Español / Inglés) y temas visuales para visitas posteriores.",
-            "Analítica Agregada (Plausible / Métricas Propias): Mide tiempos de carga de páginas y visitas de forma 100% anonimizada sin recopilar identificadores personales."
+            "Cookies Técnicas Esenciales: Imprescindibles para la autenticación segura mediante tokens JWT, prevención de ataques CSRF, balanceo de carga y persistencia de su sesión en el panel.",
+            "Cookies de Preferencias: Guardan su selección de idioma (Español / Inglés) y temas visuales para visitas posteriores mediante localStorage.",
+            "Analítica Técnica Agregada (Google Analytics 4): Mide tiempos de carga de páginas, dispositivos y patrones de uso de forma agregada, con anonimización de direcciones IP. Puedes configurar o rechazar esta analítica en el aviso de cookies o en tu navegador."
           ]
         },
         {
@@ -920,7 +917,7 @@
           "paragraphs": [
             "Las solicitudes de reembolso se gestionan exclusivamente a través del equipo de soporte de CELAEST. No existe un mecanismo de reembolso por autoservicio. El Usuario deberá escribir desde la dirección de correo corporativa asociada a su cuenta a support@celaest.com.",
             "La solicitud debe incluir de forma obligatoria: 1) Identificador de la orden o recibo digital; 2) Referencia o copia del reporte de error enviado previamente; 3) Descripción técnica detallada del problema y evidencia de los 10 días hábiles transcurridos sin resolución. Las solicitudes que no cumplan estos requisitos serán rechazadas formalmente.",
-            "Prohibición de Contracargos: Iniciar un contracargo (chargeback) o disputa ante la entidad bancaria o el procesador de pagos sin haber agotado previamente el canal de soporte se considera una disputa infundada y de mala fe. Esta conducta facultará a CELAEST a suspender de forma permanente e inmediata la cuenta infractora, revocar todas las licencias y reclamar las comisiones bancarias, honorarios y costes de cobranza derivados."
+            "Prohibición de Contracargos Abusivos: Iniciar un contracargo o disputa ante la entidad bancaria sin haber agotado previamente el canal de soporte facultará a CELAEST a suspender la cuenta infractora y reclamar los costes de cobranza derivados, sin perjuicio del derecho legal a la reversión del pago consagrado en el artículo 51 de la Ley 1480 de 2011 para transacciones fraudulentas o no consentidas."
           ]
         },
         {
@@ -929,7 +926,7 @@
           "title": "Procesamiento y Tiempos de Acreditación Bancaria",
           "summary": "Devoluciones ejecutadas por el Merchant of Record (Stripe / pasarelas) o transferencias locales en Colombia (Bre-B) en plazos bancarios estándar.",
           "paragraphs": [
-            "La devolución, cuando proceda legalmente, la ejecuta el procesador de pagos que actuó como Merchant of Record de la transacción (Stripe, Polar u homólogos certificados). El importe se acredita directamente al mismo método de pago original.",
+            "La devolución, cuando proceda legalmente según la sección 02, la ejecuta la pasarela de pagos Stripe al mismo método de pago original.",
             "Para pagos liquidados mediante transferencias bancarias en Colombia (incluyendo Bre-B o transferencias interbancarias directas), la devolución se tramitará mediante transferencia electrónica a la cuenta bancaria de origen previa validación de titularidad."
           ],
           "points": [

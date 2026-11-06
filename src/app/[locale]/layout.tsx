@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { Inter, Space_Grotesk } from "next/font/google";
 
 import { Analytics } from "@/components/analytics";
+import { CookieBanner } from "@/components/ui/cookie-banner";
 import { routing, type Locale } from "@/i18n/routing";
 import { SITE_URL } from "@/lib/constants";
 import "@/styles/globals.css";
@@ -134,6 +135,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
         <NextIntlClientProvider messages={messages}>
           {children}
           <Analytics />
+          <CookieBanner />
         </NextIntlClientProvider>
       </body>
     </html>
