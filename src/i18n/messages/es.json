@@ -464,15 +464,299 @@
     "forProfessionals": "para profesionales."
   },
   "legal": {
-    "privacy": {
-      "title": "Política de Privacidad",
-      "description": "Cómo gestionamos y protegemos sus datos empresariales.",
-      "lastUpdated": "Última actualización"
+    "nav": {
+      "terms": "Términos de Servicio",
+      "privacy": "Privacidad & Malla IA",
+      "license": "Licencia de Activos",
+      "cookies": "Política de Cookies",
+      "print": "Imprimir / Guardar PDF",
+      "breadcrumbHome": "Inicio",
+      "breadcrumbLegal": "Centro Legal",
+      "lastUpdated": "Última actualización",
+      "effectiveDate": "5 de Noviembre, 2026",
+      "version": "Versión 2.2",
+      "summaryLabel": "En resumen",
+      "contactLegal": "¿Preguntas sobre cumplimiento o términos empresariales?",
+      "contactLegalBtn": "Contactar con Legal",
+      "tableOfContents": "Índice de Cláusulas"
     },
     "terms": {
-      "title": "Términos y Condiciones",
-      "description": "Reglas de uso para la plataforma CELAEST.",
-      "lastUpdated": "Última actualización"
+      "title": "Términos de Servicio",
+      "badge": "CONTRATO MARCO B2B",
+      "subtitle": "Términos y condiciones para el uso de la plataforma CELAEST, orquestación de Malla IA y adquisición de activos digitales.",
+      "description": "Contrato marco sobre el uso de la plataforma CELAEST, infraestructura de Malla IA y adquisición de activos digitales.",
+      "lastUpdated": "Última actualización: Noviembre 2026",
+      "sections": [
+        {
+          "id": "objeto",
+          "number": "01",
+          "title": "Objeto y Alcance del Servicio",
+          "summary": "CELAEST provee una plataforma integral de Malla IA, automatizaciones y marketplace de activos digitales para empresas y profesionales.",
+          "paragraphs": [
+            "Estos Términos de Servicio rigen el acceso y uso de la plataforma web, APIs y servicios provistos por CELAEST Inc. (\"la Plataforma\"). Al registrarse, acceder o utilizar nuestros servicios, usted (\"el Cliente\" o \"el Usuario\") acepta quedar vinculado legalmente por estos términos.",
+            "Si accede a la plataforma en nombre de una empresa u organización, declara y garantiza poseer las facultades legales necesarias para vincular a dicha entidad a este contrato marco."
+          ]
+        },
+        {
+          "id": "cuentas",
+          "number": "02",
+          "title": "Cuentas Corporativas y Seguridad de Credenciales",
+          "summary": "Las credenciales son de uso corporativo exclusivo. La organización es responsable de la seguridad de sus tokens y claves de acceso.",
+          "paragraphs": [
+            "El acceso requiere la creación de una cuenta corporativa autenticada. Cada usuario debe proporcionar datos veraces, precisos y vigentes. Las credenciales de acceso y los tokens de API generados son estrictamente confidenciales e intransferibles fuera de los usuarios licenciados.",
+            "El Cliente asume la total responsabilidad por todas las operaciones y consumo de recursos ejecutados mediante sus credenciales. Ante cualquier sospecha de brecha de seguridad o acceso no autorizado, deberá notificar de forma inmediata a security@celaest.com."
+          ]
+        },
+        {
+          "id": "malla-ia",
+          "number": "03",
+          "title": "Orquestación de Malla IA y Soberanía de Datos",
+          "summary": "Procesamos IA bajo 3 modalidades transparentes. Garantizamos política de No-Entrenamiento comercial y usted retiene la propiedad de sus resultados.",
+          "paragraphs": [
+            "CELAEST provee acceso unificado y orquestación resiliente a modelos avanzados de lenguaje y computación bajo tres modalidades técnicas claramente delimitadas:",
+            "Propiedad de Prompts y Resultados: Entre CELAEST y el Cliente, este último es el titular exclusivo de todos los derechos de propiedad intelectual sobre los datos de entrada (prompts, archivos) y las respuestas generadas (código, análisis, automatizaciones). CELAEST no reclama ningún derecho de propiedad sobre las salidas producidas por el uso de la plataforma."
+          ],
+          "points": [
+            "Modalidad Cloud Mesh (Planes Starter y Pro): El procesamiento se realiza a través de APIs comerciales B2B con acuerdos vinculantes de no-entrenamiento. Sus prompts e inferencias son efímeras y no alimentan modelos públicos fundacionales.",
+            "Modalidad BYOK (Bring Your Own Key): El Cliente vincula sus propias credenciales directas (OpenAI, Anthropic, Google Vertex, etc.), operando bajo los términos y acuerdos contractuales directos que mantenga con dichos proveedores.",
+            "Modalidad On-Premise / Soberana (Enterprise): Modelos e infraestructura ejecutados 100% dentro del perímetro privado o nube dedicada del Cliente, garantizando aislamiento físico y lógico absoluto sin salida de datos a internet."
+          ]
+        },
+        {
+          "id": "marketplace",
+          "number": "04",
+          "title": "Marketplace de Activos, Macros y Scripts",
+          "summary": "La adquisición de activos otorga una licencia comercial para uso interno. Queda expresamente prohibida la reventa o distribución pública del código.",
+          "paragraphs": [
+            "Los activos digitales distribuidos en el Marketplace (macros de Excel, scripts de automatización en Python, conectores de flujos y herramientas especializadas) han sido previamente testeados por nuestro equipo técnico.",
+            "La adquisición de un activo otorga una licencia comercial no exclusiva, perpetua e intransferible para su implementación en los procesos operativos internos de la organización adquirente. Queda terminantemente prohibido revender, sublicenciar o publicar el código fuente en repositorios públicos."
+          ]
+        },
+        {
+          "id": "facturacion",
+          "number": "05",
+          "title": "Precios, Facturación y Garantía de Devolución de 30 Días",
+          "summary": "Precios transparentes y sin sorpresas. Todos los planes incluyen una garantía incondicional de devolución de 30 días naturales.",
+          "paragraphs": [
+            "Los servicios se facturan bajo suscripción periódica (mensual o anual) o mediante compra única de activos según las tarifas vigentes publicadas. Los precios se liquidan en la divisa correspondiente a su localización geográfica o en USD.",
+            "Garantía de Devolución: Todos los nuevos planes cuentan con una garantía de devolución de dinero de 30 días sin preguntas. Si dentro de los primeros 30 días el servicio no cumple sus expectativas, puede solicitar el reembolso íntegro a support@celaest.com."
+          ]
+        },
+        {
+          "id": "sla",
+          "number": "06",
+          "title": "Nivel de Servicio (SLA) y Disponibilidad",
+          "summary": "Compromiso de disponibilidad del 99.9% en planes Pro y SLA garantizado con respaldo financiero en planes Enterprise.",
+          "paragraphs": [
+            "CELAEST implementa una infraestructura multi-región de alta resiliencia diseñada para brindar una disponibilidad mensual mínima del 99.9% en los servicios core.",
+            "Para clientes corporativos con plan Enterprise, aplican los Acuerdos de Nivel de Servicio (SLA) específicos estipulados en su anexo contractual, con penalizaciones compensatorias y soporte de ingeniería prioritario 24/7."
+          ]
+        },
+        {
+          "id": "responsabilidad",
+          "number": "07",
+          "title": "Limitación de Responsabilidad e Indemnidad",
+          "summary": "Exclusión de daños consecuenciales o lucro cesante. Límite económico total equivalente al monto pagado en los últimos 12 meses.",
+          "paragraphs": [
+            "En la máxima medida permitida por el derecho aplicable, CELAEST no será responsable por daños indirectos, lucro cesante, pérdidas operativas o corrupción de datos derivada de la ejecución de scripts o automatizaciones en las bases de datos locales o sistemas internos del Cliente.",
+            "La responsabilidad agregada total de CELAEST ante cualquier reclamación quedará limitada al monto total efectivamente abonado por el Cliente durante los doce (12) meses inmediatamente anteriores al evento causante."
+          ]
+        },
+        {
+          "id": "jurisdiccion",
+          "number": "08",
+          "title": "Modificaciones, Ley Aplicable y Jurisdicción",
+          "summary": "Notificación previa de cambios sustanciales con 30 días de antelación. Resolución amigable y arbitraje comercial vinculante.",
+          "paragraphs": [
+            "Nos reservamos el derecho de modificar estos Términos periódicamente. En caso de cambios sustanciales, se notificará al Cliente con un mínimo de treinta (30) días de antelación mediante correo electrónico o aviso destacado en el panel.",
+            "Cualquier disputa se someterá en primera instancia a negociaciones amigables de buena fe y, en caso de no resolverse en 30 días, ante arbitraje comercial vinculante."
+          ]
+        }
+      ]
+    },
+    "privacy": {
+      "title": "Política de Privacidad & Malla IA",
+      "badge": "PROTECCIÓN DE DATOS B2B",
+      "subtitle": "Compromiso absoluto de soberanía de datos, política de Cero-Entrenamiento en IA y cumplimiento riguroso de normativas internacionales.",
+      "description": "Cómo gestionamos, aislamos y protegemos sus datos corporativos y cargas de trabajo de IA.",
+      "lastUpdated": "Última actualización: Noviembre 2026",
+      "sections": [
+        {
+          "id": "responsable",
+          "number": "01",
+          "title": "Responsable del Tratamiento y Principios Rectores",
+          "summary": "CELAEST Inc. actúa como responsable y custodio de la información bajo los principios de minimización, confidencialidad y propósito legítimo.",
+          "paragraphs": [
+            "Esta Política de Privacidad regula el tratamiento de datos personales y corporativos recopilados a través de la plataforma CELAEST. Nos regimos bajo los más altos estándares globales de privacidad, incluyendo el Reglamento General de Protección de Datos de la Unión Europea (GDPR) y la Ley de Privacidad de California (CCPA).",
+            "Contacto del Delegado de Protección de Datos (DPO): Para cualquier consulta, puede dirigirse formalmente a privacy@celaest.com o a nuestra oficina legal central."
+          ]
+        },
+        {
+          "id": "datos-recopilados",
+          "number": "02",
+          "title": "Datos Recopilados y Finalidad del Tratamiento",
+          "summary": "Únicamente recolectamos los datos estrictamente necesarios para autenticar, facturar y orquestar sus flujos de automatización.",
+          "paragraphs": [
+            "Recopilamos dos tipos de información:",
+            "Finalidad: La información se utiliza exclusivamente para autenticar cuentas, procesar cobros, monitorear la salud de la infraestructura y proveer la orquestación de IA solicitada."
+          ],
+          "points": [
+            "Datos de Cuenta y Facturación: Nombre corporativo, correo electrónico institucional, identificador de empresa y metadatos de facturación procesados por pasarelas certificadas PCI-DSS Nivel 1.",
+            "Datos Técnicos y Telemetría: Direcciones IP, identificadores de sesión, registros de seguridad contra ataques DDoS y métricas de latencia de red, tratados de forma agregada.",
+            "Datos de Cargas de Trabajo (Prompts y Parámetros): Información enviada para inferencia, procesada de forma transitoria en memoria activa."
+          ]
+        },
+        {
+          "id": "zero-training",
+          "number": "03",
+          "title": "Compromiso Estricto de Cero Entrenamiento en IA",
+          "summary": "Garantía vinculante: Sus prompts, código fuente y documentos empresariales NUNCA se usan para entrenar o ajustar modelos públicos.",
+          "paragraphs": [
+            "CELAEST mantiene un principio inquebrantable de Confidencialidad de Cargas de Trabajo: ningún dato proporcionado para ejecución o inferencia en la Malla IA es utilizado para re-entrenar, ajustar (fine-tune) o mejorar modelos fundacionales comerciales.",
+            "A diferencia de las herramientas web gratuitas de consumo masivo, nuestras integraciones se realizan exclusivamente a través de APIs comerciales B2B que imponen acuerdos formales de no-retención para entrenamiento de modelos."
+          ]
+        },
+        {
+          "id": "subprocesadores",
+          "number": "04",
+          "title": "Subprocesadores de Infraestructura y Servicios",
+          "summary": "Trabajamos únicamente con proveedores globales certificados con estándares SOC 2 Tipo II e ISO 27001.",
+          "paragraphs": [
+            "Para proveer alta disponibilidad y entrega global ultrarrápida, contratamos los siguientes subprocesadores de clase mundial bajo contratos DPA:",
+            "Cada subprocesador está auditado técnica y contractualmente para garantizar el cumplimiento de las Cláusulas Contractuales Tipo de la Unión Europea."
+          ],
+          "points": [
+            "Cloudflare Inc. (Seguridad perimetral, cortafuegos WAF, mitigación DDoS y certificados TLS 1.3)",
+            "Vercel Inc. (Alojamiento Edge de aplicaciones web y CDN distribuida)",
+            "Anthropic PBC / OpenAI LLC / Google Vertex AI (Proveedores de inferencia IA comercial bajo acuerdos de No-Entrenamiento)",
+            "Render / AWS (Infraestructura de microservicios y bases de datos aisladas)",
+            "Stripe Inc. (Pasarela de pagos encriptada PCI-DSS Nivel 1)"
+          ]
+        },
+        {
+          "id": "seguridad",
+          "number": "05",
+          "title": "Seguridad Técnica, Aislamiento y Cifrado",
+          "summary": "Cifrado integral TLS 1.3 en tránsito y AES-256 en reposo, con arquitectura de aislamiento estricto multi-inquilino.",
+          "paragraphs": [
+            "Implementamos defensa en profundidad en todas las capas del sistema. Todo el tráfico externo e interno se cifra mediante TLS 1.3 con secreto perfecto hacia adelante (PFS). Los datos en reposo se almacenan utilizando cifrado AES de 256 bits.",
+            "Aislamiento Multi-Tenant: Cada organización cuenta con partición lógica y claves de cifrado que impiden el acceso cruzado entre diferentes clientes corporativos."
+          ]
+        },
+        {
+          "id": "derechos",
+          "number": "06",
+          "title": "Sus Derechos de Privacidad (GDPR, CCPA y ARCO)",
+          "summary": "Usted tiene derecho incondicional a acceder, descargar, rectificar o eliminar permanentemente todos sus datos en cualquier momento.",
+          "paragraphs": [
+            "Usted conserva en todo momento el control soberano sobre sus datos. Reconocemos y facilitamos de forma gratuita el ejercicio de los siguientes derechos:",
+            "Para ejercer cualquiera de estos derechos, basta enviar una solicitud firmada a privacy@celaest.com. Responderemos formalmente en un plazo máximo de quince (15) días hábiles."
+          ],
+          "points": [
+            "Derecho de Acceso y Portabilidad: Puede solicitar una copia estructurada de todos los datos asociados a su organización.",
+            "Derecho de Rectificación: Capacidad de actualizar cualquier información inexacta o desactualizada.",
+            "Derecho de Supresión (\"Derecho al Olvido\"): Eliminación irreversible de credenciales, cuentas y datos asociados en todas las réplicas activas y copias de seguridad.",
+            "Derecho de Oposición y Limitación: Posibilidad de restringir el procesamiento de datos específicos."
+          ]
+        }
+      ]
+    },
+    "license": {
+      "title": "Licencia de Activos Digitales (EULA)",
+      "badge": "CONTRATO DE LICENCIA DE SOFTWARE",
+      "subtitle": "Términos legales y derechos de propiedad intelectual aplicables a macros de Excel, scripts de Python y automatizaciones adquiridas.",
+      "description": "Reglas de licenciamiento comercial, derechos de modificación y restricciones de uso para activos del Marketplace.",
+      "lastUpdated": "Última actualización: Noviembre 2026",
+      "sections": [
+        {
+          "id": "concesion",
+          "number": "01",
+          "title": "Concesión de Licencia Comercial",
+          "summary": "Licencia perpetua, mundial y no exclusiva para uso operativo dentro de su organización empresarial.",
+          "paragraphs": [
+            "Al adquirir o descargar macros, scripts o herramientas de software desde el Marketplace de CELAEST, se otorga a la entidad compradora una licencia comercial no exclusiva, mundial, perpetua e intransferible para implementar y ejecutar dicho activo en sus operaciones internas.",
+            "El alcance de la licencia cubre todos los dispositivos, servidores y empleados que pertenezcan a la organización licenciada según el volumen de licencias adquirido."
+          ]
+        },
+        {
+          "id": "restricciones",
+          "number": "02",
+          "title": "Restricciones de Uso y Protección Anti-Piratería",
+          "summary": "Queda terminantemente prohibida la reventa, redistribución o publicación del código fuente a terceros.",
+          "paragraphs": [
+            "La licencia otorgada prohíbe taxativamente:",
+            "El incumplimiento de estas restricciones conllevará la revocación inmediata de la licencia sin derecho a reembolso y dará lugar a las acciones civiles y penales pertinentes."
+          ],
+          "points": [
+            "Vender, revender, alquilar, sublicenciar o ceder el código fuente de los activos a terceros ajenos a la organización.",
+            "Publicar el código fuente en repositorios públicos (GitHub, GitLab, foros) o ponerlo a disposición de acceso abierto en internet.",
+            "Empaquetar los scripts o macros como parte de un producto o servicio de la competencia directa destinado a su comercialización masiva."
+          ]
+        },
+        {
+          "id": "modificaciones",
+          "number": "03",
+          "title": "Modificaciones y Obras Derivadas para Uso Interno",
+          "summary": "Libertad total para auditar, adaptar y optimizar el código fuente para ajustarlo a los flujos únicos de su empresa.",
+          "paragraphs": [
+            "El Cliente tiene derecho a auditar, modificar, refactorizar e integrar el código fuente de los scripts adquiridos con sus sistemas internos existentes.",
+            "Todas las obras derivadas o adaptaciones creadas por el Cliente continuarán sujetas a las mismas restricciones de confidencialidad y prohibición de distribución externa establecidas en este contrato."
+          ]
+        },
+        {
+          "id": "garantia-sandbox",
+          "number": "04",
+          "title": "Verificación de Calidad y Ejecución en Sandbox",
+          "summary": "Los activos son auditados técnicamente, pero deben validarse en entornos de prueba (staging) antes de producción.",
+          "paragraphs": [
+            "Cada activo del Marketplace es sometido a un riguroso protocolo de calidad antes de su aprobación. No obstante, dado que los entornos de bases de datos y sistemas operativos de cada cliente son únicos, el software se suministra \"tal cual\" (as is).",
+            "El Cliente es estrictamente responsable de probar y validar cualquier script en un entorno de desarrollo o sandbox antes de su despliegue en sistemas productivos críticos."
+          ]
+        }
+      ]
+    },
+    "cookies": {
+      "title": "Política de Cookies & Rastreo",
+      "badge": "TRANSPARENCIA TECNOLÓGICA",
+      "subtitle": "Información transparente sobre el uso de cookies técnicas esenciales y telemetría anónima sin publicidad de terceros.",
+      "description": "Detalle de las tecnologías de almacenamiento local y cookies empleadas en la plataforma CELAEST.",
+      "lastUpdated": "Última actualización: Noviembre 2026",
+      "sections": [
+        {
+          "id": "que-son",
+          "number": "01",
+          "title": "Qué son las Cookies y Tecnologías de Almacenamiento",
+          "summary": "Identificadores técnicos necesarios para mantener su sesión activa, proteger su cuenta y recordar su idioma.",
+          "paragraphs": [
+            "Las cookies son pequeños archivos de texto que los sitios web almacenan en su navegador para recordar información sobre su visita. En CELAEST, las utilizamos exclusivamente con propósitos de seguridad, rendimiento y personalización de interfaz.",
+            "Nos regimos por una política de Cero Publicidad de Terceros: no vendemos datos a intermediarios publicitarios ni empleamos cookies de rastreo intersitio (cross-site tracking)."
+          ]
+        },
+        {
+          "id": "categorias",
+          "number": "02",
+          "title": "Categorías de Cookies Utilizadas",
+          "summary": "Solo utilizamos cookies estrictamente esenciales y telemetría de rendimiento agregada.",
+          "paragraphs": [
+            "Clasificamos nuestras cookies en dos únicos grupos:"
+          ],
+          "points": [
+            "Cookies Técnicas Esenciales: Imprescindibles para la autenticación segura, prevención de ataques CSRF, balanceo de carga y persistencia de su sesión en el panel.",
+            "Cookies de Preferencias: Guardan su selección de idioma (Español / Inglés) y temas visuales para visitas posteriores.",
+            "Analítica Agregada (Plausible / Métricas Propias): Mide tiempos de carga de páginas y visitas de forma 100% anonimizada sin recopilar identificadores personales."
+          ]
+        },
+        {
+          "id": "control",
+          "number": "03",
+          "title": "Control y Desactivación en su Navegador",
+          "summary": "Usted tiene control total para bloquear o limpiar cookies en cualquier momento desde su navegador.",
+          "paragraphs": [
+            "Puede configurar su navegador para bloquear o alertarle sobre la instalación de cookies. Tenga en cuenta que bloquear cookies técnicas esenciales puede impedir el inicio de sesión en su cuenta y el uso del panel de control.",
+            "Para gestionar cookies en Chrome, Safari, Edge o Firefox, acceda a la sección de Privacidad y Seguridad en los ajustes de su navegador."
+          ]
+        }
+      ]
     }
   },
   "architecture": {
