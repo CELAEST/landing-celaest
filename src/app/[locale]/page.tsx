@@ -9,7 +9,6 @@ import { PlatformSection } from "@/components/landing/platform-section";
 import { SecuritySection } from "@/components/landing/security-section";
 import { PricingSection } from "@/components/landing/pricing-section";
 import { ArchitectureSection } from "@/components/landing/architecture-section";
-import { FAQSection } from "@/components/landing/faq-section";
 import { ClosingCTASection } from "@/components/landing/closing-cta-section";
 import { Footer } from "@/components/landing/footer";
 import {
@@ -67,9 +66,6 @@ export default async function HomePage({ params }: PageProps) {
         </div>
         <div className="cv-section">
           <ArchitectureSection />
-        </div>
-        <div className="cv-section">
-          <FAQSection />
         </div>
         <div className="cv-section">
           <ClosingCTASection />

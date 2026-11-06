@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Github, Mail } from "lucide-react";
 import { ConstellationBackground } from "@/components/ui/constellation-background";
@@ -7,10 +8,12 @@ import { FooterBrandColumn } from "./footer/footer-brand-column";
 import { FooterLinks } from "./footer/footer-links";
 import { FooterWordmark } from "./footer/footer-wordmark";
 import { FooterBottomBar } from "./footer/footer-bottom-bar";
+import { FAQModal } from "./faq/faq-modal";
 import { SUPPORT_EMAIL } from "@/lib/constants";
 
 export function Footer() {
   const t = useTranslations("footer");
+  const [isFaqOpen, setIsFaqOpen] = useState(false);
 
   const linkGroupKeys = ["product", "company", "support", "legal"] as const;
   const groups = linkGroupKeys.map((key) => ({
@@ -50,7 +53,7 @@ export function Footer() {
         {/* Main Navigation Links */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-14 sm:mb-16">
           <FooterBrandColumn description={t("brand.description")} socialLinks={socialLinks} />
-          <FooterLinks groups={groups} />
+          <FooterLinks groups={groups} onOpenFaq={() => setIsFaqOpen(true)} />
         </div>
 
         {/* Bottom Bar */}
@@ -59,6 +62,9 @@ export function Footer() {
           madeWith={t("madeWith")}
           forProfessionals={t("forProfessionals")}
         />
+
+        {/* Dedicated Interactive FAQ Modal */}
+        <FAQModal isOpen={isFaqOpen} onClose={() => setIsFaqOpen(false)} />
       </div>
     </footer>
   );
