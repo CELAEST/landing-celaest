@@ -51,10 +51,10 @@ export default async function FAQPage({ params }: PageProps) {
         <div className="mb-8">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-zinc-400 hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-zinc-400 hover:text-white transition-colors duration-200 group"
           >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Volver al inicio</span>
+            <ArrowLeft className="w-3.5 h-3.5 transition-transform duration-200 group-hover:-translate-x-1" />
+            <span>{t("backToHome")}</span>
           </Link>
         </div>
 

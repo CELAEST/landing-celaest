@@ -360,6 +360,7 @@
     }
   },
   "faq": {
+    "backToHome": "Volver al inicio",
     "title1": "Preguntas",
     "title2": "Frecuentes",
     "subtitle": "Todo lo que necesitas saber sobre nuestra plataforma y servicios.",
@@ -458,6 +459,7 @@
   },
   "legal": {
     "nav": {
+      "backToHome": "Volver al inicio",
       "terms": "Términos de Servicio",
       "privacy": "Privacidad & Malla IA",
       "license": "Licencia de Activos",

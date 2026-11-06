@@ -360,6 +360,7 @@
     }
   },
   "faq": {
+    "backToHome": "Back to home",
     "title1": "Frequently Asked",
     "title2": "Questions",
     "subtitle": "Everything you need to know about our platform and services.",
@@ -458,6 +459,7 @@
   },
   "legal": {
     "nav": {
+      "backToHome": "Back to home",
       "terms": "Terms of Service",
       "privacy": "Privacy & AI Mesh",
       "license": "Asset License (EULA)",

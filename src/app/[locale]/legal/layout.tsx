@@ -1,5 +1,7 @@
 import React from "react";
 import { getLocale, getTranslations } from "next-intl/server";
+import { ArrowLeft } from "lucide-react";
+import { Link } from "@/i18n/navigation";
 import { Header } from "@/components/landing/header";
 import { Footer } from "@/components/landing/footer";
 import { LegalTabs } from "@/components/legal/legal-tabs";
@@ -33,6 +35,17 @@ export default async function LegalLayout({ children }: { children: React.ReactN
 
       {/* Master 1360px Editorial Container */}
       <main className="relative z-10 flex-grow pt-28 sm:pt-36 pb-24 sm:pb-32 legal-editorial-container">
+        {/* Breadcrumb Back Link */}
+        <div className="mb-6 sm:mb-8">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-zinc-400 hover:text-white transition-colors duration-200 group"
+          >
+            <ArrowLeft className="w-3.5 h-3.5 transition-transform duration-200 group-hover:-translate-x-1" />
+            <span>{t("backToHome")}</span>
+          </Link>
+        </div>
+
         {/* Tetralogía Typographic Switcher */}
         <LegalTabs navLabels={navLabels} />
 
