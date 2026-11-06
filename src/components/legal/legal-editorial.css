@@ -1,0 +1,376 @@
+/* ==========================================================================
+   CELAEST LEGAL CENTER - TETRALOGÍA EDITORIAL (ZERO-BOX & ZERO-CARDS)
+   1360px Container System, Hairline Rules, Monospace Numerals, Clean Whitespace
+   ========================================================================== */
+
+/* Main Container: 85rem / 1360px with Fluid Clearance */
+.legal-editorial-container {
+  max-width: 85rem;
+  margin: 0 auto;
+  padding-left: max(32px, calc(clamp(96px, 8.6vw, 136px) - max(0px, (100vw - 85rem) / 2)));
+  padding-right: max(32px, calc(clamp(96px, 8.6vw, 136px) - max(0px, (100vw - 85rem) / 2)));
+  position: relative;
+  z-index: 10;
+}
+
+@media (max-width: 760px) {
+  .legal-editorial-container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+/* Master Header: Symmetrical, Clean, Demarcated with Laser Hairline */
+.legal-editorial-header {
+  border-bottom: 1px solid #24242b;
+  padding-bottom: 40px;
+  margin-bottom: 32px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.legal-editorial-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: monospace;
+  font-size: 11px;
+  color: #71717a;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  margin-bottom: 16px;
+}
+
+.legal-editorial-eyebrow .rule {
+  width: 32px;
+  height: 1px;
+  background: #3d3947;
+}
+
+.legal-editorial-title {
+  font-family: var(--font-display), "Geist Sans", system-ui, sans-serif;
+  font-size: clamp(32px, 4.2vw, 56px);
+  line-height: 1.12;
+  letter-spacing: -1.4px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 16px;
+  text-align: center;
+}
+
+.legal-editorial-title em {
+  color: #a9a8b5;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.legal-editorial-subtitle {
+  color: #9998a2;
+  font-size: 16.5px;
+  line-height: 1.45;
+  letter-spacing: -0.3px;
+  max-width: 720px;
+  margin: 0 auto 24px;
+  font-weight: 300;
+  text-align: center;
+}
+
+.legal-editorial-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  font-family: monospace;
+  font-size: 11px;
+  color: #71717a;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.legal-editorial-meta .dot {
+  color: #3d3947;
+}
+
+/* ==========================================================================
+   TETRALOGÍA SWITCHER: ZERO-BOX TYPOGRAPHIC BAR (01 / 02 / 03 / 04)
+   ========================================================================== */
+.legal-tetralogy-bar {
+  border-bottom: 1px solid #24242b;
+  padding-bottom: 20px;
+  margin-bottom: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.legal-tetralogy-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.legal-tetralogy-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: nowrap;
+}
+
+.legal-tetralogy-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: monospace;
+  font-size: 12.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #71717a;
+  padding: 6px 0;
+  position: relative;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.legal-tetralogy-link .num {
+  font-weight: 700;
+  color: #52525b;
+  transition: color 0.2s ease;
+}
+
+.legal-tetralogy-link:hover {
+  color: #ffffff;
+}
+
+.legal-tetralogy-link:hover .num {
+  color: #a78bfa;
+}
+
+.legal-tetralogy-link.active {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.legal-tetralogy-link.active .num {
+  color: #a78bfa;
+}
+
+.legal-tetralogy-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: -21px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #a855f7;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.7);
+}
+
+.legal-tetralogy-sep {
+  color: #3d3947;
+  font-family: monospace;
+  font-size: 12px;
+  user-select: none;
+}
+
+/* ==========================================================================
+   EDITORIAL MASTER GRID: 2-COLUMN DIVIDED READING ARCHITECTURE
+   ========================================================================== */
+.legal-editorial-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 64px;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .legal-editorial-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* Section Rule Wrap */
+.legal-section-rule-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding-top: 48px;
+}
+
+.legal-section-article:first-child .legal-section-rule-wrap {
+  padding-top: 0;
+}
+
+.legal-section-num {
+  font-family: monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: #a855f7;
+  letter-spacing: 0.1em;
+}
+
+.legal-section-rule-wrap .rule {
+  width: 65px;
+  height: 1px;
+  background: #3d3947;
+}
+
+.legal-section-tag {
+  font-family: monospace;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #71717a;
+  margin-left: auto;
+}
+
+.legal-section-title {
+  font-family: var(--font-display), "Geist Sans", system-ui, sans-serif;
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.25;
+  letter-spacing: -0.6px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+/* Editorial Lead / Summary - PURE TYPOGRAPHY, ZERO CARDS */
+.legal-section-lead {
+  font-size: 16px;
+  line-height: 1.65;
+  color: #f8f7fb;
+  font-weight: 400;
+  padding-left: 18px;
+  border-left: 2px solid rgba(168, 85, 247, 0.45);
+  margin: 18px 0 24px;
+}
+
+.legal-section-paragraphs {
+  color: #9998a2;
+  font-size: 15.5px;
+  line-height: 1.8;
+  font-weight: 300;
+  letter-spacing: -0.2px;
+}
+
+.legal-section-paragraphs p {
+  margin-bottom: 16px;
+}
+
+.legal-section-points {
+  list-style: none;
+  padding-left: 0;
+  margin: 20px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.legal-section-point {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  color: #9998a2;
+  font-size: 15px;
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+.legal-section-point .dash {
+  color: #a855f7;
+  font-family: monospace;
+  user-select: none;
+  font-size: 16px;
+}
+
+/* ==========================================================================
+   STICKY EDITORIAL INDEX (ZERO-BOX)
+   ========================================================================== */
+.legal-sticky-index {
+  position: sticky;
+  top: 110px;
+}
+
+.legal-index-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: monospace;
+  font-size: 11px;
+  color: #71717a;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #24242b;
+}
+
+.legal-index-eyebrow .dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 9999px;
+  background: #a855f7;
+  box-shadow: 0 0 6px #a855f7;
+}
+
+.legal-index-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.legal-index-link {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 6px 0;
+  color: #71717a;
+  font-size: 13px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  line-height: 1.4;
+}
+
+.legal-index-link .num {
+  font-family: monospace;
+  font-size: 11.5px;
+  color: #52525b;
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+}
+
+.legal-index-link:hover {
+  color: #ffffff;
+}
+
+.legal-index-link:hover .num {
+  color: #a855f7;
+}
+
+.legal-index-footer {
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid #24242b;
+  font-family: monospace;
+  font-size: 10.5px;
+  color: #71717a;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.legal-index-footer a {
+  color: #a855f7;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.legal-index-footer a:hover {
+  color: #ffffff;
+}

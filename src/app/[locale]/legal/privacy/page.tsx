@@ -7,7 +7,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "legal.privacy" });
   return {
-    title: t("title"),
+    title: `${t("title")} | CELAEST`,
     description: t("description"),
   };
 }
@@ -28,8 +28,6 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
   }));
 
   const navLabels = {
-    breadcrumbHome: tNav("breadcrumbHome"),
-    breadcrumbLegal: tNav("breadcrumbLegal"),
     print: tNav("print"),
   };
 
@@ -44,19 +42,15 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
         navLabels={navLabels}
       />
 
-      <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
+      <div className="legal-editorial-grid">
         {/* Main Document Body */}
-        <div className="flex-1 w-full max-w-3xl">
+        <div className="w-full">
           {sections.map((section) => (
-            <LegalSectionView
-              key={section.id}
-              section={section}
-              summaryLabel={tNav("summaryLabel")}
-            />
+            <LegalSectionView key={section.id} section={section} />
           ))}
         </div>
 
-        {/* Sticky Table of Contents & Compliance Box */}
+        {/* Sticky Editorial Index */}
         <LegalSidebarToc
           sections={tocItems}
           title={tNav("tableOfContents")}
