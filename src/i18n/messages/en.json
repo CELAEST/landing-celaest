@@ -453,9 +453,9 @@
         "items": [
           "Privacy Policy",
           "Terms of Service",
+          "Refund Policy",
           "License Agreement",
-          "Cookie Policy",
-          "GDPR"
+          "Cookie Policy"
         ]
       }
     },
@@ -473,16 +473,17 @@
       "breadcrumbHome": "Home",
       "breadcrumbLegal": "Legal Center",
       "lastUpdated": "Last updated",
-      "effectiveDate": "November 5, 2026",
+      "effectiveDate": "November 2026",
       "version": "Version 2.2",
       "summaryLabel": "In short",
       "contactLegal": "Questions about compliance or enterprise terms?",
       "contactLegalBtn": "Contact Legal Team",
-      "tableOfContents": "Table of Contents"
+      "tableOfContents": "Table of Contents",
+      "refunds": "Refund Policy"
     },
     "terms": {
       "title": "Terms of Service",
-      "badge": "B2B MASTER AGREEMENT",
+      "badge": "B2B MASTER SERVICE AGREEMENT",
       "subtitle": "Terms and conditions governing the use of the CELAEST platform, AI Mesh orchestration, and digital asset acquisitions.",
       "description": "Master service agreement for the CELAEST platform, AI Mesh infrastructure, and digital assets.",
       "lastUpdated": "Last updated: November 2026",
@@ -490,173 +491,245 @@
         {
           "id": "objeto",
           "number": "01",
-          "title": "Subject Matter and Scope of Service",
-          "summary": "CELAEST provides an enterprise AI Mesh orchestration platform, workflows, and verified digital asset marketplace.",
+          "title": "Subject Matter, Acceptance, and Evidentiary Electronic Consent",
+          "summary": "CELAEST operates from Colombia with global scope. Account creation and purchases establish binding consent under Law 527 of 1999.",
           "paragraphs": [
-            "These Terms of Service govern your access to and use of the web platform, APIs, and associated services provided by CELAEST Inc. (\"the Platform\"). By registering, accessing, or using our services, you (\"Customer\" or \"User\") agree to be legally bound by these terms.",
-            "If accessing the Platform on behalf of a corporation or entity, you represent and warrant that you possess the requisite legal authority to bind said entity to this master agreement."
+            "These Terms of Service (hereinafter, the \"Terms\") govern access to and usage of the web platform, APIs, and enterprise services provided by CELAEST (hereinafter, \"the Platform\"), headquartered in the Republic of Colombia with international delivery.",
+            "By accessing, registering, or purchasing digital assets or compute on the Platform, Customer declares full understanding and acceptance of these Terms, the Privacy Policy, and the Refund Policy, constituting a legally enforceable contract.",
+            "Electronic Evidentiary Consent: Pursuant to Law 527 of 1999 on Data Messages and Electronic Commerce, CELAEST electronically records timestamps, contract versions, IP addresses, and device fingerprints upon registration and checkout, constituting full legal proof of agreement."
+          ]
+        },
+        {
+          "id": "naturaleza-servicio",
+          "number": "02",
+          "title": "Service Description and Automated Computing Nature",
+          "summary": "CELAEST delivers automated digital products and AI Mesh compute. Standard tiers do not include manual consulting or human coaching.",
+          "paragraphs": [
+            "CELAEST is a specialized technological platform providing enterprise workflow automation, open-source VBA Microsoft Excel macros, Python automation scripts, and unified AI Mesh orchestration.",
+            "All offerings on the Platform represent automated digital products and compute delivered immediately upon payment. CELAEST does not provide manual human consulting or bespoke human agency execution in standard self-serve tiers; support is delivered asynchronously via AI assistants, technical documentation, and ticket queues."
           ]
         },
         {
           "id": "cuentas",
-          "number": "02",
-          "title": "Corporate Accounts and Credential Security",
-          "summary": "Credentials are for corporate use only. Organizations bear full responsibility for the confidentiality of access tokens and keys.",
+          "number": "03",
+          "title": "Corporate Accounts, Multi-Account Restrictions, and Security",
+          "summary": "Credentials are for corporate use only. Credential sharing, multi-accounting to bypass limits, and ban evasion are strictly prohibited.",
           "paragraphs": [
-            "Access requires creation of an authenticated corporate account. Users must provide accurate, current, and complete information. Login credentials and API tokens generated are strictly confidential and non-transferable outside authorized personnel.",
-            "Customer assumes full responsibility for all operations executed under its credentials. In the event of suspected security breaches or unauthorized access, Customer must notify security@celaest.com immediately."
+            "Access requires authenticated corporate accounts (via email or OAuth providers such as Google or GitHub). Customers must provide accurate, current, and verifiable operational details.",
+            "Credentials and API tokens are confidential and non-transferable outside licensed organizations. Sharing, reselling, or leasing account access is prohibited. Entities may maintain only contracted accounts; creating unauthorized auxiliary accounts to evade limits or penalties triggers immediate access suspension via IP and device fingerprint filtering."
           ]
         },
         {
           "id": "malla-ia",
-          "number": "03",
+          "number": "04",
           "title": "AI Mesh Orchestration and Data Sovereignty",
-          "summary": "We process AI under 3 transparent modalities with commercial Zero-Training guarantees. You retain 100% ownership of your outputs.",
+          "summary": "Customer retains 100% intellectual property ownership of prompts and outputs. Zero-Training guaranteed across 3 tiers.",
           "paragraphs": [
-            "CELAEST provides resilient connectivity and orchestration across frontier models under three clearly demarcated technical frameworks:",
-            "Ownership of Prompts and Outputs: As between CELAEST and Customer, Customer is the exclusive owner of all intellectual property rights in input data (prompts, files) and generated outputs (code, analytics, workflows). CELAEST claims no ownership over outputs produced through platform use."
+            "CELAEST delivers frontier model orchestration grounded in strict Data Sovereignty. Customer retains exclusive intellectual property rights over all input data (prompts, files, code) and generated responses.",
+            "Zero-Training Guarantee: No corporate workload or prompt processed through our AI Mesh is ever utilized to train, fine-tune, or reinforce public foundational models.",
+            "Our architecture operates across three distinct isolation tiers:"
           ],
           "points": [
-            "Cloud Mesh Mode (Starter & Pro Plans): Processing is conducted via commercial B2B APIs under binding zero-training agreements. Prompts and inferences are transient and never train foundational public models.",
-            "BYOK Mode (Bring Your Own Key): Customer connects direct corporate API keys (OpenAI, Anthropic, Google Vertex), operating under their direct contractual terms with those providers.",
-            "On-Premise / Sovereign Mode (Enterprise): Models and infrastructure deployed 100% within Customer's private network or dedicated cloud, guaranteeing physical and logical air-gapping without internet egress."
+            "Cloud Mesh B2B (Starter & Pro): Ephemeral RAM-based inference across commercial enterprise APIs bound by Zero Data Retention agreements with Anthropic, OpenAI, and Google Vertex.",
+            "BYOK (Bring Your Own Key): Customer connects direct API credentials, governed by direct DPA agreements maintained between Customer and frontier model providers.",
+            "On-Premise Sovereign (Enterprise): Models and inferencing executed 100% within Customer's private cloud or air-gapped infrastructure without external internet outbound."
           ]
         },
         {
           "id": "marketplace",
-          "number": "04",
-          "title": "Asset Marketplace, Macros, and Scripts",
-          "summary": "Asset purchases grant an internal commercial license. Public redistribution, reselling, or open-source publication is strictly prohibited.",
+          "number": "05",
+          "title": "Digital Asset Marketplace and Mandatory Sandbox Testing",
+          "summary": "Commercial license for internal operations. Public redistribution is forbidden, and staging validation is mandatory prior to production.",
           "paragraphs": [
-            "Digital assets distributed across the Marketplace (Excel macros, Python scripts, autonomous connectors, and specialized tools) undergo strict pre-publication verification.",
-            "Acquisition grants a non-exclusive, perpetual, non-transferable commercial license for internal operational implementation within Customer's organization. Reselling, sublicensing, or posting source code to public repositories is strictly prohibited."
+            "Acquiring Excel macros or Python automation scripts grants a perpetual, non-exclusive, non-transferable commercial license for internal corporate operations.",
+            "Reselling, sublicensing, or posting source code in open public repositories is strictly prohibited.",
+            "Mandatory Sandbox Testing: Because every corporate database and operating environment differs, software is provided \"as is\". Customer bears an affirmative, strict duty to test and validate every script within a staging sandbox environment before running on critical production databases."
           ]
         },
         {
           "id": "facturacion",
-          "number": "05",
-          "title": "Pricing, Billing, and 30-Day Money-Back Guarantee",
-          "summary": "Transparent pricing without hidden fees. All plans include an unconditional 30-day money-back guarantee.",
+          "number": "06",
+          "title": "Billing, Merchant of Record, and Auto-Renewals",
+          "summary": "PCI-DSS certified payment processing, global gateways, and direct Colombian rails. Subscriptions renew automatically.",
           "paragraphs": [
-            "Services are billed on a periodic subscription basis (monthly or annually) or per-asset purchase in accordance with posted rates. Billing is processed in local currency or USD.",
-            "Money-Back Guarantee: All new subscription plans include an unconditional 30-day money-back guarantee. If the platform does not meet expectations within the first 30 days, contact support@celaest.com for a full refund."
+            "Subscriptions renew automatically at the expiration of each billing cycle (monthly or annual) using the saved payment method, unless cancelled by the Customer prior to the renewal date. Timely cancellation is the Customer's sole duty.",
+            "Transactions are handled by PCI-DSS compliant Merchant of Record providers (Polar, Stripe, or certified partners), or via Colombian instant bank rails (Bre-B/ACH). CELAEST never stores complete credit card numbers or CVV security codes."
+          ]
+        },
+        {
+          "id": "reembolsos",
+          "number": "07",
+          "title": "Refund Policy, Cancellation, and Anti-Chargeback Rules",
+          "summary": "Direct cross-reference to Refund Policy. Final sales, single 10-day technical defect remedy, and statutory withdrawal exceptions.",
+          "paragraphs": [
+            "All rules governing refunds and cancellations are controlled exclusively by the CELAEST Refund Policy, which is incorporated into this agreement by reference.",
+            "General Rule: All sales are final and non-refundable. Refunds apply solely upon demonstrable technical defects attributable to CELAEST unresolved after ten (10) business days following a support report to support@celaest.com.",
+            "Pursuant to Article 47 of Colombian Law 1480 of 2011, statutory withdrawal is inapplicable to immediately executed digital services. Submitting abusive credit card chargebacks without exhausting support triggers immediate account termination and damage recovery."
+          ]
+        },
+        {
+          "id": "conductas-prohibidas",
+          "number": "08",
+          "title": "Acceptable Use, Anti-Scraping, and Prohibited Conduct",
+          "summary": "Web scraping, reverse engineering, infrastructure denial, and ban evasion are strictly prohibited.",
+          "paragraphs": [
+            "Customer agrees to utilize the Platform solely for lawful enterprise operational purposes. Prohibited conducts include:",
+            "Violations empower CELAEST to suspend access and block corresponding IP addresses and device signatures without refund."
+          ],
+          "points": [
+            "Deploying bots, spiders, crawlers, or automated scripts to scrape content or overload infrastructure.",
+            "Attempting to decompile, reverse-engineer, or circumvent security validation mechanisms.",
+            "Reselling, sublicensing, or distributing software source code to unauthorized third parties.",
+            "Initiating unfounded bank chargebacks or payment disputes regarding valid transactions."
           ]
         },
         {
           "id": "sla",
-          "number": "06",
-          "title": "Service Level Agreement (SLA) and Availability",
-          "summary": "99.9% uptime commitment on Pro plans and financially backed custom SLAs on Enterprise tiers.",
+          "number": "09",
+          "title": "Service Level Agreement (SLA 99.9%) and Availability",
+          "summary": "99.9% uptime target on core infrastructure with dedicated Enterprise SLAs and compensation schedules.",
           "paragraphs": [
-            "CELAEST maintains resilient multi-region infrastructure designed to provide a minimum monthly uptime of 99.9% for core services.",
-            "For Enterprise customers, dedicated Service Level Agreements (SLAs) apply with contractual remedies, financial service credits, and 24/7 prioritized engineering support."
+            "CELAEST maintains a resilient multi-region cloud architecture engineered to deliver at least 99.9% monthly availability on core services.",
+            "Enterprise tiers include bespoke Service Level Agreements with 24/7 dedicated engineering support and contractual downtime credits."
           ]
         },
         {
           "id": "responsabilidad",
-          "number": "07",
+          "number": "10",
           "title": "Limitation of Liability and Indemnification",
-          "summary": "Exclusion of consequential damages or lost profits. Total aggregate liability capped at fees paid over the preceding 12 months.",
+          "summary": "Provided 'as is'. Consequential damages excluded and aggregate liability capped at fees paid in preceding 6 to 12 months.",
           "paragraphs": [
-            "To the maximum extent permitted by applicable law, CELAEST shall not be liable for indirect, incidental, or consequential damages, lost profits, or data corruption resulting from executing scripts on Customer's databases or local systems.",
-            "CELAEST's total aggregate liability arising out of or related to these terms shall be strictly limited to the total fees actually paid by Customer during the twelve (12) months preceding the incident."
+            "To the maximum extent permitted by applicable law, CELAEST shall not be liable for indirect, punitive, or consequential damages, lost profits, or data corruption arising from script executions without sandbox validation on Customer's systems.",
+            "CELAEST's total aggregate liability arising out of or related to this agreement shall not exceed the total fees actually paid by Customer to CELAEST during the six (6) to twelve (12) months preceding the incident giving rise to liability."
           ]
         },
         {
           "id": "jurisdiccion",
-          "number": "08",
-          "title": "Modifications, Governing Law, and Dispute Resolution",
-          "summary": "30-day advance notice for material changes. Friendly dispute resolution and binding commercial arbitration.",
+          "number": "11",
+          "title": "Governing Law, Amicable Settlement, and Jurisdiction (SIC)",
+          "summary": "Laws of the Republic of Colombia. 30-day amicable negotiation, Colombian courts, and Superintendency of Industry and Commerce.",
           "paragraphs": [
-            "We reserve the right to modify these Terms. In the event of material changes, Customer will receive at least thirty (30) days advance notice via email or prominent dashboard notification.",
-            "Any dispute shall initially be submitted to 30 days of good-faith negotiations, and if unresolved, to binding commercial arbitration."
+            "These Terms are governed by the laws of the Republic of Colombia, including Law 1480 of 2011, Law 1581 of 2012, Law 527 of 1999, and Andean Decision 351 of 1993, without prejudice to non-derogable international consumer protections.",
+            "Any dispute shall be submitted to good-faith amicable direct negotiation for thirty (30) calendar days. Failing resolution, parties submit to Colombian courts or consumer complaints before the Superintendency of Industry and Commerce (SIC) at www.sic.gov.co."
           ]
         }
       ]
     },
     "privacy": {
       "title": "Privacy Policy & AI Mesh",
-      "badge": "B2B DATA PROTECTION",
-      "subtitle": "Uncompromising commitment to enterprise data sovereignty, Zero-Training AI policy, and international compliance standards.",
-      "description": "How we manage, isolate, and safeguard your enterprise data and AI workloads.",
+      "badge": "B2B DATA PROTECTION & HABEAS DATA",
+      "subtitle": "Personal data governance under Colombian Law 1581 of 2012, Regulatory Decree 1377 of 2013, and binding AI Zero-Training commitments.",
+      "description": "How we isolate, govern, and protect your corporate workloads and enterprise data.",
       "lastUpdated": "Last updated: November 2026",
       "sections": [
         {
           "id": "responsable",
           "number": "01",
-          "title": "Data Controller and Core Principles",
-          "summary": "CELAEST Inc. acts as data controller and custodian under strict minimization, confidentiality, and legitimate purpose principles.",
+          "title": "Data Controller and Guiding Privacy Principles",
+          "summary": "CELAEST operates as Data Controller under Colombian Law 1581 of 2012, with complete alignment with GDPR and CCPA international standards.",
           "paragraphs": [
-            "This Privacy Policy governs the processing of personal and corporate data collected through the CELAEST platform. We comply with leading global privacy frameworks including the EU General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA).",
-            "Data Protection Officer (DPO) Contact: For compliance inquiries, contact privacy@celaest.com or our central legal office."
+            "CELAEST (hereinafter, \"the Platform\"), operated from headquarters in the Republic of Colombia with international scope, acts as Data Controller for personal and corporate data collected via its web applications and APIs.",
+            "Our operations strictly comply with Statutory Law 1581 of 2012, Regulatory Decree 1377 of 2013, and concordant Colombian data protection regulations (Habeas Data), alongside complete compatibility with the European Union General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA).",
+            "Data Protection Officer (DPO): For regulatory inquiries or exercising rights, contact privacidad@celaest.com."
           ]
         },
         {
           "id": "datos-recopilados",
           "number": "02",
-          "title": "Data Collected and Purpose of Processing",
-          "summary": "We only collect data strictly necessary to authenticate, bill, and execute requested automation workflows.",
+          "title": "Categories of Data Collected",
+          "summary": "We collect solely account data, OAuth profile details, transient ephemeral AI workloads, and security device fingerprints.",
           "paragraphs": [
-            "We collect two primary categories of information:",
-            "Purpose: Information is utilized exclusively to maintain accounts, process billing, monitor network health, and execute requested AI workflows."
+            "We collect the following categories of information strictly adhering to necessity and data minimization principles:",
+            "Critical Payment Note: CELAEST DOES NOT store full credit or debit card numbers or CVV verification codes. All financial instruments are processed directly by PCI-DSS Level 1 certified gateways."
           ],
           "points": [
-            "Account & Billing Data: Corporate name, institutional email, organization ID, and payment tokens processed by PCI-DSS Level 1 certified gateways.",
-            "Technical Data & Telemetry: IP addresses, session identifiers, DDoS mitigation logs, and latency metrics processed on an aggregate basis.",
-            "Workload Data (Prompts and Parameters): Transient data processed in active memory during inference."
+            "Account and Profile Data: Name, corporate email address, username, and password securely hashed using bcrypt cryptographic algorithms.",
+            "OAuth Authentication Data: When signing in via Google or GitHub, we collect solely name, email, and profile avatar. CELAEST never accesses private repositories, contacts, or external source code.",
+            "AI Workloads and Code (Prompts and Parameters): Source code and prompts submitted for AI Mesh inference or sandbox validation, processed transiently in active RAM.",
+            "Security Data and Device Fingerprinting: IP addresses, user-agents, and technical device fingerprints collected for cybersecurity, fraud prevention, multi-account abuse detection, and electronic evidentiary proof under Law 527 of 1999."
+          ]
+        },
+        {
+          "id": "finalidades",
+          "number": "03",
+          "title": "Primary and Secondary Processing Purposes",
+          "summary": "Primary purposes deliver services and establish legal agreements. Secondary purposes cover aggregated anonymous telemetry.",
+          "paragraphs": [
+            "We process personal and corporate data under distinct, transparent purposes:",
+            "Data subjects may revoke consent for secondary purposes at any time without impacting contracted core services."
+          ],
+          "points": [
+            "Primary Purposes (Indispensable): Account management; AI Mesh model inferencing; script execution in sandboxes; invoice processing and subscriptions; customer support; contractual evidentiary proof and fraud mitigation.",
+            "Secondary Purposes: Producing aggregated, anonymous performance metrics to optimize network routing and CDN latency."
           ]
         },
         {
           "id": "zero-training",
-          "number": "03",
-          "title": "Strict Zero-Training AI Policy",
-          "summary": "Binding commitment: Your prompts, source code, and enterprise files are NEVER used to train or fine-tune public models.",
+          "number": "04",
+          "title": "Strict Binding Commitment to Zero-Training in AI",
+          "summary": "Customer prompts, proprietary source code, and enterprise files are NEVER used to train or fine-tune public AI models.",
           "paragraphs": [
-            "CELAEST maintains an unyielding Workload Confidentiality principle: zero data submitted for execution or inference across our AI Mesh is ever utilized to train, fine-tune, or improve public foundational models.",
-            "Unlike free consumer tools, our integrations operate exclusively over commercial B2B APIs that legally mandate zero retention for model training."
+            "CELAEST maintains an unyielding policy of Workload Confidentiality: no prompt, corporate file, or code fragment routed through our AI Mesh is ever utilized to train, fine-tune, or reinforce public foundational models of OpenAI, Anthropic, Google Vertex, or third parties.",
+            "Unlike mass-market consumer tools, our integrations operate exclusively across commercial B2B APIs under contractual Zero Data Retention terms in ephemeral memory."
+          ]
+        },
+        {
+          "id": "cookies-jwt",
+          "number": "05",
+          "title": "Cookies, JWT Session Tokens, and Local Storage Technologies",
+          "summary": "JWT tokens for secure authentication and localStorage for UI state. Zero third-party advertising trackers.",
+          "paragraphs": [
+            "JSON Web Tokens (JWT): We utilize JWT tokens to govern session authentication securely, featuring limited expiration windows and automated invalidation upon logout.",
+            "Local Storage (localStorage): We employ browser local storage solely to store interface themes (dark/light mode) and temporary editor scratchpad states to prevent code loss.",
+            "Zero Advertising Tracking Policy: We do not deploy third-party advertising cookies or trade corporate behavioral data with ad brokers."
           ]
         },
         {
           "id": "subprocesadores",
-          "number": "04",
-          "title": "Infrastructure and Service Subprocessors",
-          "summary": "We work exclusively with SOC 2 Type II and ISO 27001 certified global cloud providers under DPAs.",
+          "number": "06",
+          "title": "Infrastructure Subprocessors and International Data Transfers",
+          "summary": "Global partners audited under SOC 2 and ISO 27001 pursuant to Article 26 of Law 1581 of 2012.",
           "paragraphs": [
-            "To provide high availability and ultra-low latency, we partner with world-class subprocessors governed by Data Processing Addenda (DPAs):",
-            "Each subprocessor is audited technically and contractually to enforce EU Standard Contractual Clauses (SCCs)."
+            "To guarantee high availability, edge security, and ultra-low latency, we partner with world-class subprocessors bound by Data Processing Addenda (DPA):",
+            "Pursuant to Article 26 of Law 1581 of 2012, accepting this Privacy Policy constitutes express authorization for international data transfers necessary for platform operation."
           ],
           "points": [
-            "Cloudflare Inc. (Edge security, WAF firewalls, DDoS mitigation, and TLS 1.3 certificates)",
-            "Vercel Inc. (Edge application hosting and globally distributed CDN)",
-            "Anthropic PBC / OpenAI LLC / Google Vertex AI (Commercial AI inference under Zero-Training terms)",
-            "Render / AWS (Microservices infrastructure and isolated relational databases)",
-            "Stripe Inc. (PCI-DSS Level 1 encrypted payment processing)"
+            "Cloudflare, Inc. (Perimeter defense, WAF firewalls, DDoS mitigation, and TLS 1.3 certificates).",
+            "Vercel, Inc. (Edge serverless hosting and global CDN distribution).",
+            "Anthropic PBC / OpenAI LLC / Google Vertex AI (B2B commercial AI inference under non-training agreements).",
+            "Isolated Sandbox Environments (Ephemeral code execution and script validation without data persistence).",
+            "PCI-DSS Level 1 Payment Processors (Stripe and certified digital payment settlement partners)."
+          ]
+        },
+        {
+          "id": "derechos-habeas-data",
+          "number": "07",
+          "title": "Data Subject Rights and Formal Habeas Data Procedure",
+          "summary": "Statutory rights to access, update, suppress, and revoke data. Formal 10-day (+5) statutory timeline and SIC recourse.",
+          "paragraphs": [
+            "Pursuant to Article 8 of Colombian Law 1581 of 2012 and concordant regulations, Customer possesses statutory rights to: 1) Access, update, and rectify personal data; 2) Request proof of consent; 3) Be informed of data usage; 4) File complaints before the Colombian Superintendency of Industry and Commerce (SIC); 5) Revoke authorization or request suppression where legally permissible.",
+            "Formal Inquiries and Claims: Requests must be submitted in writing to privacidad@celaest.com detailing name, corporate identity, request description, and notification address. CELAEST will formally resolve submissions within ten (10) business days; if extension is necessary, notification will precede with up to five (5) additional business days granted by Article 15 of Law 1581."
           ]
         },
         {
           "id": "seguridad",
-          "number": "05",
-          "title": "Technical Security, Isolation, and Encryption",
-          "summary": "TLS 1.3 encryption in transit, AES-256 at rest, and strict multi-tenant database isolation.",
+          "number": "08",
+          "title": "Information Security, Isolation, and Strong Encryption",
+          "summary": "TLS 1.3 in transit, AES-256 at rest, isolated sandboxes, and bcrypt salted password hashing.",
           "paragraphs": [
-            "We apply defense-in-depth across all system tiers. External and internal network traffic is encrypted using TLS 1.3 with Perfect Forward Secrecy (PFS). Data at rest is secured via AES-256 encryption.",
-            "Multi-Tenant Isolation: Each organization is logically segregated with cryptographic barriers preventing cross-tenant data leakage."
+            "We implement defense-in-depth protocols: all external and inter-service communications are encrypted via TLS 1.3 with Perfect Forward Secrecy. Passwords are encrypted utilizing salted cryptographic hashes (bcrypt), rendering plaintext recovery impossible.",
+            "Workload Isolation: Script execution takes place within ephemeral, isolated sandboxes, completely separated from core platform infrastructure."
           ]
         },
         {
-          "id": "derechos",
-          "number": "06",
-          "title": "Your Privacy Rights (GDPR, CCPA, and Global Frameworks)",
-          "summary": "You hold the unconditional right to access, export, rectify, or permanently delete all your data at any time.",
+          "id": "retencion",
+          "number": "09",
+          "title": "Data Retention Schedules and Protection of Minors",
+          "summary": "Active accounts retained; 30 days for suppression; 5 years for tax records under statutory mandate; 12 months for security fingerprinting.",
           "paragraphs": [
-            "You retain sovereign control over your information at all times. We provide free and unimpeded exercise of your rights:",
-            "To exercise these rights, submit a signed request to privacy@celaest.com. We respond formally within fifteen (15) business days."
-          ],
-          "points": [
-            "Right to Access and Portability: Request an export of all data associated with your organization.",
-            "Right to Rectification: Correct inaccurate or outdated account records.",
-            "Right to Erasure (\"Right to be Forgotten\"): Irreversible removal of credentials, accounts, and associated records across active databases.",
-            "Right to Restriction: Restrict specific processing activities upon request."
+            "Account data is retained while commercial relationships remain active. Following verified deletion requests, records are irreversibly purged within thirty (30) calendar days, barring statutory archival duties.",
+            "Billing records are preserved for a mandatory minimum of five (5) years pursuant to Colombian tax and commercial legislation (Tax Statute and Code of Commerce). Technical device fingerprints are preserved for up to twelve (12) months for cybersecurity and fraud auditability.",
+            "Protection of Minors: CELAEST services are directed exclusively to corporations and persons over eighteen (18) years of age. We do not knowingly collect personal data from minors."
           ]
         }
       ]
@@ -754,6 +827,126 @@
           "paragraphs": [
             "You can configure your browser to reject or notify you about cookie storage. Please note that disabling essential technical cookies may prevent logging into your account or accessing the management dashboard.",
             "To manage cookies in Chrome, Safari, Edge, or Firefox, navigate to your browser's Privacy & Security settings."
+          ]
+        }
+      ]
+    },
+    "refunds": {
+      "title": "Refund Policy",
+      "badge": "PAYMENTS & STATUTORY WITHDRAWAL",
+      "subtitle": "Commercial terms, final sales on digital software assets, and consumer withdrawal rights under Law 1480 of 2011.",
+      "description": "Comprehensive refund, cancellation, and statutory withdrawal policy for the CELAEST platform.",
+      "lastUpdated": "Last updated: November 2026",
+      "sections": [
+        {
+          "id": "resumen",
+          "number": "01",
+          "title": "Policy Summary and General Rule of Final Sales",
+          "summary": "Payments for subscriptions and digital assets are final and non-refundable, as they constitute immediate-access digital software and compute.",
+          "paragraphs": [
+            "All payments made for CELAEST subscriptions (Starter, Pro, and Enterprise) and direct digital asset purchases on the Marketplace (open-source VBA Excel macros, Python scripts, AI automation agents, and workflow connectors) are definitive and strictly non-refundable.",
+            "CELAEST exclusively commercializes immediate-access digital products and computing services: service delivery begins and digital assets are made available the exact moment transaction confirmation succeeds.",
+            "The sole exception is a demonstrable, unresolvable Platform defect as detailed in Section 02. No refunds are granted for subjective dissatisfaction, lack of usage, change of mind, subsequent promotions, or uncancelled recurring subscriptions. This policy forms an integral, legally binding part of our Master Terms of Service."
+          ]
+        },
+        {
+          "id": "excepcion",
+          "number": "02",
+          "title": "Sole Refund Condition: Demonstrable Platform Defect",
+          "summary": "Refunds apply exclusively upon verified code defects attributable to CELAEST that substantially impede usage and remain unresolved after 10 business days.",
+          "paragraphs": [
+            "A refund request shall be admitted exclusively when all the following cumulative technical conditions are met:",
+            "Upon full technical confirmation of these criteria, CELAEST will refund the purchase price of the defective asset or the pro-rata unused portion of the active subscription period (monthly or annual), calculated from the formal report date to the end of the paid period. Prior periods and consumed compute are strictly non-refundable.",
+            "A minor bug, isolated typo, or cosmetic issue that does not substantially prevent core execution does not constitute a platform failure; CELAEST will remediate it via technical update without granting economic refund rights."
+          ],
+          "points": [
+            "Customer formally reported the defect via official support channels (support@celaest.com), identifying the affected account, script/macro/API endpoint, and reproduction steps.",
+            "CELAEST engineering verified and confirmed that the defect is strictly attributable to the Platform codebase, and not external factors such as client Excel versions, operating systems, network firewalls, corporate antivirus, or third-party client dependencies.",
+            "The defect substantially prevents use of the purchased asset or service, and CELAEST failed to resolve or remediate the issue within ten (10) business days following technical confirmation."
+          ]
+        },
+        {
+          "id": "exclusiones",
+          "number": "03",
+          "title": "Non-Refundable Circumstances",
+          "summary": "Strict exclusions: subjective dissatisfaction, lack of use, change of mind, uncancelled auto-renewals, or customer local environment incompatibilities.",
+          "paragraphs": [
+            "Under no circumstances shall refunds be issued for the following reasons:",
+            "Acquiring open-source automation scripts grants immediate, irreversible intellectual property access, precluding post-download buyer's remorse."
+          ],
+          "points": [
+            "Subjective dissatisfaction or disagreement with the methodology, architecture, or user experience of the Platform.",
+            "Lack of usage, partial usage, uninstallation, or technical unfamiliarity with Python or Excel VBA execution on the Customer's side.",
+            "Change of mind or unilateral commercial decisions following purchase or source code download.",
+            "Promotions, discounts, coupons, or price modifications introduced after the transaction date (no price matching or retroactive refunds).",
+            "Automatic subscription renewals that the Customer failed to cancel prior to the scheduled billing date.",
+            "Local device issues, obsolete Excel versions without modern macro support, operating system constraints, corporate group policy restrictions (GPO), or network failures on the Customer's end.",
+            "Accounts suspended, penalized, or terminated due to Terms of Service violations (multi-accounting, credential sharing, web scraping, API abuse, or abusive chargebacks).",
+            "Purchases executed outside official CELAEST channels or customized Enterprise contracts governed by specific SLAs."
+          ]
+        },
+        {
+          "id": "cancelacion-vs-reembolso",
+          "number": "04",
+          "title": "Subscription Cancellation vs. Monetary Refund",
+          "summary": "Cancellation stops future recurring charges while retaining access through the paid cycle. It does not yield a refund for the active cycle.",
+          "paragraphs": [
+            "Canceling a subscription prevents future recurring renewals. It may be executed at any time prior to the renewal date via the Customer profile dashboard or payment gateway customer portal. Access to the AI Mesh and purchased assets remains active through the end of the current billing cycle. Cancellation does not trigger refunds for the in-progress cycle.",
+            "Requesting a refund is an extraordinary procedure, governed strictly by Section 02, managed exclusively via CELAEST support. An approved refund immediately terminates access and revokes operational licenses for the refunded asset.",
+            "Timely cancellation is the exclusive responsibility of the Customer. While CELAEST may send renewal reminders when technically practicable, the absence of any reminder does not exempt the Customer from timely cancellation obligations."
+          ]
+        },
+        {
+          "id": "promociones",
+          "number": "05",
+          "title": "Promotions, Discounts, and Pricing Adjustments",
+          "summary": "Promotional rates apply strictly to new subscribers and carry no retroactive effect or cash surrender value.",
+          "paragraphs": [
+            "Unless promotion terms explicitly declare otherwise:",
+            "Renewal prices respect applicable contractual rates, with any substantial price adjustments notified at least thirty (30) days in advance."
+          ],
+          "points": [
+            "Promotional pricing and introductory discounts are valid exclusively for first-time subscribers (entities or persons who have never held a paid account).",
+            "Discounts do not apply retroactively and grant no entitlement to price matching or refund of differences on prior purchases.",
+            "CELAEST reserves the right to deny promotional rates to entities attempting cancellation and immediate re-subscription to exploit discounted introductory pricing.",
+            "Promotional vouchers and coupons are personal, non-transferable, and possess zero cash surrender value."
+          ]
+        },
+        {
+          "id": "procedimiento",
+          "number": "06",
+          "title": "Application Procedure and Prohibition of Abusive Chargebacks",
+          "summary": "Requests must be addressed to support@celaest.com. Filing a bank chargeback without exhausting support triggers immediate, permanent account ban.",
+          "paragraphs": [
+            "Refund applications are handled exclusively via the CELAEST corporate support desk. There is no automated self-service refund mechanism. Customers must submit requests from their registered corporate email to support@celaest.com.",
+            "Submissions must include: 1) Order ID and transaction receipt; 2) Reference to the previously submitted technical bug report; 3) Detailed description and evidence of the 10 business days elapsed without remediation. Incomplete requests will be rejected.",
+            "Prohibition of Abusive Chargebacks: Initiating a payment dispute or bank chargeback without exhausting the official support channel is deemed a bad-faith breach of contract. Such action empowers CELAEST to permanently terminate the account, revoke software licenses, and recover all incurred dispute fees, bank fines, and legal collection costs."
+          ]
+        },
+        {
+          "id": "tiempos",
+          "number": "07",
+          "title": "Processing and Financial Settlement Timelines",
+          "summary": "Settled via certified Merchant of Record gateways (Stripe/Polar) or direct Colombian bank rails (Bre-B) within standard banking timeframes.",
+          "paragraphs": [
+            "Approved refunds are executed through the payment processor or Merchant of Record that facilitated the original transaction (Stripe, Polar, or certified payment partners). Funds return to the original payment instrument.",
+            "For transactions completed via direct bank transfers in Colombia (such as Bre-B or domestic ACH transfers), refunds are processed via electronic transfer to the origin bank account following identity and ownership verification."
+          ],
+          "points": [
+            "Technical engineering evaluation: Up to five (5) business days.",
+            "Gateway refund instruction: Immediate upon formal engineering approval.",
+            "Bank account credit: Five (5) to ten (10) business days (governed by Customer's financial institution)."
+          ]
+        },
+        {
+          "id": "retracto",
+          "number": "08",
+          "title": "Consumer Protection and Statutory Right of Withdrawal",
+          "summary": "Statutory withdrawal exception pursuant to Article 47 of Colombian Law 1480 of 2011 for immediate digital software execution.",
+          "paragraphs": [
+            "The provisions of this policy are without prejudice to mandatory statutory consumer rights under applicable legislation.",
+            "In Colombia, the statutory right of withdrawal (derecho de retracto) pursuant to Article 47 of Law 1480 of 2011 may be exercised within five (5) business days following purchase. However, pursuant to paragraph 1 of Article 47, the right of withdrawal is expressly inapplicable to contracts where digital performance commences immediately with the consumer's express agreement.",
+            "Given that CELAEST software assets and AI Mesh compute are delivered and activated immediately upon payment authorization, Customer explicitly agrees and consents to immediate performance, perfecting the statutory exception to withdrawal."
           ]
         }
       ]

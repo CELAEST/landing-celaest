@@ -7,6 +7,7 @@ interface LegalTabsProps {
   navLabels: {
     terms: string;
     privacy: string;
+    refunds: string;
     license: string;
     cookies: string;
   };
@@ -29,14 +30,20 @@ export function LegalTabs({ navLabels }: LegalTabsProps) {
       active: pathname.includes("/legal/privacy"),
     },
     {
-      href: "/legal/license",
+      href: "/legal/refunds",
       num: "03",
+      label: navLabels.refunds,
+      active: pathname.includes("/legal/refunds"),
+    },
+    {
+      href: "/legal/license",
+      num: "04",
       label: navLabels.license,
       active: pathname.includes("/legal/license"),
     },
     {
       href: "/legal/cookies",
-      num: "04",
+      num: "05",
       label: navLabels.cookies,
       active: pathname.includes("/legal/cookies"),
     },
@@ -44,7 +51,7 @@ export function LegalTabs({ navLabels }: LegalTabsProps) {
 
   return (
     <div className="legal-tetralogy-bar">
-      <nav aria-label="Tetralogía Legal CELAEST" className="legal-tetralogy-nav">
+      <nav aria-label="Ecosistema Legal CELAEST" className="legal-tetralogy-nav">
         {tabs.map((tab, idx) => (
           <React.Fragment key={tab.href}>
             <Link href={tab.href} className={`legal-tetralogy-link ${tab.active ? "active" : ""}`}>

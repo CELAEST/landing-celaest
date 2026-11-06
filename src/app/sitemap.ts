@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "", changeFrequency: "weekly" as const, priority: 1.0 },
     { path: "/legal/terms", changeFrequency: "monthly" as const, priority: 0.3 },
     { path: "/legal/privacy", changeFrequency: "monthly" as const, priority: 0.3 },
+    { path: "/legal/refunds", changeFrequency: "monthly" as const, priority: 0.3 },
     { path: "/legal/license", changeFrequency: "monthly" as const, priority: 0.3 },
     { path: "/legal/cookies", changeFrequency: "monthly" as const, priority: 0.3 },
   ];

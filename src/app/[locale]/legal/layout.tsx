@@ -13,6 +13,7 @@ export default async function LegalLayout({ children }: { children: React.ReactN
   const navLabels = {
     terms: t("terms"),
     privacy: t("privacy"),
+    refunds: t("refunds"),
     license: t("license"),
     cookies: t("cookies"),
   };

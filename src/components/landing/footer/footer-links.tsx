@@ -78,11 +78,11 @@ function getFooterHref(key: string, index: number): string {
       case 1:
         return "/legal/terms";
       case 2:
-        return "/legal/license";
+        return "/legal/refunds";
       case 3:
-        return "/legal/cookies";
+        return "/legal/license";
       case 4:
-        return "/legal/privacy#zero-training";
+        return "/legal/cookies";
       default:
         return "/legal/privacy";
     }
