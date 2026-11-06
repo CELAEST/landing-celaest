@@ -23,8 +23,8 @@
 /* Master Header: Symmetrical, Clean, Demarcated with Laser Hairline */
 .legal-editorial-header {
   border-bottom: 1px solid #24242b;
-  padding-bottom: 40px;
-  margin-bottom: 32px;
+  padding-bottom: 48px;
+  margin-bottom: 0;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -34,17 +34,17 @@
 .legal-editorial-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   font-family: monospace;
   font-size: 11px;
   color: #71717a;
   text-transform: uppercase;
   letter-spacing: 0.22em;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .legal-editorial-eyebrow .rule {
-  width: 32px;
+  width: 48px;
   height: 1px;
   background: #3d3947;
 }
@@ -93,12 +93,13 @@
 }
 
 /* ==========================================================================
-   TETRALOGÍA SWITCHER: ZERO-BOX TYPOGRAPHIC BAR (01 / 02 / 03 / 04)
+   TETRALOGÍA SWITCHER: DOUBLE-HAIRLINE FRAMED BAR (01 / 02 / 03 / 04)
    ========================================================================== */
 .legal-tetralogy-bar {
+  border-top: 1px solid #24242b;
   border-bottom: 1px solid #24242b;
-  padding-bottom: 20px;
-  margin-bottom: 48px;
+  padding: 18px 0;
+  margin-bottom: 56px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -113,7 +114,7 @@
 .legal-tetralogy-nav {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 28px;
   flex-wrap: nowrap;
 }
 
@@ -126,7 +127,7 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #71717a;
-  padding: 6px 0;
+  padding: 4px 0;
   position: relative;
   text-decoration: none;
   transition: color 0.2s ease;
@@ -159,7 +160,7 @@
 .legal-tetralogy-link.active::after {
   content: "";
   position: absolute;
-  bottom: -21px;
+  bottom: -19px;
   left: 0;
   right: 0;
   height: 2px;
@@ -175,29 +176,48 @@
 }
 
 /* ==========================================================================
-   EDITORIAL MASTER GRID: 2-COLUMN DIVIDED READING ARCHITECTURE
+   EDITORIAL MASTER GRID: CONTINUOUS ARCHITECTURAL BORDER DIVIDER
    ========================================================================== */
 .legal-editorial-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 280px;
-  gap: 64px;
+  gap: 0;
   align-items: start;
+}
+
+.legal-editorial-content {
+  padding-right: 56px;
+  border-right: 1px solid #24242b;
 }
 
 @media (max-width: 1024px) {
   .legal-editorial-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+  }
+  .legal-editorial-content {
+    padding-right: 0;
+    border-right: none;
   }
 }
 
-/* Section Rule Wrap */
+/* Inter-Clause Article Separation */
+.legal-section-article {
+  border-bottom: 1px solid #1a1a22;
+  padding-bottom: 52px;
+  margin-bottom: 0;
+}
+
+.legal-section-article:last-child {
+  border-bottom: none;
+}
+
+/* Section Rule Wrap with Flexible Laser Line */
 .legal-section-rule-wrap {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 16px;
-  padding-top: 48px;
+  margin-bottom: 20px;
+  padding-top: 52px;
 }
 
 .legal-section-article:first-child .legal-section-rule-wrap {
@@ -213,9 +233,9 @@
 }
 
 .legal-section-rule-wrap .rule {
-  width: 65px;
+  flex: 1;
   height: 1px;
-  background: #3d3947;
+  background: #24242b;
 }
 
 .legal-section-tag {
@@ -225,7 +245,7 @@
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: #71717a;
-  margin-left: auto;
+  flex-shrink: 0;
 }
 
 .legal-section-title {
@@ -238,7 +258,7 @@
   margin-bottom: 20px;
 }
 
-/* Editorial Lead / Summary - PURE TYPOGRAPHY, ZERO CARDS */
+/* Editorial Lead / Summary - PURE TYPOGRAPHY */
 .legal-section-lead {
   font-size: 16px;
   line-height: 1.65;
@@ -293,6 +313,16 @@
 .legal-sticky-index {
   position: sticky;
   top: 110px;
+  padding-left: 48px;
+}
+
+@media (max-width: 1024px) {
+  .legal-sticky-index {
+    padding-left: 0;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid #24242b;
+  }
 }
 
 .legal-index-eyebrow {
@@ -327,11 +357,11 @@
   display: flex;
   align-items: baseline;
   gap: 12px;
-  padding: 6px 0;
+  padding: 8px 0;
   color: #71717a;
   font-size: 13px;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease;
   line-height: 1.4;
 }
 
@@ -345,6 +375,7 @@
 
 .legal-index-link:hover {
   color: #ffffff;
+  transform: translateX(3px);
 }
 
 .legal-index-link:hover .num {

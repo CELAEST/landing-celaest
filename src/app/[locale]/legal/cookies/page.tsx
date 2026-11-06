@@ -44,7 +44,7 @@ export default async function CookiesPage({ params }: { params: Promise<{ locale
 
       <div className="legal-editorial-grid">
         {/* Main Document Body */}
-        <div className="w-full">
+        <div className="w-full legal-editorial-content">
           {sections.map((section) => (
             <LegalSectionView key={section.id} section={section} />
           ))}
