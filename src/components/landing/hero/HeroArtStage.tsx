@@ -93,7 +93,7 @@ export function HeroArtStage({ robotImgRef, robotCanvasRef }: HeroArtStageProps)
       <img
         ref={robotImgRef}
         className="intent-robot intent-robot-img"
-        src="/robot_hero_gaze/gaze_018.webp"
+        src="/robot_hero_saludo/frame_001.webp"
         alt=""
         fetchPriority="high"
       />
@@ -103,7 +103,7 @@ export function HeroArtStage({ robotImgRef, robotCanvasRef }: HeroArtStageProps)
         className="intent-robot intent-robot-canvas"
         width={1920}
         height={1080}
-        data-frame="gaze-18"
+        data-frame="1"
       />
 
       {/* eslint-disable-next-line @next/next/no-img-element */}

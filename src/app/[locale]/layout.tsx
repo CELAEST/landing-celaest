@@ -124,7 +124,8 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
       style={{ backgroundColor: "#020202", colorScheme: "dark" }}
     >
       <head>
-        <link rel="preload" as="image" href="/robot_hero_gaze/gaze_018.webp" type="image/webp" />
+        <link rel="preload" as="image" href="/robot_hero_saludo/frame_001.webp" type="image/webp" />
+        <link rel="preload" as="fetch" href="/data/robot-saludo.bin" crossOrigin="anonymous" />
         <link rel="preload" as="fetch" href="/data/robot-gaze.bin" crossOrigin="anonymous" />
       </head>
       <body
