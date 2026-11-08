@@ -98,4 +98,18 @@ describe("useRobotSequenceCanvas constants and kinematics", () => {
     expect(buf.readUInt32LE(8)).toBe(584);
     expect(buf.length).toBeGreaterThan(3.5 * 1024 * 1024);
   });
+
+  it("manages session-based greeting state correctly via sessionStorage", () => {
+    // Clear storage before test
+    sessionStorage.clear();
+
+    const SESSION_GREETED_KEY = "celaest_robot_greeted";
+    expect(sessionStorage.getItem(SESSION_GREETED_KEY)).toBeNull();
+
+    sessionStorage.setItem(SESSION_GREETED_KEY, "true");
+    expect(sessionStorage.getItem(SESSION_GREETED_KEY)).toBe("true");
+
+    sessionStorage.removeItem(SESSION_GREETED_KEY);
+    expect(sessionStorage.getItem(SESSION_GREETED_KEY)).toBeNull();
+  });
 });

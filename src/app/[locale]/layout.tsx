@@ -125,8 +125,6 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
     >
       <head>
         <link rel="preload" as="image" href="/robot_hero_saludo/frame_001.webp" type="image/webp" />
-        <link rel="preload" as="fetch" href="/data/robot-saludo.bin" crossOrigin="anonymous" />
-        <link rel="preload" as="fetch" href="/data/robot-gaze.bin" crossOrigin="anonymous" />
       </head>
       <body
         className="font-sans antialiased bg-[#020202] text-brand-ice"
