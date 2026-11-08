@@ -68,7 +68,6 @@ export function clearGreetedSession(): void {
 }
 
 export function useRobotSequenceCanvas() {
-  const isGreeted = hasBeenGreetedInSession();
   const robotCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const robotCtxRef = useRef<CanvasRenderingContext2D | null>(null);
   const robotImgRef = useRef<HTMLImageElement | null>(null);
@@ -84,15 +83,13 @@ export function useRobotSequenceCanvas() {
   const isGazeTriggeredRef = useRef<boolean>(false);
 
   const animRafRef = useRef<number>(0);
-  const [currentScene, setCurrentScene] = useState<RobotDynamicScene>(
-    isGreeted ? "gaze" : "saludo",
-  );
-  const modeRef = useRef<RobotDynamicScene | "align_to_saludo">(isGreeted ? "gaze" : "saludo");
+  const [currentScene, setCurrentScene] = useState<RobotDynamicScene>("saludo");
+  const modeRef = useRef<RobotDynamicScene | "align_to_saludo">("saludo");
   const sceneStartTimeRef = useRef<number>(0);
 
   const saludoStartTimeRef = useRef<number>(0);
   const targetGazeFrameRef = useRef<number>(GAZE_REST_INDEX);
-  const currentGazeFrameRef = useRef<number>(isGreeted ? GAZE_REST_INDEX : GAZE_SALUDO_SYNC_INDEX);
+  const currentGazeFrameRef = useRef<number>(GAZE_SALUDO_SYNC_INDEX);
   const lastDrawnKeyRef = useRef<string>("");
 
   const drawBlendedSequenceFrame = useCallback(
@@ -181,8 +178,8 @@ export function useRobotSequenceCanvas() {
           targetGazeFrameRef.current = GAZE_REST_INDEX;
           drawBlendedSequenceFrame(gazeBitmapsRef.current, GAZE_SALUDO_SYNC_INDEX, "gaze");
         } else {
-          // Strictly defer gaze loading until wave is 80% done (frame 58 of 72)
-          if (floatFrame >= 58 && !isGazeTriggeredRef.current) {
+          // Pre-warm gaze bundle at frame 40 (~1.3s in) so gaze is 100% decoded for the smooth rest transition
+          if (floatFrame >= 40 && !isGazeTriggeredRef.current) {
             isGazeTriggeredRef.current = true;
             void loadGazeBundle();
           }
@@ -289,13 +286,28 @@ export function useRobotSequenceCanvas() {
 
     try {
       const blobs = await loadRobotBinaryBundle("/data/robot-saludo.bin", "CSAL");
-      const decodePromises = blobs.map(async (blob, idx) => {
-        const bmp = await createImageBitmap(blob);
-        saludoBitmapsRef.current[idx] = bmp;
+
+      // Fast path: decode first 6 frames in parallel (~30ms) so animation starts immediately
+      const initialBatch = blobs.slice(0, 6);
+      await Promise.all(
+        initialBatch.map(async (blob, idx) => {
+          const bmp = await createImageBitmap(blob);
+          saludoBitmapsRef.current[idx] = bmp;
+        }),
+      );
+
+      // Background stream remaining frames (6..71) in parallel without blocking initial playback
+      const remainingBatch = blobs.slice(6);
+      void Promise.all(
+        remainingBatch.map(async (blob, idx) => {
+          const bmp = await createImageBitmap(blob);
+          saludoBitmapsRef.current[idx + 6] = bmp;
+        }),
+      ).then(() => {
+        globalSaludoBitmaps = saludoBitmapsRef.current;
       });
-      await Promise.all(decodePromises);
-      globalSaludoBitmaps = saludoBitmapsRef.current;
-      return globalSaludoBitmaps;
+
+      return saludoBitmapsRef.current;
     } catch {
       // Fallback: progressive frame loader with force-cache
       const fallbackPromises: Promise<void>[] = [];
@@ -361,104 +373,39 @@ export function useRobotSequenceCanvas() {
     await loadSaludoBundle();
   }, [loadSaludoBundle]);
 
-  // Main Session-Aware, Stage-Prioritized Initialization
+  // Main Stage-Prioritized Initialization: Welcome Saludo on Entrance
   useEffect(() => {
     let cancelled = false;
-    const sessionGreeted = hasBeenGreetedInSession();
-
-    const loadSingleSaludo = async (oneBased: number) => {
-      try {
-        const res = await fetch(getSaludoFrameUrl(oneBased), { cache: "force-cache" });
-        const blob = await res.blob();
-        const bmp = await createImageBitmap(blob);
-        if (cancelled) {
-          bmp.close();
-          return;
-        }
-        saludoBitmapsRef.current[oneBased - 1] = bmp;
-        if (oneBased === 1 && modeRef.current === "saludo") {
-          drawBlendedSequenceFrame(saludoBitmapsRef.current, 0, "saludo");
-        }
-      } catch {}
-    };
-
-    const loadSingleGaze = async (oneBased: number) => {
-      try {
-        const res = await fetch(getGazeFrameUrl(oneBased), { cache: "force-cache" });
-        const blob = await res.blob();
-        const bmp = await createImageBitmap(blob);
-        if (cancelled) {
-          bmp.close();
-          return;
-        }
-        gazeBitmapsRef.current[oneBased - 1] = bmp;
-        if (oneBased === GAZE_REST_INDEX + 1 && modeRef.current === "gaze") {
-          drawBlendedSequenceFrame(gazeBitmapsRef.current, GAZE_REST_INDEX, "gaze");
-        }
-      } catch {}
-    };
 
     (async () => {
-      if (sessionGreeted) {
-        // =========================================================================
-        // SESSION STAGE A: Already greeted in this session -> Instant Normal Rest Pose
-        // =========================================================================
-        modeRef.current = "gaze";
-        setCurrentScene("gaze");
-        targetGazeFrameRef.current = GAZE_REST_INDEX;
-        currentGazeFrameRef.current = GAZE_REST_INDEX;
+      // 1. Priority 1: Welcome Saludo on entrance
+      modeRef.current = "saludo";
+      setCurrentScene("saludo");
 
-        if (robotImgRef.current && !robotImgRef.current.src.endsWith("gaze_018.webp")) {
-          robotImgRef.current.src = "/robot_hero_gaze/gaze_018.webp";
-        }
+      // 2. Load & stream decode Saludo bundle (initial frames ready in ~30ms)
+      await loadSaludoBundle();
+      if (cancelled) return;
 
-        // Priority 1: Gaze rest frame & bundle for cursor interaction
-        await loadSingleGaze(GAZE_REST_INDEX + 1);
-        if (cancelled) return;
-        drawBlendedSequenceFrame(gazeBitmapsRef.current, GAZE_REST_INDEX, "gaze");
-
-        await loadGazeBundle();
-        if (cancelled) return;
-        // Saludo bundle is strictly deferred until user clicks the robot hitbox!
-      } else {
-        // =========================================================================
-        // SESSION STAGE B: New session arrival -> Welcome Saludo Priority 1
-        // =========================================================================
-        // 1. Instant 0ms visual match with frame 1
-        await loadSingleSaludo(1);
-        if (cancelled) return;
-
-        // 2. Concentrate 100% bandwidth on downloading & decoding Saludo bundle
-        await loadSaludoBundle();
-        if (cancelled) return;
-
-        // 3. Mark greeted in session so returning to landing never replays automatically
-        markGreetedInSession();
-
-        // 4. Start the welcome wave!
-        if (modeRef.current === "saludo") {
-          saludoStartTimeRef.current = performance.now();
-          startLoopIfNeeded();
-        }
-
-        // Gaze bundle is strictly deferred until frame 58 in tick()!
+      // 3. Play the greeting wave!
+      if (modeRef.current === "saludo") {
+        saludoStartTimeRef.current = performance.now();
+        startLoopIfNeeded();
       }
     })();
 
     return () => {
       cancelled = true;
       if (animRafRef.current) cancelAnimationFrame(animRafRef.current);
-      if (robotImgRef.current) {
-        robotImgRef.current.style.opacity = "1";
-      }
+      animRafRef.current = 0;
       robotCtxRef.current = null;
     };
-  }, [drawBlendedSequenceFrame, loadGazeBundle, loadSaludoBundle, startLoopIfNeeded]);
+  }, [loadSaludoBundle, startLoopIfNeeded]);
 
   // Set explicit scene
   const setScene = useCallback(
     (scene: RobotDynamicScene) => {
       if (scene === "saludo") {
+        isGazeTriggeredRef.current = false;
         void prefetchSaludo();
         if (Math.abs(currentGazeFrameRef.current - GAZE_SALUDO_SYNC_INDEX) < 0.5) {
           currentGazeFrameRef.current = GAZE_SALUDO_SYNC_INDEX;
