@@ -81,6 +81,7 @@ export function useRobotSequenceCanvas() {
   );
   const isSaludoLoadingRef = useRef<boolean>(false);
   const isGazeLoadingRef = useRef<boolean>(false);
+  const isGazeTriggeredRef = useRef<boolean>(false);
 
   const animRafRef = useRef<number>(0);
   const [currentScene, setCurrentScene] = useState<RobotDynamicScene>(
@@ -180,6 +181,11 @@ export function useRobotSequenceCanvas() {
           targetGazeFrameRef.current = GAZE_REST_INDEX;
           drawBlendedSequenceFrame(gazeBitmapsRef.current, GAZE_SALUDO_SYNC_INDEX, "gaze");
         } else {
+          // Strictly defer gaze loading until wave is 80% done (frame 58 of 72)
+          if (floatFrame >= 58 && !isGazeTriggeredRef.current) {
+            isGazeTriggeredRef.current = true;
+            void loadGazeBundle();
+          }
           drawBlendedSequenceFrame(saludoBitmapsRef.current, floatFrame, "saludo");
           animRafRef.current = requestAnimationFrame(tick);
           return;
@@ -413,17 +419,7 @@ export function useRobotSequenceCanvas() {
 
         await loadGazeBundle();
         if (cancelled) return;
-
-        // Priority 2: Pre-cache saludo in background idle time
-        if (typeof window !== "undefined" && "requestIdleCallback" in window) {
-          window.requestIdleCallback(() => {
-            if (!cancelled) void loadSaludoBundle();
-          });
-        } else {
-          setTimeout(() => {
-            if (!cancelled) void loadSaludoBundle();
-          }, 1200);
-        }
+        // Saludo bundle is strictly deferred until user clicks the robot hitbox!
       } else {
         // =========================================================================
         // SESSION STAGE B: New session arrival -> Welcome Saludo Priority 1
@@ -445,13 +441,7 @@ export function useRobotSequenceCanvas() {
           startLoopIfNeeded();
         }
 
-        // 5. DEFER gaze bundle: while saludo wave is happily animating (2.4 seconds),
-        // download gaze bundle in the background with ZERO network contention!
-        setTimeout(() => {
-          if (!cancelled) {
-            void loadGazeBundle();
-          }
-        }, 500);
+        // Gaze bundle is strictly deferred until frame 58 in tick()!
       }
     })();
 

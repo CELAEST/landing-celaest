@@ -1,21 +1,36 @@
+import dynamic from "next/dynamic";
 import { setRequestLocale } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 import { Header } from "@/components/landing/header";
 import { SectionProgressNav } from "@/components/landing/section-progress-nav";
 import { HeroSection } from "@/components/landing/hero-section";
 import { VolumetricAura } from "@/components/landing/lab";
-import { ProductsSection } from "@/components/landing/products-view";
-import { PlatformSection } from "@/components/landing/platform-section";
-import { SecuritySection } from "@/components/landing/security-section";
-import { PricingSection } from "@/components/landing/pricing-section";
-import { ArchitectureSection } from "@/components/landing/architecture-section";
-import { ClosingCTASection } from "@/components/landing/closing-cta-section";
 import { Footer } from "@/components/landing/footer";
 import {
   generateOrganizationSchema,
   generateWebSiteSchema,
   generateSoftwareSchema,
 } from "@/lib/structured-data";
+
+// Lazy-load downstream sections in independent split chunks
+const ProductsSection = dynamic(() =>
+  import("@/components/landing/products-view").then((m) => m.ProductsSection),
+);
+const PlatformSection = dynamic(() =>
+  import("@/components/landing/platform-section").then((m) => m.PlatformSection),
+);
+const SecuritySection = dynamic(() =>
+  import("@/components/landing/security-section").then((m) => m.SecuritySection),
+);
+const PricingSection = dynamic(() =>
+  import("@/components/landing/pricing-section").then((m) => m.PricingSection),
+);
+const ArchitectureSection = dynamic(() =>
+  import("@/components/landing/architecture-section").then((m) => m.ArchitectureSection),
+);
+const ClosingCTASection = dynamic(() =>
+  import("@/components/landing/closing-cta-section").then((m) => m.ClosingCTASection),
+);
 
 // Page ISR: Revalidate every hour - sync trigger
 export const revalidate = 3600;

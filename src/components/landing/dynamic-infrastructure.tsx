@@ -1,8 +1,12 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import DynamicInfrastructureCanvas from "./dynamic-infrastructure-canvas";
+import dynamic from "next/dynamic";
 import { preloadBrainParticles } from "./brain-data-loader";
+
+const DynamicInfrastructureCanvas = dynamic(() => import("./dynamic-infrastructure-canvas"), {
+  ssr: false,
+});
 
 export function DynamicInfrastructure() {
   const [isHovered, setIsHovered] = useState(false);
@@ -10,19 +14,6 @@ export function DynamicInfrastructure() {
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
-
-  // Preload particles binary buffer gently in idle without blocking page load
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      if ("requestIdleCallback" in window) {
-        const handle = window.requestIdleCallback(() => preloadBrainParticles(), { timeout: 2500 });
-        return () => window.cancelIdleCallback(handle);
-      } else {
-        const timer = setTimeout(preloadBrainParticles, 1200);
-        return () => clearTimeout(timer);
-      }
-    }
-  }, []);
 
   // Responsive scale handler based on actual container bounds
   useEffect(() => {
@@ -61,6 +52,7 @@ export function DynamicInfrastructure() {
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
+            preloadBrainParticles();
             setMounted(true);
             setVisible(true);
           } else {
