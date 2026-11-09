@@ -1,15 +1,26 @@
 import React from "react";
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Header } from "@/components/landing/header";
 import { Footer } from "@/components/landing/footer";
 import { LegalTabs } from "@/components/legal/legal-tabs";
 import { ConstellationBackground } from "@/components/ui/constellation-background";
+import { routing } from "@/i18n/routing";
 import "@/components/legal/legal-editorial.css";
 
-export default async function LegalLayout({ children }: { children: React.ReactNode }) {
-  const locale = await getLocale();
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+interface LegalLayoutProps {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}
+
+export default async function LegalLayout({ children, params }: LegalLayoutProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "legal.nav" });
 
   const navLabels = {

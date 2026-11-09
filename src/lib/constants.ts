@@ -6,15 +6,11 @@
 export const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ||
   process.env.NEXT_PUBLIC_BASE_URL ||
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "https://landing-celaest.vercel.app")
+  "https://celaest-landing.estebani1421.workers.dev"
 ).replace(/\/$/, "");
 
 export const DASHBOARD_URL = (
-  process.env.NEXT_PUBLIC_SAAS_DASHBOARD_URL || "https://celaest-dashboard.vercel.app"
+  process.env.NEXT_PUBLIC_SAAS_DASHBOARD_URL || "https://celaest-dashboard.estebani1421.workers.dev"
 ).replace(/\/$/, "");
 
 export const SUPPORT_EMAIL = "support@celaest.com";

@@ -1,7 +1,13 @@
-import { getLocale } from "next-intl/server";
 import { redirect } from "next/navigation";
+import { setRequestLocale } from "next-intl/server";
+import { routing } from "@/i18n/routing";
 
-export default async function LegalIndexPage() {
-  const locale = await getLocale();
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export default async function LegalIndexPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   redirect(`/${locale}/legal/terms`);
 }
