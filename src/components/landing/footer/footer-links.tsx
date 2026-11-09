@@ -98,9 +98,9 @@ export function FooterLinks({ groups }: FooterLinksProps) {
     <>
       {groups.map(({ key, title, items }) => (
         <div key={key}>
-          <h4 className="font-semibold text-white text-xs uppercase tracking-[0.15em] mb-4">
+          <h3 className="font-semibold text-white text-xs uppercase tracking-[0.15em] mb-4">
             {title}
-          </h4>
+          </h3>
           <ul className="space-y-2.5">
             {items.map((item, index) => {
               const link = resolveFooterLink(key, index);
@@ -112,6 +112,7 @@ export function FooterLinks({ groups }: FooterLinksProps) {
                     <a
                       href={`/${locale}${link.href}`}
                       onClick={(e) => handleHashClick(e, link.href)}
+                      aria-label={`${title}: ${item}`}
                       className="text-zinc-300 hover:text-white transition-colors text-sm drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] cursor-pointer"
                     >
                       {item}
@@ -128,6 +129,7 @@ export function FooterLinks({ groups }: FooterLinksProps) {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`${title}: ${item}`}
                       className="text-zinc-300 hover:text-white transition-colors text-sm drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]"
                     >
                       {item}
@@ -141,6 +143,7 @@ export function FooterLinks({ groups }: FooterLinksProps) {
                 <li key={item}>
                   <Link
                     href={link.href}
+                    aria-label={`${title}: ${item}`}
                     className="text-zinc-300 hover:text-white transition-colors text-sm drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]"
                   >
                     {item}

@@ -124,7 +124,13 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
       style={{ backgroundColor: "#020202", colorScheme: "dark" }}
     >
       <head>
-        <link rel="preload" as="image" href="/robot_hero_saludo/frame_001.webp" type="image/webp" />
+        <link
+          rel="preload"
+          as="image"
+          href="/robot_hero_saludo/frame_001.webp"
+          type="image/webp"
+          fetchPriority="high"
+        />
       </head>
       <body
         className="font-sans antialiased bg-[#020202] text-brand-ice"

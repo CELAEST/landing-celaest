@@ -282,14 +282,41 @@ interface UnifiedParticleMasterStageProps {
 
 export function UnifiedParticleMasterStage({ activePillar }: UnifiedParticleMasterStageProps) {
   const [data, setData] = useState<SecurityParticleData | null>(null);
+  const [isInView, setIsInView] = useState(false);
   const pointer = useRef({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Viewport intersection: strictly defer binary fetch and WebGL Canvas initialization
   useEffect(() => {
-    getSecurityParticleData()
-      .then((d) => setData(d))
-      .catch((err) => console.error("Error loading particles", err));
+    const el = containerRef.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setIsInView(true);
+      getSecurityParticleData()
+        .then((d) => setData(d))
+        .catch((err) => console.error("Error loading particles", err));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setIsInView(true);
+            getSecurityParticleData()
+              .then((d) => setData(d))
+              .catch((err) => console.error("Error loading particles", err));
+          } else {
+            setIsInView(false);
+          }
+        }
+      },
+      { rootMargin: "300px" },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
@@ -338,7 +365,7 @@ export function UnifiedParticleMasterStage({ activePillar }: UnifiedParticleMast
         }}
       />
 
-      {data && (
+      {data && isInView && (
         <Canvas
           dpr={[1, 1.5]}
           camera={{ position: [0, 0, 4.2], fov: 42 }}

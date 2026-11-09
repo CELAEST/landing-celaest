@@ -37,19 +37,17 @@ export function HeroSection() {
     );
   }, []);
 
+  // Lazy measurement on pointer interaction - zero forced reflows during initial load
   useEffect(() => {
-    measure();
-    const handleResize = () => measure();
+    const handleResize = () => {
+      letterRects.current = [];
+    };
     window.addEventListener("resize", handleResize, { passive: true });
-    window.addEventListener("scroll", handleResize, { passive: true });
-    const timeout = window.setTimeout(measure, 900);
     return () => {
       window.removeEventListener("resize", handleResize);
-      window.removeEventListener("scroll", handleResize);
-      window.clearTimeout(timeout);
       if (frame.current) cancelAnimationFrame(frame.current);
     };
-  }, [measure]);
+  }, []);
 
   const paint = useCallback(() => {
     frame.current = 0;
@@ -66,12 +64,16 @@ export function HeroSection() {
       updateGazeFromUV(u, v);
     }
 
+    if (letterRects.current.length === 0) {
+      measure();
+    }
+
     for (const { el, x: cx, y: cy } of letterRects.current) {
       const distance = Math.hypot(x - cx, y - cy);
       const falloff = Math.max(0, 1 - distance / GLOW_RADIUS);
       el.style.setProperty("--glow", (falloff * falloff).toFixed(3));
     }
-  }, [updateGazeFromUV]);
+  }, [measure, updateGazeFromUV]);
 
   const handlePointerMove = (event: React.PointerEvent<HTMLElement>) => {
     pointer.current = { x: event.clientX, y: event.clientY };

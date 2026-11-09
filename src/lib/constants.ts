@@ -6,7 +6,11 @@
 export const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ||
   process.env.NEXT_PUBLIC_BASE_URL ||
-  "https://celaest.com"
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "https://landing-celaest.vercel.app")
 ).replace(/\/$/, "");
 
 export const DASHBOARD_URL = (

@@ -112,7 +112,11 @@ export function PricingSection() {
               {(pricing?.currency?.code !== "USD" || isForcedUSD) && (
                 <>
                   <div className="sw-editorial-divider" />
-                  <div className="sw-editorial-group" role="group" aria-label="Currency selection">
+                  <div
+                    className="sw-editorial-group"
+                    role="tablist"
+                    aria-label="Currency selection"
+                  >
                     <span className="sw-editorial-label">{t("currencyLabel")}</span>
                     <button
                       type="button"

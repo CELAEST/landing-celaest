@@ -81,7 +81,7 @@
 .sw-editorial-label {
   font-family: monospace;
   font-size: 11px;
-  color: #71717a;
+  color: #a1a1aa;
   text-transform: uppercase;
   letter-spacing: 0.12em;
 }
@@ -89,7 +89,7 @@
 .sw-editorial-btn {
   background: transparent;
   border: none;
-  color: #71717a;
+  color: #a1a1aa;
   font-size: 13.5px;
   font-weight: 500;
   cursor: pointer;
@@ -302,7 +302,7 @@
 
 .pricing-price-cycle {
   font-size: 13px;
-  color: #71717a;
+  color: #a1a1aa;
   margin-top: 6px;
 }
 
