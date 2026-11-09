@@ -60,7 +60,7 @@ export function DynamicInfrastructure() {
           }
         }
       },
-      { rootMargin: "500px 0px 500px 0px" },
+      { rootMargin: "60px 0px 60px 0px" },
     );
     io.observe(el);
     return () => io.disconnect();

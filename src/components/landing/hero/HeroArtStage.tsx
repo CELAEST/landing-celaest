@@ -95,14 +95,16 @@ export function HeroArtStage({ robotImgRef, robotCanvasRef }: HeroArtStageProps)
         className="intent-robot intent-robot-img"
         src="/robot_hero_saludo/frame_001.webp"
         alt=""
+        width={1280}
+        height={720}
         fetchPriority="high"
       />
 
       <canvas
         ref={robotCanvasRef}
         className="intent-robot intent-robot-canvas"
-        width={1920}
-        height={1080}
+        width={1280}
+        height={720}
         data-frame="1"
       />
 

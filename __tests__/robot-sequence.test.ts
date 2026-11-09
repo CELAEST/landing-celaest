@@ -82,7 +82,9 @@ describe("useRobotSequenceCanvas constants and kinematics", () => {
 
     // First frame offset must start immediately after header (8) + 60 * 8 = 488 bytes
     expect(buf.readUInt32LE(8)).toBe(488);
-    expect(buf.length).toBeGreaterThan(2.5 * 1024 * 1024);
+    // Optimized 1280x720 budget: ~1.3MB (must be under 2MB for high-speed delivery)
+    expect(buf.length).toBeGreaterThan(1 * 1024 * 1024);
+    expect(buf.length).toBeLessThan(2 * 1024 * 1024);
   });
 
   it("validates that robot-saludo.bin exists and matches binary DMA specification", () => {
@@ -96,7 +98,9 @@ describe("useRobotSequenceCanvas constants and kinematics", () => {
 
     // First frame offset must start immediately after header (8) + 72 * 8 = 584 bytes
     expect(buf.readUInt32LE(8)).toBe(584);
-    expect(buf.length).toBeGreaterThan(3.5 * 1024 * 1024);
+    // Optimized 1280x720 budget: ~1.95MB (must be under 2.5MB for fast parallel decoding)
+    expect(buf.length).toBeGreaterThan(1.5 * 1024 * 1024);
+    expect(buf.length).toBeLessThan(2.5 * 1024 * 1024);
   });
 
   it("manages session-based greeting state correctly via sessionStorage", () => {
