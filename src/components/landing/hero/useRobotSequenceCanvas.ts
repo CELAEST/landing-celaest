@@ -67,6 +67,34 @@ export function clearGreetedSession(): void {
   } catch {}
 }
 
+/**
+ * Concurrency-controlled ImageBitmap decoder.
+ * Uses a fixed worker pool (2 workers on mobile, 3 on desktop) to eliminate
+ * thread pool contention, GC stalls, and frame drops on lower-powered devices.
+ */
+async function decodeBlobsWithConcurrency(
+  blobs: Blob[],
+  startIndex: number,
+  targetArray: Array<ImageBitmap | null>,
+  concurrency = 2,
+): Promise<void> {
+  let nextIdx = 0;
+  async function worker(): Promise<void> {
+    while (nextIdx < blobs.length) {
+      const i = nextIdx++;
+      try {
+        const bmp = await createImageBitmap(blobs[i]);
+        targetArray[startIndex + i] = bmp;
+      } catch {
+        // Continue decoding subsequent frames even if an individual frame fails
+      }
+    }
+  }
+  const workerCount = Math.max(1, Math.min(concurrency, blobs.length));
+  const workers = Array.from({ length: workerCount }, () => worker());
+  await Promise.all(workers);
+}
+
 export function useRobotSequenceCanvas() {
   const robotCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const robotCtxRef = useRef<CanvasRenderingContext2D | null>(null);
@@ -165,8 +193,9 @@ export function useRobotSequenceCanvas() {
           targetGazeFrameRef.current = GAZE_REST_INDEX;
           drawSequenceFrame(gazeBitmapsRef.current, GAZE_SALUDO_SYNC_INDEX, "gaze");
         } else {
-          // Pre-warm gaze bundle early at frame 20 (~0.6s in) so gaze is 100% decoded for the smooth rest transition
-          if (floatFrame >= 20 && !isGazeTriggeredRef.current) {
+          // Pre-warm gaze bundle at frame 48 (~1.6s in) after the saludo batch has decoded,
+          // ensuring zero thread contention during the initial wave on mobile devices
+          if (floatFrame >= 48 && !isGazeTriggeredRef.current) {
             isGazeTriggeredRef.current = true;
             void loadGazeBundle();
           }
@@ -273,24 +302,21 @@ export function useRobotSequenceCanvas() {
 
     try {
       const blobs = await loadRobotBinaryBundle("/data/robot-saludo.bin", "CSAL");
+      const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+      const concurrency = isMobile ? 2 : 3;
 
-      // Runway batch: decode first 18 frames in parallel (~35ms) to give 600ms of instant runway
-      const RUNWAY = 18;
+      // Runway batch: decode first 10 frames (~25ms) so animation starts immediately with zero lag
+      const RUNWAY = 10;
       const initialBatch = blobs.slice(0, RUNWAY);
-      await Promise.all(
-        initialBatch.map(async (blob, idx) => {
-          const bmp = await createImageBitmap(blob);
-          saludoBitmapsRef.current[idx] = bmp;
-        }),
-      );
+      await decodeBlobsWithConcurrency(initialBatch, 0, saludoBitmapsRef.current, concurrency);
 
-      // Background stream remaining frames (18..71) in parallel without blocking initial playback
-      const remainingBatch = blobs.slice(RUNWAY);
-      void Promise.all(
-        remainingBatch.map(async (blob, idx) => {
-          const bmp = await createImageBitmap(blob);
-          saludoBitmapsRef.current[idx + RUNWAY] = bmp;
-        }),
+      // Controlled background streaming for remaining frames (10..71) without choking the main thread
+      const remainingBlobs = blobs.slice(RUNWAY);
+      void decodeBlobsWithConcurrency(
+        remainingBlobs,
+        RUNWAY,
+        saludoBitmapsRef.current,
+        concurrency,
       ).then(() => {
         globalSaludoBitmaps = saludoBitmapsRef.current;
       });
@@ -330,11 +356,10 @@ export function useRobotSequenceCanvas() {
 
     try {
       const blobs = await loadRobotBinaryBundle("/data/robot-gaze.bin", "CGAZ");
-      const decodePromises = blobs.map(async (blob, idx) => {
-        const bmp = await createImageBitmap(blob);
-        gazeBitmapsRef.current[idx] = bmp;
-      });
-      await Promise.all(decodePromises);
+      const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+      const concurrency = isMobile ? 2 : 3;
+
+      await decodeBlobsWithConcurrency(blobs, 0, gazeBitmapsRef.current, concurrency);
       globalGazeBitmaps = gazeBitmapsRef.current;
       return globalGazeBitmaps;
     } catch {
