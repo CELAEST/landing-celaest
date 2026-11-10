@@ -1,8 +1,18 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { EmailService } from "@/lib/email/email-service";
-import { renderContactConfirmationEmail } from "@/lib/email/templates/contact-confirmation";
-import { renderInternalNotificationEmail } from "@/lib/email/templates/internal-notification";
-import { renderNewsletterWelcomeEmail } from "@/lib/email/templates/newsletter-welcome";
+import {
+  renderContactConfirmationEmail,
+  renderInternalNotificationEmail,
+  renderNewsletterWelcomeEmail,
+  renderAuthVerificationEmail,
+  renderPasswordResetEmail,
+  renderSecurityAlertEmail,
+  renderInvoiceReceiptEmail,
+  renderPaymentFailedEmail,
+  renderWorkspaceInviteEmail,
+  renderQuotaAlertEmail,
+  renderWeeklyDigestEmail,
+} from "@/lib/email/templates";
 
 describe("Email Service & Templates Quality Gate", () => {
   beforeEach(() => {
@@ -69,6 +79,141 @@ describe("Email Service & Templates Quality Gate", () => {
       expect(html).toContain("Bienvenido al ecosistema CELAEST");
       expect(html).toContain("Lanzamientos anticipados");
       expect(text).toContain("CELAEST Inc.");
+    });
+
+    it("renders auth verification email with one-time code and magic link", () => {
+      const { html, text } = renderAuthVerificationEmail({
+        name: "Carlos",
+        email: "carlos@acme.corp",
+        magicLinkUrl: "https://app.celaest.com/auth/verify?token=xyz",
+        code: "982341",
+        locale: "es",
+      });
+
+      expect(html).toContain("Inicia sesión en CELAEST");
+      expect(html).toContain("982341");
+      expect(html).toContain("https://app.celaest.com/auth/verify?token=xyz");
+      expect(text).toContain("982341");
+    });
+
+    it("renders password reset email with secure alert callout", () => {
+      const { html, text } = renderPasswordResetEmail({
+        name: "Valeria",
+        email: "valeria@tech.io",
+        resetUrl: "https://app.celaest.com/auth/reset?token=abc",
+        locale: "es",
+      });
+
+      expect(html).toContain("Restablecimiento de contraseña");
+      expect(html).toContain("https://app.celaest.com/auth/reset?token=abc");
+      expect(text).toContain("Restablecer Contraseña");
+    });
+
+    it("renders security alert email with device, IP and location details", () => {
+      const { html, text } = renderSecurityAlertEmail({
+        name: "Esteban",
+        email: "esteban@celaest.com",
+        device: "Chrome 131 / Windows 11",
+        location: "Bogotá, Colombia",
+        ipAddress: "190.156.44.12",
+        timestamp: "2026-11-10 20:30 UTC",
+        locale: "es",
+      });
+
+      expect(html).toContain("Nuevo inicio de sesión detectado");
+      expect(html).toContain("Chrome 131 / Windows 11");
+      expect(html).toContain("190.156.44.12");
+      expect(text).toContain("Bogotá, Colombia");
+    });
+
+    it("renders B2B invoice receipt with formatted currency and invoice number", () => {
+      const { html, text } = renderInvoiceReceiptEmail({
+        customerName: "Acme Enterprises",
+        email: "billing@acme.corp",
+        invoiceNumber: "INV-2026-881",
+        planName: "Enterprise Platinum",
+        amount: "990.00",
+        currency: "USD",
+        period: "Anual",
+        last4: "8891",
+        locale: "es",
+      });
+
+      expect(html).toContain("INV-2026-881");
+      expect(html).toContain("990.00 USD");
+      expect(html).toContain("Enterprise Platinum");
+      expect(text).toContain("8891");
+    });
+
+    it("renders payment failed email with retry date and warning callout", () => {
+      const { html, text } = renderPaymentFailedEmail({
+        customerName: "Startup Inc",
+        planName: "Professional",
+        amount: "49.00",
+        currency: "USD",
+        last4: "4242",
+        retryDate: "15 de Noviembre, 2026",
+        updatePaymentUrl: "https://app.celaest.com/settings/billing",
+        locale: "es",
+      });
+
+      expect(html).toContain("Pago no procesado");
+      expect(html).toContain("49.00 USD");
+      expect(html).toContain("15 de Noviembre, 2026");
+      expect(text).toContain("Startup Inc");
+    });
+
+    it("renders workspace invitation with inviter, organization and role", () => {
+      const { html, text } = renderWorkspaceInviteEmail({
+        inviterName: "Sophia Loren",
+        organizationName: "Nova AI Labs",
+        inviteeEmail: "dev@nova.ai",
+        role: "Lead Architect",
+        inviteUrl: "https://app.celaest.com/invite/accept?id=nova123",
+        locale: "es",
+      });
+
+      expect(html).toContain("Sophia Loren te invitó a unirte a Nova AI Labs");
+      expect(html).toContain("Lead Architect");
+      expect(html).toContain("Nova AI Labs");
+      expect(text).toContain("Sophia Loren");
+    });
+
+    it("renders workspace quota alert with token consumption stats", () => {
+      const { html, text } = renderQuotaAlertEmail({
+        organizationName: "Omni Corp",
+        adminName: "Alex Rivera",
+        percentageUsed: 92,
+        consumedTokens: "4,600,000",
+        totalTokens: "5,000,000",
+        resetDate: "01 de Diciembre",
+        upgradeUrl: "https://app.celaest.com/settings/billing/scale",
+        locale: "es",
+      });
+
+      expect(html).toContain("92%");
+      expect(html).toContain("4,600,000 / 5,000,000");
+      expect(html).toContain("Omni Corp");
+      expect(text).toContain("Alex Rivera");
+    });
+
+    it("renders weekly digest with metrics summary row", () => {
+      const { html, text } = renderWeeklyDigestEmail({
+        userName: "Esteban",
+        startDate: "03 Nov",
+        endDate: "09 Nov",
+        tasksCompleted: 142,
+        hoursSaved: "18.5",
+        learningProgress: "98.4%",
+        dashboardUrl: "https://app.celaest.com/dashboard",
+        locale: "es",
+      });
+
+      expect(html).toContain("Tu resumen semanal de CELAEST");
+      expect(html).toContain("142");
+      expect(html).toContain("18.5h");
+      expect(html).toContain("98.4%");
+      expect(text).toContain("Esteban");
     });
   });
 
