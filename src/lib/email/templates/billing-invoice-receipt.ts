@@ -1,3 +1,10 @@
+import {
+  renderEnterpriseEmailLayout,
+  renderKeyValueTable,
+  KeyValueRow,
+  escapeHtml,
+} from "../layout";
+
 export interface InvoiceReceiptData {
   customerName: string;
   email: string;
@@ -16,93 +23,81 @@ export function renderInvoiceReceiptEmail(data: InvoiceReceiptData): {
   text: string;
 } {
   const isEs = data.locale !== "en";
-  const title = isEs ? "Confirmación de Pago y Recibo" : "Payment Receipt & Invoice Confirmation";
+  const title = isEs
+    ? "Recibo de Factura y Pago Exitoso"
+    : "Payment Receipt & Invoice Confirmation";
+  const greeting = data.customerName;
   const intro = isEs
-    ? `Hemos procesado exitosamente tu pago para el plan ${data.planName}. Agradecemos tu confianza en la plataforma CELAEST.`
-    : `We successfully processed your payment for ${data.planName}. Thank you for building on CELAEST.`;
+    ? `Hemos procesado exitosamente el cobro recurrente de tu suscripción ${data.planName}. A continuación tienes el resumen detallado de tu transacción:`
+    : `We successfully processed the recurring payment for your ${data.planName} subscription. Below is your transaction summary:`;
   const buttonText = isEs ? "Descargar Factura PDF" : "Download Invoice PDF";
 
-  const text = `Hola, ${data.customerName}
+  const rows: KeyValueRow[] = [
+    {
+      label: isEs ? "Nº de Factura" : "Invoice Number",
+      value: escapeHtml(data.invoiceNumber),
+      isMono: true,
+    },
+    {
+      label: isEs ? "Plan y Periodo" : "Plan & Billing Period",
+      value: escapeHtml(`${data.planName} (${data.period})`),
+    },
+    {
+      label: isEs ? "Método de Pago" : "Payment Method",
+      value: escapeHtml(
+        isEs ? `Tarjeta terminada en ${data.last4}` : `Card ending in ${data.last4}`,
+      ),
+    },
+    {
+      label: isEs ? "Total Pagado" : "Total Paid",
+      value: escapeHtml(`${data.amount} ${data.currency}`),
+      highlight: "success",
+    },
+  ];
+
+  const bodyHtml = `
+    ${renderKeyValueTable(rows)}
+  `;
+
+  const layout = renderEnterpriseEmailLayout({
+    title,
+    badge: {
+      text: isEs ? "Pagado" : "Paid",
+      variant: "success",
+    },
+    greeting,
+    intro,
+    bodyHtml,
+    ctaButton: {
+      text: buttonText,
+      url:
+        data.invoicePdfUrl || `https://app.celaest.com/billing/invoices/${data.invoiceNumber}.pdf`,
+      variant: "primary",
+    },
+    secondaryNote: isEs
+      ? "Puedes consultar el historial de facturación completo y certificados fiscales en cualquier momento en https://app.celaest.com/settings/billing"
+      : "You can view your complete invoice history and tax receipts at https://app.celaest.com/settings/billing",
+    locale: data.locale,
+  });
+
+  const text = `${title}
+==================================================
+
+Hola, ${data.customerName}
 
 ${intro}
 
-Detalles de Facturación:
+Detalles:
 - Factura: ${data.invoiceNumber}
 - Plan: ${data.planName} (${data.period})
 - Monto: ${data.amount} ${data.currency}
 - Método de Pago: Tarjeta terminada en ${data.last4}
 
-${data.invoicePdfUrl ? `Descarga tu comprobante en: ${data.invoicePdfUrl}\n` : ""}
-Puedes gestionar tus métodos de pago en cualquier momento en https://app.celaest.com/settings/billing
+${data.invoicePdfUrl ? `[ ${buttonText} ]: ${data.invoicePdfUrl}` : ""}
 
 ---
-CELAEST Inc. · Facturación Corporativa`;
+CELAEST Inc. · https://celaest.com
+100 Montgomery St, Suite 1400, San Francisco, CA 94104`;
 
-  const html = `<!DOCTYPE html>
-<html lang="${isEs ? "es" : "en"}">
-<head>
-  <meta charset="utf-8">
-  <title>${title}</title>
-  <style>
-    body { margin: 0; padding: 0; background: #050508; color: #E2E8F0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-    .container { max-width: 580px; margin: 40px auto; background: #0B0B14; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; overflow: hidden; }
-    .header { padding: 32px 36px 20px; background: linear-gradient(180deg, rgba(34, 197, 94, 0.12) 0%, rgba(11, 11, 20, 0) 100%); border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
-    .logo { font-size: 20px; font-weight: 800; letter-spacing: 0.18em; color: #FFFFFF; }
-    .content { padding: 36px 36px 28px; }
-    h1 { font-size: 22px; font-weight: 700; color: #FFFFFF; margin: 0 0 16px; }
-    .receipt-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 22px; margin: 24px 0; }
-    .receipt-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); font-size: 14px; }
-    .receipt-row:last-child { border-bottom: none; }
-    .row-total { padding-top: 14px; font-size: 16px; font-weight: 700; color: #22C55E; }
-    .label { color: #64748B; }
-    .val { color: #F8FAFC; font-weight: 500; }
-    .btn { display: inline-block; background: linear-gradient(135deg, #7C3AED 0%, #9333EA 100%); color: #FFFFFF !important; font-weight: 600; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
-    .footer { padding: 20px 36px; background: #08080E; border-top: 1px solid rgba(255, 255, 255, 0.05); font-size: 12px; color: #64748B; text-align: center; }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="header">
-      <div class="logo">CELAEST</div>
-    </div>
-    <div class="content">
-      <h1>${title}</h1>
-      <p style="color: #F8FAFC; font-weight: 600;">Hola, ${data.customerName}</p>
-      <p style="color: #94A3B8; font-size: 14px; line-height: 1.6;">${intro}</p>
-
-      <div class="receipt-card">
-        <div class="receipt-row">
-          <span class="label">N&ordm; de Factura</span>
-          <span class="val" style="font-family: monospace;">${data.invoiceNumber}</span>
-        </div>
-        <div class="receipt-row">
-          <span class="label">Plan / Suscripción</span>
-          <span class="val">${data.planName} (${data.period})</span>
-        </div>
-        <div class="receipt-row">
-          <span class="label">Método de Pago</span>
-          <span class="val">&bull;&bull;&bull;&bull; ${data.last4}</span>
-        </div>
-        <div class="receipt-row row-total">
-          <span style="color: #F8FAFC;">Total Pagado</span>
-          <span>${data.amount} ${data.currency}</span>
-        </div>
-      </div>
-
-      ${
-        data.invoicePdfUrl
-          ? `<div style="text-align: center; margin: 24px 0;">
-              <a href="${data.invoicePdfUrl}" class="btn">${buttonText} &darr;</a>
-            </div>`
-          : ""
-      }
-    </div>
-    <div class="footer">
-      &copy; ${new Date().getFullYear()} CELAEST Inc. &middot; Facturación B2B
-    </div>
-  </div>
-</body>
-</html>`;
-
-  return { html, text };
+  return { html: layout.html, text };
 }

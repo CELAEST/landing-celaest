@@ -11,7 +11,8 @@
     "analyze": "ANALYZE=true next build",
     "prepare": "husky",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "send-email-tests": "tsx scripts/send-all-tests.ts"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
