@@ -1,0 +1,106 @@
+/* ============================================================================
+   CELAEST SVG CONSTELLATION PATTERN - GPU-COMPOSITED ASTRAL ENGINE
+   100% Vector · Zero Canvas · Zero Main-Thread CPU Overhead · 120 FPS Locked
+   ============================================================================ */
+
+.celestial-pattern-root {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  contain: strict;
+  isolation: isolate;
+}
+
+.celestial-svg-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Layer A: Base Constellation Layer (Slow ambient cosmic drift) */
+.celestial-layer-base {
+  will-change: transform;
+  animation: celestial-drift-slow 48s ease-in-out infinite alternate;
+  transform-origin: center;
+}
+
+/* Layer B: Dense Astral Network (Opposing gentle drift for deep parallax) */
+.celestial-layer-dense {
+  will-change: transform;
+  animation: celestial-drift-reverse 60s ease-in-out infinite alternate;
+  transform-origin: center;
+}
+
+/* Beacon stars: High-precision pulsating twinkle */
+.celestial-beacon-pulse {
+  will-change: opacity, transform;
+  animation: celestial-twinkle 4.2s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.celestial-beacon-pulse-alt {
+  will-change: opacity, transform;
+  animation: celestial-twinkle 5.8s ease-in-out infinite 1.8s;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.celestial-beacon-pulse-slow {
+  will-change: opacity, transform;
+  animation: celestial-twinkle 6.5s ease-in-out infinite 3.1s;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* GPU Hardware-Composited Keyframes (Translate & Opacity only) */
+@keyframes celestial-drift-slow {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-18px, 12px, 0);
+  }
+  100% {
+    transform: translate3d(14px, -16px, 0);
+  }
+}
+
+@keyframes celestial-drift-reverse {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(20px, -14px, 0);
+  }
+  100% {
+    transform: translate3d(-15px, 18px, 0);
+  }
+}
+
+@keyframes celestial-twinkle {
+  0%, 100% {
+    opacity: 0.32;
+    transform: scale(0.88);
+  }
+  50% {
+    opacity: 0.98;
+    transform: scale(1.18);
+  }
+}
+
+/* Accessibility: Honor reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .celestial-layer-base,
+  .celestial-layer-dense,
+  .celestial-beacon-pulse,
+  .celestial-beacon-pulse-alt,
+  .celestial-beacon-pulse-slow {
+    animation: none !important;
+    transform: none !important;
+  }
+}

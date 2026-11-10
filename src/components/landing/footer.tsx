@@ -34,7 +34,7 @@ export function Footer() {
         <div className="absolute bottom-[-10%] left-[10%] w-[50%] h-[300px] bg-violet-600/20 blur-[120px] rounded-full mix-blend-screen" />
         <div className="absolute bottom-[-10%] right-[10%] w-[50%] h-[300px] bg-purple-700/20 blur-[120px] rounded-full mix-blend-screen" />
         <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,#000_0%,#000_70%,transparent_100%)]">
-          <ConstellationBackground nodeCount={90} />
+          <ConstellationBackground variant="dense" nodeCount={90} />
         </div>
       </div>
 
