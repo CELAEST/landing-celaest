@@ -156,6 +156,8 @@
 
 .intent-robot-canvas {
   aspect-ratio: 16 / 9;
+  contain: layout paint;
+  will-change: contents;
 }
 
 .intent-robot-hitbox {

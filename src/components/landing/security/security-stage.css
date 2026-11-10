@@ -112,10 +112,12 @@
   justify-content: center;
   position: relative;
   min-height: 440px;
+  contain: layout paint;
 }
 
 .sec-stage-canvas-inner {
   height: 440px;
+  contain: layout paint;
 }
 
 .sec-stage-foot {

@@ -76,6 +76,7 @@ export function HeroSection() {
   }, [measure, updateGazeFromUV]);
 
   const handlePointerMove = (event: React.PointerEvent<HTMLElement>) => {
+    if (event.pointerType === "touch") return;
     pointer.current = { x: event.clientX, y: event.clientY };
     if (!frame.current) frame.current = requestAnimationFrame(paint);
   };
