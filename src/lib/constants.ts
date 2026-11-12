@@ -6,11 +6,11 @@
 export const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ||
   process.env.NEXT_PUBLIC_BASE_URL ||
-  "https://celaest-landing.estebani1421.workers.dev"
+  "https://celaest.com"
 ).replace(/\/$/, "");
 
 export const DASHBOARD_URL = (
-  process.env.NEXT_PUBLIC_SAAS_DASHBOARD_URL || "https://celaest-dashboard.estebani1421.workers.dev"
+  process.env.NEXT_PUBLIC_SAAS_DASHBOARD_URL || "https://dashboard.celaest.com"
 ).replace(/\/$/, "");
 
 export const SUPPORT_EMAIL = "support@celaest.com";

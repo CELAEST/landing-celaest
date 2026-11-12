@@ -1,9 +1,4 @@
-import {
-  renderEnterpriseEmailLayout,
-  renderKeyValueTable,
-  KeyValueRow,
-  escapeHtml,
-} from "../layout";
+import { renderEnterpriseEmailLayout, renderSecurityDossier, escapeHtml } from "../layout";
 
 export interface SecurityAlertData {
   name?: string;
@@ -31,38 +26,24 @@ export function renderSecurityAlertEmail(data: SecurityAlertData): {
   const panicNotice = isEs
     ? "Si NO reconoces esta actividad, te recomendamos bloquear la sesión de inmediato y actualizar tus credenciales:"
     : "If you DO NOT recognize this activity, please freeze your session immediately and reset your password:";
-  const buttonText = isEs ? "Asegurar mi Cuenta" : "Secure My Account";
-
-  const rows: KeyValueRow[] = [
-    {
-      label: isEs ? "Dispositivo" : "Device",
-      value: escapeHtml(data.device),
-    },
-    {
-      label: isEs ? "Ubicación" : "Location",
-      value: escapeHtml(data.location),
-    },
-    {
-      label: isEs ? "Dirección IP" : "IP Address",
-      value: escapeHtml(data.ipAddress),
-      isMono: true,
-    },
-    {
-      label: isEs ? "Hora (UTC)" : "Timestamp (UTC)",
-      value: escapeHtml(data.timestamp),
-      isMono: true,
-    },
-  ];
+  const buttonText = isEs ? "Bloquear Sesión Inmediatamente" : "Lock Session & Revoke Tokens";
 
   const bodyHtml = `
-    ${renderKeyValueTable(rows)}
-    <p style="font-size: 13.5px; color: #64748B; margin-top: 20px; line-height: 1.6;">
-      ${panicNotice}
-    </p>
+    ${renderSecurityDossier({
+      device: data.device,
+      location: data.location,
+      ip: data.ipAddress,
+      timestamp: data.timestamp,
+      tlsFingerprint: "TLS 1.3 · X25519 · AES-256-GCM",
+    })}
+    <div style="background-color: #FFFBEB; border: 1px solid #FDE68A; border-radius: 8px; padding: 14px 18px; font-size: 13.5px; color: #92400E; margin-bottom: 20px;">
+      <strong>${isEs ? "¿No reconoces este acceso?" : "Do not recognize this?"}</strong> ${panicNotice}
+    </div>
   `;
 
   const layout = renderEnterpriseEmailLayout({
     title,
+    categoryEyebrow: isEs ? "TELEMETRÍA // ALERTA DE SEGURIDAD" : "TELEMETRY // SECURITY ALERT",
     badge: {
       text: isEs ? "Alerta de Seguridad" : "Security Alert",
       variant: "warning",
