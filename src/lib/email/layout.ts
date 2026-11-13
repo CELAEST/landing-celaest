@@ -1,13 +1,14 @@
 /**
- * CELAEST Enterprise Email Design System (v5 - World-Class Differentiation & High Craft)
+ * CELAEST Enterprise Email Design System (v7 - Slate & Indigo Official Palette)
  *
- * Arquitectura de correo de alto impacto inspirada en los estándares de Stripe, Linear, Vercel y Apple.
- * - Emblema vectorial oficial CELAEST (Lambda Monogram) en escudo de obsidiana.
- * - Marca de agua arquitectónica geométrica sutil (1.5% de opacidad) que elimina cualquier aspecto de plantilla genérica.
- * - Micro-artefactos especializados con terminación de lujo por dominio (Bóveda OTP, Bono Fiscal/Recibo B2B,
- *   Dossier Forense SOC 2, Docket de Concierge Enterprise, Indicador de Capacidad Datadog, Dashboard de Directorio).
- * - Tipografía con jerarquía editorial estricta, proporciones áureas y contraste quirúrgico.
- * - Totalmente compatible con Gmail (Web, iOS, Android), Apple Mail (macOS/iOS), Outlook (Windows/Mac/Web) y Yahoo Mail.
+ * Sistema visual aprobado:
+ * - Paleta "1. Slate & Indigo" (Stripe / Linear Light):
+ *   Outer canvas #EEF2F6, Sheet #FFFFFF, Header/Footer/Step #F8FAFC,
+ *   Soft Indigo #EEF2FF, Texto primario #0F172A, Cuerpo #334155, Muted #64748B,
+ *   Divisores #E2E8F0, Botón y acento principal #4F46E5.
+ * - Emblema CELAEST Lambda de 42x42px (#0F172A) con icono blanco de 21x28px
+ *   perfectamente centrado y subtítulo "De la intención al resultado".
+ * - Compatible con Gmail, Apple Mail, Outlook y dispositivos móviles.
  */
 
 export const CELAEST_LOGO_PATH_D =
@@ -39,22 +40,20 @@ export function renderEnterpriseEmailLayout(props: EnterpriseEmailLayoutProps): 
 } {
   const isEs = props.locale !== "en";
   const preview = props.previewText || props.title;
-  const eyebrow =
-    props.categoryEyebrow || (isEs ? "COMUNICACIÓN OFICIAL CELAEST" : "OFFICIAL CELAEST DISPATCH");
 
   const badgeColors = {
-    default: { bg: "#F1F5F9", text: "#475569", border: "#CBD5E1", dot: "#64748B" },
-    success: { bg: "#ECFDF5", text: "#065F46", border: "#A7F3D0", dot: "#10B981" },
-    warning: { bg: "#FFFBEB", text: "#92400E", border: "#FDE68A", dot: "#F59E0B" },
-    danger: { bg: "#FEF2F2", text: "#991B1B", border: "#FECACA", dot: "#EF4444" },
+    default: { text: "#64748B", dot: "#4F46E5" },
+    success: { text: "#059669", dot: "#10B981" },
+    warning: { text: "#D97706", dot: "#F59E0B" },
+    danger: { text: "#DC2626", dot: "#EF4444" },
   };
 
   const badgeStyle = props.badge ? badgeColors[props.badge.variant || "default"] : null;
 
   const buttonColors = {
-    primary: "background-color: #0F172A; color: #FFFFFF; border: 1px solid #1E293B;",
-    secondary: "background-color: #6D28D9; color: #FFFFFF; border: 1px solid #5B21B6;",
-    danger: "background-color: #DC2626; color: #FFFFFF; border: 1px solid #B91C1C;",
+    primary: "background-color: #4F46E5; color: #FFFFFF;",
+    secondary: "background-color: #F8FAFC; color: #0F172A;",
+    danger: "background-color: #DC2626; color: #FFFFFF;",
   };
 
   const btnStyle = props.ctaButton
@@ -77,86 +76,58 @@ export function renderEnterpriseEmailLayout(props: EnterpriseEmailLayoutProps): 
     body {
       margin: 0;
       padding: 0;
-      background-color: #0B0E14;
+      background-color: #EEF2F6;
       color: #0F172A;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      line-height: 1.6;
+      line-height: 1.65;
     }
-    table { border-collapse: separate; }
+    table { border-collapse: collapse; }
     .wrapper {
       width: 100%;
       table-layout: fixed;
-      background-color: #F4F6F9;
-      padding: 40px 0 64px;
+      background-color: #EEF2F6;
+      padding: 36px 16px 56px;
     }
-    .main-card {
-      max-width: 600px;
+    .main-sheet {
+      max-width: 580px;
       margin: 0 auto;
       background-color: #FFFFFF;
-      border: 1px solid #E2E8F0;
-      border-radius: 16px;
+      border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
-      position: relative;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
     }
-    .masthead {
-      background-color: #0A0D14;
-      padding: 22px 36px;
-      border-bottom: 1px solid #1E293B;
-    }
-    .brand-title {
-      font-size: 15px;
-      font-weight: 800;
-      letter-spacing: 0.16em;
-      color: #FFFFFF;
-      text-transform: uppercase;
-      line-height: 1.1;
-    }
-    .brand-sub {
-      font-size: 9.5px;
-      font-family: -apple-system-monospaced, SFMono-Regular, Menlo, monospace;
-      letter-spacing: 0.14em;
-      color: #94A3B8;
-      text-transform: uppercase;
-      margin-top: 2px;
+    .header {
+      background-color: #F8FAFC;
+      padding: 28px 36px;
+      border-bottom: 1px solid #E2E8F0;
     }
     .content {
-      padding: 38px 40px 32px;
-      position: relative;
-    }
-    .eyebrow {
-      font-size: 11px;
-      font-weight: 700;
-      font-family: -apple-system-monospaced, SFMono-Regular, monospace;
-      color: #6D28D9;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 10px;
+      padding: 32px 36px 34px;
     }
     h1 {
-      margin: 0 0 16px;
-      font-size: 26px;
-      font-weight: 800;
-      color: #090D16;
-      letter-spacing: -0.035em;
+      margin: 0 0 14px;
+      font-size: 24px;
+      font-weight: 700;
+      color: #0F172A;
+      letter-spacing: -0.025em;
       line-height: 1.25;
     }
     .greeting {
       font-size: 15px;
-      font-weight: 600;
+      font-weight: 500;
       color: #0F172A;
-      margin: 0 0 12px;
+      margin: 0 0 10px;
     }
     .intro {
       font-size: 15px;
       color: #334155;
-      margin: 0 0 24px;
+      margin: 0 0 22px;
       line-height: 1.65;
     }
     .button-container {
-      margin: 32px 0 18px;
+      margin: 26px 0 14px;
       text-align: left;
     }
     .action-btn {
@@ -164,22 +135,19 @@ export function renderEnterpriseEmailLayout(props: EnterpriseEmailLayoutProps): 
       ${btnStyle}
       font-size: 14.5px;
       font-weight: 600;
-      padding: 14px 32px;
-      border-radius: 8px;
+      padding: 13px 26px;
+      border-radius: 9px;
       text-decoration: none;
       letter-spacing: -0.01em;
-      box-shadow: 0 2px 4px rgba(15, 23, 42, 0.12);
     }
     .note {
-      font-size: 12.5px;
+      font-size: 13px;
       color: #64748B;
-      line-height: 1.55;
-      margin: 22px 0 0;
-      padding-top: 18px;
-      border-top: 1px dashed #E2E8F0;
+      line-height: 1.6;
+      margin: 20px 0 0;
     }
     .footer {
-      padding: 28px 40px 36px;
+      padding: 24px 36px 32px;
       background-color: #F8FAFC;
       border-top: 1px solid #E2E8F0;
       font-size: 12px;
@@ -187,23 +155,13 @@ export function renderEnterpriseEmailLayout(props: EnterpriseEmailLayoutProps): 
       line-height: 1.6;
     }
     .footer a {
-      color: #0F172A;
-      text-decoration: underline;
-      text-underline-offset: 3px;
+      color: #334155;
+      text-decoration: none;
       font-weight: 500;
-    }
-    .footer-security {
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px solid #E2E8F0;
-      font-size: 11px;
-      color: #94A3B8;
-      line-height: 1.5;
     }
   </style>
 </head>
 <body>
-  <!-- Preheader Text (Hidden In Inbox) -->
   <div style="display: none; max-height: 0px; overflow: hidden; opacity: 0; font-size: 1px; line-height: 1px; color: transparent;">
     ${escapeHtml(preview)}
   </div>
@@ -211,30 +169,23 @@ export function renderEnterpriseEmailLayout(props: EnterpriseEmailLayoutProps): 
   <table class="wrapper" role="presentation" width="100%" cellpadding="0" cellspacing="0">
     <tr>
       <td align="center">
-        <table class="main-card" role="presentation" width="100%" cellpadding="0" cellspacing="0">
-          <!-- Top Architectural Laser Ribbon (Electric Indigo -> Violet) -->
+        <table class="main-sheet" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+          <!-- Header Slate & Indigo con Logo 42x42 Centrado -->
           <tr>
-            <td style="height: 3px; background: linear-gradient(90deg, #4F46E5 0%, #7C3AED 50%, #06B6D4 100%); font-size: 0; line-height: 0;">&nbsp;</td>
-          </tr>
-
-          <!-- High-Contrast Obsidian Masthead with Authentic Lambda Emblem -->
-          <tr>
-            <td class="masthead">
+            <td class="header">
               <table width="100%" role="presentation" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   <td style="vertical-align: middle;">
                     <table role="presentation" cellpadding="0" cellspacing="0" border="0">
                       <tr>
-                        <td style="width: 38px; vertical-align: middle;">
-                          <div style="width: 38px; height: 38px; border-radius: 9px; background: #0F172A; border: 1px solid rgba(255, 255, 255, 0.15); text-align: center; vertical-align: middle; line-height: 38px; box-shadow: 0 0 12px rgba(124, 58, 237, 0.25);">
-                            <svg width="20" height="20" viewBox="0 0 380 503" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-top: 8px;">
-                              <path d="${CELAEST_LOGO_PATH_D}" fill="#FFFFFF"/>
-                            </svg>
-                          </div>
+                        <td align="center" valign="middle" width="42" height="42" style="width: 42px; height: 42px; background-color: #0F172A; border-radius: 11px;">
+                          <svg width="21" height="28" viewBox="0 0 380 503" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: block; margin: 0 auto;">
+                            <path d="${CELAEST_LOGO_PATH_D}" fill="#FFFFFF"/>
+                          </svg>
                         </td>
                         <td style="padding-left: 14px; vertical-align: middle;">
-                          <div class="brand-title">CELAEST</div>
-                          <div class="brand-sub">AUTONOMOUS AI &middot; INFRASTRUCTURE</div>
+                          <div style="font-size: 16.5px; font-weight: 800; letter-spacing: 0.16em; color: #0F172A; text-transform: uppercase; line-height: 1.15;">CELAEST</div>
+                          <div style="font-size: 10.5px; font-weight: 500; letter-spacing: 0.06em; color: #64748B; text-transform: uppercase; margin-top: 2px;">${isEs ? "De la intención al resultado" : "From intent to outcome"}</div>
                         </td>
                       </tr>
                     </table>
@@ -242,13 +193,10 @@ export function renderEnterpriseEmailLayout(props: EnterpriseEmailLayoutProps): 
                   <td align="right" style="vertical-align: middle;">
                     ${
                       props.badge && badgeStyle
-                        ? `<span style="display: inline-block; background-color: ${badgeStyle.bg}; color: ${badgeStyle.text}; border: 1px solid ${badgeStyle.border}; padding: 4px 11px; border-radius: 9999px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;">
-                            <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background-color: ${badgeStyle.dot}; margin-right: 5px; vertical-align: middle;"></span>
-                            ${escapeHtml(props.badge.text)}
+                        ? `<span style="display: inline-block; background-color: #FFFFFF; padding: 5px 12px; border-radius: 9999px; font-size: 12px; font-weight: 600; color: ${badgeStyle.text};">
+                            <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background-color: ${badgeStyle.dot}; margin-right: 6px; vertical-align: middle;"></span>${escapeHtml(props.badge.text)}
                           </span>`
-                        : `<span style="font-size: 10px; font-family: monospace; color: #64748B; letter-spacing: 0.08em; text-transform: uppercase; background: rgba(255,255,255,0.06); padding: 4px 8px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
-                            SECURE DISPATCH
-                          </span>`
+                        : ""
                     }
                   </td>
                 </tr>
@@ -256,77 +204,50 @@ export function renderEnterpriseEmailLayout(props: EnterpriseEmailLayoutProps): 
             </td>
           </tr>
 
-          <!-- Main Content Body -->
+          <!-- Main Content -->
           <tr>
             <td class="content">
-              <!-- Geometric Watermark (Subtle 1.5% Brand Presence) -->
-              <div style="position: absolute; right: 20px; top: 20px; opacity: 0.02; pointer-events: none; z-index: 0;">
-                <svg width="180" height="238" viewBox="0 0 380 503" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="${CELAEST_LOGO_PATH_D}" fill="#0F172A"/>
-                </svg>
+              <h1>${escapeHtml(props.title)}</h1>
+              
+              ${props.greeting ? `<div class="greeting">Hola, ${escapeHtml(props.greeting)}.</div>` : ""}
+              
+              <div class="intro">${props.intro}</div>
+
+              <div>
+                ${props.bodyHtml}
               </div>
 
-              <!-- Content Layer -->
-              <div style="position: relative; z-index: 1;">
-                <div class="eyebrow">${escapeHtml(eyebrow)}</div>
-                <h1>${escapeHtml(props.title)}</h1>
-                
-                ${props.greeting ? `<div class="greeting">${escapeHtml(props.greeting)},</div>` : ""}
-                
-                <div class="intro">${escapeHtml(props.intro)}</div>
+              ${
+                props.ctaButton
+                  ? `<div class="button-container">
+                      <a href="${props.ctaButton.url}" class="action-btn" target="_blank">
+                        ${escapeHtml(props.ctaButton.text)} &rarr;
+                      </a>
+                    </div>`
+                  : ""
+              }
 
-                <!-- Custom Micro-Artefact or Body -->
-                <div>
-                  ${props.bodyHtml}
-                </div>
-
-                <!-- Primary CTA Button -->
-                ${
-                  props.ctaButton
-                    ? `<div class="button-container">
-                        <a href="${props.ctaButton.url}" class="action-btn" target="_blank">
-                          ${escapeHtml(props.ctaButton.text)} &rarr;
-                        </a>
-                      </div>`
-                    : ""
-                }
-
-                <!-- Secondary Footnote -->
-                ${props.secondaryNote ? `<div class="note">${escapeHtml(props.secondaryNote)}</div>` : ""}
-              </div>
+              ${props.secondaryNote ? `<div class="note">${escapeHtml(props.secondaryNote)}</div>` : ""}
             </td>
           </tr>
 
-          <!-- Corporate Legal Footer with Physical Address and Real Cryptographic Proof -->
+          <!-- Footer Slate & Indigo -->
           <tr>
             <td class="footer">
-              <table width="100%" role="presentation" cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                  <td style="vertical-align: top;">
-                    <div style="font-size: 13px; font-weight: 700; color: #0F172A; margin-bottom: 4px;">CELAEST Inc.</div>
-                    <div style="font-size: 11.5px; color: #64748B; line-height: 1.5;">
-                      Enterprise AI &amp; Automation Infrastructure<br>
-                      100 Montgomery St, Suite 1400, San Francisco, CA 94104
-                    </div>
-                  </td>
-                  <td align="right" style="vertical-align: top;">
-                    <div style="font-size: 9.5px; font-family: -apple-system-monospaced, SFMono-Regular, monospace; color: #475569; text-transform: uppercase; letter-spacing: 0.08em; background: #FFFFFF; border: 1px solid #CBD5E1; padding: 4px 8px; border-radius: 4px; display: inline-block;">
-                      DKIM &middot; SPF PASS &middot; TLS 1.3
-                    </div>
-                  </td>
-                </tr>
-              </table>
-              <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid #E2E8F0; font-size: 11.5px;">
-                <a href="https://celaest.com">celaest.com</a> &nbsp;&middot;&nbsp; 
-                <a href="https://celaest.com/${isEs ? "es" : "en"}/legal/privacy">${isEs ? "Privacidad" : "Privacy Policy"}</a> &nbsp;&middot;&nbsp; 
-                <a href="https://celaest.com/${isEs ? "es" : "en"}/legal/terms">${isEs ? "Términos de Servicio" : "Terms of Service"}</a> &nbsp;&middot;&nbsp;
-                <a href="https://app.celaest.com/settings/notifications">${isEs ? "Preferencias de Correo" : "Notification Settings"}</a>
+              <div style="margin-bottom: 6px; color: #0F172A; font-weight: 600;">
+                CELAEST Inc. &middot; ${isEs ? "Automatización Empresarial e Inteligencia Artificial" : "Enterprise Automation & AI Platform"}
               </div>
-              <div class="footer-security">
+              <div style="margin-bottom: 10px;">
+                <a href="https://celaest.com">celaest.com</a> &nbsp;&middot;&nbsp; 
+                <a href="https://celaest.com/${isEs ? "es" : "en"}/legal/privacy">${isEs ? "Privacidad" : "Privacy"}</a> &nbsp;&middot;&nbsp; 
+                <a href="https://celaest.com/${isEs ? "es" : "en"}/legal/terms">${isEs ? "Términos" : "Terms"}</a> &nbsp;&middot;&nbsp;
+                <a href="mailto:support@celaest.com">support@celaest.com</a>
+              </div>
+              <div style="font-size: 11px; color: #64748B;">
                 ${
                   isEs
-                    ? "Mensaje transaccional oficial de seguridad y servicio relacionado con tu suscripción corporativa en CELAEST. Ningún dato de pago sensible es almacenado en texto plano."
-                    : "Automated transactional notice regarding your corporate account and services at CELAEST. No sensitive payment details are stored in plain text."
+                    ? "Recibes este correo porque interactuaste con CELAEST o tienes una cuenta activa en nuestra plataforma."
+                    : "You received this email because you interacted with CELAEST or hold an active account on our platform."
                 }
               </div>
             </td>
@@ -338,18 +259,17 @@ export function renderEnterpriseEmailLayout(props: EnterpriseEmailLayoutProps): 
 </body>
 </html>`;
 
-  // Versión en texto plano impecable
-  const plainGreeting = props.greeting ? `${props.greeting},\n\n` : "";
+  const plainGreeting = props.greeting ? `Hola, ${props.greeting}\n\n` : "";
   const plainCta = props.ctaButton ? `\n\n[ ${props.ctaButton.text} ]: ${props.ctaButton.url}` : "";
   const plainNote = props.secondaryNote ? `\n\n${props.secondaryNote}` : "";
   const text = `${props.title.toUpperCase()}
 ==================================================
 
-${plainGreeting}${props.intro}${plainCta}${plainNote}
+${plainGreeting}${props.intro.replace(/<[^>]+>/g, "")}${plainCta}${plainNote}
 
 ---
 CELAEST Inc. · https://celaest.com
-100 Montgomery St, Suite 1400, San Francisco, CA 94104`;
+support@celaest.com`;
 
   return { html, text };
 }
@@ -372,10 +292,10 @@ export interface KeyValueRow {
 
 export function renderKeyValueTable(rows: KeyValueRow[]): string {
   const highlightStyles = {
-    default: "color: #0F172A; font-weight: 600;",
-    success: "color: #065F46; font-weight: 700; font-size: 15px;",
-    warning: "color: #92400E; font-weight: 600;",
-    danger: "color: #991B1B; font-weight: 700;",
+    default: "color: #0F172A; font-weight: 500;",
+    success: "color: #059669; font-weight: 600;",
+    warning: "color: #D97706; font-weight: 600;",
+    danger: "color: #DC2626; font-weight: 600;",
   };
 
   const rowsHtml = rows
@@ -383,20 +303,20 @@ export function renderKeyValueTable(rows: KeyValueRow[]): string {
       const isLast = idx === rows.length - 1;
       const border = isLast ? "" : "border-bottom: 1px solid #E2E8F0;";
       const font = row.isMono
-        ? "font-family: -apple-system-monospaced, SFMono-Regular, Menlo, monospace;"
+        ? "font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px;"
         : "";
       const valStyle = row.highlight
         ? highlightStyles[row.highlight]
-        : "color: #0F172A; font-weight: 600;";
+        : "color: #0F172A; font-weight: 500;";
 
       return `<tr>
-        <td style="color: #64748B; font-size: 13.5px; padding: 10px 0; ${border} vertical-align: top;">${escapeHtml(row.label)}</td>
-        <td align="right" style="font-size: 13.5px; padding: 10px 0; ${border} ${font} ${valStyle} vertical-align: top;">${row.value}</td>
+        <td style="color: #64748B; font-size: 13.5px; padding: 11px 0; ${border} vertical-align: top;">${escapeHtml(row.label)}</td>
+        <td align="right" style="font-size: 13.5px; padding: 11px 0; ${border} ${font} ${valStyle} vertical-align: top;">${row.value}</td>
       </tr>`;
     })
     .join("\n");
 
-  return `<div style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 16px 22px; margin: 20px 0;">
+  return `<div style="background-color: #F8FAFC; border-radius: 12px; padding: 8px 22px; margin: 20px 0;">
     <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
       ${rowsHtml}
     </table>
@@ -408,52 +328,40 @@ export function renderCalloutCard(
   variant: "default" | "success" | "warning" | "danger" = "default",
 ): string {
   const styles = {
-    default: { bg: "#F8FAFC", border: "#CBD5E1", accent: "#64748B", text: "#334155" },
-    success: { bg: "#ECFDF5", border: "#A7F3D0", accent: "#10B981", text: "#065F46" },
-    warning: { bg: "#FFFBEB", border: "#FDE68A", accent: "#F59E0B", text: "#92400E" },
-    danger: { bg: "#FEF2F2", border: "#FECACA", accent: "#EF4444", text: "#991B1B" },
+    default: { bg: "#EEF2FF", text: "#334155" },
+    success: { bg: "#ECFDF5", text: "#065F46" },
+    warning: { bg: "#FFFBEB", text: "#B45309" },
+    danger: { bg: "#FEF2F2", text: "#DC2626" },
   }[variant];
 
-  return `<div style="background-color: ${styles.bg}; border: 1px solid ${styles.border}; border-left: 4px solid ${styles.accent}; border-radius: 8px; padding: 16px 20px; margin: 22px 0; font-size: 14px; line-height: 1.6; color: ${styles.text};">
+  return `<div style="background-color: ${styles.bg}; border-radius: 10px; padding: 16px 20px; margin: 20px 0; font-size: 13.5px; line-height: 1.6; color: ${styles.text};">
     ${content}
   </div>`;
 }
 
-/**
- * Micro-Artefacto Bóveda Criptográfica OTP
- * Incluye representación escultórica de cada dígito y texto completo accesible para lectores y parsers.
- */
 export function renderOtpVault(code: string, subtext?: string): string {
   const digits = code.split("");
   const cells = digits
     .map(
       (d) =>
-        `<td style="width: 46px; height: 56px; background-color: #0F172A; border: 1.5px solid #334155; border-radius: 9px; text-align: center; vertical-align: middle; font-family: -apple-system-monospaced, SFMono-Regular, monospace; font-size: 28px; font-weight: 800; color: #FFFFFF; box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 2px 4px rgba(0,0,0,0.15);">${escapeHtml(d)}</td>`,
+        `<td style="width: 48px; height: 56px; background-color: #EEF2FF; border-radius: 10px; text-align: center; vertical-align: middle; font-family: ui-monospace, SFMono-Regular, monospace; font-size: 26px; font-weight: 700; color: #4F46E5;">${escapeHtml(d)}</td>`,
     )
-    .join('\n<td width="6" style="font-size: 0; line-height: 0;">&nbsp;</td>\n');
+    .join('\n<td width="8" style="font-size: 0; line-height: 0;">&nbsp;</td>\n');
 
-  return `<div style="background-color: #090D16; border: 1px solid #1E293B; border-radius: 12px; padding: 26px 22px; text-align: center; margin: 26px 0; position: relative;">
-    <!-- Accessible raw code for system copy and parsers -->
+  return `<div style="padding: 14px 0 18px; text-align: left; margin: 8px 0;">
     <span style="display: none; visibility: hidden; opacity: 0; font-size: 0; height: 0;">${escapeHtml(code)}</span>
-    
-    <div style="display: inline-block; background: rgba(124, 58, 237, 0.2); border: 1px solid rgba(124, 58, 237, 0.4); color: #C4B5FD; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 10px; border-radius: 9999px; margin-bottom: 16px;">
-      ZERO-TRUST SECURITY TOKEN
-    </div>
-
     ${
       subtext
-        ? `<div style="font-size: 12px; text-transform: uppercase; color: #94A3B8; font-weight: 600; letter-spacing: 0.08em; margin-bottom: 16px;">${escapeHtml(subtext)}</div>`
+        ? `<div style="font-size: 13px; color: #64748B; font-weight: 500; margin-bottom: 12px;">${escapeHtml(subtext)}</div>`
         : ""
     }
-    
-    <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto;">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0">
       <tr>
         ${cells}
       </tr>
     </table>
-
-    <div style="margin-top: 18px; font-size: 11px; font-family: -apple-system-monospaced, monospace; color: #64748B; letter-spacing: 0.05em;">
-      HMAC-SHA256 CHECKSUM &middot; VALIDEZ: 15 MINUTOS &middot; UN SOLO USO
+    <div style="margin-top: 12px; font-size: 12.5px; color: #64748B;">
+      Por tu seguridad, este código es de un solo uso y vence en 15 minutos.
     </div>
   </div>`;
 }
@@ -462,9 +370,6 @@ export function renderCodeBox(code: string, subtext?: string): string {
   return renderOtpVault(code, subtext);
 }
 
-/**
- * Micro-Artefacto Recibo Digital B2B: Bono Fiscal / Tax Invoice estilo Stripe/Apple
- */
 export interface ReceiptItem {
   name: string;
   period?: string;
@@ -483,97 +388,67 @@ export function renderReceiptBreakdown(data: {
   const itemsHtml = data.items
     .map(
       (item) => `<tr>
-        <td style="padding: 12px 0; border-bottom: 1px solid #F1F5F9; font-size: 14px; color: #0F172A; font-weight: 500;">
+        <td style="padding: 12px 0; border-bottom: 1px solid #E2E8F0; font-size: 13.5px; color: #0F172A; font-weight: 600;">
           ${escapeHtml(item.name)}
-          ${item.period ? `<div style="font-size: 12px; color: #64748B; font-weight: 400; margin-top: 3px;">${escapeHtml(item.period)}</div>` : ""}
+          ${item.period ? `<div style="font-size: 12px; color: #64748B; font-weight: 400; margin-top: 2px;">${escapeHtml(item.period)}</div>` : ""}
         </td>
-        <td align="right" style="padding: 12px 0; border-bottom: 1px solid #F1F5F9; font-size: 14px; color: #0F172A; font-weight: 600; font-family: monospace;">
+        <td align="right" style="padding: 12px 0; border-bottom: 1px solid #E2E8F0; font-size: 13.5px; color: #0F172A; font-weight: 600; font-family: ui-monospace, SFMono-Regular, monospace;">
           ${escapeHtml(item.amount)}
         </td>
       </tr>`,
     )
     .join("\n");
 
-  return `<div style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 24px 26px; margin: 26px 0;">
-    <!-- Big Hero Amount & Stamp -->
-    <div style="border-bottom: 1px dashed #CBD5E1; padding-bottom: 18px; margin-bottom: 18px;">
-      <table width="100%" cellpadding="0" cellspacing="0">
-        <tr>
-          <td>
-            <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #047857; margin-bottom: 4px;">
-              &bull; PAGO PROCESADO EXITOSAMENTE
-            </div>
-            <div style="font-size: 38px; font-weight: 800; color: #090D16; letter-spacing: -0.04em; line-height: 1.1;">
-              ${escapeHtml(data.total)} <span style="font-size: 20px; font-weight: 600; color: #64748B;">${escapeHtml(data.currency)}</span>
-            </div>
-          </td>
-          <td align="right" style="vertical-align: top;">
-            <div style="background: #ECFDF5; border: 1px solid #A7F3D0; color: #065F46; font-size: 10px; font-weight: 700; font-family: monospace; padding: 4px 8px; border-radius: 4px; display: inline-block;">
-              PAID &middot; CFDI
-            </div>
-          </td>
-        </tr>
-      </table>
-      
-      <!-- Card Authorization Chip -->
-      <div style="margin-top: 14px; background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 6px; padding: 8px 12px; display: inline-block;">
-        <span style="font-size: 12px; color: #0F172A; font-weight: 600;">Visa &bull;&bull;&bull;&bull; ${escapeHtml(data.last4)}</span>
-        <span style="font-size: 11px; color: #64748B; margin-left: 8px;">Factura #${escapeHtml(data.invoiceNumber)}</span>
-      </div>
+  return `<div style="background-color: #EEF2FF; border-radius: 12px; padding: 20px 24px; margin: 20px 0 16px;">
+    <div style="font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #4F46E5; margin-bottom: 4px;">
+      Total pagado
     </div>
-
-    <!-- Line items ledger -->
+    <div style="font-size: 34px; font-weight: 800; color: #0F172A; letter-spacing: -0.03em; line-height: 1.1;">
+      ${escapeHtml(data.total)} <span style="font-size: 16px; font-weight: 600; color: #64748B;">${escapeHtml(data.currency)}</span>
+    </div>
+    <div style="font-size: 13px; color: #334155; margin-top: 6px;">
+      Comprobante #${escapeHtml(data.invoiceNumber)} &middot; Visa &bull;&bull;&bull;&bull; ${escapeHtml(data.last4)}
+    </div>
+  </div>
+  <div style="background-color: #F8FAFC; border-radius: 12px; padding: 8px 24px; margin: 0 0 20px;">
     <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
       ${itemsHtml}
       <tr>
-        <td style="padding: 10px 0 4px; font-size: 13px; color: #64748B;">Subtotal Neto</td>
-        <td align="right" style="padding: 10px 0 4px; font-size: 13px; color: #64748B; font-family: monospace;">${escapeHtml(data.subtotal)} ${escapeHtml(data.currency)}</td>
-      </tr>
-      <tr>
-        <td style="padding: 4px 0 10px; font-size: 13px; color: #64748B;">Impuestos / VAT (0.00% B2B Reverse Charge)</td>
-        <td align="right" style="padding: 4px 0 10px; font-size: 13px; color: #64748B; font-family: monospace;">${escapeHtml(data.tax)}</td>
-      </tr>
-      <tr style="border-top: 2px solid #0F172A;">
-        <td style="padding: 14px 0 0; font-size: 15px; font-weight: 800; color: #090D16;">Total Facturado</td>
-        <td align="right" style="padding: 14px 0 0; font-size: 18px; font-weight: 800; color: #047857; font-family: monospace;">${escapeHtml(data.total)} ${escapeHtml(data.currency)}</td>
+        <td style="padding: 12px 0; font-size: 13.5px; font-weight: 700; color: #0F172A;">Total pagado</td>
+        <td align="right" style="padding: 12px 0; font-size: 14px; font-weight: 700; color: #0F172A; font-family: ui-monospace, SFMono-Regular, monospace;">${escapeHtml(data.total)} ${escapeHtml(data.currency)}</td>
       </tr>
     </table>
   </div>`;
 }
 
-/**
- * Micro-Artefacto Dashboard de Métricas Semanales de Impacto
- */
 export function renderMetricsRow(
   metrics: { label: string; value: string; trend?: string }[],
 ): string {
   const colWidth = Math.round(100 / Math.max(1, metrics.length));
   const cells = metrics
-    .map(
-      (
-        m,
-      ) => `<td width="${colWidth}%" style="background-color: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 10px; padding: 20px 14px; text-align: center; vertical-align: middle; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-        <div style="font-size: 30px; font-weight: 800; color: #090D16; line-height: 1; letter-spacing: -0.03em;">${escapeHtml(m.value)}</div>
-        <div style="font-size: 11px; color: #64748B; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-top: 6px;">${escapeHtml(m.label)}</div>
-        ${
-          m.trend
-            ? `<div style="font-size: 10.5px; font-weight: 700; color: #065F46; margin-top: 8px; background: #ECFDF5; border: 1px solid #A7F3D0; padding: 2px 7px; border-radius: 4px; display: inline-block;">${escapeHtml(m.trend)}</div>`
-            : ""
-        }
-      </td>`,
-    )
-    .join('\n<td width="10" style="font-size: 0; line-height: 0;">&nbsp;</td>\n');
+    .map((m, idx) => {
+      const divider = idx < metrics.length - 1 ? "border-right: 1px solid #E2E8F0;" : "";
+      return `<td width="${colWidth}%" style="padding: 14px 10px; text-align: center; vertical-align: top; ${divider}">
+          <div style="font-size: 28px; font-weight: 800; color: #0F172A; line-height: 1.1; letter-spacing: -0.03em;">${escapeHtml(m.value)}</div>
+          <div style="font-size: 12px; color: #64748B; font-weight: 500; margin-top: 6px;">${escapeHtml(m.label)}</div>
+          ${
+            m.trend
+              ? `<div style="font-size: 11.5px; font-weight: 600; color: #059669; margin-top: 4px;">${escapeHtml(m.trend)}</div>`
+              : ""
+          }
+        </td>`;
+    })
+    .join("\n");
 
-  return `<table width="100%" cellpadding="0" cellspacing="0" style="margin: 26px 0; border-collapse: collapse;">
-    <tr>
-      ${cells}
-    </tr>
-  </table>`;
+  return `<div style="background-color: #EEF2FF; border-radius: 12px; padding: 14px 6px; margin: 20px 0;">
+    <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
+      <tr>
+        ${cells}
+      </tr>
+    </table>
+  </div>`;
 }
 
-/**
- * Micro-Artefacto Barra de Capacidad y Telemetría de Inferencia
- */
 export function renderCapacityGauge(data: {
   usedPct: number;
   consumed: string;
@@ -581,136 +456,45 @@ export function renderCapacityGauge(data: {
   resetDate: string;
 }): string {
   const isHigh = data.usedPct >= 85;
-  const barColor = isHigh ? "linear-gradient(90deg, #F59E0B, #DC2626)" : "#6D28D9";
-  const pillColor = isHigh ? "#92400E" : "#5B21B6";
-  const pillBg = isHigh ? "#FFFBEB" : "#F5F3FF";
-  const pillBorder = isHigh ? "#FDE68A" : "#DDD6FE";
+  const barColor = isHigh ? "#D97706" : "#4F46E5";
+  const pctColor = isHigh ? "#D97706" : "#4F46E5";
 
-  return `<div style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 22px 24px; margin: 24px 0;">
-    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 12px;">
+  return `<div style="background-color: #F8FAFC; border-radius: 12px; padding: 20px 22px; margin: 20px 0;">
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 10px;">
       <tr>
-        <td style="font-size: 12px; font-weight: 800; color: #0F172A; text-transform: uppercase; letter-spacing: 0.08em;">
-          PRESUPUESTO DE TOKENS IA CONSUMIDO
+        <td style="font-size: 13.5px; font-weight: 600; color: #0F172A;">
+          Capacidad mensual utilizada
         </td>
-        <td align="right">
-          <span style="font-size: 13px; font-weight: 800; color: ${pillColor}; background: ${pillBg}; border: 1px solid ${pillBorder}; padding: 3px 9px; border-radius: 4px; font-family: monospace;">
-            ${data.usedPct}%
-          </span>
+        <td align="right" style="font-size: 14px; font-weight: 700; color: ${pctColor}; font-family: ui-monospace, SFMono-Regular, monospace;">
+          ${data.usedPct}%
         </td>
       </tr>
     </table>
 
-    <!-- Progress Track Bar -->
-    <div style="background-color: #E2E8F0; border-radius: 9999px; height: 12px; overflow: hidden; width: 100%; margin: 8px 0 16px;">
-      <div style="background: ${barColor}; height: 100%; width: ${Math.min(100, data.usedPct)}%; border-radius: 9999px;"></div>
+    <div style="background-color: #E2E8F0; border-radius: 9999px; height: 8px; overflow: hidden; width: 100%; margin: 10px 0 14px;">
+      <div style="background-color: ${barColor}; height: 100%; width: ${Math.min(100, data.usedPct)}%; border-radius: 9999px;"></div>
     </div>
 
     <table width="100%" cellpadding="0" cellspacing="0" style="font-size: 12.5px; color: #64748B;">
       <tr>
-        <td>Inferencia: <strong style="color: #0F172A; font-family: monospace;">${escapeHtml(data.consumed)}</strong> de ${escapeHtml(data.total)}</td>
-        <td align="right">Próxima renovación: <strong style="color: #0F172A;">${escapeHtml(data.resetDate)}</strong></td>
+        <td>Consumo: <strong style="color: #0F172A; font-family: ui-monospace, SFMono-Regular, monospace;">${escapeHtml(data.consumed)}</strong> / ${escapeHtml(data.total)}</td>
+        <td align="right">Renovación: <strong style="color: #0F172A;">${escapeHtml(data.resetDate)}</strong></td>
       </tr>
     </table>
   </div>`;
 }
 
-/**
- * Micro-Artefacto Telemetría Forense de Seguridad (SOC 2 Threat Radar)
- */
 export function renderSecurityDossier(data: {
   device: string;
   location: string;
   ip: string;
   timestamp: string;
-  tlsFingerprint?: string;
 }): string {
-  return `<div style="background-color: #0A0D14; border: 1px solid #1E293B; border-left: 4px solid #EF4444; border-radius: 10px; padding: 20px 22px; margin: 24px 0; color: #F1F5F9;">
-    <div style="font-size: 11px; font-family: monospace; font-weight: 700; color: #EF4444; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 14px;">
-      &bull; REGISTRO FORENSE DE AUDITORÍA (INCIDENT REF #SEC-98102)
-    </div>
-    <table width="100%" cellpadding="6" cellspacing="0" style="font-size: 13.5px;">
-      <tr>
-        <td style="color: #94A3B8;">Dispositivo / SO:</td>
-        <td align="right" style="color: #FFFFFF; font-weight: 600;">${escapeHtml(data.device)}</td>
-      </tr>
-      <tr>
-        <td style="color: #94A3B8;">Ubicación Detectada:</td>
-        <td align="right" style="color: #FFFFFF; font-weight: 600;">${escapeHtml(data.location)}</td>
-      </tr>
-      <tr>
-        <td style="color: #94A3B8;">Dirección IP Pública:</td>
-        <td align="right" style="font-family: monospace; color: #F87171; font-weight: 700;">${escapeHtml(data.ip)}</td>
-      </tr>
-      <tr>
-        <td style="color: #94A3B8;">Marca Temporal:</td>
-        <td align="right" style="font-family: monospace; color: #94A3B8;">${escapeHtml(data.timestamp)}</td>
-      </tr>
-      ${
-        data.tlsFingerprint
-          ? `<tr style="border-top: 1px solid #1E293B;">
-              <td style="color: #64748B; padding-top: 10px; font-size: 12px;">Cifrado / Fingerprint:</td>
-              <td align="right" style="font-family: monospace; font-size: 11.5px; color: #34D399; padding-top: 10px;">${escapeHtml(data.tlsFingerprint)}</td>
-            </tr>`
-          : ""
-      }
-    </table>
-  </div>`;
-}
-
-/**
- * Micro-Artefacto Docket de Concierge Enterprise (Acuse de Recibo al Cliente)
- */
-export function renderConciergeDocket(data: {
-  ticketNumber: string;
-  architectName: string;
-  architectRole: string;
-  slaCommitment: string;
-}): string {
-  return `<div style="background-color: #F8FAFC; border: 1px solid #CBD5E1; border-radius: 12px; padding: 22px 24px; margin: 24px 0;">
-    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px; border-bottom: 1px solid #E2E8F0; padding-bottom: 14px;">
-      <tr>
-        <td>
-          <div style="font-size: 11px; font-family: monospace; font-weight: 700; color: #6D28D9; text-transform: uppercase; letter-spacing: 0.1em;">
-            EXPEDIENTE ENTERPRISE &middot; ${escapeHtml(data.ticketNumber)}
-          </div>
-          <div style="font-size: 16px; font-weight: 800; color: #0F172A; margin-top: 2px;">
-            Atención Asignada en Cola de Ingeniería
-          </div>
-        </td>
-        <td align="right">
-          <div style="background: #ECFDF5; border: 1px solid #A7F3D0; color: #065F46; font-size: 10.5px; font-weight: 700; padding: 4px 8px; border-radius: 4px; display: inline-block;">
-            ${escapeHtml(data.slaCommitment)}
-          </div>
-        </td>
-      </tr>
-    </table>
-
-    <!-- Solution Architect Profile Card -->
-    <table width="100%" cellpadding="0" cellspacing="0" style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 8px; padding: 12px 14px; margin-bottom: 16px;">
-      <tr>
-        <td style="width: 40px; vertical-align: middle;">
-          <div style="width: 40px; height: 40px; border-radius: 50%; background: #0F172A; color: #FFFFFF; font-weight: 800; font-size: 14px; text-align: center; line-height: 40px;">
-            ${data.architectName
-              .split(" ")
-              .map((n) => n[0])
-              .join("")}
-          </div>
-        </td>
-        <td style="padding-left: 14px; vertical-align: middle;">
-          <div style="font-size: 14px; font-weight: 700; color: #0F172A;">${escapeHtml(data.architectName)}</div>
-          <div style="font-size: 12px; color: #64748B;">${escapeHtml(data.architectRole)}</div>
-        </td>
-      </tr>
-    </table>
-
-    <!-- 3-Phase Roadmap -->
-    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #64748B; letter-spacing: 0.08em; margin-bottom: 8px;">
-      PROCESO DE ATENCIÓN DE ARQUITECTURA
-    </div>
-    <table width="100%" cellpadding="4" cellspacing="0" style="font-size: 12.5px; color: #334155;">
-      <tr><td style="color: #047857; font-weight: 700; width: 20px;">&check;</td><td><strong>1. Requerimiento Registrado:</strong> Cargas y topología encoladas en el Kernel.</td></tr>
-      <tr><td style="color: #6D28D9; font-weight: 700;">&rarr;</td><td><strong>2. Modelado de Cómputo:</strong> Estimación de tokens y latencia de IA Mesh.</td></tr>
-      <tr><td style="color: #94A3B8; font-weight: 700;">&bull;</td><td><strong>3. Sesión Técnica 1:1:</strong> Presentación del Blueprint con tu equipo técnico.</td></tr>
-    </table>
-  </div>`;
+  const rows: KeyValueRow[] = [
+    { label: "Navegador y equipo", value: escapeHtml(data.device) },
+    { label: "Ubicación aproximada", value: escapeHtml(data.location) },
+    { label: "Dirección IP", value: escapeHtml(data.ip), isMono: true },
+    { label: "Fecha y hora", value: escapeHtml(data.timestamp) },
+  ];
+  return renderKeyValueTable(rows);
 }

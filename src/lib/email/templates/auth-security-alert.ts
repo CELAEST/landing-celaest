@@ -1,4 +1,4 @@
-import { renderEnterpriseEmailLayout, renderSecurityDossier, escapeHtml } from "../layout";
+import { renderEnterpriseEmailLayout, renderSecurityDossier } from "../layout";
 
 export interface SecurityAlertData {
   name?: string;
@@ -18,15 +18,17 @@ export function renderSecurityAlertEmail(data: SecurityAlertData): {
   const title = isEs ? "Nuevo inicio de sesión detectado" : "New sign-in detected";
   const greeting = data.name;
   const intro = isEs
-    ? "Detectamos un nuevo inicio de sesión en tu cuenta CELAEST con los siguientes detalles de conexión:"
-    : "We detected a new sign-in to your CELAEST account with the following connection details:";
+    ? "Notamos que se acaba de iniciar sesión en tu cuenta de CELAEST desde un navegador o dispositivo nuevo. Te compartimos los datos para que verifiques que fuiste tú:"
+    : "We noticed a sign-in to your CELAEST account from a new browser or device. Here are the details so you can confirm it was you:";
   const legitimateNotice = isEs
-    ? "Si fuiste tú, no necesitas realizar ninguna acción. Este correo es únicamente un aviso informativo de seguridad."
-    : "If this was you, no action is needed. This email is an informational security notice.";
+    ? "Si fuiste tú, no necesitas realizar ninguna acción."
+    : "If this was you, no action is needed.";
   const panicNotice = isEs
-    ? "Si NO reconoces esta actividad, te recomendamos bloquear la sesión de inmediato y actualizar tus credenciales:"
-    : "If you DO NOT recognize this activity, please freeze your session immediately and reset your password:";
-  const buttonText = isEs ? "Bloquear Sesión Inmediatamente" : "Lock Session & Revoke Tokens";
+    ? "Si no reconoces este acceso, cierra las sesiones activas de inmediato con el botón de abajo:"
+    : "If you do not recognize this sign-in, close active sessions immediately below:";
+  const buttonText = isEs
+    ? "No fui yo: cerrar sesión y proteger cuenta"
+    : "Not me: sign out & secure account";
 
   const bodyHtml = `
     ${renderSecurityDossier({
@@ -34,18 +36,16 @@ export function renderSecurityAlertEmail(data: SecurityAlertData): {
       location: data.location,
       ip: data.ipAddress,
       timestamp: data.timestamp,
-      tlsFingerprint: "TLS 1.3 · X25519 · AES-256-GCM",
     })}
-    <div style="background-color: #FFFBEB; border: 1px solid #FDE68A; border-radius: 8px; padding: 14px 18px; font-size: 13.5px; color: #92400E; margin-bottom: 20px;">
-      <strong>${isEs ? "¿No reconoces este acceso?" : "Do not recognize this?"}</strong> ${panicNotice}
+    <div style="font-size: 13.5px; color: #334155; margin-bottom: 16px; line-height: 1.6;">
+      <strong>${isEs ? "¿Fuiste tú?" : "Was this you?"}</strong> ${panicNotice}
     </div>
   `;
 
   const layout = renderEnterpriseEmailLayout({
     title,
-    categoryEyebrow: isEs ? "TELEMETRÍA // ALERTA DE SEGURIDAD" : "TELEMETRY // SECURITY ALERT",
     badge: {
-      text: isEs ? "Alerta de Seguridad" : "Security Alert",
+      text: isEs ? "Aviso de Seguridad" : "Security Notice",
       variant: "warning",
     },
     greeting,
@@ -70,7 +70,7 @@ Detalles:
 - Dispositivo: ${data.device}
 - Ubicación: ${data.location}
 - Dirección IP: ${data.ipAddress}
-- Hora UTC: ${data.timestamp}
+- Fecha y hora: ${data.timestamp}
 
 ${legitimateNotice}
 ${panicNotice}

@@ -19,32 +19,32 @@ export function renderWeeklyDigestEmail(data: WeeklyDigestData): {
   const title = isEs ? "Tu resumen semanal de CELAEST" : "Your CELAEST Weekly Summary";
   const greeting = data.userName;
   const intro = isEs
-    ? `Aquí tienes el resumen consolidado de impacto, ahorro y ejecuciones correspondientes al periodo <strong>${escapeHtml(data.startDate)} &ndash; ${escapeHtml(data.endDate)}</strong>:`
-    : `Here is your consolidated summary of tangible impact, time saved, and automated runs for <strong>${escapeHtml(data.startDate)} &ndash; ${escapeHtml(data.endDate)}</strong>:`;
-  const buttonText = isEs ? "Ir al Dashboard" : "Open Dashboard";
+    ? `Aquí tienes un resumen claro del trabajo que tus herramientas y automatizaciones adelantaron por ti durante la última semana (<strong>${escapeHtml(data.startDate)} &ndash; ${escapeHtml(data.endDate)}</strong>):`
+    : `Here is a clear look at the work your tools and automations completed for you over the past week (<strong>${escapeHtml(data.startDate)} &ndash; ${escapeHtml(data.endDate)}</strong>):`;
+  const buttonText = isEs ? "Ir a mi panel de CELAEST" : "Open my CELAEST dashboard";
 
   const metrics = [
     {
-      label: isEs ? "Ejecuciones" : "Automated Tasks",
+      label: isEs ? "Procesos ejecutados" : "Completed runs",
       value: `${data.tasksCompleted}`,
     },
     {
-      label: isEs ? "Horas Ahorradas" : "Hours Saved",
+      label: isEs ? "Tiempo ahorrado" : "Time saved",
       value: `${data.hoursSaved}h`,
     },
     {
-      label: isEs ? "Eficiencia IA" : "AI Efficiency",
+      label: isEs ? "Sin errores" : "Success rate",
       value: data.learningProgress,
     },
   ];
 
   const bodyHtml = `
     ${renderMetricsRow(metrics)}
-    <div style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 14px 18px; margin: 16px 0; font-size: 13px; color: #475569; line-height: 1.55;">
+    <div style="background-color: #F8FAFC; border-radius: 10px; padding: 14px 18px; margin: 16px 0; font-size: 13.5px; color: #334155; line-height: 1.6;">
       ${
         isEs
-          ? "Tus pipelines mantuvieron una disponibilidad del 99.98% con tiempos medios de respuesta de 42ms a través del IA Mesh."
-          : "Your production pipelines maintained 99.98% uptime with average response latencies of 42ms across the AI Mesh."
+          ? "Además, tienes nuevas actualizaciones disponibles listas para descargar en tu biblioteca de activos."
+          : "Plus, you have new version updates ready to download in your asset library."
       }
     </div>
   `;
@@ -52,7 +52,7 @@ export function renderWeeklyDigestEmail(data: WeeklyDigestData): {
   const layout = renderEnterpriseEmailLayout({
     title,
     badge: {
-      text: isEs ? "Resumen Semanal" : "Weekly Digest",
+      text: isEs ? "Resumen Semanal" : "Weekly Summary",
       variant: "default",
     },
     greeting,
@@ -64,8 +64,8 @@ export function renderWeeklyDigestEmail(data: WeeklyDigestData): {
       variant: "primary",
     },
     secondaryNote: isEs
-      ? "Este informe se genera automáticamente cada lunes. Puedes modificar la frecuencia desde tus preferencias de notificación."
-      : "This report is generated automatically every Monday. You can adjust frequency in your notification preferences.",
+      ? "Enviamos este resumen cada lunes para ayudarte a medir el retorno de tus automatizaciones. Puedes desactivarlo cuando quieras desde tus preferencias."
+      : "We send this summary every Monday to help you track your automation ROI. You can turn it off anytime in your preferences.",
     locale: data.locale,
   });
 
