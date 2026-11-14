@@ -14,8 +14,8 @@ export function renderContactConfirmationEmail(data: ContactFormData): {
   const title = isEs ? "Hemos recibido tu mensaje" : "We have received your message";
   const greeting = data.name;
   const intro = isEs
-    ? "Gracias por comunicarte con el equipo de soluciones técnicas de CELAEST. Un especialista revisará tu consulta y te responderá en un plazo máximo de 24 horas hábiles."
-    : "Thank you for reaching out to the CELAEST technical solutions team. A specialist will review your inquiry and get back to you within 24 business hours.";
+    ? "Muchas gracias por escribirnos. Tu consulta ya está en manos de nuestro equipo en CELAEST; la estamos revisando y te responderemos personalmente a este mismo correo en menos de 24 horas hábiles."
+    : "Thank you for reaching out to us. Your message is with the CELAEST team; we are reviewing it and will reply personally to this email within 24 business hours.";
 
   const rows: KeyValueRow[] = [
     {
@@ -33,16 +33,16 @@ export function renderContactConfirmationEmail(data: ContactFormData): {
         ]
       : []),
     {
-      label: isEs ? "Remitente" : "Sender",
-      value: escapeHtml(data.name ? `${data.name} &lt;${data.email}&gt;` : data.email),
+      label: isEs ? "Correo de respuesta" : "Reply-to email",
+      value: escapeHtml(data.name ? `${data.name} <${data.email}>` : data.email),
     },
   ];
 
   const bodyHtml = `
     ${renderKeyValueTable(rows)}
-    <div style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 14px 18px; margin: 16px 0;">
-      <div style="font-size: 11px; text-transform: uppercase; color: #64748B; font-weight: 600; letter-spacing: 0.06em; margin-bottom: 6px;">
-        ${isEs ? "Tu Consulta:" : "Your Message:"}
+    <div style="background-color: #EEF2FF; border-radius: 10px; padding: 16px 20px; margin: 16px 0;">
+      <div style="font-size: 11.5px; text-transform: uppercase; color: #4F46E5; font-weight: 700; letter-spacing: 0.06em; margin-bottom: 6px;">
+        ${isEs ? "Copia de tu mensaje:" : "Copy of your message:"}
       </div>
       <div style="font-size: 13.5px; color: #334155; line-height: 1.6; white-space: pre-wrap;">${escapeHtml(data.message)}</div>
     </div>
@@ -58,12 +58,11 @@ export function renderContactConfirmationEmail(data: ContactFormData): {
     intro,
     bodyHtml,
     secondaryNote: isEs
-      ? "Puedes responder directamente a este correo si deseas agregar detalles adicionales a tu solicitud."
-      : "You can reply directly to this email if you need to provide additional details.",
+      ? "¿Quieres agregar algún detalle adicional? Simplemente responde a este correo y se añadirá a tu solicitud."
+      : "Need to add more details? Simply reply to this email and we will include it with your inquiry.",
     locale: data.locale,
   });
 
-  // Preserve text version with key fields for blackbox assertions
   const plainCompany = data.company ? `\nEmpresa: ${data.company}` : "";
   const plainSubject = data.subject || (isEs ? "Implementación Enterprise" : "AI Mesh Integration");
   const text = `${greeting ? `Hola, ${greeting}\n\n` : ""}${title}

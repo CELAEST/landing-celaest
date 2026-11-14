@@ -16,24 +16,19 @@ export function renderAuthVerificationEmail(data: AuthVerificationData): {
   const title = isEs ? "Inicia sesión en CELAEST" : "Sign in to CELAEST";
   const greeting = data.name;
   const intro = isEs
-    ? "Haz clic en el botón a continuación para ingresar de forma directa y segura a tu cuenta empresarial de CELAEST:"
-    : "Click the button below to securely sign in to your CELAEST enterprise account:";
-  const buttonText = isEs ? "Ingresar a mi Cuenta" : "Sign In to Account";
-  const codeNotice = isEs
-    ? "O ingresa manualmente este código temporal de un solo uso:"
-    : "Or enter this temporary one-time code manually:";
+    ? "Ingresa este código de verificación en la pantalla donde estás iniciando sesión, o haz clic en el botón de abajo para entrar directamente a tu panel:"
+    : "Enter this verification code on your sign-in screen, or click the button below to access your dashboard directly:";
+  const buttonText = isEs ? "Entrar a mi cuenta de CELAEST" : "Sign in to my CELAEST account";
+  const codeNotice = isEs ? "Código de verificación temporal:" : "Temporary verification code:";
   const expireNotice = isEs
     ? "Este enlace y código expiran en 15 minutos por motivos de seguridad."
     : "This link and code will expire in 15 minutes for security reasons.";
   const ignoreNotice = isEs
-    ? "Si no solicitaste este acceso, puedes ignorar este mensaje de forma segura. Ningún cambio ha ocurrido en tu cuenta."
-    : "If you did not request this access, you can safely ignore this email. No changes were made to your account.";
+    ? "Si tú no solicitaste este código, puedes ignorar este mensaje con total tranquilidad; tu cuenta sigue protegida."
+    : "If you did not request this code, you can safely ignore this email; your account remains secure.";
 
   const bodyHtml = `
     ${data.code ? renderCodeBox(data.code, codeNotice) : ""}
-    <div style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 14px 18px; margin: 16px 0; font-size: 13px; color: #64748B; line-height: 1.5;">
-      ${expireNotice}
-    </div>
   `;
 
   const layout = renderEnterpriseEmailLayout({

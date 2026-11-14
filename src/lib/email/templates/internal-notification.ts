@@ -11,17 +11,17 @@ export function renderInternalNotificationEmail(data: ContactFormData): {
   text: string;
 } {
   const title = "NUEVO LEAD CELAEST";
-  const intro = `Se ha registrado una nueva solicitud de contacto comercial o técnica desde la landing page institucional.`;
+  const intro = `Acaba de llegar una nueva consulta a través del formulario de contacto de la web:`;
 
   const rows: KeyValueRow[] = [
     {
-      label: "Prospecto / Nombre",
+      label: "Nombre",
       value: escapeHtml(data.name),
       highlight: "default",
     },
     {
-      label: "Email Corporativo",
-      value: `<a href="mailto:${escapeHtml(data.email)}" style="color: #6D28D9; text-decoration: none;">${escapeHtml(data.email)}</a>`,
+      label: "Correo",
+      value: `<a href="mailto:${escapeHtml(data.email)}" style="color: #4F46E5; text-decoration: none; font-weight: 600;">${escapeHtml(data.email)}</a>`,
       isMono: true,
     },
     {
@@ -33,7 +33,7 @@ export function renderInternalNotificationEmail(data: ContactFormData): {
       value: escapeHtml(data.subject || "Consulta General"),
     },
     {
-      label: "Idioma Detectado",
+      label: "Idioma en web",
       value: escapeHtml((data.locale || "es").toUpperCase()),
       isMono: true,
     },
@@ -41,28 +41,28 @@ export function renderInternalNotificationEmail(data: ContactFormData): {
 
   const bodyHtml = `
     ${renderKeyValueTable(rows)}
-    <div style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 14px 18px; margin: 16px 0;">
-      <div style="font-size: 11px; text-transform: uppercase; color: #64748B; font-weight: 600; letter-spacing: 0.06em; margin-bottom: 6px;">
-        Mensaje del Cliente:
+    <div style="background-color: #EEF2FF; border-radius: 10px; padding: 16px 20px; margin: 16px 0;">
+      <div style="font-size: 11.5px; text-transform: uppercase; color: #4F46E5; font-weight: 700; letter-spacing: 0.06em; margin-bottom: 6px;">
+        Mensaje escrito por el cliente:
       </div>
-      <div style="font-size: 13.5px; color: #1E293B; line-height: 1.6; white-space: pre-wrap;">${escapeHtml(data.message)}</div>
+      <div style="font-size: 14px; color: #0F172A; line-height: 1.6; white-space: pre-wrap;">${escapeHtml(data.message)}</div>
     </div>
   `;
 
   const layout = renderEnterpriseEmailLayout({
     title,
     badge: {
-      text: "Alta Prioridad",
-      variant: "warning",
+      text: "Nuevo Contacto",
+      variant: "success",
     },
     intro,
     bodyHtml,
     ctaButton: {
-      text: `Responder a ${data.name.split(" ")[0]}`,
+      text: `Responder a ${data.name.split(" ")[0]} por correo`,
       url: `mailto:${data.email}?subject=Re:%20${encodeURIComponent(data.subject || "Consulta CELAEST")}`,
       variant: "primary",
     },
-    secondaryNote: "Notificación interna despachada por el pipeline de eventos de CELAEST Cloud.",
+    secondaryNote: "Recibido desde el formulario oficial de contacto en celaest.com.",
     locale: data.locale,
   });
 

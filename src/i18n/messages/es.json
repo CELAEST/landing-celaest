@@ -58,35 +58,35 @@
   "products": {
     "title1": "Herramientas con IA para",
     "title2": "Resultados Reales",
-    "subtitle": "Compra y pon a operar soluciones y automatizaciones con IA listas para producción, sin empezar de cero ni perder semanas programando.",
+    "subtitle": "Activa hoy nuestras soluciones SaaS y de inteligencia artificial en producción, mientras sumamos progresivamente nuevas herramientas de automatización verificadas a tu catálogo.",
     "features": {
       "verified": {
-        "title": "Scripts Verificados",
-        "description": "Cada macro de Excel y script es probado, verificado y optimizado por nuestro equipo experto antes de la publicación."
+        "title": "Lanzamiento Progresivo",
+        "description": "Cada solución SaaS y herramienta de automatización es auditada, probada y verificada antes de sumarse oficialmente al catálogo."
       },
       "secure": {
         "title": "Licencias Seguras",
-        "description": "Sistema de licencias de nivel empresarial con actualizaciones automáticas y control de versiones para todos tus activos adquiridos."
+        "description": "Sistema de licencias y suscripciones con actualizaciones continuas en la nube y control centralizado desde tu panel."
       },
       "roi": {
-        "title": "ROI Instantáneo",
-        "description": "Ahorra cientos de horas con herramientas de automatización probadas en batalla que se pagan solas en días, no meses."
+        "title": "Productividad Real",
+        "description": "Soluciones diseñadas para generar resultados tangibles desde el primer día en aprendizaje profesional y operaciones."
       },
       "python": {
-        "title": "Automatización Python",
-        "description": "Scripts de Python listos para producción para procesamiento de datos, integración de APIs y automatización de flujos de trabajo."
+        "title": "Automatización en Expansión",
+        "description": "Incorporación progresiva de flujos automatizados, conectores API y herramientas de procesamiento de datos."
       },
       "business": {
-        "title": "Software Empresarial",
-        "description": "Soluciones SaaS completas y paquetes de software diseñados para operaciones empresariales modernas."
+        "title": "Software SaaS & IA",
+        "description": "Aplicaciones web listas para usar desde el navegador —encabezadas hoy por CELAEST Lingua y Malla IA—."
       },
       "instant": {
-        "title": "Entrega Instantánea",
-        "description": "Descarga inmediatamente después de la compra con acceso de por vida y actualizaciones gratuitas para todos los productos."
+        "title": "Activación Inmediata",
+        "description": "Acceso digital instantáneo tras la confirmación del pago con mejoras continuas de las versiones activas."
       },
       "macros": {
-        "title": "Macros Empresariales",
-        "description": "Macros de Excel y herramientas de automatización de datos de grado empresarial con soporte VBA avanzado."
+        "title": "Ecosistema Unificado",
+        "description": "Gestiona tus aplicaciones actuales y desbloquea futuros lanzamientos desde un único espacio de trabajo."
       }
     },
     "exploreCTA": "Explorar Todos los Productos"
@@ -178,7 +178,7 @@
   "pricing": {
     "title1": "Precios Simples",
     "title2": "y Transparentes",
-    "subtitle": "Elige el plan que se ajuste a la escala de tu empresa. Todos los planes incluyen infraestructura en la nube, protección continua y gestión centralizada de licencias y APIs.",
+    "subtitle": "Elige el plan que se ajuste a tu escala. Opera hoy con nuestras soluciones activas (CELAEST Lingua y Malla IA) y recibe acceso progresivo a cada nueva herramienta que incorporemos al catálogo.",
     "periodLabel": "Periodo:",
     "currencyLabel": "Moneda:",
     "perMonth": "/mes",
@@ -186,29 +186,27 @@
       "starter": {
         "name": "Inicial",
         "price": "29",
-        "description": "Para profesionales individuales",
+        "description": "Para profesionales y equipos en crecimiento",
         "features": [
-          "Acceso a más de 50 scripts verificados",
-          "Biblioteca básica de macros de Excel",
-          "Soporte por correo electrónico",
-          "Actualizaciones mensuales",
-          "Licencia de usuario único",
-          "Acceso a la comunidad"
+          "Acceso a CELAEST Lingua y soluciones activas del catálogo",
+          "Acceso progresivo a próximos lanzamientos (hasta 10 soluciones activas)",
+          "Hasta 500,000 solicitudes/mes y 5 modelos en Malla IA",
+          "Hasta 15 miembros de equipo y 10 dispositivos por licencia",
+          "25 GB de almacenamiento y registros de auditoría (90 días)",
+          "5 webhooks, integración GitHub y soporte prioritario (support@celaest.com)"
         ]
       },
       "professional": {
         "name": "Profesional",
         "price": "99",
-        "description": "Para equipos en crecimiento",
+        "description": "Para empresas y equipos de alto volumen",
         "features": [
-          "Acceso a más de 500 activos premium",
-          "Biblioteca completa de automatización Python",
-          "Soporte prioritario 24/7",
-          "Actualizaciones semanales",
-          "Hasta 5 licencias de usuario",
-          "Acceso a API",
-          "Integraciones personalizadas",
-          "Análisis avanzados"
+          "Acceso completo al catálogo actual (incluye CELAEST Lingua)",
+          "Acceso automático e ilimitado a todos los futuros lanzamientos del catálogo",
+          "Hasta 1,000,000 solicitudes/mes y modelos ilimitados en Malla IA",
+          "Miembros de equipo y dispositivos por licencia ilimitados",
+          "200 GB de almacenamiento y registros de auditoría (365 días)",
+          "20 webhooks, exportación CSV, analítica ROI, garantía SLA y soporte dedicado"
         ]
       },
       "enterprise": {
@@ -216,14 +214,11 @@
         "price": "Custom",
         "description": "Para grandes organizaciones",
         "features": [
-          "Acceso ilimitado a activos",
-          "Soporte de desarrollo personalizado",
-          "Gerente de cuenta dedicado",
-          "Garantía de SLA",
-          "Licencias de usuario ilimitadas",
-          "Opciones de marca blanca",
-          "Implementación on-premise",
-          "Capacitación y consultoría"
+          "Despliegue corporativo con infraestructura, catálogo y cuotas a medida",
+          "Orquestación dedicada de Malla IA (incluye modalidad BYOK)",
+          "Acceso prioritario anticipado a nuevas soluciones y módulos corporativos",
+          "Aislamiento multi-tenant y cumplimiento corporativo",
+          "Acuerdo de Nivel de Servicio (SLA) personalizado y acompañamiento técnico"
         ]
       }
     },
@@ -366,36 +361,36 @@
     "subtitle": "Todo lo que necesitas saber sobre nuestra plataforma y servicios.",
     "questions": [
       {
-        "question": "¿Qué tipos de activos digitales ofrecen?",
-        "answer": "Ofrecemos una amplia gama de activos digitales que incluyen macros de Excel, scripts de automatización Python, herramientas de procesamiento de datos, integraciones de API y soluciones completas de software empresarial. Todos los activos son desarrollados, probados y verificados profesionalmente antes de su publicación."
+        "question": "¿Qué soluciones y activos digitales ofrecen actualmente?",
+        "answer": "Ofrecemos acceso a nuestro ecosistema de software SaaS e inteligencia artificial aplicada (actualmente encabezado por CELAEST Lingua para adquisición de inglés profesional asistido por IA y el panel de orquestación Malla IA), al cual sumamos progresivamente nuevas herramientas de automatización y productividad verificadas antes de su publicación en el catálogo."
       },
       {
-        "question": "¿Cómo funciona el licenciamiento?",
-        "answer": "Cada compra o suscripción activa incluye una licencia comercial para el número de usuarios especificado en tu plan. Obtienes acceso continuo al repositorio del activo, gestión centralizada desde tu dashboard, integración API y todas las actualizaciones futuras. Los planes empresariales ofrecen opciones de licenciamiento personalizadas que incluyen derechos de marca blanca y licencias de usuario ilimitadas."
+        "question": "¿Cómo funciona el licenciamiento y acceso?",
+        "answer": "Cada compra individual o suscripción activa habilita el acceso digital inmediato para los usuarios y dispositivos incluidos en tu plan. Desde tu panel de organización puedes lanzar tus aplicaciones SaaS, gestionar claves de licencia y consultar tu facturación."
       },
       {
         "question": "¿Puedo solicitar un reembolso si el producto no cumple mis expectativas?",
-        "answer": "Al tratarse de activos digitales, código fuente abierto (macros Excel, scripts Python) y consumo de inferencia en Malla IA de entrega inmediata tras el pago, todas las compras son definitivas y no reembolsables. Únicamente se admiten reembolsos en caso de fallo técnico demostrable e insubsanable de la plataforma que no pueda ser resuelto por soporte (consulta nuestra Política de Reembolsos)."
+        "answer": "Al tratarse de aplicaciones SaaS, activos de software digital y consumo de inferencia en Malla IA de activación inmediata tras el pago, todas las compras son definitivas y no reembolsables. Únicamente se admiten reembolsos en caso de fallo técnico demostrable e insubsanable de la plataforma que no pueda ser resuelto por soporte dentro del plazo establecido en nuestra Política de Reembolsos."
       },
       {
         "question": "¿Proporcionan soporte técnico?",
-        "answer": "Absolutamente. Todos los planes incluyen soporte técnico. Los planes Inicial obtienen soporte por correo electrónico con tiempos de respuesta de 24-48 horas. Los planes Profesional obtienen soporte prioritario 24/7. Los planes Empresariales incluyen gerentes de cuenta dedicados y garantías de SLA."
+        "answer": "Sí. Todos los planes y compras individuales incluyen soporte técnico en support@celaest.com. Los planes Inicial cuentan con respuesta en 24-48 horas hábiles, los planes Profesional reciben atención prioritaria y los planes Empresariales cuentan con acuerdos SLA dedicados."
       },
       {
-        "question": "¿Son seguros los scripts y el software?",
-        "answer": "La seguridad es nuestra máxima prioridad. Todo el código es revisado por nuestro equipo de seguridad, sigue las mejores prácticas de la industria y no incluye código malicioso o puertas traseras. También proporcionamos actualizaciones de seguridad regulares y mantenemos el cumplimiento de los estándares de la industria."
+        "question": "¿Cómo garantizan la seguridad y el uso responsable de la IA?",
+        "answer": "Toda comunicación se protege con cifrado TLS/AES-256 y no utilizamos tus datos privados para entrenar modelos públicos. Además, aplicamos filtros estrictos de moderación y prohibimos terminantemente generar contenido sexualmente explícito, para adultos (NSFW) o ilegal en la Malla IA."
       },
       {
-        "question": "¿Puedo solicitar desarrollo personalizado o modificaciones?",
-        "answer": "¡Sí! Los planes Profesional y Empresarial incluyen acceso a servicios de desarrollo personalizados. Podemos modificar activos existentes o crear soluciones completamente personalizadas adaptadas a tus necesidades empresariales específicas."
+        "question": "¿Puedo solicitar integraciones o despliegues para equipos?",
+        "answer": "Sí. A través del plan Empresarial ofrecemos configuración a medida para organizaciones, integración con credenciales propias (BYOK) y soporte de incorporación."
       },
       {
-        "question": "¿Con qué frecuencia se actualizan los productos?",
-        "answer": "Los productos se actualizan regularmente según los comentarios de los usuarios, correcciones de errores y nuevas adiciones de funciones. Los planes Inicial reciben actualizaciones mensuales, los planes Profesional obtienen actualizaciones semanales y los clientes Empresariales pueden solicitar actualizaciones prioritarias según sea necesario."
+        "question": "¿Con qué frecuencia se actualizan las aplicaciones del catálogo?",
+        "answer": "Las aplicaciones SaaS publicadas reciben mejoras continuas, parches de estabilidad y nuevas capacidades directamente en la nube sin que tengas que reinstalar software."
       },
       {
-        "question": "¿Qué lenguajes de programación y plataformas soportan?",
-        "answer": "Nos enfocamos principalmente en Excel VBA, Python y JavaScript para automatización. Nuestros productos soportan entornos Windows, macOS y Linux. También ofrecemos soluciones basadas en la nube que funcionan en todas las plataformas."
+        "question": "¿Qué requisitos técnicos necesito para usar las soluciones?",
+        "answer": "Nuestras aplicaciones SaaS (como CELAEST Lingua) y el panel de control funcionan directamente desde cualquier navegador web moderno en Windows, macOS, Linux, iOS y Android."
       }
     ],
     "stillQuestions": "¿Aún tienes preguntas?",
@@ -498,10 +493,10 @@
           "id": "naturaleza-servicio",
           "number": "02",
           "title": "Descripción del Servicio y Automatización Pura",
-          "summary": "CELAEST provee productos digitales y Malla IA de entrega inmediata. No prestamos consultorías manuales ni mentorías humanas en planes estándar.",
+          "summary": "CELAEST provee aplicaciones SaaS, productos digitales y Malla IA de entrega inmediata. No prestamos consultorías manuales ni mentorías humanas en planes estándar.",
           "paragraphs": [
-            "CELAEST es una plataforma tecnológica especializada en automatizaciones empresariales, macros de Microsoft Excel con código abierto VBA, scripts en lenguaje Python y orquestación unificada de Malla IA (AI Mesh) para optimización operativa.",
-            "Todos los productos y servicios ofrecidos en la Plataforma son productos digitales automatizados de entrega y ejecución inmediata tras el pago. CELAEST no comercializa consultorías humanas manuales, mentorías presenciales ni servicios de ejecución manual en sus planes estándar; el soporte se brinda a través de asistentes de inteligencia artificial, documentación técnica y mesas de ayuda asincrónicas."
+            "CELAEST es una plataforma tecnológica especializada en aplicaciones web SaaS (como CELAEST Lingua), automatizaciones empresariales, scripts verificados y orquestación unificada de Malla IA (AI Mesh) para optimización operativa y aprendizaje profesional, con nuevas soluciones incorporándose progresivamente al catálogo.",
+            "Todos los productos y servicios ofrecidos en la Plataforma son soluciones digitales automatizadas de entrega y activación inmediata tras el pago. CELAEST no comercializa consultorías humanas manuales, mentorías presenciales ni servicios de ejecución manual en sus planes estándar; el soporte se brinda a través de asistentes de inteligencia artificial, documentación técnica y mesas de ayuda asincrónicas."
           ]
         },
         {
@@ -517,11 +512,12 @@
         {
           "id": "malla-ia",
           "number": "04",
-          "title": "Orquestación de Malla IA y Soberanía de Datos",
-          "summary": "El Cliente es propietario 100% de sus prompts y resultados. Garantizamos Cero-Entrenamiento en modelos públicos bajo 3 modalidades.",
+          "title": "Orquestación de Malla IA, Soberanía de Datos y Seguridad de Contenido",
+          "summary": "El Cliente es propietario 100% de sus prompts y resultados. Garantizamos Cero-Entrenamiento y prohibimos estrictamente la generación de contenido NSFW o para adultos.",
           "paragraphs": [
             "CELAEST provee acceso unificado a modelos avanzados de lenguaje e inferencia bajo un principio estricto de Soberanía de Datos. El Cliente retiene la titularidad exclusiva de todos los derechos de propiedad intelectual sobre los datos de entrada (prompts, archivos, código) y los resultados generados.",
             "Garantía de No-Entrenamiento: Ningún dato corporativo o prompt procesado a través de nuestra Malla IA es utilizado para re-entrenar, ajustar (fine-tune) o alimentar modelos fundacionales públicos de terceros.",
+            "Prohibición Estricta de Contenido Sexualmente Explícito y NSFW: Queda terminantemente prohibido utilizar las funciones de inteligencia artificial de CELAEST (Malla IA / AI Mesh, tutores conversacionales, motores de voz o cualquier modelo integrado) para solicitar, generar, procesar o difundir contenido sexualmente explícito, pornográfico, erótico, para adultos o NSFW (Not Safe For Work), chatbots románticos o sexuales, deepfakes no consensuados o material de explotación infantil (CSAM).",
             "La arquitectura opera bajo tres niveles claramente delimitados:"
           ],
           "points": [
@@ -565,15 +561,17 @@
         {
           "id": "conductas-prohibidas",
           "number": "08",
-          "title": "Uso Aceptable, Anti-Scraping y Conductas Prohibidas",
-          "summary": "Prohibición de scraping, ingeniería inversa, saturación de infraestructura o elusión de validaciones y controles.",
+          "title": "Política de Uso Aceptable, Prohibición de Contenido IA NSFW y Conductas Prohibidas",
+          "summary": "Prohibición absoluta de generar contenido sexualmente explícito, para adultos o NSFW en la Malla IA, así como scraping, ingeniería inversa o abuso de la plataforma.",
           "paragraphs": [
-            "El Cliente se compromete a utilizar la Plataforma exclusivamente para fines corporativos legítimos. Queda estrictamente prohibido:",
-            "El incumplimiento faculta a CELAEST a suspender o cancelar la cuenta y bloquear permanentemente las direcciones IP y dispositivos relacionados."
+            "El Cliente se compromete a utilizar la Plataforma y sus funciones de inteligencia artificial (Malla IA) exclusivamente para fines profesionales, educativos y operativos legítimos. Queda estrictamente prohibido:",
+            "CELAEST aplica controles de seguridad y moderación sobre el uso de la Malla IA. Cualquier intento de generar contenido sexualmente explícito, para adultos o NSFW, o de vulnerar estas reglas, faculta a CELAEST para bloquear las solicitudes e inhabilitar o cancelar de inmediato la cuenta sin derecho a reembolso."
           ],
           "points": [
+            "Utilizar la Malla IA o cualquier función de IA de CELAEST para generar, solicitar, procesar o distribuir contenido sexualmente explícito, pornográfico, erótico, para adultos o NSFW (Not Safe For Work), incluyendo texto, audio, imágenes, chatbots sexuales o románticos y contenido sugestivo.",
+            "Generar o procesar material de abuso o explotación sexual infantil (CSAM), desnudos no consensuados, deepfakes, suplantación de identidad, violencia extrema, autolesiones, discurso de odio o actividades ilícitas.",
             "Emplear bots, crawlers, scripts o herramientas automatizadas para extraer datos (scraping) o sobrecargar la infraestructura.",
-            "Intentar descompilar, realizar ingeniería inversa o vulnerar los sistemas de seguridad de la Malla IA y panel de control.",
+            "Intentar descompilar, realizar ingeniería inversa, eludir filtros de moderación de IA o vulnerar los sistemas de seguridad de la Malla IA y panel de control.",
             "Revender, compartir o transferir accesos y licencias a terceros no autorizados.",
             "Iniciar disputas bancarias o contracargos infundados respecto de transacciones válidas."
           ]
@@ -837,10 +835,10 @@
           "id": "resumen",
           "number": "01",
           "title": "Resumen de la Política y Regla General de Pagos Definitivos",
-          "summary": "Los pagos por suscripciones y activos digitales son definitivos y no reembolsables, al tratarse de software y servicios de acceso inmediato.",
+          "summary": "Los pagos por suscripciones, aplicaciones SaaS y activos digitales son definitivos y no reembolsables, al tratarse de software y servicios de acceso inmediato.",
           "paragraphs": [
-            "Los pagos realizados por las suscripciones (Starter, Pro y Enterprise) y por la compra directa de activos digitales en el Marketplace de CELAEST (macros de Excel con código abierto VBA, scripts de Python, agentes de IA y conectores de flujos) son definitivos y no reembolsables.",
-            "CELAEST comercializa exclusivamente productos y servicios digitales de acceso y ejecución inmediata: el servicio comienza a prestarse y los activos se ponen a disposición en el instante exacto en que se confirma la transacción tras el pago.",
+            "Los pagos realizados por las suscripciones (Starter, Pro y Enterprise) y por la adquisición directa de aplicaciones SaaS (como CELAEST Lingua) o activos digitales en el Marketplace de CELAEST son definitivos y no reembolsables.",
+            "CELAEST comercializa exclusivamente productos y servicios digitales de acceso y ejecución inmediata: el servicio comienza a prestarse y las aplicaciones o activos se habilitan en el instante exacto en que se confirma la transacción tras el pago.",
             "La única excepción admisible es el fallo demostrable e insubsanable de la Plataforma detallado en la sección 02. No se otorgan reembolsos por inconformidad subjetiva, falta de uso, cambio de opinión, promociones posteriores ni renovaciones no canceladas oportunamente. Esta política forma parte integral y vinculante de los Términos y Condiciones."
           ]
         },

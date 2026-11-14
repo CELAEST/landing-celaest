@@ -1,9 +1,4 @@
-import {
-  renderEnterpriseEmailLayout,
-  renderKeyValueTable,
-  KeyValueRow,
-  escapeHtml,
-} from "../layout";
+import { renderEnterpriseEmailLayout, renderReceiptBreakdown, escapeHtml } from "../layout";
 
 export interface InvoiceReceiptData {
   customerName: string;
@@ -28,39 +23,41 @@ export function renderInvoiceReceiptEmail(data: InvoiceReceiptData): {
     : "Payment Receipt & Invoice Confirmation";
   const greeting = data.customerName;
   const intro = isEs
-    ? `Hemos procesado exitosamente el cobro recurrente de tu suscripción ${data.planName}. A continuación tienes el resumen detallado de tu transacción:`
-    : `We successfully processed the recurring payment for your ${data.planName} subscription. Below is your transaction summary:`;
-  const buttonText = isEs ? "Descargar Factura PDF" : "Download Invoice PDF";
-
-  const rows: KeyValueRow[] = [
-    {
-      label: isEs ? "Nº de Factura" : "Invoice Number",
-      value: escapeHtml(data.invoiceNumber),
-      isMono: true,
-    },
-    {
-      label: isEs ? "Plan y Periodo" : "Plan & Billing Period",
-      value: escapeHtml(`${data.planName} (${data.period})`),
-    },
-    {
-      label: isEs ? "Método de Pago" : "Payment Method",
-      value: escapeHtml(
-        isEs ? `Tarjeta terminada en ${data.last4}` : `Card ending in ${data.last4}`,
-      ),
-    },
-    {
-      label: isEs ? "Total Pagado" : "Total Paid",
-      value: escapeHtml(`${data.amount} ${data.currency}`),
-      highlight: "success",
-    },
-  ];
+    ? `Hemos procesado exitosamente el cobro recurrente de tu suscripción ${data.planName}. A continuación tienes el comprobante fiscal detallado:`
+    : `We successfully processed the recurring payment for your ${data.planName} subscription. Below is your detailed tax receipt:`;
+  const buttonText = isEs ? "Descargar Factura Fiscal PDF" : "Download Tax Invoice PDF";
 
   const bodyHtml = `
-    ${renderKeyValueTable(rows)}
+    ${renderReceiptBreakdown({
+      invoiceNumber: data.invoiceNumber,
+      items: [
+        {
+          name: data.planName,
+          period: data.period,
+          amount: `${data.amount} ${data.currency}`,
+        },
+        {
+          name: isEs ? "IA Mesh Runtime (Tokens base)" : "IA Mesh Runtime (Base tokens)",
+          period: isEs ? "Asignación mensual incluida" : "Monthly allocation included",
+          amount: "$0.00",
+        },
+        {
+          name: isEs ? "Pipelines & Agentes Concurrentes" : "Pipelines & Concurrent Agents",
+          period: isEs ? "Ilimitados en nivel profesional" : "Unlimited on professional tier",
+          amount: "$0.00",
+        },
+      ],
+      subtotal: data.amount,
+      tax: "$0.00",
+      total: data.amount,
+      currency: data.currency,
+      last4: data.last4,
+    })}
   `;
 
   const layout = renderEnterpriseEmailLayout({
     title,
+    categoryEyebrow: isEs ? "CELAEST // COMPROBANTE FISCAL" : "CELAEST // FISCAL DISPATCH",
     badge: {
       text: isEs ? "Pagado" : "Paid",
       variant: "success",
