@@ -186,29 +186,27 @@
       "starter": {
         "name": "Starter",
         "price": "29",
-        "description": "For individual professionals",
+        "description": "For professionals and growing teams",
         "features": [
-          "Access to published SaaS solutions in the catalog (includes CELAEST Lingua)",
-          "Organization dashboard and AI Mesh orchestration",
-          "Up to 2 devices per license and 2 team members",
-          "Email technical support (24–48h response)",
-          "Continuous updates for active applications",
-          "Centralized license and billing management"
+          "Access to published catalog SaaS solutions (includes CELAEST Lingua)",
+          "Up to 500,000 requests/month and 5 models in AI Mesh",
+          "Up to 15 team members and 10 devices per license",
+          "25 GB storage and 90-day audit logs",
+          "5 webhooks, GitHub integration, and custom branding",
+          "Priority email technical support (support@celaest.com)"
         ]
       },
       "professional": {
         "name": "Professional",
         "price": "99",
-        "description": "For growing teams",
+        "description": "For high-volume companies and teams",
         "features": [
           "Full access to all published solutions in the CELAEST catalog",
-          "Expanded monthly request quota and concurrency in AI Mesh",
-          "Up to 15 team members and 10 devices per license",
-          "Priority technical support and setup assistance",
-          "Usage analytics dashboard and 90-day audit logs",
-          "Webhooks and integration API access",
-          "25 GB workspace storage",
-          "Included access to new catalog releases"
+          "Up to 1,000,000 requests/month and unlimited AI Mesh models",
+          "Unlimited team members and devices per license",
+          "200 GB storage and 365-day audit logs",
+          "20 webhooks, CSV audit export, and ROI analytics",
+          "Service Level Agreement (SLA) and dedicated support"
         ]
       },
       "enterprise": {
@@ -216,11 +214,10 @@
         "price": "Custom",
         "description": "For large organizations",
         "features": [
-          "Corporate deployment with custom team and license capacity",
+          "Corporate deployment with custom infrastructure and quotas",
           "Dedicated AI Mesh orchestration (including BYOK mode)",
-          "365-day audit logs and CSV export",
-          "Service Level Agreement (SLA) and dedicated support",
-          "200 GB storage and multi-tenant isolation",
+          "Multi-tenant isolation and corporate compliance",
+          "Customized Service Level Agreement (SLA)",
           "Technical integration onboarding"
         ]
       }

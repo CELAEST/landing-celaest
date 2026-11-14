@@ -186,29 +186,27 @@
       "starter": {
         "name": "Inicial",
         "price": "29",
-        "description": "Para profesionales individuales",
+        "description": "Para profesionales y equipos en crecimiento",
         "features": [
-          "Acceso a las soluciones SaaS publicadas del catálogo (incluye CELAEST Lingua)",
-          "Panel de organización y orquestación en Malla IA",
-          "Hasta 2 dispositivos por licencia y 2 miembros de equipo",
-          "Soporte técnico por correo electrónico (24–48 h)",
-          "Actualizaciones continuas de las aplicaciones activas",
-          "Gestión centralizada de licencias y facturación"
+          "Acceso a las soluciones SaaS del catálogo (incluye CELAEST Lingua)",
+          "Hasta 500,000 solicitudes/mes y 5 modelos en Malla IA",
+          "Hasta 15 miembros de equipo y 10 dispositivos por licencia",
+          "25 GB de almacenamiento y registros de auditoría (90 días)",
+          "5 webhooks, integración GitHub y marca personalizada",
+          "Soporte prioritario por correo electrónico (support@celaest.com)"
         ]
       },
       "professional": {
         "name": "Profesional",
         "price": "99",
-        "description": "Para equipos en crecimiento",
+        "description": "Para empresas y equipos de alto volumen",
         "features": [
-          "Acceso completo a todas las soluciones publicadas del catálogo CELAEST",
-          "Cuota ampliada de solicitudes mensuales y concurrencia en Malla IA",
-          "Hasta 15 miembros de equipo y 10 dispositivos por licencia",
-          "Soporte técnico prioritario y asistencia de configuración",
-          "Panel de analítica de consumo y registros de auditoría (90 días)",
-          "Webhooks y acceso a API de integración",
-          "25 GB de almacenamiento en workspace",
-          "Acceso incluido a nuevos lanzamientos del catálogo"
+          "Acceso completo a todas las soluciones publicadas del catálogo",
+          "Hasta 1,000,000 solicitudes/mes y modelos ilimitados en Malla IA",
+          "Miembros de equipo y dispositivos por licencia ilimitados",
+          "200 GB de almacenamiento y registros de auditoría (365 días)",
+          "20 webhooks, exportación CSV de auditoría y analítica ROI",
+          "Acuerdo de Nivel de Servicio (SLA) y soporte dedicado"
         ]
       },
       "enterprise": {
@@ -216,11 +214,10 @@
         "price": "Custom",
         "description": "Para grandes organizaciones",
         "features": [
-          "Despliegue corporativo con miembros y licencias a medida",
+          "Despliegue corporativo con infraestructura y cuotas a medida",
           "Orquestación dedicada de Malla IA (incluye modalidad BYOK)",
-          "Registros de auditoría de 365 días y exportación CSV",
-          "Acuerdo de Nivel de Servicio (SLA) y soporte dedicado",
-          "200 GB de almacenamiento y aislamiento multi-tenant",
+          "Aislamiento multi-tenant y cumplimiento corporativo",
+          "Acuerdo de Nivel de Servicio (SLA) personalizado",
           "Acompañamiento técnico de integración"
         ]
       }
