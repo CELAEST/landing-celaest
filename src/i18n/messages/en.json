@@ -188,12 +188,12 @@
         "price": "29",
         "description": "For individual professionals",
         "features": [
-          "Access to 50+ verified scripts",
-          "Basic Excel macros library",
-          "Email support",
-          "Monthly updates",
-          "Single user license",
-          "Community access"
+          "Access to published SaaS solutions in the catalog (includes CELAEST Lingua)",
+          "Organization dashboard and AI Mesh orchestration",
+          "Up to 2 devices per license and 2 team members",
+          "Email technical support (24–48h response)",
+          "Continuous updates for active applications",
+          "Centralized license and billing management"
         ]
       },
       "professional": {
@@ -201,14 +201,14 @@
         "price": "99",
         "description": "For growing teams",
         "features": [
-          "Access to 500+ premium assets",
-          "Full Python automation library",
-          "Priority 24/7 support",
-          "Weekly updates",
-          "Up to 5 user licenses",
-          "API access",
-          "Custom integrations",
-          "Advanced analytics"
+          "Full access to all published solutions in the CELAEST catalog",
+          "Expanded monthly request quota and concurrency in AI Mesh",
+          "Up to 15 team members and 10 devices per license",
+          "Priority technical support and setup assistance",
+          "Usage analytics dashboard and 90-day audit logs",
+          "Webhooks and integration API access",
+          "25 GB workspace storage",
+          "Included access to new catalog releases"
         ]
       },
       "enterprise": {
@@ -216,14 +216,12 @@
         "price": "Custom",
         "description": "For large organizations",
         "features": [
-          "Unlimited asset access",
-          "Custom development support",
-          "Dedicated account manager",
-          "SLA guarantee",
-          "Unlimited user licenses",
-          "White-label options",
-          "On-premise deployment",
-          "Training & consulting"
+          "Corporate deployment with custom team and license capacity",
+          "Dedicated AI Mesh orchestration (including BYOK mode)",
+          "365-day audit logs and CSV export",
+          "Service Level Agreement (SLA) and dedicated support",
+          "200 GB storage and multi-tenant isolation",
+          "Technical integration onboarding"
         ]
       }
     },
@@ -366,36 +364,36 @@
     "subtitle": "Everything you need to know about our platform and services.",
     "questions": [
       {
-        "question": "What types of digital assets do you offer?",
-        "answer": "We offer a wide range of digital assets including Excel macros, Python automation scripts, data processing tools, API integrations, and complete business software solutions. All assets are professionally developed, tested, and verified before publication."
+        "question": "What digital solutions and assets do you currently offer?",
+        "answer": "We provide access to our ecosystem of SaaS software and applied artificial intelligence (currently led by CELAEST Lingua for AI-assisted professional English acquisition and our AI Mesh orchestration workspace), to which we progressively add new verified automation and productivity tools as they are released."
       },
       {
-        "question": "How does licensing work?",
-        "answer": "Each purchase includes a commercial license for the number of users specified in your plan. You get lifetime access to the purchased asset, including all future updates. Enterprise plans offer custom licensing options including white-label rights and unlimited user licenses."
+        "question": "How does licensing and access work?",
+        "answer": "Each individual purchase or active subscription grants immediate digital access for the users and devices included in your plan. From your organization dashboard, you can launch your SaaS applications, manage license keys, and view your billing."
       },
       {
         "question": "Can I request a refund if a product does not meet my expectations?",
-        "answer": "Because our digital assets (open-source Excel macros, Python scripts) and AI Mesh compute are delivered and accessible immediately upon payment, all purchases are final and non-refundable. Refunds apply solely in the event of an unresolvable demonstrable platform defect (see our Refund Policy)."
+        "answer": "Because our SaaS applications, digital software assets, and AI Mesh compute are activated and delivered immediately upon payment, all purchases are final and non-refundable. Refunds apply solely in the event of a demonstrable, unresolvable technical defect attributable to the platform that cannot be resolved by support within the timeframe set forth in our Refund Policy."
       },
       {
         "question": "Do you provide technical support?",
-        "answer": "Absolutely. All plans include technical support. Starter plans get email support with 24-48 hour response times. Professional plans get priority 24/7 support. Enterprise plans include dedicated account managers and SLA guarantees."
+        "answer": "Yes. All plans and individual purchases include technical support at support@celaest.com. Starter plans receive 24-48 business hour email support, Professional plans receive priority support, and Enterprise plans include dedicated SLA agreements."
       },
       {
-        "question": "Are the scripts and software secure?",
-        "answer": "Security is our top priority. All code is reviewed by our security team, follows industry best practices, and includes no malicious code or backdoors. We also provide regular security updates and maintain compliance with industry standards."
+        "question": "How do you ensure security and responsible AI use?",
+        "answer": "All communication is protected with TLS/AES-256 encryption and we never use your private data to train public models. Additionally, we enforce strict moderation controls and strictly prohibit generating sexually explicit, adult (NSFW), or unlawful content across AI Mesh."
       },
       {
-        "question": "Can I request custom development or modifications?",
-        "answer": "Yes! Professional and Enterprise plans include access to custom development services. We can modify existing assets or create completely custom solutions tailored to your specific business needs."
+        "question": "Can I request team deployments or custom integrations?",
+        "answer": "Yes. Through our Enterprise plan we offer tailored organization setups, Bring Your Own Key (BYOK) configuration, and onboarding support."
       },
       {
-        "question": "How often are products updated?",
-        "answer": "Products are updated regularly based on user feedback, bug fixes, and new feature additions. Starter plans receive monthly updates, Professional plans get weekly updates, and Enterprise customers can request priority updates as needed."
+        "question": "How often are catalog applications updated?",
+        "answer": "Published SaaS applications receive continuous improvements, stability patches, and new capabilities directly in the cloud without requiring manual reinstallation."
       },
       {
-        "question": "What programming languages and platforms do you support?",
-        "answer": "We primarily focus on Excel VBA, Python, and JavaScript for automation. Our products support Windows, macOS, and Linux environments. We also offer cloud-based solutions that work across all platforms."
+        "question": "What technical requirements do I need to use the solutions?",
+        "answer": "Our SaaS applications (such as CELAEST Lingua) and control dashboard run directly in any modern web browser on Windows, macOS, Linux, iOS, and Android."
       }
     ],
     "stillQuestions": "Still have questions?",
@@ -517,11 +515,12 @@
         {
           "id": "malla-ia",
           "number": "04",
-          "title": "AI Mesh Orchestration and Data Sovereignty",
-          "summary": "Customer retains 100% intellectual property ownership of prompts and outputs. Zero-Training guaranteed across 3 tiers.",
+          "title": "AI Mesh Orchestration, Data Sovereignty, and Content Safety",
+          "summary": "Customer retains 100% intellectual property ownership of prompts and outputs. Zero-Training guaranteed and strict prohibition of NSFW or adult content generation.",
           "paragraphs": [
             "CELAEST delivers frontier model orchestration grounded in strict Data Sovereignty. Customer retains exclusive intellectual property rights over all input data (prompts, files, code) and generated responses.",
             "Zero-Training Guarantee: No corporate workload or prompt processed through our AI Mesh is ever utilized to train, fine-tune, or reinforce public foundational models.",
+            "Strict Prohibition of Sexually Explicit and NSFW Content: Customers are strictly prohibited from using CELAEST AI features (AI Mesh / Malla IA, conversational tutors, voice engines, or any integrated model) to request, generate, process, or distribute any sexually explicit, pornographic, erotic, adult, or NSFW (Not Safe For Work) content, romantic or sexual AI chatbots, non-consensual deepfakes, or Child Sexual Abuse Material (CSAM).",
             "Our architecture operates across three distinct isolation tiers:"
           ],
           "points": [
@@ -565,16 +564,18 @@
         {
           "id": "conductas-prohibidas",
           "number": "08",
-          "title": "Acceptable Use, Anti-Scraping, and Prohibited Conduct",
-          "summary": "Web scraping, reverse engineering, infrastructure denial, and ban evasion are strictly prohibited.",
+          "title": "Acceptable Use Policy, NSFW AI Content Prohibition, and Prohibited Conduct",
+          "summary": "Strict prohibition of generating sexually explicit, adult, or NSFW content via AI Mesh, as well as web scraping, reverse engineering, or platform abuse.",
           "paragraphs": [
-            "Customer agrees to utilize the Platform solely for lawful enterprise operational purposes. Prohibited conducts include:",
-            "Violations empower CELAEST to suspend access and block corresponding IP addresses and device signatures without refund."
+            "Customer agrees to utilize the Platform and its artificial intelligence features (AI Mesh / Malla IA) solely for lawful professional, educational, and operational purposes. Prohibited conducts include:",
+            "CELAEST enforces content safety and moderation controls across AI Mesh. Any attempt to generate sexually explicit, adult, or NSFW content, or to violate these rules, empowers CELAEST to block requests and immediately suspend or terminate the account without refund."
           ],
           "points": [
+            "Using AI Mesh (Malla IA) or any CELAEST AI feature to generate, request, process, or distribute sexually explicit, pornographic, erotic, adult, or NSFW (Not Safe For Work) content of any kind, including text, audio, images, sexual or romantic AI companions/chatbots, and sexually suggestive material.",
+            "Generating or processing Child Sexual Abuse Material (CSAM), non-consensual nudity, deepfakes, face-swapping, extreme violence, self-harm, hate speech, or unlawful activities.",
             "Deploying bots, spiders, crawlers, or automated scripts to scrape content or overload infrastructure.",
-            "Attempting to decompile, reverse-engineer, or circumvent security validation mechanisms.",
-            "Reselling, sublicensing, or distributing software source code to unauthorized third parties.",
+            "Attempting to decompile, reverse-engineer, bypass AI content moderation filters, or circumvent security validation mechanisms.",
+            "Reselling, sublicensing, or distributing software source code or account access to unauthorized third parties.",
             "Initiating unfounded bank chargebacks or payment disputes regarding valid transactions."
           ]
         },
