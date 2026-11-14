@@ -58,35 +58,35 @@
   "products": {
     "title1": "AI Tools for",
     "title2": "Real Results",
-    "subtitle": "Buy and deploy production-ready AI solutions and automations, without starting from scratch or spending weeks coding.",
+    "subtitle": "Activate our live SaaS and AI solutions in production today, while we progressively add new verified automation tools to your catalog.",
     "features": {
       "verified": {
-        "title": "Verified Scripts",
-        "description": "Every Excel macro and script is tested, verified, and optimized by our expert team before publication."
+        "title": "Progressive Rollout",
+        "description": "Every SaaS application and automation tool is audited, tested, and verified before joining the official catalog."
       },
       "secure": {
         "title": "Secure Licensing",
-        "description": "Enterprise-grade licensing system with automatic updates and version control for all your purchased assets."
+        "description": "Cloud licensing and subscription management with continuous updates and centralized control from your dashboard."
       },
       "roi": {
-        "title": "Instant ROI",
-        "description": "Save hundreds of hours with battle-tested automation tools that pay for themselves in days, not months."
+        "title": "Measurable Productivity",
+        "description": "Solutions engineered to deliver tangible results from day one in professional learning and daily operations."
       },
       "python": {
-        "title": "Python Automation",
-        "description": "Production-ready Python scripts for data processing, API integration, and workflow automation."
+        "title": "Expanding Automation",
+        "description": "Progressive addition of automated workflows, API connectors, and data processing tools."
       },
       "business": {
-        "title": "Business Software",
-        "description": "Complete SaaS solutions and software packages designed for modern business operations."
+        "title": "SaaS & AI Software",
+        "description": "Browser-ready web applications—led today by CELAEST Lingua and AI Mesh."
       },
       "instant": {
-        "title": "Instant Delivery",
-        "description": "Download immediately after purchase with lifetime access and free updates for all products."
+        "title": "Immediate Activation",
+        "description": "Instant digital access upon payment confirmation with continuous cloud improvements for active releases."
       },
       "macros": {
-        "title": "Enterprise Macros",
-        "description": "Enterprise-grade Excel macros and data automation tools with advanced VBA support."
+        "title": "Unified Ecosystem",
+        "description": "Manage your active applications today and unlock upcoming releases from a single workspace."
       }
     },
     "exploreCTA": "Explore All Products"
@@ -178,7 +178,7 @@
   "pricing": {
     "title1": "Simple, Transparent",
     "title2": "Pricing",
-    "subtitle": "Choose the plan that fits your needs. All plans include lifetime access to purchased assets.",
+    "subtitle": "Choose the plan that fits your scale. Operate today with our active solutions (CELAEST Lingua and AI Mesh) and unlock progressive access to every new tool added to the catalog.",
     "periodLabel": "Billing:",
     "currencyLabel": "Currency:",
     "perMonth": "/month",
@@ -188,12 +188,12 @@
         "price": "29",
         "description": "For professionals and growing teams",
         "features": [
-          "Access to published catalog SaaS solutions (includes CELAEST Lingua)",
+          "Access to CELAEST Lingua and active catalog solutions",
+          "Progressive access to upcoming releases (up to 10 active solutions)",
           "Up to 500,000 requests/month and 5 models in AI Mesh",
           "Up to 15 team members and 10 devices per license",
           "25 GB storage and 90-day audit logs",
-          "5 webhooks, GitHub integration, and custom branding",
-          "Priority email technical support (support@celaest.com)"
+          "5 webhooks, GitHub integration, and priority support (support@celaest.com)"
         ]
       },
       "professional": {
@@ -201,12 +201,12 @@
         "price": "99",
         "description": "For high-volume companies and teams",
         "features": [
-          "Full access to all published solutions in the CELAEST catalog",
+          "Full access to the current catalog (includes CELAEST Lingua)",
+          "Automatic unlimited access to all future catalog releases",
           "Up to 1,000,000 requests/month and unlimited AI Mesh models",
           "Unlimited team members and devices per license",
           "200 GB storage and 365-day audit logs",
-          "20 webhooks, CSV audit export, and ROI analytics",
-          "Service Level Agreement (SLA) and dedicated support"
+          "20 webhooks, CSV audit export, ROI analytics, SLA guarantee, and dedicated support"
         ]
       },
       "enterprise": {
@@ -214,11 +214,11 @@
         "price": "Custom",
         "description": "For large organizations",
         "features": [
-          "Corporate deployment with custom infrastructure and quotas",
+          "Corporate deployment with custom infrastructure, catalog, and quotas",
           "Dedicated AI Mesh orchestration (including BYOK mode)",
+          "Priority early access to new solutions and enterprise modules",
           "Multi-tenant isolation and corporate compliance",
-          "Customized Service Level Agreement (SLA)",
-          "Technical integration onboarding"
+          "Customized Service Level Agreement (SLA) and technical onboarding"
         ]
       }
     },
@@ -493,10 +493,10 @@
           "id": "naturaleza-servicio",
           "number": "02",
           "title": "Service Description and Automated Computing Nature",
-          "summary": "CELAEST delivers automated digital products and AI Mesh compute. Standard tiers do not include manual consulting or human coaching.",
+          "summary": "CELAEST delivers SaaS applications, automated digital products, and AI Mesh compute. Standard tiers do not include manual consulting or human coaching.",
           "paragraphs": [
-            "CELAEST is a specialized technological platform providing enterprise workflow automation, open-source VBA Microsoft Excel macros, Python automation scripts, and unified AI Mesh orchestration.",
-            "All offerings on the Platform represent automated digital products and compute delivered immediately upon payment. CELAEST does not provide manual human consulting or bespoke human agency execution in standard self-serve tiers; support is delivered asynchronously via AI assistants, technical documentation, and ticket queues."
+            "CELAEST is a specialized technological platform providing SaaS web applications (such as CELAEST Lingua), enterprise workflow automation, verified automation scripts, and unified AI Mesh orchestration, with new solutions progressively joining the catalog.",
+            "All offerings on the Platform represent automated digital solutions and compute activated immediately upon payment. CELAEST does not provide manual human consulting or bespoke human agency execution in standard self-serve tiers; support is delivered asynchronously via AI assistants, technical documentation, and ticket queues."
           ]
         },
         {
@@ -835,10 +835,10 @@
           "id": "resumen",
           "number": "01",
           "title": "Policy Summary and General Rule of Final Sales",
-          "summary": "Payments for subscriptions and digital assets are final and non-refundable, as they constitute immediate-access digital software and compute.",
+          "summary": "Payments for subscriptions, SaaS applications, and digital assets are final and non-refundable, as they constitute immediate-access digital software and compute.",
           "paragraphs": [
-            "All payments made for CELAEST subscriptions (Starter, Pro, and Enterprise) and direct digital asset purchases on the Marketplace (open-source VBA Excel macros, Python scripts, AI automation agents, and workflow connectors) are definitive and strictly non-refundable.",
-            "CELAEST exclusively commercializes immediate-access digital products and computing services: service delivery begins and digital assets are made available the exact moment transaction confirmation succeeds.",
+            "All payments made for CELAEST subscriptions (Starter, Pro, and Enterprise) and direct purchases of SaaS applications (such as CELAEST Lingua) or digital assets on the CELAEST Marketplace are definitive and strictly non-refundable.",
+            "CELAEST exclusively commercializes immediate-access digital products and computing services: service delivery begins and applications or digital assets are enabled the exact moment transaction confirmation succeeds.",
             "The sole exception is a demonstrable, unresolvable Platform defect as detailed in Section 02. No refunds are granted for subjective dissatisfaction, lack of usage, change of mind, subsequent promotions, or uncancelled recurring subscriptions. This policy forms an integral, legally binding part of our Master Terms of Service."
           ]
         },
