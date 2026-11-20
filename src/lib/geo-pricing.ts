@@ -26,7 +26,7 @@ const API_BASE_URL = (process.env.NEXT_PUBLIC_CELAEST_API_URL || DEFAULT_API_BAS
 // updated daily server-side, so this keeps the landing snappy without
 // surfacing stale data.
 const CACHE_TTL_MS = 60 * 60 * 1000;
-const CACHE_KEY_PREFIX = "celaest:geo-pricing:v1:";
+const CACHE_KEY_PREFIX = "celaest:geo-pricing:v2:";
 const CURRENCY_OVERRIDE_KEY = "celaest:currency-override:v1";
 
 // --- Types (mirrors the backend ResolvedPricingContext payload) -------------
@@ -66,17 +66,17 @@ export const DEFAULT_ES_PRICING: ResolvedPricingContext = {
   country_name: "Colombia",
   currency: {
     code: "COP",
-    name: "Peso Colombiano",
+    name: "Colombian Peso",
     symbol: "$",
     decimals: 0,
     symbol_pos: "before",
     is_zero_decimal: true,
   },
-  ppp_factor: 0.35,
-  exchange_rate: 4150,
+  ppp_factor: 0.64,
+  exchange_rate: 3947.368421,
   plans: [
     {
-      plan_id: "starter",
+      plan_id: "e73448e5-ae7e-41dd-a6f0-8c25bf5fafcd",
       plan_code: "starter",
       plan_name: "Starter",
       original_price_monthly: 0,
@@ -87,26 +87,26 @@ export const DEFAULT_ES_PRICING: ResolvedPricingContext = {
       is_override: false,
     },
     {
-      plan_id: "pro",
+      plan_id: "bc0740d3-6ce8-4653-88fe-368290a5cfdd",
       plan_code: "pro",
       plan_name: "Pro",
       original_price_monthly: 29,
       original_price_yearly: 288,
-      local_price_monthly: 42122,
-      local_price_yearly: 418320,
+      local_price_monthly: 73000,
+      local_price_yearly: 720000,
       currency_code: "COP",
-      is_override: false,
+      is_override: true,
     },
     {
-      plan_id: "enterprise",
+      plan_id: "0b4d6d01-61cc-4cc0-86fa-8d2d342eddf2",
       plan_code: "enterprise",
       plan_name: "Enterprise",
       original_price_monthly: 99,
       original_price_yearly: 990,
-      local_price_monthly: 143798,
-      local_price_yearly: 1437975,
+      local_price_monthly: 250000,
+      local_price_yearly: 2500000,
       currency_code: "COP",
-      is_override: false,
+      is_override: true,
     },
   ],
 };

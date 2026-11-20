@@ -8,7 +8,13 @@
     "faq": "Preguntas",
     "signIn": "Iniciar Sesión",
     "getStarted": "Comenzar",
-    "signUp": "Registrarse"
+    "signUp": "Registrarse",
+    "primaryNavAria": "Navegación principal del ecosistema CELAEST",
+    "sitelinkAutomation": "Catálogo de Automatizaciones",
+    "sitelinkAiMesh": "Gestión de IA · Malla IA",
+    "sitelinkLingua": "CELAEST Lingua",
+    "sitelinkSolutions": "Soluciones y Proyectos de Software",
+    "sitelinkGuides": "Guías Técnicas"
   },
   "hero": {
     "badge": "Mercado Premium de Automatizaciones Empresariales",
@@ -29,9 +35,21 @@
       "titleMain": "INTENCIÓN",
       "titleConnector": "AL",
       "titleResult": "RESULTADO",
-      "titleAria": "De la intención al resultado",
-      "description": "Diseñamos, implementamos y escalamos sistemas de IA que convierten procesos en resultados reales para tu negocio y tu vida diaria.",
-      "cta": "EXPLORAR SOLUCIONES"
+      "titleAria": "CELAEST — Catálogo de Automatizaciones con IA, Gestión de IA y Proyectos de Software: De la intención al resultado",
+      "description": "Automatizaciones con IA, gestión multi-modelo y software empresarial que convierten procesos en resultados reales.",
+      "cta": "¿CÓMO FUNCIONA?",
+      "ctaAria": "Ver video de cómo funciona el ecosistema CELAEST",
+      "cinema": {
+        "regionAria": "Video explicativo de CELAEST",
+        "close": "VOLVER",
+        "closeAria": "Cerrar video y volver al inicio",
+        "playAria": "Reproducir video",
+        "pauseAria": "Pausar video",
+        "muteAria": "Silenciar video",
+        "unmuteAria": "Activar sonido",
+        "fullscreenAria": "Pantalla completa",
+        "seekAria": "Progreso del video"
+      }
     },
     "stats": {
       "assets": "Activos Verificados",
@@ -58,7 +76,7 @@
   "products": {
     "title1": "Herramientas con IA para",
     "title2": "Resultados Reales",
-    "subtitle": "Activa hoy nuestras soluciones SaaS y de inteligencia artificial en producción, mientras sumamos progresivamente nuevas herramientas de automatización verificadas a tu catálogo.",
+    "subtitle": "Activa hoy nuestras soluciones SaaS, gestión de IA (Malla IA) y proyectos de software en producción, mientras sumamos progresivamente nuevas automatizaciones verificadas a nuestro catálogo de automatizaciones.",
     "features": {
       "verified": {
         "title": "Lanzamiento Progresivo",
@@ -96,7 +114,7 @@
     "title": "Potencia tu Flujo de Trabajo",
     "title1": "Potencia tu",
     "title2": "flujo de trabajo.",
-    "subtitle": "Infraestructura de nivel empresarial diseñada para la eficiencia, seguridad y escalabilidad sin límites.",
+    "subtitle": "Infraestructura empresarial para la gestión de IA, catálogo de automatizaciones y proyectos de software con seguridad y escalabilidad sin límites.",
     "explore": "Explorar",
     "popular": "Más popular",
     "columns": {
@@ -104,35 +122,35 @@
         "number": "01",
         "titleLine1": "Gestión",
         "titleLine2": "centralizada",
-        "description": "Administra licencias, miembros y versiones desde un único panel, de forma simple y segura."
+        "description": "Centraliza la gestión de IA, proyectos de software, licencias, miembros y versiones desde un único panel seguro."
       },
       "workflow": {
         "number": "02",
         "titleLine1": "Pipeline",
         "titleLine2": "de automatización",
-        "description": "Automatiza tareas y procesos repetitivos para enfocarte en lo que realmente importa."
+        "description": "Despliega automatizaciones con IA y flujos repetitivos verificados para enfocarte en lo que realmente importa."
       },
       "ecosystem": {
         "number": "03",
         "titleLine1": "Ecosistema",
         "titleLine2": "de activos",
-        "description": "Explora y conecta tus macros, scripts y herramientas en un solo lugar."
+        "description": "Explora nuestro catálogo de automatizaciones, macros, scripts y soluciones de software en un solo lugar."
       }
     },
     "widgetMembers": {
-      "title": "Members",
-      "search": "Search members...",
-      "invite": "Invite",
-      "dashboard": "Dashboard",
-      "members": "Members",
-      "licenses": "Licenses",
-      "integrations": "Integrations",
-      "settings": "Settings",
-      "owner": "Owner",
+      "title": "Miembros",
+      "search": "Buscar miembros...",
+      "invite": "Invitar",
+      "dashboard": "Panel",
+      "members": "Miembros",
+      "licenses": "Licencias",
+      "integrations": "Integraciones",
+      "settings": "Ajustes",
+      "owner": "Propietario",
       "admin": "Admin",
-      "member": "Member",
-      "active": "Active",
-      "membersCount": "4 members",
+      "member": "Miembro",
+      "active": "Activo",
+      "membersCount": "4 miembros",
       "pagination": "1/1"
     },
     "widgetPipeline": {
@@ -178,47 +196,74 @@
   "pricing": {
     "title1": "Precios Simples",
     "title2": "y Transparentes",
-    "subtitle": "Elige el plan que se ajuste a tu escala. Opera hoy con nuestras soluciones activas (CELAEST Lingua y Malla IA) y recibe acceso progresivo a cada nueva herramienta que incorporemos al catálogo.",
+    "subtitle": "Elige el plan que se ajuste a tu escala. Comienza gratis con Starter, opera nuestro catálogo activo con Pro o escala sin límites con Enterprise.",
     "periodLabel": "Periodo:",
     "currencyLabel": "Moneda:",
     "perMonth": "/mes",
+    "forever": "para siempre",
+    "noCreditCard": "Sin tarjeta de crédito requerida",
+    "recurringMonthly": "Facturación mensual recurrente",
+    "metricLabels": {
+      "requests": "SOL. IA",
+      "seats": "ASIENTOS",
+      "storage": "STORAGE"
+    },
     "plans": {
       "starter": {
-        "name": "Inicial",
-        "price": "29",
-        "description": "Para profesionales y equipos en crecimiento",
+        "tier": "Comunitario",
+        "name": "Starter",
+        "price": "0",
+        "description": "Para explorar el ecosistema y proyectos personales.",
+        "metrics": {
+          "requests": "100",
+          "seats": "2 Miembros",
+          "storage": "1 GB NVMe"
+        },
         "features": [
-          "Acceso a CELAEST Lingua y soluciones activas del catálogo",
-          "Acceso progresivo a próximos lanzamientos (hasta 10 soluciones activas)",
-          "Hasta 500,000 solicitudes/mes y 5 modelos en Malla IA",
-          "Hasta 15 miembros de equipo y 10 dispositivos por licencia",
-          "25 GB de almacenamiento y registros de auditoría (90 días)",
-          "5 webhooks, integración GitHub y soporte prioritario (support@celaest.com)"
+          "100 solicitudes de IA/mes y 1 modelo de IA",
+          "Acceso inicial al catálogo (hasta 3 soluciones conforme se publiquen)",
+          "2 miembros de equipo y 2 dispositivos por licencia",
+          "1 GB de almacenamiento NVMe y 1 tarea simultánea de IA",
+          "Panel de análisis básico y registros de auditoría de 7 días",
+          "1 webhook y soporte comunitario"
         ]
       },
-      "professional": {
-        "name": "Profesional",
-        "price": "99",
-        "description": "Para empresas y equipos de alto volumen",
+      "pro": {
+        "tier": "Más Popular",
+        "name": "Pro",
+        "price": "29",
+        "description": "Acceso al catálogo actual (incluye Lingua) y próximos lanzamientos.",
+        "metrics": {
+          "requests": "500K",
+          "seats": "15 Miembros",
+          "storage": "25 GB NVMe"
+        },
         "features": [
-          "Acceso completo al catálogo actual (incluye CELAEST Lingua)",
-          "Acceso automático e ilimitado a todos los futuros lanzamientos del catálogo",
-          "Hasta 1,000,000 solicitudes/mes y modelos ilimitados en Malla IA",
-          "Miembros de equipo y dispositivos por licencia ilimitados",
-          "200 GB de almacenamiento y registros de auditoría (365 días)",
-          "20 webhooks, exportación CSV, analítica ROI, garantía SLA y soporte dedicado"
+          "500,000 solicitudes de IA/mes y 5 modelos de IA",
+          "Catálogo activo (incluye Lingua) + próximos lanzamientos (hasta 10)",
+          "15 miembros de equipo y 10 dispositivos por licencia",
+          "25 GB de almacenamiento NVMe y 5 tareas simultáneas de IA",
+          "Análisis avanzado y registros de auditoría de 90 días",
+          "5 webhooks, integración con GitHub, marca personal y soporte prioritario"
         ]
       },
       "enterprise": {
-        "name": "Empresarial",
-        "price": "Custom",
-        "description": "Para grandes organizaciones",
+        "tier": "Escala Corporativa",
+        "name": "Enterprise",
+        "price": "99",
+        "description": "Capacidad máxima en Malla IA y acceso ilimitado a cada nueva solución.",
+        "metrics": {
+          "requests": "1.0M",
+          "seats": "Ilimitado",
+          "storage": "200 GB NVMe"
+        },
         "features": [
-          "Despliegue corporativo con infraestructura, catálogo y cuotas a medida",
-          "Orquestación dedicada de Malla IA (incluye modalidad BYOK)",
-          "Acceso prioritario anticipado a nuevas soluciones y módulos corporativos",
-          "Aislamiento multi-tenant y cumplimiento corporativo",
-          "Acuerdo de Nivel de Servicio (SLA) personalizado y acompañamiento técnico"
+          "1,000,000 de solicitudes de IA/mes y modelos de IA ilimitados",
+          "Catálogo actual completo + futuros lanzamientos ilimitados",
+          "Miembros de equipo y dispositivos por licencia ilimitados",
+          "200 GB de almacenamiento NVMe y tareas simultáneas ilimitadas",
+          "Análisis completo (ROI y costos), auditoría 365 días y exportación CSV",
+          "20 webhooks, integración con GitHub, garantía de SLA y soporte dedicado"
         ]
       }
     },
@@ -356,10 +401,21 @@
   },
   "faq": {
     "backToHome": "Volver al inicio",
+    "badge": "Base de Conocimiento & Soporte",
+    "questionPrefix": "PREGUNTA",
+    "quickIndex": "Índice Rápido",
+    "indexAria": "Índice de preguntas",
+    "slaPrompt": "¿Tienes una duda técnica específica o requieres un acuerdo SLA a la medida?",
+    "emailAction": "Escribir a {email}",
+    "docsAction": "Ver Documentación Técnica",
     "title1": "Preguntas",
     "title2": "Frecuentes",
     "subtitle": "Todo lo que necesitas saber sobre nuestra plataforma y servicios.",
     "questions": [
+      {
+        "question": "¿Qué es CELAEST y cómo funciona su catálogo de automatizaciones y gestión de IA?",
+        "answer": "CELAEST (celaest.com) es una compañía de software e inteligencia artificial operada desde Colombia con alcance global. Unificamos un catálogo y tienda de automatizaciones empresariales (workflows, scripts de Python, macros de Excel y conectores API), una plataforma de gestión de IA privada multi-modelo con Cero-Entrenamiento (Malla IA / AI Mesh), gestión de proyectos de software y aplicaciones SaaS en producción como CELAEST Lingua."
+      },
       {
         "question": "¿Qué soluciones y activos digitales ofrecen actualmente?",
         "answer": "Ofrecemos acceso a nuestro ecosistema de software SaaS e inteligencia artificial aplicada (actualmente encabezado por CELAEST Lingua para adquisición de inglés profesional asistido por IA y el panel de orquestación Malla IA), al cual sumamos progresivamente nuevas herramientas de automatización y productividad verificadas antes de su publicación en el catálogo."
@@ -374,7 +430,7 @@
       },
       {
         "question": "¿Proporcionan soporte técnico?",
-        "answer": "Sí. Todos los planes y compras individuales incluyen soporte técnico en support@celaest.com. Los planes Inicial cuentan con respuesta en 24-48 horas hábiles, los planes Profesional reciben atención prioritaria y los planes Empresariales cuentan con acuerdos SLA dedicados."
+        "answer": "Sí. Todos los planes y compras individuales incluyen soporte técnico en support@celaest.com. El plan Starter cuenta con soporte comunitario, los planes Pro reciben atención prioritaria y los planes Enterprise cuentan con acuerdos SLA dedicados y soporte dedicado."
       },
       {
         "question": "¿Cómo garantizan la seguridad y el uso responsable de la IA?",
@@ -382,7 +438,7 @@
       },
       {
         "question": "¿Puedo solicitar integraciones o despliegues para equipos?",
-        "answer": "Sí. A través del plan Empresarial ofrecemos configuración a medida para organizaciones, integración con credenciales propias (BYOK) y soporte de incorporación."
+        "answer": "Sí. A través del plan Enterprise ofrecemos escala ilimitada para equipos, integraciones con GitHub/webhooks, exportación de auditoría y acompañamiento para BYOK u On-Premise."
       },
       {
         "question": "¿Con qué frecuencia se actualizan las aplicaciones del catálogo?",
@@ -411,22 +467,24 @@
       "subscribe": "Suscribirse"
     },
     "brand": {
-      "description": "Herramientas de automatización premium para profesionales que exigen excelencia."
+      "description": "CELAEST: compañía de software, catálogo de automatizaciones con IA, gestión de IA (Malla IA) y proyectos de software empresarial."
     },
     "links": {
       "product": {
         "title": "Producto",
         "items": [
+          "Soluciones con IA",
+          "CELAEST Lingua",
+          "Automatización & Scripts",
           "Catálogo de Assets",
-          "Macros & Scripts",
           "Planes & Precios"
         ]
       },
       "company": {
         "title": "Plataforma",
         "items": [
+          "Malla IA (AI Mesh)",
           "Arquitectura del Sistema",
-          "Malla IA & Agentes",
           "Seguridad & Aislamiento"
         ]
       },
@@ -434,6 +492,7 @@
         "title": "Soporte",
         "items": [
           "Preguntas Frecuentes",
+          "Guías & Playbooks",
           "Documentación Técnica"
         ]
       },
@@ -544,7 +603,7 @@
           "summary": "Procesamiento seguro PCI-DSS, pasarelas globales y transferencias directas en Colombia. Las suscripciones se renuevan automáticamente.",
           "paragraphs": [
             "Las suscripciones se renuevan de forma automática al finalizar cada ciclo (mensual o anual) utilizando el método de pago registrado, hasta que el Usuario la cancele desde su panel. La cancelación oportuna antes de la fecha de corte es responsabilidad exclusiva del Cliente.",
-            "Las transacciones con tarjeta de crédito o débito son procesadas a través de Stripe, pasarela de pagos tokenizados certificada PCI-DSS Nivel 1, o mediante transferencias electrónicas bancarias en Colombia cuando estén habilitadas. CELAEST en ningún momento almacena números completos de tarjeta de crédito o códigos de seguridad CVV en sus servidores."
+            "Las transacciones internacionales y locales con tarjeta de crédito, débito o medios alternativos son procesadas a través de Creem (Merchant of Record internacional), Stripe y Mercado Pago —pasarelas y procesadores de pago tokenizados certificados PCI-DSS Nivel 1—, o mediante transferencias electrónicas bancarias en Colombia cuando estén habilitadas. CELAEST en ningún momento almacena números completos de tarjeta de crédito o códigos de seguridad CVV en sus servidores."
           ]
         },
         {
@@ -691,7 +750,7 @@
             "Vercel, Inc. (Alojamiento Edge de aplicaciones web y entrega CDN distribuida).",
             "Anthropic PBC / OpenAI LLC / Google Vertex AI (Inferencia IA comercial B2B bajo acuerdos de No-Entrenamiento).",
             "Entornos de Sandbox Aislados (Ejecución y validación efímera de código fuente sin persistencia de datos).",
-            "Pasarelas de Pago Certificadas PCI-DSS Nivel 1 (Stripe y procesadores de cobro digital)."
+            "Pasarelas de Pago y Merchant of Record Certificados PCI-DSS Nivel 1 (Creem, Stripe y Mercado Pago)."
           ]
         },
         {
@@ -920,9 +979,9 @@
           "id": "tiempos",
           "number": "07",
           "title": "Procesamiento y Tiempos de Acreditación Bancaria",
-          "summary": "Devoluciones ejecutadas a través de la pasarela de pagos Stripe o transferencias bancarias en Colombia en plazos estándar.",
+          "summary": "Devoluciones ejecutadas a través de Creem, Stripe, Mercado Pago o transferencias bancarias en Colombia en plazos estándar.",
           "paragraphs": [
-            "La devolución, cuando proceda legalmente según la sección 02, la ejecuta la pasarela de pagos Stripe al mismo método de pago original.",
+            "La devolución, cuando proceda legalmente según la sección 02, se ejecuta a través de la pasarela o procesador de pago original (Creem, Stripe o Mercado Pago) directamente al mismo medio de pago utilizado en la compra.",
             "Para pagos liquidados mediante transferencias electrónicas bancarias en Colombia, la devolución se tramitará mediante transferencia electrónica a la cuenta bancaria de origen previa validación de titularidad."
           ],
           "points": [
@@ -949,7 +1008,7 @@
     "badge": "ARQUITECTURA DEL SISTEMA",
     "titleLead": "El Ecosistema",
     "titleAccent": "CELAEST.",
-    "subtitle": "Un ecosistema unificado donde la gobernanza, la inteligencia y la automatización convergen para potenciar la empresa a escala.",
+    "subtitle": "Un ecosistema de software unificado donde la gestión de IA, la gobernanza de proyectos de software y el catálogo de automatizaciones convergen para potenciar la empresa a escala.",
     "pillars": {
       "governance": {
         "number": "01",
@@ -993,6 +1052,403 @@
           "desc": "Diseñado para lo que viene."
         }
       }
+    }
+  },
+  "solutions": {
+    "nav": {
+      "backToHome": "Volver al inicio",
+      "allSolutions": "Todas las soluciones",
+      "tabOverview": "Vista General",
+      "tabLingua": "CELAEST Lingua",
+      "tabAiMesh": "Malla IA",
+      "tabAutomation": "Automatización",
+      "exploreSolution": "Explorar solución",
+      "startNow": "Comenzar ahora",
+      "viewPricing": "Ver planes y precios",
+      "readFaq": "Ver preguntas frecuentes",
+      "indexEyebrow": "Índice de Contenido",
+      "sectionPrefix": "CAPACIDAD",
+      "faqPrefix": "PREGUNTA",
+      "impactLead1": "Impacto real.",
+      "impactLead2": "Sin fricción.",
+      "supportPrompt": "¿Necesitas arquitectura a medida o SLA empresarial?",
+      "linguaVideoEyebrow": "Demostración Oficial · YouTube",
+      "linguaVideoTitle": "CELAEST Lingua en acción",
+      "linguaVideoDescription": "Recorrido por la plataforma de inglés profesional impulsada por Inteligencia Artificial: lectura contextual, fonética IPA instantánea y entrenamiento oral personalizado.",
+      "linguaVideoPlay": "Reproducir demo oficial (1:03)",
+      "linguaVideoWatchExternal": "Ver en YouTube"
+    },
+    "guides": {
+      "seoTitle": "Guías Técnicas de IA, Automatización e Inglés Profesional",
+      "seoDescription": "Playbooks prácticos de CELAEST sobre IA privada Zero-Training, Malla IA multi-modelo, inglés técnico con fonética IPA y automatización en Python y Excel.",
+      "keywords": [
+        "guías inteligencia artificial empresarial",
+        "Zero-Training AI BYOK",
+        "inglés técnico con IA",
+        "automatización Excel Python B2B"
+      ],
+      "badge": "BASE DE CONOCIMIENTO & PLAYBOOKS",
+      "title1": "Guías",
+      "title2": "Técnicas.",
+      "subtitle": "Playbooks prácticos y comparativas reales sobre IA privada, adquisición de inglés profesional y automatización operativa sin fricción.",
+      "allGuides": "Todas las guías",
+      "readGuide": "Leer guía completa",
+      "minRead": "{minutes} min de lectura",
+      "rssLabel": "Feed RSS Oficial",
+      "relatedSolutionLabel": "Solución recomendada",
+      "relatedSolutionCta": "Explorar esta solución"
+    },
+    "hub": {
+      "seoTitle": "Catálogo y Tienda de Automatizaciones con IA, Workflows y Soluciones SaaS",
+      "seoDescription": "Explora el catálogo y tienda de automatizaciones con IA de CELAEST: workflows listos para producción, scripts de Python, macros de Excel, CELAEST Lingua y Malla IA privada en Colombia y LATAM.",
+      "keywords": [
+        "catálogo de automatizaciones con IA",
+        "tienda de automatizaciones",
+        "workflows de automatización empresarial",
+        "soluciones con inteligencia artificial",
+        "herramientas de IA para empresas",
+        "plataforma IA Colombia y Latinoamérica",
+        "alternativa empresarial segura a ChatGPT"
+      ],
+      "badge": "CATÁLOGO DE AUTOMATIZACIONES & SOLUCIONES IA",
+      "title1": "Catálogo de IA",
+      "title2": "& Automatizaciones.",
+      "subtitle": "Un ecosistema organizado de workflows, agentes IA, scripts verificados y aplicaciones SaaS (CELAEST Lingua y Malla IA) para eliminar tareas repetitivas desde un único panel.",
+      "definitionLead": "Un catálogo y tienda de automatizaciones con IA es un ecosistema organizado de workflows (flujos de trabajo), agentes de inteligencia artificial, scripts de Python, macros de Excel y aplicaciones SaaS listas para activar en tu empresa, eliminar tareas repetitivas y generar ahorro medible en horas y costos desde el primer día.",
+      "departments": {
+        "title1": "Automatizaciones y workflows",
+        "title2": "por departamento.",
+        "columns": ["Departamento", "Qué Automatiza (Workflows & IA)", "Ahorro Estimado", "Solución CELAEST"],
+        "rows": [
+          ["Comercial, Ventas & Soporte", "Bots WhatsApp/Telegram, alertas de leads, conectores CRM y Slack", "12–18 h / semana", "Automatización & Workflows"],
+          ["Finanzas, Contabilidad & Admin", "Macros Excel VBA de conciliación, cierres contables y reportes automáticos", "10–20 h / semana", "Macros & Scripts Verificados"],
+          ["Operaciones, Datos & TI", "Pipelines ETL en Python, extracción de datos, Google Sheets y GitHub Webhooks", "15–25 h / semana", "Pipelines & Conectores API"],
+          ["RRHH, Talento & Equipos Globales", "Inglés técnico y ejecutivo con IA, fonética IPA y simulador de entrevistas", "Fluidez laboral 24/7", "CELAEST Lingua"],
+          ["Gerencia, Legal & Ciberseguridad", "Uso corporativo de OpenAI, Claude y Gemini sin entrenar modelos públicos (BYOK / On-Premise)", "0% filtración de datos", "Malla IA (AI Mesh)"]
+        ]
+      },
+      "cards": [
+        {
+          "slug": "lingua",
+          "tag": "EN PRODUCCIÓN · SAAS",
+          "title": "CELAEST Lingua",
+          "headline": "Inglés profesional, técnico y ejecutivo impulsado por IA.",
+          "description": "Plataforma adaptativa para profesionales, ingenieros y equipos corporativos: lectura contextual con fonética IPA, simulador de entrevistas laborales y coaching oral en tiempo real.",
+          "highlights": [
+            "Lectura inteligente con análisis léxico e IPA instantáneo",
+            "Simulación de entrevistas técnicas y ejecutivas por rol",
+            "Rutas personalizadas por industria sin cursos genéricos"
+          ]
+        },
+        {
+          "slug": "ai-mesh",
+          "tag": "ORQUESTACIÓN · CERO-ENTRENAMIENTO",
+          "title": "Malla IA (AI Mesh)",
+          "headline": "Orquesta OpenAI, Anthropic y Google Vertex con privacidad total.",
+          "description": "Capa unificada de inferencia multi-modelo con failover automático, aislamiento multi-tenant y garantía vinculante de que tus prompts y código nunca entrenan modelos públicos.",
+          "highlights": [
+            "Modalidades Cloud Mesh B2B, BYOK y On-Premise (Air-Gapped)",
+            "Hasta 1,000,000 solicitudes/mes con cifrado TLS 1.3 y AES-256",
+            "Control de cuotas, registros de auditoría y filtros de seguridad"
+          ]
+        },
+        {
+          "slug": "automation",
+          "tag": "ACTIVOS VERIFICADOS · ROI",
+          "title": "Automatización, Scripts & Macros",
+          "headline": "Reduce 70% de deuda técnica con activos listos para producción.",
+          "description": "Catálogo en expansión de scripts Python verificados, macros de Excel empresariales, pipelines ETL, bots para WhatsApp/Telegram y conectores API auditados.",
+          "highlights": [
+            "Licencias comerciales claras con control centralizado de dispositivos",
+            "Integración directa con GitHub, Slack, Google Sheets y webhooks",
+            "Activación digital inmediata y actualizaciones continuas en la nube"
+          ]
+        }
+      ],
+      "intentsTitle1": "¿Qué problema necesitas",
+      "intentsTitle2": "resolver hoy?",
+      "intentsSubtitle": "Encuentra la ruta exacta dentro de CELAEST según tu objetivo operativo o profesional.",
+      "intents": [
+        {
+          "query": "\"Busco una tienda o catálogo de automatizaciones y workflows listos para mi negocio\"",
+          "targetSlug": "automation",
+          "targetLabel": "Ir al Catálogo de Automatizaciones"
+        },
+        {
+          "query": "\"Quiero automatizar WhatsApp, Excel, Google Sheets o reportes financieros con IA\"",
+          "targetSlug": "automation",
+          "targetLabel": "Ver Workflows por Departamento"
+        },
+        {
+          "query": "\"Quiero aprender inglés técnico para trabajar en tecnología o finanzas\"",
+          "targetSlug": "lingua",
+          "targetLabel": "Ir a CELAEST Lingua"
+        },
+        {
+          "query": "\"Necesito que mi equipo use IA sin filtrar código ni documentos confidenciales\"",
+          "targetSlug": "ai-mesh",
+          "targetLabel": "Ir a Malla IA"
+        },
+        {
+          "query": "\"Necesito automatizar reportes de Excel, scraping o procesos repetitivos\"",
+          "targetSlug": "automation",
+          "targetLabel": "Ir a Automatización"
+        },
+        {
+          "query": "\"Quiero unificar licencias, roles, permisos y costos de IA en un solo panel\"",
+          "targetSlug": "ai-mesh",
+          "targetLabel": "Ver Gobernanza & Malla IA"
+        }
+      ],
+      "comparison": {
+        "title1": "Por qué CELAEST",
+        "title2": "supera soluciones aisladas.",
+        "columns": ["Capacidad Crítica", "CELAEST Plataforma", "IA Pública de Consumo", "Scripts / Herramientas Sueltas"],
+        "rows": [
+          ["Garantía de Cero-Entrenamiento en IA", "Sí, vinculante (B2B / BYOK / On-Premise)", "No en planes gratuitos o estándar", "No aplica"],
+          ["Orquestación Multi-Modelo con Failover", "Sí (OpenAI, Anthropic, Vertex y más)", "Un solo proveedor", "Manual y frágil"],
+          ["Aprendizaje Profesional + Productividad", "Sí (CELAEST Lingua + Malla IA + Activos)", "Solo chat genérico", "Sin ecosistema unificado"],
+          ["Gobernanza, Licencias y Auditoría 365 días", "Centralizada desde 1 panel", "Sin control corporativo unificado", "Sin trazabilidad ni SLA"],
+          ["Inicio desde", "Starter $0/mes · Pro desde $29 USD/mes (15 miembros)", "$20+ USD por cada usuario aislado", "Alto costo de desarrollo a medida"]
+        ]
+      },
+      "faqs": [
+        {
+          "question": "¿Qué es CELAEST y para quién está diseñado?",
+          "answer": "CELAEST es un ecosistema tecnológico empresarial operado desde Colombia con alcance global que unifica aplicaciones SaaS listas para producción (como CELAEST Lingua), orquestación privada de múltiples modelos de inteligencia artificial (Malla IA) y un catálogo progresivo de automatizaciones verificadas en Python, Excel y APIs."
+        },
+        {
+          "question": "¿Cuál es la diferencia entre usar CELAEST y usar ChatGPT o apps gratuitas?",
+          "answer": "Las herramientas gratuitas o de consumo masivo fragmentan tus pagos, carecen de control de licencias por equipo y pueden utilizar información ingresada para mejorar modelos públicos. CELAEST centraliza la gestión de miembros, conecta múltiples modelos de IA con failover automático bajo acuerdos B2B de Cero-Entrenamiento y añade soluciones especializadas como CELAEST Lingua y activos verificados."
+        },
+        {
+          "question": "¿Puedo empezar con un equipo pequeño o uso individual y escalar después?",
+          "answer": "Sí. Puedes iniciar gratis para siempre con Starter ($0, 100 solicitudes/mes y 2 miembros), escalar al plan Pro ($29 USD/mes) con CELAEST Lingua, hasta 500,000 solicitudes mensuales en Malla IA y 15 miembros de equipo, o pasar a Enterprise ($99 USD/mes) con 1,000,000 solicitudes/mes, miembros ilimitados y garantía SLA."
+        }
+      ]
+    },
+    "items": {
+      "lingua": {
+        "seoTitle": "CELAEST Lingua: Inglés Profesional y Técnico con IA",
+        "seoDescription": "Domina inglés ejecutivo, técnico y de negocios con CELAEST Lingua: lectura inteligente con fonética IPA, simulador de entrevistas con IA y entrenamiento oral en tiempo real desde el navegador.",
+        "keywords": [
+          "CELAEST Lingua",
+          "aprender inglés profesional con IA",
+          "inglés técnico para ingenieros y desarrolladores",
+          "simulador de entrevistas en inglés con IA",
+          "fonética IPA y pronunciación con inteligencia artificial"
+        ],
+        "badge": "SAAS EN PRODUCCIÓN · APRENDIZAJE BILINGÜE",
+        "title1": "CELAEST",
+        "title2": "Lingua.",
+        "subtitle": "La plataforma de adquisición de inglés profesional asistida por inteligencia artificial diseñada para ingenieros, ejecutivos, analistas y equipos que necesitan resultados reales en el trabajo.",
+        "ctaPrimary": "Activar CELAEST Lingua",
+        "ctaSecondary": "Ver Planes",
+        "metrics": [
+          { "value": "100%", "label": "En Navegador", "desc": "Windows, macOS, Linux, iOS y Android sin instalaciones." },
+          { "value": "IPA", "label": "Fonética Precisa", "desc": "Transcripción fonética y traducción contextual instantánea." },
+          { "value": "24/7", "label": "Coaching Oral IA", "desc": "Práctica conversacional y entrevistas simuladas bajo demanda." }
+        ],
+        "capabilitiesTitle": "Diseñado para uso profesional real",
+        "capabilities": [
+          {
+            "title": "Lectura Contextual & Léxico Especializado",
+            "description": "Analiza textos técnicos, financieros y corporativos tocando cualquier palabra para obtener su pronunciación IPA, audio claro y significado exacto según tu profesión."
+          },
+          {
+            "title": "Simulador de Entrevistas Técnicas y Ejecutivas",
+            "description": "Entrena respuestas reales frente a entrevistadores IA adaptados a tu cargo, industria y nivel actual, con retroalimentación inmediata sobre claridad y vocabulario."
+          },
+          {
+            "title": "Rutas de Estudio Dinámicas por Objetivo",
+            "description": "Sin listas cerradas ni ejercicios infantiles repetitivos: el motor de IA adapta el nivel, la velocidad y los escenarios a tus metas laborales reales."
+          },
+          {
+            "title": "Gestión Corporativa para Equipos",
+            "description": "Asigna licencias a 2 miembros en Starter, hasta 15 miembros en Pro o asientos ilimitados en Enterprise desde el panel centralizado de CELAEST."
+          }
+        ],
+        "faqs": [
+          {
+            "question": "¿En qué se diferencia CELAEST Lingua de apps tradicionales como Duolingo?",
+            "answer": "Las apps tradicionales están pensadas para vocabulario básico gamificado. CELAEST Lingua está construido para profesionales y empresas: trabaja con escenarios técnicos y ejecutivos reales, análisis léxico instantáneo con fonética IPA, entrenamiento oral fluido con IA y simulación de entrevistas laborales."
+          },
+          {
+            "question": "¿Necesito instalar algún programa para usar CELAEST Lingua?",
+            "answer": "No. Funciona 100% desde cualquier navegador web moderno en computador o celular tras activar tu cuenta o suscripción."
+          },
+          {
+            "question": "¿Mis audios o textos de práctica se usan para entrenar IAs públicas?",
+            "answer": "No. Toda la inferencia de CELAEST Lingua corre sobre nuestra Malla IA B2B bajo políticas estrictas de Cero-Entrenamiento y cifrado TLS 1.3 / AES-256."
+          }
+        ]
+      },
+      "ai-mesh": {
+        "seoTitle": "Malla IA (AI Mesh): Orquestación Multi-Modelo Privada para Empresas",
+        "seoDescription": "Conecta y orquesta OpenAI, Anthropic y Google Vertex en una sola capa empresarial con failover automático, Cero-Entrenamiento garantizado, modo BYOK y despliegue On-Premise.",
+        "keywords": [
+          "Malla IA",
+          "AI Mesh empresarial",
+          "orquestación de modelos LLM",
+          "IA privada sin entrenar modelos públicos",
+          "BYOK y despliegue On-Premise IA"
+        ],
+        "badge": "INFRAESTRUCTURA IA · SOBERANÍA DE DATOS",
+        "title1": "Malla IA",
+        "title2": "(AI Mesh).",
+        "subtitle": "Unifica los mejores modelos de lenguaje bajo una sola arquitectura con conmutación automática ante fallos, control de presupuestos y garantía vinculante de Cero-Entrenamiento.",
+        "ctaPrimary": "Desplegar Malla IA",
+        "ctaSecondary": "Hablar con Ventas Enterprise",
+        "metrics": [
+          { "value": "99.99%", "label": "Disponibilidad", "desc": "Cascadas de fallback multi-proveedor sin caídas." },
+          { "value": "0%", "label": "Entrenamiento Público", "desc": "Tus prompts y código nunca entrenan modelos externos." },
+          { "value": "3", "label": "Niveles de Aislamiento", "desc": "Cloud Mesh B2B, BYOK y On-Premise Air-Gapped." }
+        ],
+        "capabilitiesTitle": "Tres niveles de aislamiento empresarial",
+        "capabilities": [
+          {
+            "title": "Cloud Mesh B2B (Starter, Pro y Enterprise)",
+            "description": "Inferencia efímera en memoria RAM sobre APIs comerciales B2B (100 req/mes en Starter, 500,000 en Pro y 1,000,000 en Enterprise) sin retención para entrenamiento."
+          },
+          {
+            "title": "Modalidad BYOK (Bring Your Own Key)",
+            "description": "Conecta tus propias credenciales directas de OpenAI, Anthropic o Google Vertex manteniendo tus acuerdos DPA directos y control centralizado en CELAEST."
+          },
+          {
+            "title": "On-Premise Soberana (Enterprise)",
+            "description": "Ejecución 100% dentro de tu VPC privada o red aislada (Air-Gapped) sin salida de datos corporativos hacia internet externo."
+          },
+          {
+            "title": "Gobernanza, Auditoría y Moderación Segura",
+            "description": "Registros de auditoría de 90 a 365 días, exportación CSV, analítica ROI y filtros estrictos de cumplimiento corporativo y seguridad de contenido."
+          }
+        ],
+        "faqs": [
+          {
+            "question": "¿Cómo garantiza Malla IA que nuestros datos no entrenen modelos públicos?",
+            "answer": "A diferencia de los planes gratuitos de consumo, Malla IA opera exclusivamente a través de APIs comerciales empresariales con contratos vinculantes de Zero-Training y procesamiento efímero en RAM, además de ofrecer BYOK y despliegue On-Premise."
+          },
+          {
+            "question": "¿Qué ocurre si un proveedor como OpenAI o Anthropic sufre una caída?",
+            "answer": "Malla IA incluye cascadas de respaldo (fallback cascades) que redirigen la carga de inferencia hacia modelos alternativos configurados para mantener la continuidad operativa."
+          },
+          {
+            "question": "¿Cuántas solicitudes mensuales incluyen los planes?",
+            "answer": "El plan Starter ($0 para siempre) incluye 100 solicitudes/mes con 1 modelo; el plan Pro ($29/mes) incluye hasta 500,000 solicitudes/mes con 5 modelos; y el plan Enterprise ($99/mes) escala hasta 1,000,000 de solicitudes/mes con modelos ilimitados."
+          }
+        ]
+      },
+      "automation": {
+        "seoTitle": "Catálogo y Tienda de Automatizaciones con IA: Workflows, Python y Macros Excel",
+        "seoDescription": "Catálogo verificado de automatizaciones empresariales con IA: workflows listos para producción, scripts de Python ETL, macros de Excel y bots gestionados desde un único panel.",
+        "keywords": [
+          "catálogo de automatizaciones con IA",
+          "tienda de automatizaciones",
+          "workflows empresariales",
+          "automatización empresarial con IA",
+          "scripts de Python verificados",
+          "macros de Excel empresariales",
+          "pipelines ETL y bots WhatsApp Telegram",
+          "reducir deuda técnica automatización"
+        ],
+        "badge": "CATÁLOGO DE AUTOMATIZACIONES · WORKFLOWS B2B",
+        "title1": "Catálogo de Automatizaciones",
+        "title2": "& Workflows con IA.",
+        "subtitle": "Activos digitales auditados —scripts Python, macros Excel VBA, conectores API y flujos autónomos— incorporados progresivamente a tu espacio de trabajo para entregar ROI medible.",
+        "ctaPrimary": "Explorar Catálogo",
+        "ctaSecondary": "Ver Planes",
+        "metrics": [
+          { "value": "-70%", "label": "Deuda Técnica", "desc": "De herramientas dispersas a un solo ecosistema." },
+          { "value": "3x", "label": "Eficiencia Operativa", "desc": "De semanas de trabajo manual a minutos." },
+          { "value": "10x", "label": "Escalabilidad", "desc": "Acceso progresivo a nuevos lanzamientos verificados." }
+        ],
+        "capabilitiesTitle": "Qué automatizamos en tu operación",
+        "capabilities": [
+          {
+            "title": "Scripts de Python Verificados & ETL",
+            "description": "Limpieza masiva de datos, extracción estructurada, reportes programados y pipelines auditados listos para validar en sandbox y ejecutar."
+          },
+          {
+            "title": "Macros de Excel de Grado Producción",
+            "description": "Automatización financiera, conciliación contable y generación de informes gerenciales que eliminan horas de trabajo manual repetitivo."
+          },
+          {
+            "title": "Conectores API, Webhooks & Bots",
+            "description": "Integración fluida con GitHub, Slack, Google Sheets, CRM y bots automatizados para WhatsApp y Telegram con reintentos inteligentes."
+          },
+          {
+            "title": "Licenciamiento Perpetuo y Control de Dispositivos",
+            "description": "Cada activo cuenta con licencia comercial clara para uso interno corporativo, trazabilidad de descargas y actualizaciones continuas."
+          }
+        ],
+        "faqs": [
+          {
+            "question": "¿Cómo se incorporan las nuevas automatizaciones al catálogo?",
+            "answer": "Cada script, macro y conector pasa por auditoría técnica y pruebas de seguridad antes de publicarse. Con Starter ($0) accedes a hasta 3 soluciones iniciales, con Pro ($29/mes) hasta 10 soluciones activas, y con Enterprise ($99/mes) obtienes acceso ilimitado automático a todos los futuros lanzamientos."
+          },
+          {
+            "question": "¿Los scripts incluyen código fuente adaptable para mi empresa?",
+            "answer": "Sí. Nuestra licencia comercial EULA autoriza auditar, refactorizar y adaptar los activos adquiridos para integrarlos dentro de las operaciones internas de tu empresa."
+          },
+          {
+            "question": "¿Qué integraciones soportan los planes estándar?",
+            "answer": "Incluyen webhooks (1 en Starter, 5 en Pro, 20 en Enterprise), integración con GitHub en Pro y Enterprise, conectores para Slack y Google Sheets, y exportación de auditoría en CSV en Enterprise."
+          },
+          {
+            "question": "¿En qué sectores y departamentos se pueden aplicar los workflows del catálogo (Comercial, Finanzas, Operaciones, RRHH)?",
+            "answer": "El catálogo de CELAEST cubre Comercial y Soporte (bots WhatsApp/Telegram y sincronización CRM), Finanzas y Administración (macros Excel de conciliación y cierres automáticos con ahorro de 10–20 h/semana), Operaciones e Ingeniería (scripts Python ETL, scraping, GitHub y Google Sheets con ahorro de 15–25 h/semana) y RRHH (CELAEST Lingua), con alcance en Colombia, Latinoamérica y global desde Starter ($0) y Pro desde $29 USD/mes."
+          }
+        ]
+      }
+    }
+  },
+  "contactModal": {
+    "number": "01",
+    "eyebrow": "Contacto Directo",
+    "title": "Hablemos de tu proyecto",
+    "titleLead": "Hablemos de",
+    "titleAccent": "tu proyecto.",
+    "subtitle": "Cuéntanos qué automatización o plan necesitas. Te respondemos directo a tu correo en menos de 24 h hábiles.",
+    "closeAria": "Cerrar ventana de contacto",
+    "topicsLabel": "Motivo",
+    "topicTabs": [
+      "Enterprise",
+      "Catálogo",
+      "Malla IA",
+      "Soporte"
+    ],
+    "topics": [
+      "Consulta Plan Empresarial",
+      "Catálogo y Automatizaciones",
+      "Malla IA / Privacidad",
+      "Soporte Técnico"
+    ],
+    "fields": {
+      "nameLabel": "Nombre completo *",
+      "namePlaceholder": "Laura Gómez",
+      "emailLabel": "Tu correo electrónico *",
+      "emailPlaceholder": "tu@empresa.com",
+      "companyLabel": "Empresa (opcional)",
+      "companyPlaceholder": "Tu empresa",
+      "subjectLabel": "Asunto",
+      "subjectPlaceholder": "Consulta Plan Empresarial",
+      "messageLabel": "¿En qué podemos ayudarte? *",
+      "messagePlaceholder": "Cuéntanos brevemente qué quieres automatizar, qué plan evalúas o qué necesitas..."
+    },
+    "submit": "Enviar mensaje",
+    "submitting": "Enviando...",
+    "directLabel": "Acceso directo",
+    "openGmail": "Abrir en Gmail",
+    "gmailHint": "Borrador prellenado",
+    "copyEmail": "Copiar",
+    "copiedEmail": "Copiado",
+    "slaBadge": "Respuesta < 24 h hábiles",
+    "fallbackCta": "Enviar este mensaje por Gmail",
+    "successTitle": "Mensaje enviado",
+    "successBody": "Recibimos tu consulta correctamente. Te llegará una confirmación a {email} y te responderemos directo a tu correo.",
+    "done": "Listo",
+    "errors": {
+      "network": "No pudimos conectar con el servidor en este momento. Usa el botón de Gmail abajo y tu mensaje ya irá prellenado."
     }
   }
 }

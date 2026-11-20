@@ -8,7 +8,13 @@
     "faq": "FAQ",
     "signIn": "Sign In",
     "getStarted": "Get Started",
-    "signUp": "Sign Up"
+    "signUp": "Sign Up",
+    "primaryNavAria": "CELAEST Ecosystem Primary Navigation",
+    "sitelinkAutomation": "AI Automation Catalog",
+    "sitelinkAiMesh": "Enterprise AI Mesh",
+    "sitelinkLingua": "CELAEST Lingua",
+    "sitelinkSolutions": "Software Projects & Solutions",
+    "sitelinkGuides": "Technical Playbooks"
   },
   "hero": {
     "badge": "Premium Marketplace for Enterprise Automation",
@@ -29,9 +35,21 @@
       "titleMain": "INTENTION",
       "titleConnector": "TO",
       "titleResult": "RESULTS",
-      "titleAria": "From intention to results",
-      "description": "We design, implement, and scale AI systems that turn processes into real results for your business and daily life.",
-      "cta": "EXPLORE SOLUTIONS"
+      "titleAria": "CELAEST — AI Automation Catalog, Enterprise AI Management & Software Projects: From intention to results",
+      "description": "AI automations, multi-model AI management, and enterprise software engineered to turn workflows into real results.",
+      "cta": "HOW IT WORKS?",
+      "ctaAria": "Watch how the CELAEST ecosystem works",
+      "cinema": {
+        "regionAria": "CELAEST explainer video",
+        "close": "BACK",
+        "closeAria": "Close video and return to hero",
+        "playAria": "Play video",
+        "pauseAria": "Pause video",
+        "muteAria": "Mute video",
+        "unmuteAria": "Unmute video",
+        "fullscreenAria": "Fullscreen",
+        "seekAria": "Video progress"
+      }
     },
     "stats": {
       "assets": "Verified Assets",
@@ -58,7 +76,7 @@
   "products": {
     "title1": "AI Tools for",
     "title2": "Real Results",
-    "subtitle": "Activate our live SaaS and AI solutions in production today, while we progressively add new verified automation tools to your catalog.",
+    "subtitle": "Activate our live SaaS solutions, AI management (AI Mesh), and software projects in production today, while we progressively add new verified automations to our automation catalog.",
     "features": {
       "verified": {
         "title": "Progressive Rollout",
@@ -96,7 +114,7 @@
     "title": "Power your Workflow",
     "title1": "Power your",
     "title2": "workflow.",
-    "subtitle": "Enterprise-grade infrastructure designed for efficiency, security, and limitless scalability.",
+    "subtitle": "Enterprise-grade infrastructure for AI management, automation catalogs, and software projects with security and limitless scalability.",
     "explore": "Explore",
     "popular": "Most Popular",
     "columns": {
@@ -104,19 +122,19 @@
         "number": "01",
         "titleLine1": "Centralized",
         "titleLine2": "management",
-        "description": "Manage licenses, members, and versions from a single dashboard, simply and securely."
+        "description": "Centralize AI management, software projects, licenses, members, and versions from a single secure dashboard."
       },
       "workflow": {
         "number": "02",
         "titleLine1": "Automation",
         "titleLine2": "pipeline",
-        "description": "Automate repetitive tasks and workflows so you can focus on what really matters."
+        "description": "Deploy verified AI automations and repetitive workflows so you can focus on what really matters."
       },
       "ecosystem": {
         "number": "03",
         "titleLine1": "Asset",
         "titleLine2": "ecosystem",
-        "description": "Explore and connect your macros, scripts, and tools all in one unified place."
+        "description": "Explore our automation catalog, macros, scripts, and software solutions all in one unified place."
       }
     },
     "widgetMembers": {
@@ -178,47 +196,74 @@
   "pricing": {
     "title1": "Simple, Transparent",
     "title2": "Pricing",
-    "subtitle": "Choose the plan that fits your scale. Operate today with our active solutions (CELAEST Lingua and AI Mesh) and unlock progressive access to every new tool added to the catalog.",
+    "subtitle": "Choose the plan that fits your scale. Start free forever with Starter, unlock the active catalog with Pro, or scale without limits on Enterprise.",
     "periodLabel": "Billing:",
     "currencyLabel": "Currency:",
     "perMonth": "/month",
+    "forever": "forever",
+    "noCreditCard": "No credit card required",
+    "recurringMonthly": "Recurring monthly billing",
+    "metricLabels": {
+      "requests": "AI REQ",
+      "seats": "SEATS",
+      "storage": "STORAGE"
+    },
     "plans": {
       "starter": {
+        "tier": "Community",
         "name": "Starter",
-        "price": "29",
-        "description": "For professionals and growing teams",
+        "price": "0",
+        "description": "For exploring the ecosystem and personal projects.",
+        "metrics": {
+          "requests": "100",
+          "seats": "2 Members",
+          "storage": "1 GB NVMe"
+        },
         "features": [
-          "Access to CELAEST Lingua and active catalog solutions",
-          "Progressive access to upcoming releases (up to 10 active solutions)",
-          "Up to 500,000 requests/month and 5 models in AI Mesh",
-          "Up to 15 team members and 10 devices per license",
-          "25 GB storage and 90-day audit logs",
-          "5 webhooks, GitHub integration, and priority support (support@celaest.com)"
+          "100 AI requests/month and 1 AI model",
+          "Initial catalog access (up to 3 solutions as released)",
+          "2 team members and 2 devices per license",
+          "1 GB NVMe storage and 1 concurrent AI task",
+          "Basic analytics dashboard and 7-day audit logs",
+          "1 webhook and community support"
         ]
       },
-      "professional": {
-        "name": "Professional",
-        "price": "99",
-        "description": "For high-volume companies and teams",
+      "pro": {
+        "tier": "Most Popular",
+        "name": "Pro",
+        "price": "29",
+        "description": "Access to the active catalog (includes Lingua) and upcoming releases.",
+        "metrics": {
+          "requests": "500K",
+          "seats": "15 Members",
+          "storage": "25 GB NVMe"
+        },
         "features": [
-          "Full access to the current catalog (includes CELAEST Lingua)",
-          "Automatic unlimited access to all future catalog releases",
-          "Up to 1,000,000 requests/month and unlimited AI Mesh models",
-          "Unlimited team members and devices per license",
-          "200 GB storage and 365-day audit logs",
-          "20 webhooks, CSV audit export, ROI analytics, SLA guarantee, and dedicated support"
+          "500,000 AI requests/month and 5 AI models",
+          "Active catalog (includes Lingua) + upcoming releases (up to 10)",
+          "15 team members and 10 devices per license",
+          "25 GB NVMe storage and 5 concurrent AI tasks",
+          "Advanced analytics and 90-day audit logs",
+          "5 webhooks, GitHub integration, custom branding & priority support"
         ]
       },
       "enterprise": {
+        "tier": "Enterprise Scale",
         "name": "Enterprise",
-        "price": "Custom",
-        "description": "For large organizations",
+        "price": "99",
+        "description": "Maximum AI Mesh capacity and unlimited access to every new solution.",
+        "metrics": {
+          "requests": "1.0M",
+          "seats": "Unlimited",
+          "storage": "200 GB NVMe"
+        },
         "features": [
-          "Corporate deployment with custom infrastructure, catalog, and quotas",
-          "Dedicated AI Mesh orchestration (including BYOK mode)",
-          "Priority early access to new solutions and enterprise modules",
-          "Multi-tenant isolation and corporate compliance",
-          "Customized Service Level Agreement (SLA) and technical onboarding"
+          "1,000,000 AI requests/month and unlimited AI models",
+          "Full current catalog + unlimited future releases",
+          "Unlimited team members and devices per license",
+          "200 GB NVMe storage and unlimited concurrent tasks",
+          "Full analytics (ROI & costs), 365-day audit logs & CSV export",
+          "20 webhooks, GitHub integration, SLA guarantee & dedicated support"
         ]
       }
     },
@@ -356,10 +401,21 @@
   },
   "faq": {
     "backToHome": "Back to home",
+    "badge": "Knowledge Base & Support",
+    "questionPrefix": "QUESTION",
+    "quickIndex": "Quick Index",
+    "indexAria": "Questions index",
+    "slaPrompt": "Do you have a specific technical inquiry or require a custom SLA agreement?",
+    "emailAction": "Email {email}",
+    "docsAction": "View Technical Documentation",
     "title1": "Frequently Asked",
     "title2": "Questions",
     "subtitle": "Everything you need to know about our platform and services.",
     "questions": [
+      {
+        "question": "What is CELAEST and how do its AI automation catalog and AI management work?",
+        "answer": "CELAEST (celaest.com) is an enterprise software and artificial intelligence company operated from Colombia with global reach. We unify a verified AI automation catalog (workflows, Python scripts, Excel macros, and API connectors), a private multi-model AI management platform with binding Zero-Training guarantees (AI Mesh), software project governance, and production SaaS applications such as CELAEST Lingua."
+      },
       {
         "question": "What digital solutions and assets do you currently offer?",
         "answer": "We provide access to our ecosystem of SaaS software and applied artificial intelligence (currently led by CELAEST Lingua for AI-assisted professional English acquisition and our AI Mesh orchestration workspace), to which we progressively add new verified automation and productivity tools as they are released."
@@ -374,7 +430,7 @@
       },
       {
         "question": "Do you provide technical support?",
-        "answer": "Yes. All plans and individual purchases include technical support at support@celaest.com. Starter plans receive 24-48 business hour email support, Professional plans receive priority support, and Enterprise plans include dedicated SLA agreements."
+        "answer": "Yes. All plans and individual purchases include technical support at support@celaest.com. Starter includes community support, Pro plans receive priority support, and Enterprise plans include SLA guarantees and dedicated engineering support."
       },
       {
         "question": "How do you ensure security and responsible AI use?",
@@ -382,7 +438,7 @@
       },
       {
         "question": "Can I request team deployments or custom integrations?",
-        "answer": "Yes. Through our Enterprise plan we offer tailored organization setups, Bring Your Own Key (BYOK) configuration, and onboarding support."
+        "answer": "Yes. Through our Enterprise plan we offer unlimited team seats, GitHub/webhook integrations, audit CSV export, and dedicated assistance for BYOK or On-Premise deployments."
       },
       {
         "question": "How often are catalog applications updated?",
@@ -411,22 +467,24 @@
       "subscribe": "Subscribe"
     },
     "brand": {
-      "description": "Premium automation tools for professionals who demand excellence."
+      "description": "CELAEST: enterprise software company, AI automation catalog, AI management (AI Mesh), and software projects."
     },
     "links": {
       "product": {
         "title": "Product",
         "items": [
+          "AI Solutions Hub",
+          "CELAEST Lingua",
+          "Automation & Scripts",
           "Asset Catalog",
-          "Macros & Scripts",
           "Plans & Pricing"
         ]
       },
       "company": {
         "title": "Platform",
         "items": [
+          "AI Mesh Orchestration",
           "System Architecture",
-          "AI Mesh & Agents",
           "Security & Isolation"
         ]
       },
@@ -434,6 +492,7 @@
         "title": "Support",
         "items": [
           "Frequently Asked Questions",
+          "Guides & Playbooks",
           "Technical Documentation"
         ]
       },
@@ -544,7 +603,7 @@
           "summary": "PCI-DSS certified payment processing, global gateways, and direct Colombian rails. Subscriptions renew automatically.",
           "paragraphs": [
             "Subscriptions renew automatically at the conclusion of each billing cycle (monthly or annual) using the saved payment method, unless cancelled by Customer prior to the scheduled renewal date. Timely cancellation is Customer's sole duty.",
-            "Credit and debit card transactions are processed securely through Stripe, a PCI-DSS Level 1 certified tokenized payment gateway, or via direct electronic bank transfers in Colombia where available. CELAEST never stores complete credit card numbers or CVV verification codes on its servers."
+            "International and local credit card, debit card, and digital payment transactions are processed securely through Creem (international Merchant of Record), Stripe, and Mercado Pago —PCI-DSS Level 1 certified tokenized payment processors—, or via direct electronic bank transfers in Colombia where available. CELAEST never stores complete credit card numbers or CVV verification codes on its servers."
           ]
         },
         {
@@ -691,7 +750,7 @@
             "Vercel, Inc. (Edge serverless hosting and global CDN distribution).",
             "Anthropic PBC / OpenAI LLC / Google Vertex AI (B2B commercial AI inference under non-training agreements).",
             "Isolated Sandbox Environments (Ephemeral code execution and script validation without data persistence).",
-            "PCI-DSS Level 1 Payment Processors (Stripe and certified digital payment settlement partners)."
+            "PCI-DSS Level 1 Payment Processors and Merchant of Record Partners (Creem, Stripe, and Mercado Pago)."
           ]
         },
         {
@@ -920,9 +979,9 @@
           "id": "tiempos",
           "number": "07",
           "title": "Processing and Financial Settlement Timelines",
-          "summary": "Refunds executed via the Stripe payment gateway or local bank transfers in Colombia within standard business timeframes.",
+          "summary": "Refunds executed via Creem, Stripe, Mercado Pago, or local bank transfers in Colombia within standard business timeframes.",
           "paragraphs": [
-            "When legally warranted under Section 02, refunds are executed through the Stripe payment gateway directly back to the original payment instrument.",
+            "When legally warranted under Section 02, refunds are executed through the original payment processor or Merchant of Record (Creem, Stripe, or Mercado Pago) directly back to the original payment instrument.",
             "For transactions completed via direct electronic bank transfers in Colombia, refunds are processed via electronic transfer to the origin bank account following identity verification."
           ],
           "points": [
@@ -949,7 +1008,7 @@
     "badge": "SYSTEM ARCHITECTURE",
     "titleLead": "The CELAEST",
     "titleAccent": "Ecosystem.",
-    "subtitle": "A unified ecosystem where governance, intelligence and automation work together to power enterprise at scale.",
+    "subtitle": "A unified software ecosystem where AI management, software project governance, and the automation catalog converge to power enterprise at scale.",
     "pillars": {
       "governance": {
         "number": "01",
@@ -993,6 +1052,403 @@
           "desc": "Built for what's next."
         }
       }
+    }
+  },
+  "solutions": {
+    "nav": {
+      "backToHome": "Back to home",
+      "allSolutions": "All solutions",
+      "tabOverview": "Overview",
+      "tabLingua": "CELAEST Lingua",
+      "tabAiMesh": "AI Mesh",
+      "tabAutomation": "Automation",
+      "exploreSolution": "Explore solution",
+      "startNow": "Get started now",
+      "viewPricing": "View plans & pricing",
+      "readFaq": "View FAQ",
+      "indexEyebrow": "Content Index",
+      "sectionPrefix": "CAPABILITY",
+      "faqPrefix": "QUESTION",
+      "impactLead1": "Measurable impact.",
+      "impactLead2": "Zero friction.",
+      "supportPrompt": "Need custom architecture or an enterprise SLA?",
+      "linguaVideoEyebrow": "Official Walkthrough · YouTube",
+      "linguaVideoTitle": "CELAEST Lingua in Action",
+      "linguaVideoDescription": "Inside our AI-powered professional English platform: contextual technical reading, instant IPA phonetics, and personalized speaking practice.",
+      "linguaVideoPlay": "Play official demo (1:03)",
+      "linguaVideoWatchExternal": "Watch on YouTube"
+    },
+    "guides": {
+      "seoTitle": "Enterprise AI, Automation & Professional English Playbooks",
+      "seoDescription": "Practical CELAEST technical guides covering Zero-Training AI orchestration, technical English with IPA phonetics, and Python & Excel enterprise automation.",
+      "keywords": [
+        "enterprise AI playbooks",
+        "Zero-Training AI BYOK guide",
+        "technical English with AI",
+        "B2B Python Excel automation"
+      ],
+      "badge": "KNOWLEDGE BASE & PLAYBOOKS",
+      "title1": "Technical",
+      "title2": "Playbooks.",
+      "subtitle": "Actionable engineering playbooks on private Zero-Training AI, workplace English fluency, and audited Python/Excel automation.",
+      "allGuides": "All playbooks",
+      "readGuide": "Read full playbook",
+      "minRead": "{minutes} min read",
+      "rssLabel": "Official RSS Feed",
+      "relatedSolutionLabel": "Recommended solution",
+      "relatedSolutionCta": "Explore this solution"
+    },
+    "hub": {
+      "seoTitle": "AI Automation Catalog, Workflows Store & Enterprise AI Solutions",
+      "seoDescription": "Explore CELAEST's AI automation catalog and workflow store: production-ready Python scripts, Excel macros, CELAEST Lingua for technical English, and Zero-Training AI Mesh across Colombia, LATAM, and globally.",
+      "keywords": [
+        "AI automation catalog",
+        "AI automation store",
+        "enterprise workflow automation",
+        "enterprise AI solutions",
+        "AI tools for business",
+        "secure alternative to consumer ChatGPT",
+        "AI workflow automation platform"
+      ],
+      "badge": "AI AUTOMATION CATALOG & SOLUTIONS ECOSYSTEM",
+      "title1": "AI Catalog",
+      "title2": "& Workflows Store.",
+      "subtitle": "An organized ecosystem of production workflows, AI agents, verified scripts, and SaaS applications (CELAEST Lingua and AI Mesh) governed in one workspace.",
+      "definitionLead": "An AI automation catalog and workflow store is an organized ecosystem of production-ready workflows, AI agents, verified Python scripts, Excel macros, and SaaS applications designed to connect your tools, eliminate repetitive tasks, and deliver measurable time and cost savings from day one.",
+      "departments": {
+        "title1": "Automations and workflows",
+        "title2": "by department.",
+        "columns": ["Department", "What It Automates (Workflows & AI)", "Estimated Savings", "CELAEST Solution"],
+        "rows": [
+          ["Commercial, Sales & Support", "WhatsApp/Telegram AI bots, lead scoring alerts, CRM and Slack connectors", "12–18 hrs / week", "Automation & Workflows"],
+          ["Finance, Accounting & Admin", "Verified Excel VBA reconciliation macros, financial closes, automated reporting", "10–20 hrs / week", "Verified Macros & Scripts"],
+          ["Operations, Data & IT", "Python ETL pipelines, structured scraping, Google Sheets & GitHub Webhooks", "15–25 hrs / week", "Pipelines & API Connectors"],
+          ["HR, Talent & Global Teams", "Technical and executive English with AI, IPA phonetics, and 24/7 mock interviews", "24/7 workplace fluency", "CELAEST Lingua"],
+          ["Leadership, Legal & Security", "Enterprise OpenAI, Claude & Gemini routing with Zero-Training, BYOK, On-Premise", "0% data leakage", "AI Mesh (Malla IA)"]
+        ]
+      },
+      "cards": [
+        {
+          "slug": "lingua",
+          "tag": "LIVE IN PRODUCTION · SAAS",
+          "title": "CELAEST Lingua",
+          "headline": "AI-assisted professional, technical, and executive English.",
+          "description": "Adaptive web platform for engineers, analysts, and corporate teams: contextual reading with instant IPA phonetics, technical interview simulation, and real-time voice coaching.",
+          "highlights": [
+            "Smart reading comprehension with instant lexical & IPA lookup",
+            "Role-specific technical and executive interview simulator",
+            "Dynamic pathways tailored to real workplace scenarios"
+          ]
+        },
+        {
+          "slug": "ai-mesh",
+          "tag": "ORCHESTRATION · ZERO-TRAINING",
+          "title": "AI Mesh (Malla IA)",
+          "headline": "Orchestrate OpenAI, Anthropic, and Google Vertex with zero data leakage.",
+          "description": "Unified multi-model LLM gateway featuring automatic fallback cascades, multi-tenant isolation, and binding guarantees that your prompts and code never train public models.",
+          "highlights": [
+            "Cloud Mesh B2B, BYOK, and Sovereign On-Premise (Air-Gapped) tiers",
+            "Up to 1,000,000 requests/mo encrypted with TLS 1.3 and AES-256",
+            "Quota governance, 365-day audit logs, and strict content safety"
+          ]
+        },
+        {
+          "slug": "automation",
+          "tag": "VERIFIED ASSETS · ROI",
+          "title": "Automation, Scripts & Macros",
+          "headline": "Cut technical debt by 70% with production-verified assets.",
+          "description": "Expanding catalog of audited Python scripts, enterprise Excel VBA macros, ETL pipelines, WhatsApp/Telegram bots, and reliable API connectors.",
+          "highlights": [
+            "Clear commercial licensing with centralized device management",
+            "Native integrations for GitHub, Slack, Google Sheets, and webhooks",
+            "Instant digital activation with continuous cloud updates"
+          ]
+        }
+      ],
+      "intentsTitle1": "What challenge are you",
+      "intentsTitle2": "solving today?",
+      "intentsSubtitle": "Jump directly to the CELAEST solution tailored to your operational or professional goal.",
+      "intents": [
+        {
+          "query": "\"I'm looking for an AI automation store or workflow catalog for my business\"",
+          "targetSlug": "automation",
+          "targetLabel": "Open Automation Catalog"
+        },
+        {
+          "query": "\"I want to automate WhatsApp, Excel, Google Sheets, or financial reporting with AI\"",
+          "targetSlug": "automation",
+          "targetLabel": "See Workflows by Department"
+        },
+        {
+          "query": "\"I want to master technical and executive English for global roles\"",
+          "targetSlug": "lingua",
+          "targetLabel": "Open CELAEST Lingua"
+        },
+        {
+          "query": "\"My team needs frontier AI without exposing proprietary code or files\"",
+          "targetSlug": "ai-mesh",
+          "targetLabel": "Open AI Mesh"
+        },
+        {
+          "query": "\"I need to automate Excel reporting, ETL pipelines, or repetitive tasks\"",
+          "targetSlug": "automation",
+          "targetLabel": "Open Automation"
+        },
+        {
+          "query": "\"I want unified licenses, team roles, and AI spend governance in one dashboard\"",
+          "targetSlug": "ai-mesh",
+          "targetLabel": "See Governance & AI Mesh"
+        }
+      ],
+      "comparison": {
+        "title1": "Why CELAEST",
+        "title2": "outperforms fragmented tools.",
+        "columns": ["Critical Capability", "CELAEST Platform", "Consumer AI Chats", "Standalone Scripts / Tools"],
+        "rows": [
+          ["Binding Zero-Training AI Guarantee", "Yes (B2B API / BYOK / On-Premise)", "No on consumer free/basic tiers", "Not applicable"],
+          ["Multi-Model Orchestration & Failover", "Yes (OpenAI, Anthropic, Vertex & more)", "Single vendor lock-in", "Manual & brittle"],
+          ["Professional Learning + Productivity", "Yes (CELAEST Lingua + AI Mesh + Assets)", "Generic chat only", "No unified workspace"],
+          ["Governance, Licenses & 365-Day Audit", "Centralized in 1 control plane", "No unified org governance", "No traceability or SLA"],
+          ["Starting Price", "Starter $0/mo · Pro from $29 USD/mo (15 seats)", "$20+ USD per isolated user", "High custom dev cost"]
+        ]
+      },
+      "faqs": [
+        {
+          "question": "What is CELAEST and who is it built for?",
+          "answer": "CELAEST is a global B2B technology ecosystem uniting production-ready SaaS applications (led by CELAEST Lingua), private multi-model LLM orchestration (AI Mesh), and an expanding catalog of verified Python, Excel, and API automation assets."
+        },
+        {
+          "question": "How is CELAEST different from consumer ChatGPT or standalone apps?",
+          "answer": "Consumer tools fragment billing, lack centralized team governance, and often retain data unless explicitly configured. CELAEST unifies team licensing, routes across multiple AI providers with failover under binding Zero-Training B2B terms, and includes specialized products like CELAEST Lingua."
+        },
+        {
+          "question": "Can I start with a small team or solo and scale later?",
+          "answer": "Yes. Start free forever on Starter ($0, 100 requests/mo, 2 members), upgrade to Pro ($29 USD/month) for CELAEST Lingua, up to 500,000 AI Mesh requests/month, and 15 team members, or scale to Enterprise ($99 USD/month) for 1,000,000 requests/month, unlimited seats, and SLA guarantee."
+        }
+      ]
+    },
+    "items": {
+      "lingua": {
+        "seoTitle": "CELAEST Lingua: AI-Assisted Professional & Technical English",
+        "seoDescription": "Master executive and technical English with CELAEST Lingua: adaptive reading with IPA phonetics, AI interview simulator, and real-time voice coaching directly in your browser.",
+        "keywords": [
+          "CELAEST Lingua",
+          "learn professional English with AI",
+          "technical English for engineers and executives",
+          "AI English interview simulator",
+          "IPA phonetics and AI pronunciation coaching"
+        ],
+        "badge": "LIVE SAAS · BILINGUAL ACQUISITION",
+        "title1": "CELAEST",
+        "title2": "Lingua.",
+        "subtitle": "The AI-assisted professional English acquisition platform built for engineers, executives, analysts, and global teams who need workplace fluency.",
+        "ctaPrimary": "Activate CELAEST Lingua",
+        "ctaSecondary": "View Pricing",
+        "metrics": [
+          { "value": "100%", "label": "Browser-Ready", "desc": "Runs on Windows, macOS, Linux, iOS, and Android." },
+          { "value": "IPA", "label": "Phonetic Precision", "desc": "Instant IPA transcription and contextual definitions." },
+          { "value": "24/7", "label": "AI Voice Coaching", "desc": "Real-time conversational drills and mock interviews." }
+        ],
+        "capabilitiesTitle": "Engineered for real workplace English",
+        "capabilities": [
+          {
+            "title": "Contextual Reading & Technical Lexicon",
+            "description": "Read technical, financial, and business material while inspecting any word for instant IPA phonetics, clear audio, and domain-accurate meaning."
+          },
+          {
+            "title": "Technical & Executive Interview Simulator",
+            "description": "Practice high-stakes interviews with AI evaluators tailored to your role and industry, receiving actionable feedback on clarity and phrasing."
+          },
+          {
+            "title": "Dynamic Goal-Driven Pathways",
+            "description": "No rigid textbook scripts or childish drills: the AI engine dynamically calibrates scenarios, difficulty, and pacing around your career goals."
+          },
+          {
+            "title": "Centralized Team Licensing",
+            "description": "Provision 2 team members on Starter, up to 15 on Pro, or unlimited seats on Enterprise from your unified CELAEST organization dashboard."
+          }
+        ],
+        "faqs": [
+          {
+            "question": "How is CELAEST Lingua different from casual apps like Duolingo?",
+            "answer": "Casual apps focus on gamified beginner vocabulary. CELAEST Lingua is built for working professionals and enterprises—combining domain-specific reading, instant IPA phonetic lookup, real-time AI oral coaching, and realistic interview simulations."
+          },
+          {
+            "question": "Do I need to install desktop or mobile software?",
+            "answer": "No. CELAEST Lingua runs 100% inside any modern web browser across desktop and mobile immediately after activation."
+          },
+          {
+            "question": "Are my practice recordings or texts used to train public AI models?",
+            "answer": "Never. All CELAEST Lingua inference runs over our B2B AI Mesh under binding Zero-Training policies and TLS 1.3 / AES-256 encryption."
+          }
+        ]
+      },
+      "ai-mesh": {
+        "seoTitle": "AI Mesh (Malla IA): Private Multi-Model LLM Orchestration for Business",
+        "seoDescription": "Orchestrate OpenAI, Anthropic, and Google Vertex in one enterprise gateway with automatic failover, Zero-Training guarantees, BYOK mode, and air-gapped On-Premise options.",
+        "keywords": [
+          "AI Mesh",
+          "enterprise LLM orchestration gateway",
+          "zero-training private AI for business",
+          "multi-model AI failover",
+          "BYOK and On-Premise enterprise AI"
+        ],
+        "badge": "AI INFRASTRUCTURE · DATA SOVEREIGNTY",
+        "title1": "AI Mesh",
+        "title2": "Orchestration.",
+        "subtitle": "Unify frontier language models behind one resilient architecture with automatic failover, budget controls, and binding Zero-Training guarantees.",
+        "ctaPrimary": "Deploy AI Mesh",
+        "ctaSecondary": "Contact Enterprise Sales",
+        "metrics": [
+          { "value": "99.99%", "label": "Availability", "desc": "Multi-provider fallback cascades with zero single point of failure." },
+          { "value": "0%", "label": "Public Training", "desc": "Your prompts and source code never train public models." },
+          { "value": "3", "label": "Isolation Tiers", "desc": "Cloud Mesh B2B, BYOK, and Air-Gapped On-Premise." }
+        ],
+        "capabilitiesTitle": "Three enterprise isolation architectures",
+        "capabilities": [
+          {
+            "title": "Cloud Mesh B2B (Starter, Pro & Enterprise)",
+            "description": "Ephemeral RAM-based inference over commercial enterprise APIs (100 req/mo on Starter, 500,000 on Pro, and 1,000,000 on Enterprise) with zero model training."
+          },
+          {
+            "title": "BYOK (Bring Your Own Key)",
+            "description": "Connect your organization's direct OpenAI, Anthropic, or Vertex credentials while keeping unified observability and quota governance in CELAEST."
+          },
+          {
+            "title": "Sovereign On-Premise (Enterprise)",
+            "description": "Execute models 100% inside your private VPC or air-gapped perimeter with zero external data egress."
+          },
+          {
+            "title": "Governance, Audit Logs & Content Safety",
+            "description": "90-to-365-day audit logs, CSV export, ROI analytics, and strict corporate moderation guardrails."
+          }
+        ],
+        "faqs": [
+          {
+            "question": "How does AI Mesh guarantee our corporate data never trains public models?",
+            "answer": "Unlike consumer plans, AI Mesh routes exclusively through commercial B2B APIs bound by Zero-Training agreements with ephemeral RAM processing, plus optional BYOK and air-gapped On-Premise deployment."
+          },
+          {
+            "question": "What happens if a provider like OpenAI or Anthropic experiences downtime?",
+            "answer": "AI Mesh uses configurable fallback cascades to seamlessly reroute requests to healthy secondary models so your workflows keep running."
+          },
+          {
+            "question": "How many monthly requests are included in standard plans?",
+            "answer": "Starter ($0 forever) includes 100 requests/month across 1 model; Pro ($29/mo) includes up to 500,000 requests/month across 5 models; and Enterprise ($99/mo) scales to 1,000,000 requests/month with unlimited models."
+          }
+        ]
+      },
+      "automation": {
+        "seoTitle": "AI Automation Store & Catalog: Workflows, Python Scripts & Excel Macros",
+        "seoDescription": "Audited enterprise AI automation catalog: production workflows, verified Python ETL scripts, Excel macros, and API bots governed from one centralized platform.",
+        "keywords": [
+          "AI automation catalog",
+          "AI automation store",
+          "enterprise workflows",
+          "enterprise AI automation",
+          "verified Python automation scripts",
+          "production Excel VBA macros",
+          "ETL pipelines and API connectors",
+          "reduce technical debt automation"
+        ],
+        "badge": "AI AUTOMATION CATALOG · B2B WORKFLOWS",
+        "title1": "AI Automation Catalog",
+        "title2": "& Workflows Store.",
+        "subtitle": "Audited digital assets—Python scripts, Excel VBA macros, API connectors, and autonomous flows—progressively added to your workspace for immediate ROI.",
+        "ctaPrimary": "Explore Catalog",
+        "ctaSecondary": "View Pricing",
+        "metrics": [
+          { "value": "-70%", "label": "Technical Debt", "desc": "Consolidate scattered scripts into one platform." },
+          { "value": "3x", "label": "Operational Speed", "desc": "Turn weeks of manual reporting into minutes." },
+          { "value": "10x", "label": "Scalability", "desc": "Progressive access to verified upcoming releases." }
+        ],
+        "capabilitiesTitle": "What we automate across your workflows",
+        "capabilities": [
+          {
+            "title": "Verified Python Scripts & ETL Pipelines",
+            "description": "Automated data cleaning, structured extraction, scheduled reporting, and audited pipelines ready for staging validation."
+          },
+          {
+            "title": "Production-Grade Excel Macros",
+            "description": "Financial automation, ledger reconciliation, and executive dashboards that eliminate repetitive manual spreadsheet work."
+          },
+          {
+            "title": "API Connectors, Webhooks & Bots",
+            "description": "Seamless bridges for GitHub, Slack, Google Sheets, CRMs, and automated WhatsApp/Telegram bots with retry logic."
+          },
+          {
+            "title": "Perpetual Licensing & Device Control",
+            "description": "Clear internal commercial licensing, authenticated downloads, and continuous cloud updates managed centrally."
+          }
+        ],
+        "faqs": [
+          {
+            "question": "How are new automation tools added to the catalog?",
+            "answer": "Every script, macro, and connector undergoes technical auditing before release. Starter ($0) unlocks up to 3 initial solutions, Pro ($29/mo) includes up to 10 active solutions, and Enterprise ($99/mo) includes automatic unlimited access to all future releases."
+          },
+          {
+            "question": "Can we customize the source code for our internal workflows?",
+            "answer": "Yes. Our EULA commercial license grants full rights to audit, refactor, and integrate purchased assets within your internal corporate operations."
+          },
+          {
+            "question": "Which integrations are supported out of the box?",
+            "answer": "Plans include webhooks (1 on Starter, 5 on Pro, 20 on Enterprise), GitHub integration on Pro and Enterprise, Slack and Google Sheets bridges, and CSV audit exports on Enterprise."
+          },
+          {
+            "question": "Which sectors and departments benefit from CELAEST's automation workflows (Sales, Finance, Ops, HR)?",
+            "answer": "CELAEST supports Commercial & Support (WhatsApp/Telegram bots and CRM sync), Finance & Admin (Excel reconciliation macros saving 10–20 hrs/week), Operations & Engineering (Python ETL, scraping, GitHub and Google Sheets saving 15–25 hrs/week), and HR (CELAEST Lingua), operating across Colombia, LATAM, and worldwide starting with Free Starter ($0) and Pro from $29 USD/month."
+          }
+        ]
+      }
+    }
+  },
+  "contactModal": {
+    "number": "01",
+    "eyebrow": "Direct Sales",
+    "title": "Talk with our team",
+    "titleLead": "Let's scale",
+    "titleAccent": "your workflow.",
+    "subtitle": "Tell us what plan or automation you are exploring. Direct reply to your inbox within 24 business hours.",
+    "closeAria": "Close contact dialog",
+    "topicsLabel": "Topic",
+    "topicTabs": [
+      "Enterprise",
+      "Catalog",
+      "AI Mesh",
+      "Support"
+    ],
+    "topics": [
+      "Enterprise Plan Inquiry",
+      "Automation Catalog & Workflows",
+      "AI Mesh / Zero-Training",
+      "Technical Support"
+    ],
+    "fields": {
+      "nameLabel": "Full name *",
+      "namePlaceholder": "Alex Rivera",
+      "emailLabel": "Your email address *",
+      "emailPlaceholder": "you@company.com",
+      "companyLabel": "Company (optional)",
+      "companyPlaceholder": "Your company",
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "Enterprise Plan Inquiry",
+      "messageLabel": "How can we help? *",
+      "messagePlaceholder": "Tell us briefly what workflows, AI setup, or plan you are exploring..."
+    },
+    "submit": "Send message",
+    "submitting": "Sending...",
+    "directLabel": "Direct access",
+    "openGmail": "Open in Gmail",
+    "gmailHint": "Pre-filled draft",
+    "copyEmail": "Copy",
+    "copiedEmail": "Copied",
+    "slaBadge": "< 24h business reply",
+    "fallbackCta": "Send this message via Gmail",
+    "successTitle": "Message sent",
+    "successBody": "We received your inquiry. A confirmation receipt was sent to {email}, and we will reply straight to your inbox.",
+    "done": "Done",
+    "errors": {
+      "network": "Could not reach the server right now. Use the Gmail button below with your message already pre-filled."
     }
   }
 }

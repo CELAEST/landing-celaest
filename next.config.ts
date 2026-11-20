@@ -27,6 +27,7 @@ const nextConfig: NextConfig = {
 
   // Experimental features para mejor performance
   experimental: {
+    inlineCss: true,
     optimizeCss: true,
     optimizePackageImports: [
       "next-intl",

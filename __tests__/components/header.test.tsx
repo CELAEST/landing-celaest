@@ -1,6 +1,9 @@
+import React from "react";
 import { render, screen } from "@testing-library/react";
 import { expect, test, vi } from "vitest";
 import { Header } from "../../src/components/landing/header";
+
+const mockUsePathname = vi.fn(() => "/");
 
 // Mock next-intl hooks
 vi.mock("next-intl", () => ({
@@ -16,10 +19,26 @@ vi.mock("next-intl", () => ({
 
 // Mock navigation hooks
 vi.mock("@/i18n/navigation", () => ({
+  Link: ({
+    href,
+    prefetch: _prefetch,
+    children,
+    ...props
+  }: React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+    href: string;
+    prefetch?: boolean;
+  }) => {
+    void _prefetch;
+    return (
+      <a href={href} {...props}>
+        {children}
+      </a>
+    );
+  },
   useRouter: () => ({
     replace: vi.fn(),
   }),
-  usePathname: () => "/",
+  usePathname: () => mockUsePathname(),
 }));
 
 // Mock routing constants
@@ -30,11 +49,13 @@ vi.mock("@/i18n/routing", () => ({
 }));
 
 test("Header renders with Spanish text without overflow classes and preserves desktop styling", () => {
+  mockUsePathname.mockReturnValue("/");
   render(<Header />);
 
-  // Brand Logo
+  // Brand Logo on home points to top anchor
   const brandLink = screen.getByRole("link", { name: /CELAEST/i });
   expect(brandLink).toBeInTheDocument();
+  expect(brandLink).toHaveAttribute("href", "#intent-hero");
   expect(brandLink.className).toContain("tracking-[0.18em]");
   expect(brandLink.className).toContain("sm:tracking-[0.42em]");
 
@@ -51,4 +72,12 @@ test("Header renders with Spanish text without overflow classes and preserves de
   expect(signUpLink?.className).toContain("whitespace-nowrap");
   expect(signUpLink?.className).toContain("text-[11px]");
   expect(signUpLink?.className).toContain("sm:text-[13px]");
+});
+
+test("Header CELAEST logo navigates back to Home (/) when inside footer subpages", () => {
+  mockUsePathname.mockReturnValue("/solutions");
+  render(<Header />);
+
+  const brandLink = screen.getByRole("link", { name: /CELAEST/i });
+  expect(brandLink).toHaveAttribute("href", "/");
 });

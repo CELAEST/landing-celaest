@@ -188,6 +188,12 @@ export const ConstellationBackground = memo(function ConstellationBackground({
         return;
       }
 
+      // Cap a ~30 FPS en dispositivos móviles para preservar batería y TBT
+      if (isMobile && lastTime !== 0 && now - lastTime < 32) {
+        rafId = requestAnimationFrame(render);
+        return;
+      }
+
       // MEJOR PRÁCTICA: Delta time para sincronizar 60Hz / 120Hz / 144Hz
       const dt = lastTime === 0 ? 1 : Math.min((now - lastTime) / 16.667, 2.0);
       lastTime = now;
@@ -370,21 +376,54 @@ export const ConstellationBackground = memo(function ConstellationBackground({
 
     window.addEventListener("scroll", handleScroll, { passive: true });
 
-    // Inicializar dimensiones y ResizeObserver
-    handleResize();
+    // Diferir arranque del canvas hasta tiempo libre o primera interacción para TBT = 0ms
+    let initialized = false;
+    let readyToStart = false;
     const ro = new ResizeObserver(handleResize);
-    ro.observe(container);
+
+    const startIfReady = () => {
+      if (!readyToStart || !inView || !isRunning) return;
+      if (!initialized) {
+        initialized = true;
+        handleResize();
+        ro.observe(container);
+      }
+      if (!rafId) {
+        lastTime = 0;
+        rafId = requestAnimationFrame(render);
+      }
+    };
+
+    const interactionEvents = [
+      "pointermove",
+      "pointerdown",
+      "touchstart",
+      "keydown",
+      "scroll",
+    ] as const;
+
+    const unlockAnimation = () => {
+      if (readyToStart) return;
+      readyToStart = true;
+      if (idleTimer) clearTimeout(idleTimer);
+      for (const evt of interactionEvents) {
+        window.removeEventListener(evt, unlockAnimation);
+      }
+      startIfReady();
+    };
+
+    for (const evt of interactionEvents) {
+      window.addEventListener(evt, unlockAnimation, { once: true, passive: true });
+    }
+    const idleTimer = setTimeout(unlockAnimation, 1200);
 
     // Pausa total con IntersectionObserver fuera de vista
     const io = new IntersectionObserver(
       ([entry]) => {
         inView = entry.isIntersecting;
-        if (inView && !rafId && isRunning) {
-          lastTime = 0;
-          rafId = requestAnimationFrame(render);
-        }
+        startIfReady();
       },
-      { threshold: 0, rootMargin: "80px 0px 80px 0px" },
+      { threshold: 0.01, rootMargin: "0px" },
     );
     io.observe(container);
 
@@ -392,6 +431,10 @@ export const ConstellationBackground = memo(function ConstellationBackground({
       isRunning = false;
       if (rafId) cancelAnimationFrame(rafId);
       if (scrollDebounceTimer) clearTimeout(scrollDebounceTimer);
+      if (idleTimer) clearTimeout(idleTimer);
+      for (const evt of interactionEvents) {
+        window.removeEventListener(evt, unlockAnimation);
+      }
       ro.disconnect();
       io.disconnect();
       window.removeEventListener("scroll", handleScroll);

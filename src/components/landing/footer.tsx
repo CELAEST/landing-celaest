@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Github, Mail } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 import { ConstellationBackground } from "@/components/ui/constellation-background";
 import { FooterBrandColumn } from "./footer/footer-brand-column";
 import { FooterLinks } from "./footer/footer-links";
@@ -21,6 +21,11 @@ export function Footer() {
 
   const socialLinks = [
     { icon: Github, href: "https://github.com/celaest", label: "GitHub" },
+    {
+      icon: Linkedin,
+      href: "https://www.linkedin.com/in/celaest/",
+      label: "LinkedIn",
+    },
     { icon: Mail, href: `mailto:${SUPPORT_EMAIL}`, label: "Email" },
   ];
 
@@ -31,8 +36,8 @@ export function Footer() {
 
       {/* Background Graphic - Premium SVG + CSS Mesh Gradient */}
       <div className="absolute inset-0 h-full z-0 pointer-events-none overflow-hidden">
-        <div className="absolute bottom-[-10%] left-[10%] w-[50%] h-[300px] bg-violet-600/20 blur-[120px] rounded-full mix-blend-screen" />
-        <div className="absolute bottom-[-10%] right-[10%] w-[50%] h-[300px] bg-purple-700/20 blur-[120px] rounded-full mix-blend-screen" />
+        <div className="absolute bottom-[-10%] left-[10%] w-[50%] h-[300px] [background:radial-gradient(ellipse_at_center,rgba(124,58,237,0.16)_0%,transparent_70%)] rounded-full" />
+        <div className="absolute bottom-[-10%] right-[10%] w-[50%] h-[300px] [background:radial-gradient(ellipse_at_center,rgba(126,34,206,0.16)_0%,transparent_70%)] rounded-full" />
         <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,#000_0%,#000_70%,transparent_100%)]">
           <ConstellationBackground variant="dense" nodeCount={90} />
         </div>

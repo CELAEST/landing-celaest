@@ -243,7 +243,7 @@
 
 .search-line {
   background: #19191f;
-  color: #6f6e79;
+  color: #9897a6;
   border-radius: 5px;
   height: 26px;
   display: flex;
@@ -590,7 +590,7 @@
 .library-search {
   flex: 1;
   background: #19191f;
-  color: #6f6e79;
+  color: #9897a6;
   border-radius: 5px;
   height: 26px;
   display: flex;
@@ -711,13 +711,13 @@
 
 .asset-version {
   font-size: 9.5px;
-  color: #71707d;
+  color: #9897a6;
   font-weight: 400;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .asset-download {
-  color: #71707d;
+  color: #9897a6;
   cursor: pointer;
   display: flex;
   align-items: center;

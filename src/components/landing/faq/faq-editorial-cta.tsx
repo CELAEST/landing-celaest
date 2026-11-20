@@ -1,11 +1,13 @@
 "use client";
 
 import React from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { motion } from "framer-motion";
+import { ContactTriggerLink } from "@/components/contact/contact-trigger-link";
 
 export function FAQEditorialCTA() {
   const t = useTranslations("faq.cta");
+  const locale = useLocale();
 
   return (
     <motion.div
@@ -31,13 +33,14 @@ export function FAQEditorialCTA() {
           {t("getStarted")}
         </a>
 
-        {/* Secondary Pill: Dark sleek pill */}
-        <a
-          href="mailto:support@celaest.com"
+        {/* Secondary Pill: Direct contact modal */}
+        <ContactTriggerLink
+          subject={locale === "es" ? "Consulta de Ventas" : "Sales Inquiry"}
+          source="faq_editorial_cta"
           className="inline-flex items-center justify-center px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-[#18181b] hover:bg-[#27272a] text-white border border-white/10 font-medium text-sm sm:text-base transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
         >
           {t("contactSales")}
-        </a>
+        </ContactTriggerLink>
       </div>
     </motion.div>
   );

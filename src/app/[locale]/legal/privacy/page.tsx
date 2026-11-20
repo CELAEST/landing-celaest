@@ -2,14 +2,19 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { LegalHeader } from "@/components/legal/legal-header";
 import { LegalSidebarToc } from "@/components/legal/legal-sidebar-toc";
 import { LegalSectionView, type LegalSectionData } from "@/components/legal/legal-section-view";
+import { SITE_URL } from "@/lib/constants";
+import { buildPageMetadata } from "@/lib/seo";
+import { generateBreadcrumbSchema } from "@/lib/structured-data";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "legal.privacy" });
-  return {
-    title: `${t("title")} | CELAEST`,
+  return buildPageMetadata({
+    locale,
+    path: "/legal/privacy",
+    title: t("title"),
     description: t("description"),
-  };
+  });
 }
 
 export default async function PrivacyPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -31,8 +36,18 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
     print: tNav("print"),
   };
 
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: tNav("breadcrumbHome"), url: `${SITE_URL}/${locale}` },
+    { name: tNav("breadcrumbLegal"), url: `${SITE_URL}/${locale}/legal/terms` },
+    { name: t("title"), url: `${SITE_URL}/${locale}/legal/privacy` },
+  ]);
+
   return (
     <div className="w-full">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <LegalHeader
         title={t("title")}
         badge={t("badge")}

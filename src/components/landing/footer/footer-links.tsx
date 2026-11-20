@@ -24,22 +24,26 @@ function resolveFooterLink(key: string, index: number): ResolvedLink {
   if (key === "product") {
     switch (index) {
       case 0:
-        return { href: `${DASHBOARD_URL}/?tab=marketplace`, type: "external" };
+        return { href: "/solutions", type: "legal" };
       case 1:
-        return { href: "#products", type: "hash" };
+        return { href: "/solutions/lingua", type: "legal" };
       case 2:
+        return { href: "/solutions/automation", type: "legal" };
+      case 3:
+        return { href: `${DASHBOARD_URL}/?tab=marketplace`, type: "external" };
+      case 4:
         return { href: "#pricing", type: "hash" };
       default:
-        return { href: "#products", type: "hash" };
+        return { href: "/solutions", type: "legal" };
     }
   }
 
   if (key === "company") {
     switch (index) {
       case 0:
-        return { href: "#architecture", type: "hash" };
+        return { href: "/solutions/ai-mesh", type: "legal" };
       case 1:
-        return { href: "#platform", type: "hash" };
+        return { href: "#architecture", type: "hash" };
       case 2:
         return { href: "#security", type: "hash" };
       default:
@@ -52,6 +56,8 @@ function resolveFooterLink(key: string, index: number): ResolvedLink {
       case 0:
         return { href: "/faq", type: "legal" };
       case 1:
+        return { href: "/guides", type: "legal" };
+      case 2:
         return { href: `${DASHBOARD_URL}/?tab=docs`, type: "external" };
       default:
         return { href: "/faq", type: "legal" };

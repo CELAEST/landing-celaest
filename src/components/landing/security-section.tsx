@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { ArrowRight } from "lucide-react";
@@ -25,6 +25,31 @@ const UnifiedParticleMasterStage = dynamic(
 export function SecuritySection() {
   const t = useTranslations("security");
   const [activePillar, setActivePillar] = useState<ActiveSecurityPillar>("shield");
+  const [stageMounted, setStageMounted] = useState(false);
+  const stageRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const el = stageRef.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setStageMounted(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setStageMounted(true);
+            io.disconnect();
+            break;
+          }
+        }
+      },
+      { rootMargin: "0px", threshold: 0.05 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   const pillars = [
     {
@@ -96,8 +121,8 @@ export function SecuritySection() {
 
           {/* Right Column: Heroic Unified 3D Particle Canvas */}
           <div className="sec-master-stage-wrap">
-            <div className="sec-particle-canvas-container">
-              <UnifiedParticleMasterStage activePillar={activePillar} />
+            <div ref={stageRef} className="sec-particle-canvas-container">
+              {stageMounted ? <UnifiedParticleMasterStage activePillar={activePillar} /> : null}
             </div>
 
             {/* Bottom Subtle Explore Link */}

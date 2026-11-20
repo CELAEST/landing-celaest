@@ -1,0 +1,49 @@
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/data/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/*
+  Cache-Control: public, max-age=604800
+
+/videos/*
+  Cache-Control: public, max-age=604800
+
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+  X-Robots-Tag: all
+
+/llms-full.txt
+  Content-Type: text/plain; charset=utf-8
+  X-Robots-Tag: all
+
+/robots.txt
+  Content-Type: text/plain; charset=utf-8
+
+/rss.xml
+  Content-Type: application/rss+xml; charset=utf-8
+
+/rss-en.xml
+  Content-Type: application/rss+xml; charset=utf-8
+
+/manifest.webmanifest
+  Content-Type: application/manifest+json; charset=utf-8
+
+/robot1.webp
+  X-Robots-Tag: noindex, noimageindex
+
+/ridge_shadowed.webp
+  X-Robots-Tag: noindex, noimageindex
+
+/ridge_shadowed_md.webp
+  X-Robots-Tag: noindex, noimageindex
+
+/ridge_shadowed_sm.webp
+  X-Robots-Tag: noindex, noimageindex
+
+/robot_hero_saludo/*
+  X-Robots-Tag: noindex, noimageindex
+
+/robot_hero_gaze/*
+  X-Robots-Tag: noindex, noimageindex

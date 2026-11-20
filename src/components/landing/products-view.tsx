@@ -13,9 +13,9 @@ export function ProductsSection() {
 
   return (
     <section id="products" className="pt-0 pb-0 bg-brand-dark relative overflow-hidden">
-      {/* Background Glows (Positioned safely below section seam) */}
-      <div className="absolute top-[10%] -left-[10%] w-[50%] h-[50%] bg-brand-neon/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[0%] right-[0%] w-[40%] h-[40%] bg-brand-neon-blue/5 rounded-full blur-[120px] pointer-events-none" />
+      {/* Background Glows (Zero-cost radial gradients, no GPU blur filters) */}
+      <div className="absolute top-[10%] -left-[10%] w-[50%] h-[50%] [background:radial-gradient(ellipse_at_center,rgba(168,85,247,0.06)_0%,transparent_70%)] pointer-events-none" />
+      <div className="absolute bottom-[0%] right-[0%] w-[40%] h-[40%] [background:radial-gradient(ellipse_at_center,rgba(56,189,248,0.05)_0%,transparent_70%)] pointer-events-none" />
 
       {/* Drifting constellation (subtle ambience) */}
       <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_75%_80%_at_50%_50%,#000_20%,transparent_90%)]">

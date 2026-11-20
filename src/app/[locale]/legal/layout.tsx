@@ -38,7 +38,7 @@ export default async function LegalLayout({ children, params }: LegalLayoutProps
 
       {/* Atmospheric Background & Drift (Quiet & Subtle) */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[850px] h-[520px] bg-purple-600/[0.03] blur-[150px] rounded-full" />
+        <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[850px] h-[520px] [background:radial-gradient(ellipse_at_center,rgba(147,51,234,0.04)_0%,transparent_70%)] rounded-full" />
         <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_80%_60%_at_50%_30%,#000_10%,transparent_90%)]">
           <ConstellationBackground nodeCount={24} nodeAlpha={0.12} />
         </div>
@@ -50,6 +50,7 @@ export default async function LegalLayout({ children, params }: LegalLayoutProps
         <div className="mb-6 sm:mb-8">
           <Link
             href="/"
+            prefetch={false}
             className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-zinc-400 hover:text-white transition-colors duration-200 group"
           >
             <ArrowLeft className="w-3.5 h-3.5 transition-transform duration-200 group-hover:-translate-x-1" />

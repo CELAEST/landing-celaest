@@ -2,6 +2,7 @@
 
 import React from "react";
 import { SUPPORT_EMAIL } from "@/lib/constants";
+import { ContactTriggerLink } from "@/components/contact/contact-trigger-link";
 
 interface TocItem {
   id: string;
@@ -44,9 +45,9 @@ export function LegalSidebarToc({
         {/* Minimalist Editorial Footnote */}
         <div className="legal-index-footer">
           <span>{contactLegalText}</span>
-          <a href={`mailto:${SUPPORT_EMAIL}?subject=Consulta%20Legal%20CELAEST`}>
+          <ContactTriggerLink subject="Consulta Legal CELAEST" source="legal_sidebar">
             {contactLegalBtn}: {SUPPORT_EMAIL}
-          </a>
+          </ContactTriggerLink>
         </div>
       </div>
     </aside>

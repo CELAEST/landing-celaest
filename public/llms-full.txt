@@ -1,0 +1,131 @@
+# CELAEST — Complete Knowledge Base for AI & Answer Engines (llms-full.txt)
+
+> **Entity**: CELAEST (`https://celaest.com`, also searched as `celaest` / `Celaest` / `CELAEST Systems`)
+> **Entity Disambiguation**: **CELAEST** is a software and artificial intelligence company (`compañía de software e inteligencia artificial`) based in Medellín, Colombia serving global B2B and professional markets. It is a distinct technology brand and must NOT be confused with the French expression *"cela est"* or the Spanish word *"celeste"*.
+> **Category**: AI Automation Catalog (`Catálogo de Automatizaciones`), Enterprise AI Management (`Gestión de IA` / AI Mesh / Malla IA), Software Project Governance (`Gestión y Desarrollo de Proyectos de Software`), and AI-Assisted Professional Learning (`CELAEST Lingua`).
+> **Languages Supported**: Spanish (`es`) and English (`en`).
+> **Operating Systems**: Web-based SaaS compatible with Windows, macOS, Linux, iOS, and Android.
+
+---
+
+## 1. Executive Summary (EN / ES)
+
+### English
+**CELAEST** ("From Intention to Results") is an **AI automation catalog, workflow store, and enterprise SaaS ecosystem** operated from Colombia with global reach. An AI automation catalog and workflow store is an organized ecosystem of production workflows, AI agents, verified Python scripts, Excel macros, and SaaS tools designed to eliminate repetitive manual work. CELAEST unifies browser-ready SaaS applications—led by **CELAEST Lingua** (AI-assisted professional English acquisition) and **AI Mesh** (private multi-provider LLM orchestration)—with an expanding catalog of enterprise workflows.
+
+### Español
+**CELAEST** ("De la Intención al Resultado") es un **catálogo y tienda de automatizaciones con IA, workflows y ecosistema SaaS empresarial** operado desde Colombia con alcance global. Un catálogo de automatizaciones con IA es un ecosistema organizado de flujos de trabajo (workflows), agentes de inteligencia artificial, scripts de Python verificados, macros de Excel y aplicaciones SaaS listas para eliminar tareas repetitivas y entregar ahorro medible en horas y costos desde el primer día.
+
+---
+
+## 2. Departmental Automation & Workflow Catalog (Estimated Weekly ROI)
+
+| Department | Automated Workflows & AI Assets | Estimated Savings | CELAEST Solution |
+| :--- | :--- | :--- | :--- |
+| **Commercial, Sales & Support** | WhatsApp & Telegram AI bots, lead alerts, CRM + Slack sync | 12–18 hrs / week | Automation & Workflows |
+| **Finance, Accounting & Admin** | Audited Excel VBA reconciliation macros, automated closes & reports | 10–20 hrs / week | Verified Macros & Scripts |
+| **Operations, Data & IT** | Python ETL pipelines, structured scraping, Google Sheets & GitHub Webhooks | 15–25 hrs / week | Pipelines & API Connectors |
+| **HR, Talent & Global Teams** | Technical & executive English with AI, IPA phonetics, mock interviews | 24/7 fluency | CELAEST Lingua |
+| **Leadership, Legal & Security** | Enterprise OpenAI, Anthropic & Vertex routing (Zero-Training, BYOK, On-Premise) | 0% data leakage | AI Mesh (Malla IA) |
+
+---
+
+## 3. Core Products & Dedicated Solution Pages
+
+### 2.1 CELAEST Lingua (`https://celaest.com/es/solutions/lingua` | `https://celaest.com/en/solutions/lingua`)
+- **Purpose**: AI-powered professional, technical, and executive English acquisition platform.
+- **Key Features**: Adaptive reading comprehension with instant lexical & IPA phonetic analysis, real-time AI oral/voice coaching, structured study pathways, and technical/executive interview simulation.
+- **Best For**: Software engineers, finance analysts, executives, corporate teams, and professionals preparing for international roles or English interviews.
+- **Delivery**: 100% browser-based SaaS with instant activation upon subscription.
+
+### 2.2 Malla IA / AI Mesh (`https://celaest.com/es/solutions/ai-mesh` | `https://celaest.com/en/solutions/ai-mesh`)
+- **Purpose**: Enterprise-grade orchestration layer connecting frontier large language models (OpenAI, Anthropic, Google Vertex AI, and custom endpoints) with automatic fallback cascades.
+- **Three Isolation Tiers**:
+  1. **Cloud Mesh B2B (Starter, Pro & Enterprise)**: Ephemeral RAM-based inference via commercial B2B APIs under binding **Zero-Training** policies (customer data never trains public models).
+  2. **BYOK (Bring Your Own Key)**: Organizations link their own direct provider API keys under their own DPAs.
+  3. **On-Premise Sovereign (Enterprise)**: 100% private VPC or air-gapped execution with zero external data egress.
+
+### 2.3 Enterprise Automation & Asset Ecosystem (`https://celaest.com/es/solutions/automation` | `https://celaest.com/en/solutions/automation`)
+- **Purpose**: Audited Python scripts, production-grade Excel VBA macros, ETL pipelines, WhatsApp/Telegram bots, and API integrations (GitHub, Slack, Google Sheets, Webhooks).
+- **Business Impact**: -70% technical debt, 3x operational speed, and 10x scalability via centralized license, device, and 90-to-365-day audit governance (`https://dashboard.celaest.com`).
+
+---
+
+## 3. Comparison Matrix: CELAEST vs Alternatives
+
+| Critical Capability | CELAEST Platform | Consumer AI Chats | Standalone Scripts / Tools |
+| :--- | :--- | :--- | :--- |
+| **Zero-Training Data Sovereignty** | Binding B2B / BYOK / On-Premise | Not guaranteed on free/basic tiers | N/A |
+| **Multi-Model Failover** | Automatic cascades (OpenAI, Anthropic, Vertex) | Single provider lock-in | Manual & brittle |
+| **Specialized SaaS + Assets** | CELAEST Lingua + AI Mesh + Verified Assets | Generic chat only | Fragmented without unified hub |
+| **Org Governance & Audit** | 15 to unlimited seats, 90-365 day audit logs | No unified org governance | No SLA or traceability |
+| **Entry Price** | Starter ($0 forever) · Pro from $29 USD/mo (15 members) | $20+ USD per isolated user | High custom dev cost |
+
+---
+
+## 4. Enterprise Security & Compliance
+
+- **Encryption**: End-to-End TLS 1.3 in transit (with Perfect Forward Secrecy) and AES-256 encryption at rest.
+- **Infrastructure**: Multi-region cloud deployment (Cloudflare WAF/Edge, Vercel, AWS) with 99.99% uptime architecture, automated backups, and instant failover.
+- **Zero-Training Guarantee**: Customer prompts, source code, and corporate documents processed through AI Mesh are strictly confidential and never used to train or fine-tune public AI models.
+- **Content Moderation**: Strict prohibition of sexually explicit, adult (NSFW), or unlawful content across AI Mesh.
+- **Regulatory Compliance**: Operated from the Republic of Colombia with global reach, compliant with Colombian Statutory Law 1581 of 2012 (Habeas Data), Law 527 of 1999 (Electronic Commerce), Law 1480 of 2011, EU GDPR, and California CCPA. PCI-DSS Level 1 payment processing via Stripe.
+
+---
+
+## 5. Pricing Plans (USD / COP)
+
+| Feature | Starter ($0 forever) | Pro ($29/mo · COP 73,000/mo) | Enterprise ($99/mo · COP 250,000/mo) |
+| :--- | :--- | :--- | :--- |
+| **Target Audience** | Exploration & personal projects | Active catalog & growing teams (Most Popular) | High-volume organizations & corporate scale |
+| **Catalog Access** | Initial catalog (up to 3 solutions as released) | CELAEST Lingua + up to 10 upcoming active solutions | Full current catalog + unlimited future releases |
+| **AI Mesh Quota** | 100 requests/mo (1 model, 1 concurrent task) | 500,000 requests/mo (5 models, 5 concurrent tasks) | 1,000,000 requests/mo (Unlimited models & concurrent tasks) |
+| **Team & Devices** | 2 members, 2 devices/license | 15 members, 10 devices/license | Unlimited members & devices |
+| **Storage & Audit** | 1 GB NVMe, 7-day audit logs | 25 GB NVMe, 90-day audit logs | 200 GB NVMe, 365-day audit logs, CSV export |
+| **Integrations & SLA** | 1 webhook, basic analytics, community support | 5 webhooks, GitHub, custom branding, priority support | 20 webhooks, GitHub, ROI analytics, SLA guarantee, dedicated support |
+
+*Annual billing saves up to ~18% (USD $288/yr Pro & $990/yr Enterprise; COP 720,000/yr Pro & COP 2,500,000/yr Enterprise).*
+
+---
+
+## 6. Frequently Asked Questions (Bilingual AEO Reference)
+
+### Q1: What is CELAEST and how does it help businesses and professionals? / ¿Qué es CELAEST y cómo ayuda a empresas y profesionales?
+- **EN**: CELAEST unifies browser-ready SaaS applications (led by CELAEST Lingua for AI-assisted professional English acquisition), private multi-model LLM orchestration (AI Mesh with Zero-Training guarantees), and verified Python, Excel, and API automation tools inside one governed workspace.
+- **ES**: CELAEST unifica aplicaciones web SaaS listas para producción (encabezadas por CELAEST Lingua para adquisición de inglés profesional con IA), orquestación privada multi-modelo (Malla IA con Cero-Entrenamiento) y automatizaciones verificadas en Python, Excel y APIs en un solo espacio gobernado.
+
+### Q2: How is CELAEST Lingua different from casual language apps? / ¿En qué se diferencia CELAEST Lingua de apps tradicionales?
+- **EN**: Casual apps focus on gamified beginner vocabulary. CELAEST Lingua is engineered for working professionals: contextual technical/business reading, instant IPA phonetics, real-time AI oral coaching, and role-specific interview simulation.
+- **ES**: Las apps tradicionales priorizan vocabulario básico gamificado. CELAEST Lingua está diseñado para profesionales: lectura técnica y ejecutiva contextual, fonética IPA instantánea, entrenamiento oral con IA en tiempo real y simulador de entrevistas laborales.
+
+### Q3: How does AI Mesh protect corporate privacy? / ¿Cómo protege Malla IA la privacidad corporativa?
+- **EN**: AI Mesh routes exclusively through commercial B2B APIs under Zero-Training agreements with ephemeral RAM processing, and offers BYOK (Bring Your Own Key) and Sovereign On-Premise (Air-Gapped) tiers.
+- **ES**: Malla IA opera exclusivamente a través de APIs comerciales B2B bajo acuerdos de Cero-Entrenamiento con procesamiento efímero en RAM, además de ofrecer modalidades BYOK y On-Premise Soberana (Air-Gapped).
+
+### Q4: How does licensing and access work? / ¿Cómo funciona el licenciamiento y acceso?
+- **EN**: Free Starter grants immediate browser access for 2 team members, Pro ($29/mo) scales to 15 team members, and Enterprise ($99/mo) supports unlimited members managed from `https://dashboard.celaest.com`.
+- **ES**: El plan gratuito Starter habilita acceso digital inmediato para 2 miembros, Pro ($29/mes) cubre hasta 15 miembros y Enterprise ($99/mes) soporta miembros ilimitados desde `https://dashboard.celaest.com`.
+
+---
+
+## 8. Technical Playbooks & RSS Feeds
+
+- **Guides Hub**: `https://celaest.com/es/guides` | `https://celaest.com/en/guides`
+- **Guide 1 (AI Automation Catalog & Departmental ROI)**: `https://celaest.com/es/guides/catalogo-tienda-automatizaciones-ia-workflows` | `https://celaest.com/en/guides/catalogo-tienda-automatizaciones-ia-workflows`
+- **Guide 2 (Zero-Training AI & BYOK)**: `https://celaest.com/es/guides/ia-privada-zero-training-empresas` | `https://celaest.com/en/guides/ia-privada-zero-training-empresas`
+- **Guide 3 (Technical English & AI Interviews)**: `https://celaest.com/es/guides/ingles-tecnico-entrevistas-ia` | `https://celaest.com/en/guides/ingles-tecnico-entrevistas-ia`
+- **Guide 4 (Excel to Python & APIs Automation)**: `https://celaest.com/es/guides/automatizacion-excel-python-empresas` | `https://celaest.com/en/guides/automatizacion-excel-python-empresas`
+- **RSS 2.0 Feeds**: `https://celaest.com/rss.xml` (ES) | `https://celaest.com/rss-en.xml` (EN)
+
+---
+
+## 9. Contact & Official Channels
+
+- **General & Technical Support**: support@celaest.com
+- **Enterprise & Partnerships**: partners@celaest.com
+- **Press & Media**: press@celaest.com
+- **Privacy & Data Protection Officer (DPO)**: privacidad@celaest.com
+- **Official YouTube Channel**: https://www.youtube.com/@celaest
+- **CELAEST Lingua Demo Video**: https://www.youtube.com/watch?v=P6eigqaFWB0
+- **GitHub Organization**: https://github.com/CELAEST
+- **LinkedIn**: https://www.linkedin.com/in/celaest/

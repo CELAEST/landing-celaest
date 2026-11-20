@@ -36,3 +36,11 @@ export interface NewsletterFormData {
   email: string;
   locale?: "es" | "en";
 }
+
+export interface EmailRuntimeConfig {
+  apiKey?: string;
+  defaultFrom?: string;
+  internalReceiver?: string;
+  rateLimitDelayMs?: number;
+  strictProvider?: boolean;
+}

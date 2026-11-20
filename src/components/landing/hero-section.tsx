@@ -3,19 +3,42 @@
 import { useCallback, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { useRobotSequenceCanvas } from "./hero/useRobotSequenceCanvas";
+import { useHeroCinema } from "./hero/useHeroCinema";
 import { HeroArtStage } from "./hero/HeroArtStage";
 import { HeroIntentCopy } from "./hero/HeroIntentCopy";
+import { HeroCinemaStage, type HeroCinemaCopy } from "./hero/HeroCinemaStage";
 import "./hero/hero-intent.css";
 
 const GLOW_RADIUS = 130;
 
 export function HeroSection() {
   const t = useTranslations("hero.intent");
+  const cinemaCopy = t.raw("cinema") as HeroCinemaCopy;
   const heroRef = useRef<HTMLElement | null>(null);
   const titleRef = useRef<HTMLHeadingElement | null>(null);
   const letterRects = useRef<Array<{ el: HTMLElement; x: number; y: number }>>([]);
   const frame = useRef(0);
   const pointer = useRef({ x: -9999, y: -9999 });
+
+  const {
+    isOpen: isCinemaOpen,
+    isPlaying,
+    isMuted,
+    isMobile,
+    currentTime,
+    duration,
+    videoRef,
+    triggerRef: ctaRef,
+    openCinema,
+    closeCinema,
+    togglePlay,
+    toggleMute,
+    seekToRatio,
+    requestFullscreen,
+    handleTimeUpdate,
+    handleLoadedMetadata,
+    setIsPlaying,
+  } = useHeroCinema(heroRef);
 
   const {
     robotCanvasRef,
@@ -91,7 +114,7 @@ export function HeroSection() {
 
   return (
     <section
-      className="intent-hero"
+      className={`intent-hero ${isCinemaOpen ? "is-cinema" : ""}`}
       aria-label={t("sectionAria")}
       ref={heroRef}
       onPointerMove={handlePointerMove}
@@ -107,6 +130,7 @@ export function HeroSection() {
           onPointerEnter={prefetchSaludo}
           aria-label={t("robotAria")}
           title={t("robotTitle")}
+          tabIndex={isCinemaOpen ? -1 : 0}
         />
 
         <HeroIntentCopy
@@ -120,6 +144,28 @@ export function HeroSection() {
           titleAria={t("titleAria")}
           description={t("description")}
           ctaLabel={t("cta")}
+          ctaAria={t("ctaAria")}
+          ctaRef={ctaRef}
+          onCtaClick={openCinema}
+        />
+
+        <HeroCinemaStage
+          isOpen={isCinemaOpen}
+          isPlaying={isPlaying}
+          isMuted={isMuted}
+          isMobile={isMobile}
+          currentTime={currentTime}
+          duration={duration}
+          videoRef={videoRef}
+          copy={cinemaCopy}
+          onClose={closeCinema}
+          onTogglePlay={togglePlay}
+          onToggleMute={toggleMute}
+          onSeekRatio={seekToRatio}
+          onFullscreen={requestFullscreen}
+          onTimeUpdate={handleTimeUpdate}
+          onLoadedMetadata={handleLoadedMetadata}
+          onPlayStateChange={setIsPlaying}
         />
 
         <span className="intent-art-index" aria-hidden="true">

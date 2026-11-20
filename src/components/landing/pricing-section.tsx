@@ -6,20 +6,20 @@ import { Check, ArrowRight, Globe } from "lucide-react";
 import { SectionReveal } from "@/components/ui/section-reveal";
 import { ConstellationBackground } from "@/components/ui/constellation-background";
 import { useGeoPricing } from "@/hooks/useGeoPricing";
-import { DASHBOARD_URL, SUPPORT_EMAIL } from "@/lib/constants";
+import { DASHBOARD_URL } from "@/lib/constants";
 import "./pricing/pricing-section.css";
 
 interface Plan {
-  key: "starter" | "professional" | "enterprise";
+  key: "starter" | "pro" | "enterprise";
   number: string;
-  backendCode: "pro" | "enterprise" | null;
+  backendCode: "starter" | "pro" | "enterprise";
   popular: boolean;
 }
 
 const PLANS: Plan[] = [
-  { key: "starter", number: "01", backendCode: "pro", popular: false },
-  { key: "professional", number: "02", backendCode: "enterprise", popular: true },
-  { key: "enterprise", number: "03", backendCode: null, popular: false },
+  { key: "starter", number: "01", backendCode: "starter", popular: false },
+  { key: "pro", number: "02", backendCode: "pro", popular: true },
+  { key: "enterprise", number: "03", backendCode: "enterprise", popular: false },
 ];
 
 type BillingCycle = "monthly" | "yearly";
@@ -51,7 +51,7 @@ export function PricingSection() {
       <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_90%)]">
         <ConstellationBackground nodeCount={36} nodeAlpha={0.16} />
       </div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-purple-600/[0.04] blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] [background:radial-gradient(ellipse_at_center,rgba(147,51,234,0.05)_0%,transparent_70%)] pointer-events-none" />
 
       {/* Symmetrical container matching PlatformSection max-w-[85rem] */}
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -151,11 +151,15 @@ export function PricingSection() {
         <div className="pricing-editorial-grid" onMouseLeave={() => setHoveredIdx(null)}>
           {PLANS.map((plan, idx) => {
             const features = t.raw(`plans.${plan.key}.features`) as string[];
+            const metrics = t.raw(`plans.${plan.key}.metrics`) as {
+              requests: string;
+              seats: string;
+              storage: string;
+            };
             const fallbackPrice = t(`plans.${plan.key}.price`);
-            const isCustom = plan.backendCode === null;
-
-            const resolved =
-              isCustom || !plan.backendCode ? null : getPlanPrice(plan.backendCode, cycle);
+            const isFreePlan = plan.backendCode === "starter";
+            const resolved = getPlanPrice(plan.backendCode, cycle);
+            const isZeroAmount = isFreePlan || (resolved !== null && resolved.amount === 0);
 
             const isNeonActive = hoveredIdx !== null ? hoveredIdx === idx : Boolean(plan.popular);
 
@@ -171,11 +175,15 @@ export function PricingSection() {
                 <div className={`card-top-neon ${isNeonActive ? "active" : ""}`} />
 
                 <div>
-                  {/* Number Hairline Rule + MÁS POPULAR badge */}
+                  {/* Number Hairline Rule + Tier / Popular Badge */}
                   <div className="pricing-number-wrap">
                     <strong>{plan.number}</strong>
                     <span className="rule" />
-                    {plan.popular && <span className="popular-label-neon">{t("mostPopular")}</span>}
+                    {plan.popular ? (
+                      <span className="popular-label-neon">{t("mostPopular")}</span>
+                    ) : (
+                      <span className="tier-label-subtle">{t(`plans.${plan.key}.tier`)}</span>
+                    )}
                   </div>
 
                   {/* Plan Name & Tagline */}
@@ -185,8 +193,12 @@ export function PricingSection() {
                   {/* Clean Price Block */}
                   <div className="pricing-price-box">
                     <div className="pricing-price-num" suppressHydrationWarning>
-                      {isCustom ? (
-                        fallbackPrice
+                      {isZeroAmount ? (
+                        <>
+                          <span className="pricing-price-symbol">$</span>
+                          <span>0</span>
+                          <span className="pricing-price-currency">{t("forever")}</span>
+                        </>
                       ) : resolved ? (
                         <>
                           {resolved.symbolPos === "before" &&
@@ -210,12 +222,28 @@ export function PricingSection() {
                       )}
                     </div>
                     <span className="pricing-price-cycle">
-                      {isCustom
-                        ? t("geo.billedYearly")
-                        : `${cycle === "monthly" ? t("perMonth") : t("perYear")}${
-                            cycle === "yearly" ? ` (${t("geo.billedYearly")})` : ""
-                          }`}
+                      {isZeroAmount
+                        ? t("noCreditCard")
+                        : cycle === "monthly"
+                          ? `${t("perMonth")} · ${t("recurringMonthly")}`
+                          : `${t("perYear")} (${t("geo.billedYearly")})`}
                     </span>
+                  </div>
+
+                  {/* Architectural Quotas Strip */}
+                  <div className="pricing-metrics-row">
+                    <div className="pricing-metric-cell">
+                      <span className="pricing-metric-value">{metrics.requests}</span>
+                      <span className="pricing-metric-label">{t("metricLabels.requests")}</span>
+                    </div>
+                    <div className="pricing-metric-cell">
+                      <span className="pricing-metric-value">{metrics.seats}</span>
+                      <span className="pricing-metric-label">{t("metricLabels.seats")}</span>
+                    </div>
+                    <div className="pricing-metric-cell">
+                      <span className="pricing-metric-value">{metrics.storage}</span>
+                      <span className="pricing-metric-label">{t("metricLabels.storage")}</span>
+                    </div>
                   </div>
 
                   {/* Feature Rows */}
@@ -232,13 +260,13 @@ export function PricingSection() {
                 {/* Base Editorial Link */}
                 <a
                   href={
-                    isCustom
-                      ? `mailto:${SUPPORT_EMAIL}?subject=Consulta%20Plan%20Enterprise`
+                    isZeroAmount
+                      ? `${DASHBOARD_URL}/?mode=signup&plan=${plan.backendCode}`
                       : `${DASHBOARD_URL}/?mode=signup&plan=${plan.backendCode}&billing_cycle=${cycle}`
                   }
                   className="pricing-feature-link group/link"
                 >
-                  <span>{isCustom ? t("contactSales") : t("getStarted")}</span>
+                  <span>{t("getStarted")}</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-1" />
                 </a>
               </SectionReveal>

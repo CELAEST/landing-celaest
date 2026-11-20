@@ -94,14 +94,48 @@ export function useGeoPricing(locale: string): UseGeoPricingResult {
       setPricing(cached);
     }
 
-    fetchGeoPricing({ country }).then((value) => {
-      if (cancelled || !value) return;
-      setPricing(value);
-      setIsLoading(false);
-    });
+    const runFetch = () => {
+      fetchGeoPricing({ country }).then((value) => {
+        if (cancelled || !value) return;
+        setPricing(value);
+        setIsLoading(false);
+      });
+    };
+
+    if (country) {
+      runFetch();
+      return () => {
+        cancelled = true;
+      };
+    }
+
+    const triggerEvents = [
+      "pointermove",
+      "pointerdown",
+      "touchstart",
+      "keydown",
+      "scroll",
+    ] as const;
+
+    const onFirstInteraction = () => {
+      for (const evt of triggerEvents) {
+        window.removeEventListener(evt, onFirstInteraction);
+      }
+      runFetch();
+    };
+
+    for (const evt of triggerEvents) {
+      window.addEventListener(evt, onFirstInteraction, {
+        once: true,
+        passive: true,
+      });
+    }
 
     return () => {
       cancelled = true;
+      for (const evt of triggerEvents) {
+        window.removeEventListener(evt, onFirstInteraction);
+      }
     };
   }, []);
 

@@ -45,7 +45,7 @@ export function VolumetricAura() {
     <div className="pointer-events-none fixed inset-0 z-[1] overflow-hidden">
       <div
         ref={auraRef}
-        className="absolute top-0 left-0 w-[700px] h-[700px] rounded-full blur-[140px] opacity-35 mix-blend-screen"
+        className="absolute top-0 left-0 w-[700px] h-[700px] rounded-full opacity-35"
         style={{
           background:
             "radial-gradient(circle, rgba(167,139,250,0.20) 0%, rgba(124,58,237,0.12) 45%, transparent 70%)",
@@ -55,4 +55,3 @@ export function VolumetricAura() {
     </div>
   );
 }
-

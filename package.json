@@ -12,7 +12,9 @@
     "prepare": "husky",
     "test": "vitest run",
     "test:watch": "vitest",
-    "send-email-tests": "tsx scripts/send-all-tests.ts"
+    "send-email-tests": "tsx scripts/send-all-tests.ts",
+    "indexnow": "node scripts/submit-indexnow.mjs",
+    "content:kit": "node scripts/generate-content-kit.mjs"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
@@ -21,6 +23,7 @@
     ]
   },
   "dependencies": {
+    "@microsoft/clarity": "^1.0.2",
     "@radix-ui/react-slot": "^1.1.2",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.1",

@@ -59,7 +59,7 @@
   font-family: monospace;
   font-size: 16px;
   font-weight: 700;
-  color: #71717a;
+  color: #9a9aa6;
   margin-bottom: 8px;
   transition: color 0.3s ease;
 }
@@ -85,7 +85,7 @@
 .sec-pillar-desc {
   font-size: 14.5px;
   line-height: 1.5;
-  color: #71717a;
+  color: #9a9aa6;
   margin: 0;
   transition: color 0.3s ease;
   max-width: 440px;
@@ -225,7 +225,7 @@
     font-size: 13.5px;
     line-height: 1.45;
     max-width: 100%;
-    color: #71717a;
+    color: #9a9aa6;
   }
 
   .sec-pillar-item.is-active .sec-pillar-desc {

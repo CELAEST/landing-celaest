@@ -80,6 +80,7 @@ async function decodeBlobsWithConcurrency(
 ): Promise<void> {
   let nextIdx = 0;
   async function worker(): Promise<void> {
+    let count = 0;
     while (nextIdx < blobs.length) {
       const i = nextIdx++;
       try {
@@ -87,6 +88,10 @@ async function decodeBlobsWithConcurrency(
         targetArray[startIndex + i] = bmp;
       } catch {
         // Continue decoding subsequent frames even if an individual frame fails
+      }
+      count++;
+      if (count % 4 === 0 && nextIdx < blobs.length) {
+        await new Promise((resolve) => setTimeout(resolve, 12));
       }
     }
   }
@@ -153,15 +158,8 @@ export function useRobotSequenceCanvas() {
       canvas.dataset.frame = prefix === "saludo" ? String(targetIdx + 1) : `gaze-${targetIdx + 1}`;
 
       if (robotImgRef.current) {
-        const isAtRest = prefix === "gaze" && Math.abs(targetIdx - GAZE_REST_INDEX) <= 1;
-        if (isAtRest) {
-          if (robotImgRef.current.style.opacity !== "1") {
-            robotImgRef.current.style.opacity = "1";
-          }
-        } else {
-          if (robotImgRef.current.style.opacity !== "0") {
-            robotImgRef.current.style.opacity = "0";
-          }
+        if (robotImgRef.current.style.opacity !== "0.005") {
+          robotImgRef.current.style.opacity = "0.005";
         }
       }
       return true;
@@ -275,12 +273,6 @@ export function useRobotSequenceCanvas() {
       if (Math.abs(goal - nextFrame) < 0.04) {
         currentGazeFrameRef.current = goal;
         drawSequenceFrame(gazeBitmapsRef.current, goal, "gaze");
-        if (robotImgRef.current && Math.abs(goal - GAZE_REST_INDEX) < 0.2) {
-          if (!robotImgRef.current.src.endsWith("gaze_018.webp")) {
-            robotImgRef.current.src = "/robot_hero_gaze/gaze_018.webp";
-          }
-          robotImgRef.current.style.opacity = "1";
-        }
         animRafRef.current = 0;
         return;
       }
@@ -386,29 +378,51 @@ export function useRobotSequenceCanvas() {
     await loadSaludoBundle();
   }, [loadSaludoBundle]);
 
-  // Main Stage-Prioritized Initialization: Welcome Saludo on Entrance
+  // Main Stage-Prioritized Initialization: Welcome Saludo on first user interaction
   useEffect(() => {
     let cancelled = false;
+    let started = false;
 
-    (async () => {
-      // 1. Priority 1: Welcome Saludo on entrance
+    const triggerEvents = [
+      "pointermove",
+      "pointerdown",
+      "touchstart",
+      "keydown",
+      "scroll",
+    ] as const;
+
+    const startGreetingSequence = async () => {
+      if (started || cancelled) return;
+      started = true;
+      for (const evt of triggerEvents) {
+        window.removeEventListener(evt, startGreetingSequence);
+      }
+
       modeRef.current = "saludo";
       setCurrentScene("saludo");
 
-      // 2. Load & stream decode Saludo bundle (initial frames ready in ~30ms)
       await loadSaludoBundle();
       if (cancelled) return;
 
-      // 3. Play the greeting wave!
       if (modeRef.current === "saludo") {
         saludoStartTimeRef.current = performance.now();
         drawSequenceFrame(saludoBitmapsRef.current, 0, "saludo");
         startLoopIfNeeded();
       }
-    })();
+    };
+
+    for (const evt of triggerEvents) {
+      window.addEventListener(evt, startGreetingSequence, {
+        once: true,
+        passive: true,
+      });
+    }
 
     return () => {
       cancelled = true;
+      for (const evt of triggerEvents) {
+        window.removeEventListener(evt, startGreetingSequence);
+      }
       if (animRafRef.current) cancelAnimationFrame(animRafRef.current);
       animRafRef.current = 0;
       robotCtxRef.current = null;

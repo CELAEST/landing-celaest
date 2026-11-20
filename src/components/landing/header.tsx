@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { ArrowUpRight } from "lucide-react";
+import { Link, usePathname } from "@/i18n/navigation";
 import { Logo } from "@/components/ui/logo";
 import { LanguageSelector } from "./language-selector";
 import { cn } from "@/lib/utils";
@@ -10,6 +11,9 @@ import { DASHBOARD_URL } from "@/lib/constants";
 
 export function Header() {
   const t = useTranslations("nav");
+  const locale = useLocale();
+  const pathname = usePathname();
+  const isHome = !pathname || pathname === "/";
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -31,10 +35,22 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleHomeLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  const brandClassName =
+    "inline-flex items-center gap-1.5 sm:gap-3 text-[#f8f7fb] text-[12px] sm:text-[15px] font-semibold tracking-[0.18em] sm:tracking-[0.42em] no-underline transition-all hover:drop-shadow-[0_0_14px_rgba(167,139,250,0.45)] notranslate group shrink-0";
+
+  const brandContent = (
+    <>
+      <span className="inline-flex w-[16px] sm:w-[21px] h-[21px] sm:h-[27px] flex-shrink-0 filter drop-shadow-[0_0_12px_rgba(167,139,250,0.45)] transition-transform duration-300 group-hover:scale-105">
+        <Logo color="#f8f7fb" />
+      </span>
+      <span>CELAEST</span>
+    </>
+  );
 
   return (
     <header
@@ -46,18 +62,51 @@ export function Header() {
       )}
     >
       {/* Brand Logo & Name */}
-      <a
-        className="inline-flex items-center gap-1.5 sm:gap-3 text-[#f8f7fb] text-[12px] sm:text-[15px] font-semibold tracking-[0.18em] sm:tracking-[0.42em] no-underline transition-all hover:drop-shadow-[0_0_14px_rgba(167,139,250,0.45)] notranslate group shrink-0"
-        href="#intent-hero"
-        aria-label="CELAEST"
-        translate="no"
-        onClick={handleLogoClick}
-      >
-        <span className="inline-flex w-[16px] sm:w-[21px] h-[21px] sm:h-[27px] flex-shrink-0 filter drop-shadow-[0_0_12px_rgba(167,139,250,0.45)] transition-transform duration-300 group-hover:scale-105">
-          <Logo color="#f8f7fb" />
-        </span>
-        <span>CELAEST</span>
-      </a>
+      {isHome ? (
+        <a
+          className={brandClassName}
+          href="#intent-hero"
+          aria-label="CELAEST"
+          translate="no"
+          onClick={handleHomeLogoClick}
+        >
+          {brandContent}
+        </a>
+      ) : (
+        <Link
+          className={brandClassName}
+          href="/"
+          prefetch={false}
+          aria-label="CELAEST"
+          translate="no"
+        >
+          {brandContent}
+        </Link>
+      )}
+
+      {/* Semantic Primary Navigation for Search Engine Sitelinks & Screen Readers */}
+      <nav aria-label={t("primaryNavAria")} className="sr-only">
+        <ul>
+          <li>
+            <a href={`/${locale}/solutions/automation`}>{t("sitelinkAutomation")}</a>
+          </li>
+          <li>
+            <a href={`/${locale}/solutions/ai-mesh`}>{t("sitelinkAiMesh")}</a>
+          </li>
+          <li>
+            <a href={`/${locale}/solutions/lingua`}>{t("sitelinkLingua")}</a>
+          </li>
+          <li>
+            <a href={`/${locale}/solutions`}>{t("sitelinkSolutions")}</a>
+          </li>
+          <li>
+            <a href={`/${locale}/guides`}>{t("sitelinkGuides")}</a>
+          </li>
+          <li>
+            <a href={`/${locale}/faq`}>{t("faq")}</a>
+          </li>
+        </ul>
+      </nav>
 
       {/* Header Actions (Language, Sign In, Sign Up) */}
       <div className="inline-flex items-center gap-1 sm:gap-3 shrink-0">

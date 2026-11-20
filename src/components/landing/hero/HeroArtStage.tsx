@@ -2,6 +2,7 @@
 
 import React from "react";
 import { CELAEST_LOGO_PATH_D } from "@/components/ui/logo-path";
+import { ROBOT_POSTER_DATA_URI } from "./robot-poster-data";
 
 interface HeroArtStageProps {
   robotImgRef: React.RefObject<HTMLImageElement | null>;
@@ -27,20 +28,6 @@ export function HeroArtStage({ robotImgRef, robotCanvasRef }: HeroArtStageProps)
             <stop offset="0.72" stopColor="#7c3aed" />
             <stop offset="1" stopColor="#d8b4fe" />
           </linearGradient>
-          <filter id="intent-rim-glow" x="-80%" y="-20%" width="260%" height="140%">
-            <feGaussianBlur stdDeviation="10" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-          <filter id="intent-logo-glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="1.5" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
           {/* Curved path along monolith surface for organic branding track */}
           <path id="monolith-text-curve" d="M1226 418 C 1268 248, 1322 95, 1414 -64" fill="none" />
         </defs>
@@ -54,9 +41,15 @@ export function HeroArtStage({ robotImgRef, robotCanvasRef }: HeroArtStageProps)
           d="M1175-65c-62 188-113 343-151 512-34 150-49 279-53 431"
           fill="none"
           stroke="url(#intent-rim)"
+          strokeWidth="18"
+          opacity=".18"
+        />
+        <path
+          d="M1175-65c-62 188-113 343-151 512-34 150-49 279-53 431"
+          fill="none"
+          stroke="url(#intent-rim)"
           strokeWidth="5"
           opacity=".92"
-          filter="url(#intent-rim-glow)"
         />
         <path
           d="M1220 0c-46 163-87 311-111 430-23 114-38 215-43 317"
@@ -76,7 +69,6 @@ export function HeroArtStage({ robotImgRef, robotCanvasRef }: HeroArtStageProps)
         <g
           transform="translate(1291.3, 199.7) rotate(-70.1) translate(0, -4.5) scale(0.021) translate(-190, -251.5)"
           opacity=".78"
-          filter="url(#intent-logo-glow)"
         >
           <path d={CELAEST_LOGO_PATH_D} fill="#d8b4fe" />
         </g>
@@ -93,8 +85,8 @@ export function HeroArtStage({ robotImgRef, robotCanvasRef }: HeroArtStageProps)
       <img
         ref={robotImgRef}
         className="intent-robot intent-robot-img"
-        src="/robot_hero_saludo/frame_001.webp"
-        alt=""
+        src={ROBOT_POSTER_DATA_URI}
+        alt="Asistente de automatizaciones e inteligencia artificial CELAEST"
         width={1280}
         height={720}
         fetchPriority="high"
@@ -111,8 +103,10 @@ export function HeroArtStage({ robotImgRef, robotCanvasRef }: HeroArtStageProps)
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         className="intent-ridge"
-        src="/ridge_shadowed.webp"
-        alt=""
+        src="/ridge_shadowed_md.webp"
+        srcSet="/ridge_shadowed_sm.webp 760w, /ridge_shadowed_md.webp 1440w, /ridge_shadowed.webp 2172w"
+        sizes="(max-width: 768px) 360px, 100vw"
+        alt="Infraestructura de software y Malla IA de CELAEST"
         width={2172}
         height={724}
         decoding="async"

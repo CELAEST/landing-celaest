@@ -3,6 +3,7 @@
 import React from "react";
 import { useTranslations } from "next-intl";
 import { ArrowRight } from "lucide-react";
+import { Link } from "@/i18n/navigation";
 import { ConstellationBackground } from "@/components/ui/constellation-background";
 import { SectionReveal } from "@/components/ui/section-reveal";
 import { MembersWidget, PipelineWidget, EcosystemWidget } from "./platform";
@@ -17,7 +18,7 @@ export function PlatformSection() {
       <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_90%)]">
         <ConstellationBackground nodeCount={40} nodeAlpha={0.18} />
       </div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-purple-600/[0.04] blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] [background:radial-gradient(ellipse_at_center,rgba(147,51,234,0.05)_0%,transparent_70%)] pointer-events-none" />
 
       {/* Symmetrical container matching ProductsSection max-w-[85rem] */}
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -53,10 +54,14 @@ export function PlatformSection() {
             </div>
             <div>
               <MembersWidget />
-              <a href="#pricing" className="feature-link group/link">
+              <Link
+                href="/solutions/ai-mesh"
+                className="feature-link group/link"
+                aria-label={`${t("explore")} ${t("columns.management.titleLine1")} ${t("columns.management.titleLine2")}`}
+              >
                 <span>{t("explore")}</span>
                 <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-1" />
-              </a>
+              </Link>
             </div>
           </article>
 
@@ -76,10 +81,14 @@ export function PlatformSection() {
             </div>
             <div>
               <PipelineWidget />
-              <a href="#pricing" className="feature-link group/link">
+              <Link
+                href="/solutions/automation"
+                className="feature-link group/link"
+                aria-label={`${t("explore")} ${t("columns.workflow.titleLine1")} ${t("columns.workflow.titleLine2")}`}
+              >
                 <span>{t("explore")}</span>
                 <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-1" />
-              </a>
+              </Link>
             </div>
           </article>
 
@@ -99,10 +108,14 @@ export function PlatformSection() {
             </div>
             <div>
               <EcosystemWidget />
-              <a href="#pricing" className="feature-link group/link">
+              <Link
+                href="/solutions"
+                className="feature-link group/link"
+                aria-label={`${t("explore")} ${t("columns.ecosystem.titleLine1")} ${t("columns.ecosystem.titleLine2")}`}
+              >
                 <span>{t("explore")}</span>
                 <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-1" />
-              </a>
+              </Link>
             </div>
           </article>
         </div>

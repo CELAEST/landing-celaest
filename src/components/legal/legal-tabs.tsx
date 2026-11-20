@@ -54,7 +54,11 @@ export function LegalTabs({ navLabels }: LegalTabsProps) {
       <nav aria-label="Ecosistema Legal CELAEST" className="legal-tetralogy-nav">
         {tabs.map((tab, idx) => (
           <React.Fragment key={tab.href}>
-            <Link href={tab.href} className={`legal-tetralogy-link ${tab.active ? "active" : ""}`}>
+            <Link
+              href={tab.href}
+              prefetch={false}
+              className={`legal-tetralogy-link ${tab.active ? "active" : ""}`}
+            >
               <span className="num">{tab.num}</span>
               <span className="label">{tab.label}</span>
             </Link>

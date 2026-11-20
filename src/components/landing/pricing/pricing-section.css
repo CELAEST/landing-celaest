@@ -306,6 +306,56 @@
   margin-top: 6px;
 }
 
+/* Compact Architectural Quotas Row (Hairline Monospace Specs) */
+.pricing-metrics-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid #1f1f26;
+  padding: 16px 0;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.pricing-metric-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 0 6px;
+}
+
+.pricing-metric-cell + .pricing-metric-cell {
+  border-left: 1px solid #1f1f26;
+}
+
+.pricing-metric-value {
+  font-family: monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.pricing-metric-label {
+  font-family: monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #71717a;
+}
+
+.tier-label-subtle {
+  font-size: 10.5px;
+  font-family: monospace;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #71717a;
+  margin-left: auto;
+  user-select: none;
+}
+
 /* Features */
 .pricing-feature-list {
   display: flex;

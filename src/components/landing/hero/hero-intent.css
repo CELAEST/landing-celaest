@@ -15,6 +15,10 @@
   isolation: isolate;
 }
 
+.intent-hero.is-cinema {
+  z-index: 45;
+}
+
 .intent-header {
   position: absolute;
   inset: 0 0 auto;
@@ -64,10 +68,20 @@
 }
 
 .intent-brand:focus-visible,
-.intent-contact:focus-visible,
-.intent-cta:focus-visible {
+.intent-contact:focus-visible {
   outline: 2px solid #c4b5fd;
   outline-offset: 5px;
+}
+
+.intent-cta:focus-visible {
+  outline: none;
+}
+
+.intent-cta:focus-visible .intent-cta-arrow {
+  box-shadow:
+    0 0 0 2px #c4b5fd,
+    0 0 28px rgba(167, 139, 250, 0.45);
+  background: rgba(157, 117, 229, 0.14);
 }
 
 .intent-contact {
@@ -108,6 +122,7 @@
     radial-gradient(ellipse at 66% 45%, rgba(87, 66, 154, 0.13), transparent 40%),
     linear-gradient(180deg, #030307 0%, #030307 55%, #020202 85%, #020202 100%);
   pointer-events: none;
+  transition: opacity 380ms cubic-bezier(0.16, 1, 0.3, 1), transform 380ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .intent-art-glow {
@@ -119,7 +134,6 @@
   height: 76%;
   border-radius: 50%;
   background: radial-gradient(ellipse, rgba(130, 98, 220, 0.2) 0%, rgba(91, 60, 164, 0.07) 34%, transparent 70%);
-  filter: blur(28px);
 }
 
 .intent-structure {
@@ -163,10 +177,10 @@
 .intent-robot-hitbox {
   position: absolute;
   z-index: 11;
-  left: 49vw;
-  top: 4%;
-  width: 34vw;
-  height: 76%;
+  left: 48vw;
+  right: 2vw;
+  top: 8%;
+  bottom: 6%;
   padding: 0;
   border: 0;
   background: transparent;
@@ -219,10 +233,25 @@
 
 .intent-copy {
   position: absolute;
-  z-index: 10;
+  z-index: 12;
   top: 18%;
   left: clamp(78px, 7.95vw, 138px);
   width: min(61vw, 930px);
+  pointer-events: none;
+  transition: opacity 340ms cubic-bezier(0.16, 1, 0.3, 1), transform 340ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.intent-hero.is-cinema .intent-art,
+.intent-hero.is-cinema .intent-copy,
+.intent-hero.is-cinema .intent-art-index {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.985);
+}
+
+.intent-hero.is-cinema .intent-robot-hitbox {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .intent-kicker {
@@ -348,7 +377,6 @@
   margin: -0.08em -0.06em;
   color: transparent;
   text-shadow: none;
-  filter: drop-shadow(0 0 calc(var(--glow) * 14px) rgba(98, 56, 184, calc(var(--glow) * 0.68)));
   -webkit-text-stroke-color: rgba(
     calc(244 - var(--glow) * 70),
     calc(242 - var(--glow) * 108),
@@ -371,9 +399,7 @@
     rgba(0, 0, 0, 0.94) 84%,
     rgba(0, 0, 0, calc(0.45 + var(--glow) * 0.55)) 100%
   );
-  transition:
-    filter 140ms linear,
-    -webkit-text-stroke-color 180ms ease;
+  transition: -webkit-text-stroke-color 180ms ease;
 }
 
 .intent-title-result > strong .intent-letter:nth-child(even) {
@@ -429,13 +455,19 @@
   display: inline-flex;
   align-items: center;
   gap: 25px;
+  padding: 0;
+  border: 0;
   margin-top: clamp(28px, 4.4vh, 52px);
+  background: transparent;
   color: #f8f7fb;
   font-family: var(--font-display), "Space Grotesk", sans-serif;
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.11em;
+  text-align: left;
   text-decoration: none;
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 .intent-cta-arrow {
@@ -489,7 +521,7 @@
     left: clamp(28px, 4vw, 56px);
     width: min(580px, calc(100% - 56px));
     max-width: 100%;
-    z-index: 10;
+    z-index: 12;
   }
 
   .intent-title > strong {
@@ -513,11 +545,11 @@
 
   .intent-robot-hitbox {
     left: auto;
-    right: clamp(40px, 6vw, 120px);
-    top: auto;
-    bottom: 4%;
-    width: clamp(220px, 28vw, 320px);
-    height: 72%;
+    right: 0;
+    top: 11%;
+    bottom: 2%;
+    width: min(46vw, 660px);
+    height: auto;
   }
 
   .intent-ridge {
@@ -567,7 +599,7 @@
     top: 16%;
     left: 20px;
     width: calc(100% - 40px);
-    z-index: 10;
+    z-index: 12;
   }
 
   .intent-kicker {
@@ -637,12 +669,12 @@
   }
 
   .intent-robot-hitbox {
-    top: auto;
-    bottom: 2%;
-    left: 20vw;
-    right: auto;
-    width: 60vw;
-    height: 50%;
+    top: 65%;
+    bottom: 0;
+    left: 12vw;
+    right: 4vw;
+    width: auto;
+    height: auto;
   }
 
   .intent-ridge {
@@ -663,7 +695,15 @@
   }
 }
 
+@media (max-width: 767px) {
+  .intent-hero.is-cinema {
+    z-index: 70;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .intent-art,
+  .intent-copy,
   .intent-contact,
   .intent-cta-arrow,
   .intent-kicker,

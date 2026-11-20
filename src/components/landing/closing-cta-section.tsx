@@ -1,13 +1,14 @@
 "use client";
 
 import React from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { ConstellationBackground } from "@/components/ui/constellation-background";
-import { SUPPORT_EMAIL } from "@/lib/constants";
+import { ContactTriggerLink } from "@/components/contact/contact-trigger-link";
 
 export function ClosingCTASection() {
   const t = useTranslations("faq.cta");
+  const locale = useLocale();
 
   return (
     <section
@@ -18,7 +19,7 @@ export function ClosingCTASection() {
       <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_90%)]">
         <ConstellationBackground nodeCount={28} nodeAlpha={0.15} />
       </div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-purple-600/[0.03] blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] [background:radial-gradient(ellipse_at_center,rgba(147,51,234,0.04)_0%,transparent_70%)] rounded-full pointer-events-none" />
 
       <motion.div
         initial={{ opacity: 0, y: 28 }}
@@ -43,13 +44,14 @@ export function ClosingCTASection() {
             {t("getStarted")}
           </a>
 
-          {/* Secondary Pill: Dark sleek pill */}
-          <a
-            href={`mailto:${SUPPORT_EMAIL}`}
+          {/* Secondary Pill: Direct contact modal */}
+          <ContactTriggerLink
+            subject={locale === "es" ? "Consulta de Ventas" : "Sales Inquiry"}
+            source="closing_cta"
             className="inline-flex items-center justify-center px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-[#18181b] hover:bg-[#27272a] text-white border border-white/10 font-medium text-sm sm:text-base transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
           >
             {t("contactSales")}
-          </a>
+          </ContactTriggerLink>
         </div>
       </motion.div>
     </section>

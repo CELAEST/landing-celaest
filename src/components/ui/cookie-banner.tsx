@@ -14,11 +14,37 @@ export function CookieBanner() {
   useEffect(() => {
     setMounted(true);
     const consent = localStorage.getItem("celaest_cookie_consent");
-    if (!consent) {
-      // Small delay for smooth entry
-      const timer = setTimeout(() => setVisible(true), 1200);
-      return () => clearTimeout(timer);
+    if (consent) return;
+
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const triggerEvents = [
+      "pointermove",
+      "pointerdown",
+      "touchstart",
+      "keydown",
+      "scroll",
+    ] as const;
+
+    const onFirstInteraction = () => {
+      for (const evt of triggerEvents) {
+        window.removeEventListener(evt, onFirstInteraction);
+      }
+      timer = setTimeout(() => setVisible(true), 600);
+    };
+
+    for (const evt of triggerEvents) {
+      window.addEventListener(evt, onFirstInteraction, {
+        once: true,
+        passive: true,
+      });
     }
+
+    return () => {
+      for (const evt of triggerEvents) {
+        window.removeEventListener(evt, onFirstInteraction);
+      }
+      if (timer) clearTimeout(timer);
+    };
   }, []);
 
   const handleAcceptAll = () => {
@@ -53,7 +79,7 @@ export function CookieBanner() {
     <aside
       role="region"
       aria-label={isEn ? "Cookie consent notification" : "Aviso de consentimiento de cookies"}
-      className="fixed bottom-4 right-4 left-4 sm:left-auto sm:max-w-md z-50 overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0c0d18]/95 p-4 sm:p-5 backdrop-blur-xl shadow-[0_16px_48px_rgba(0,0,0,0.65)] animate-in fade-in slide-in-from-bottom-4 duration-300"
+      className="fixed bottom-4 right-4 left-4 sm:left-auto sm:max-w-md z-[44] overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0c0d18]/95 p-4 sm:p-5 backdrop-blur-xl shadow-[0_16px_48px_rgba(0,0,0,0.65)] animate-in fade-in slide-in-from-bottom-4 duration-300"
     >
       <div className="flex items-start gap-3">
         <div className="rounded-lg bg-purple-500/10 p-2 text-purple-400 border border-purple-500/20 shrink-0">
@@ -81,6 +107,7 @@ export function CookieBanner() {
                 ensure platform security and performance. Read our{" "}
                 <Link
                   href="/legal/cookies"
+                  prefetch={false}
                   className="text-purple-400 hover:text-purple-300 underline underline-offset-2"
                 >
                   Cookie Policy
@@ -93,6 +120,7 @@ export function CookieBanner() {
                 garantizar seguridad y rendimiento técnico. Consulta nuestra{" "}
                 <Link
                   href="/legal/cookies"
+                  prefetch={false}
                   className="text-purple-400 hover:text-purple-300 underline underline-offset-2"
                 >
                   Política de Cookies
