@@ -36,11 +36,29 @@ export default async function GuidesHubPage({ params }: PageProps) {
   const guides = getAllGuides();
   const rssHref = locale === "en" ? "/rss-en.xml" : "/rss.xml";
 
-  const schemas = [
+  const schemas: Record<string, unknown>[] = [
     generateBreadcrumbSchema([
       { name: tGlobalNav("home"), url: `${SITE_URL}/${locale}` },
       { name: tGuides("title1"), url: `${SITE_URL}/${locale}/guides` },
     ]),
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: tGuides("seoTitle"),
+      description: tGuides("seoDescription"),
+      url: `${SITE_URL}/${locale}/guides`,
+      inLanguage: locale,
+      mainEntity: {
+        "@type": "ItemList",
+        numberOfItems: guides.length,
+        itemListElement: guides.map((g, idx) => ({
+          "@type": "ListItem",
+          position: idx + 1,
+          name: getLocalizedGuideContent(g, locale).seoTitle,
+          url: `${SITE_URL}/${locale}/guides/${g.slug}`,
+        })),
+      },
+    },
   ];
 
   return (

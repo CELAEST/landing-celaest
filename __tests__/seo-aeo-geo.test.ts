@@ -93,6 +93,94 @@ describe("SEO, AEO & GEO Enterprise Suite", () => {
       const homeEs = entries.find((e) => e.url === "https://celaest.com/es");
       expect(homeEs?.alternates?.languages?.["x-default"]).toBe("https://celaest.com/es");
     });
+
+    it("guarantees unique bounded SEO titles <= 65 visual chars across all localized hub, solution, and guide pages", () => {
+      const guides = JSON.parse(
+        fs.readFileSync(path.resolve(process.cwd(), "src/content/guides.json"), "utf-8"),
+      ) as Array<{
+        slug: string;
+        es: { seoTitle: string; description: string };
+        en: { seoTitle: string; description: string };
+      }>;
+
+      for (const locale of ["es", "en"] as const) {
+        const isEn = locale === "en";
+        const messages = JSON.parse(
+          fs.readFileSync(path.resolve(process.cwd(), `src/i18n/messages/${locale}.json`), "utf-8"),
+        ) as {
+          faq: { title1: string; title2: string; subtitle: string };
+          solutions: {
+            guides: { seoTitle: string; seoDescription: string };
+            hub: { seoTitle: string; seoDescription: string };
+            items: Record<string, { seoTitle: string; seoDescription: string }>;
+          };
+        };
+
+        const metas = [
+          buildPageMetadata({
+            locale,
+            path: "",
+            title: isEn
+              ? "CELAEST — AI Automation Catalog, AI Management & Software"
+              : "CELAEST — Catálogo de Automatizaciones, Gestión de IA y Software",
+            description: isEn
+              ? "CELAEST: enterprise software and AI company with a verified automation catalog, private AI Mesh management, software projects, and CELAEST Lingua."
+              : "CELAEST: compañía de software e IA con catálogo de automatizaciones empresariales, gestión de IA privada (Malla IA), proyectos de software y Lingua.",
+            useAbsoluteTitle: true,
+          }),
+          buildPageMetadata({
+            locale,
+            path: "/solutions",
+            title: messages.solutions.hub.seoTitle,
+            description: messages.solutions.hub.seoDescription,
+          }),
+          ...Object.entries(messages.solutions.items).map(([slug, item]) =>
+            buildPageMetadata({
+              locale,
+              path: `/solutions/${slug}`,
+              title: item.seoTitle,
+              description: item.seoDescription,
+            }),
+          ),
+          buildPageMetadata({
+            locale,
+            path: "/guides",
+            title: messages.solutions.guides.seoTitle,
+            description: messages.solutions.guides.seoDescription,
+          }),
+          buildPageMetadata({
+            locale,
+            path: "/faq",
+            title: `${messages.faq.title1} ${messages.faq.title2}`,
+            description: messages.faq.subtitle,
+          }),
+          ...guides.map((guide) =>
+            buildPageMetadata({
+              locale,
+              path: `/guides/${guide.slug}`,
+              title: guide[locale].seoTitle,
+              description: guide[locale].description,
+            }),
+          ),
+        ];
+
+        const titles = metas.map((meta) => {
+          const raw =
+            typeof meta.title === "string"
+              ? meta.title
+              : meta.title && typeof meta.title === "object" && "absolute" in meta.title
+                ? meta.title.absolute
+                : "";
+          return raw;
+        });
+
+        for (const t of titles) {
+          expect(t.length).toBeGreaterThan(0);
+          expect(t.length).toBeLessThanOrEqual(65);
+        }
+        expect(new Set(titles).size).toBe(titles.length);
+      }
+    });
   });
 
   describe("AEO: JSON-LD Knowledge Graph & Answer Schemas", () => {

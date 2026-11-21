@@ -14,7 +14,8 @@
     "test:watch": "vitest",
     "send-email-tests": "tsx scripts/send-all-tests.ts",
     "indexnow": "node scripts/submit-indexnow.mjs",
-    "content:kit": "node scripts/generate-content-kit.mjs"
+    "content:kit": "node scripts/generate-content-kit.mjs",
+    "seo:audit": "node scripts/audit-seo-live.mjs"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
