@@ -3,6 +3,9 @@
   "name": "celaest-landing",
   "compatibility_date": "2026-11-09",
   "main": "./worker.js",
+  "triggers": {
+    "crons": ["*/10 * * * *"]
+  },
   "vars": {
     "EMAIL_FROM": "CELAEST <noreply@celaest.com>",
     "EMAIL_INTERNAL_RECEIVER": "celaest.oficial@gmail.com"

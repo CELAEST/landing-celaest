@@ -11,7 +11,7 @@ En esta guía práctica desglosamos punto por punto cómo resolverlo en producci
 Lee el playbook completo aquí:
 https://celaest.com/es/guides/ia-privada-zero-training-empresas
 
-Despliega tu Malla IA segura desde $29/mes:
+Empieza gratis con Starter ($0) y escala tu Malla IA desde $29/mes:
 https://celaest.com/es/solutions/ai-mesh
 
 #InteligenciaArtificial #Automatización #IAEmpresarial #CELAEST #SaaS

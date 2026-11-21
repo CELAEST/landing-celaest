@@ -58,7 +58,7 @@ function resolveFooterLink(key: string, index: number): ResolvedLink {
       case 1:
         return { href: "/guides", type: "legal" };
       case 2:
-        return { href: `${DASHBOARD_URL}/?tab=docs`, type: "external" };
+        return { href: "/guides", type: "legal" };
       default:
         return { href: "/faq", type: "legal" };
     }

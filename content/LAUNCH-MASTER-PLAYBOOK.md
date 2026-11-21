@@ -73,7 +73,7 @@ Ecosistema tecnológico empresarial operado desde Colombia con alcance internaci
 > 02. **Malla IA (AI Mesh)** → usa modelos de OpenAI, Anthropic y Google Vertex con failover automático y garantía **Zero-Training** (tus datos nunca entrenan modelos públicos).
 > 03. **CELAEST Lingua** → inglés técnico y ejecutivo con IA, fonética IPA y simulador de entrevistas directo en el navegador.
 >
-> Explora el catálogo completo y los planes desde $29/mes:
+> Explora el catálogo completo — empieza gratis con Starter ($0, sin tarjeta) y escala desde $29/mes:
 > https://celaest.com/es/solutions
 >
 > #Automatizacion #InteligenciaArtificial #Workflows #IAEmpresarial #CELAEST #Productividad #SaaS #ColombiaTech
@@ -95,7 +95,7 @@ Registra `https://celaest.com/en` (o `/es`) en estos 4 directorios gratuitos usa
 - **Tagline (60 chars):** `Enterprise AI Automation Catalog, AI Mesh & Technical English`
 - **Short Description:** `CELAEST unifies an audited catalog of AI workflows, Python scripts, and Excel macros with Zero-Training multi-model AI Mesh orchestration and CELAEST Lingua for technical English—built for businesses across LATAM and worldwide.`
 - **Categories / Tags:** `Workflow Automation`, `AI Agents`, `LLM Orchestration`, `Productivity`, `B2B SaaS`, `Language Learning`
-- **Pricing:** `Paid (Starts at $29/mo)`
+- **Pricing:** `Freemium (Starter $0 free forever, Pro $29/mo, Enterprise $99/mo)`
 - **Logo:** `public/icon-512-v2.png`
 - **Screenshot / Banner:** `public/og-banner-v2.png` (ES) / `public/og-banner-en-v2.png` (EN)
 

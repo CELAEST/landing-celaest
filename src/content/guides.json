@@ -225,7 +225,7 @@
           "Cómo usar OpenAI, Anthropic y Vertex con failover automático si uno se cae",
           "Cuándo elegir Cloud Mesh B2B, BYOK o despliegue On-Premise Air-Gapped"
         ],
-        "cta": "Despliega tu Malla IA segura desde $29/mes"
+        "cta": "Empieza gratis con Starter ($0) y escala tu Malla IA desde $29/mes"
       }
     },
     "en": {
@@ -293,7 +293,7 @@
           "Multi-provider LLM failover across OpenAI, Anthropic, and Vertex",
           "Choosing between Cloud Mesh B2B, BYOK, and Air-Gapped On-Premise"
         ],
-        "cta": "Launch private AI Mesh governance starting at $29/mo"
+        "cta": "Start free on Starter ($0) and scale private AI Mesh from $29/mo"
       }
     }
   },

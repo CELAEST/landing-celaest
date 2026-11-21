@@ -3,9 +3,9 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Header } from "@/components/landing/header";
 import { Footer } from "@/components/landing/footer";
 import { ConstellationBackground } from "@/components/ui/constellation-background";
-import { ArrowLeft, HelpCircle, Mail, ExternalLink } from "lucide-react";
+import { ArrowLeft, HelpCircle, Mail, BookOpen } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { SITE_URL, SUPPORT_EMAIL, DASHBOARD_URL } from "@/lib/constants";
+import { SITE_URL, SUPPORT_EMAIL } from "@/lib/constants";
 import { ContactTriggerLink } from "@/components/contact/contact-trigger-link";
 import { buildPageMetadata } from "@/lib/seo";
 import { generateFAQSchema, generateBreadcrumbSchema, type FAQItem } from "@/lib/structured-data";
@@ -176,15 +176,13 @@ export default async function FAQPage({ params }: PageProps) {
                     <Mail className="w-3.5 h-3.5" />
                     <span>{t("emailAction", { email: SUPPORT_EMAIL })}</span>
                   </ContactTriggerLink>
-                  <a
-                    href={`${DASHBOARD_URL}/?tab=docs`}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    href="/guides"
                     className="inline-flex items-center gap-2 text-xs font-medium text-zinc-400 hover:text-white transition-colors"
                   >
-                    <ExternalLink className="w-3.5 h-3.5" />
+                    <BookOpen className="w-3.5 h-3.5" />
                     <span>{t("docsAction")}</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

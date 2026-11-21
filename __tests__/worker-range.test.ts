@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import worker, { parseByteRange } from "../worker.js";
 
 describe("Worker HTTP 206 Range Support for /videos/*", () => {
@@ -58,5 +58,34 @@ describe("Worker HTTP 206 Range Support for /videos/*", () => {
     );
     expect(res.status).toBe(416);
     expect(res.headers.get("content-range")).toBe("bytes */10");
+  });
+
+  it("pings all Render health endpoints on scheduled cron execution", async () => {
+    const fetchSpy = vi
+      .spyOn(globalThis, "fetch")
+      .mockResolvedValue(new Response("ok", { status: 200 }));
+    const pending: Promise<unknown>[] = [];
+
+    await worker.scheduled(
+      {},
+      {},
+      {
+        waitUntil: (promise: Promise<unknown>) => {
+          pending.push(promise);
+        },
+      },
+    );
+
+    await Promise.all(pending);
+
+    expect(fetchSpy).toHaveBeenCalledTimes(3);
+    const calledUrls = fetchSpy.mock.calls.map(([input]) => String(input));
+    expect(calledUrls).toEqual([
+      "https://celaest-back.onrender.com/health",
+      "https://celaest-english-back.onrender.com/health",
+      "https://celaest-core.onrender.com/health",
+    ]);
+
+    fetchSpy.mockRestore();
   });
 });

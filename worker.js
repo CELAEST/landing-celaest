@@ -1,5 +1,11 @@
 import { handleContactPost, handleNewsletterPost } from "./src/lib/email/contact-processor.ts";
 
+const KEEP_ALIVE_ENDPOINTS = [
+  "https://celaest-back.onrender.com/health",
+  "https://celaest-english-back.onrender.com/health",
+  "https://celaest-core.onrender.com/health",
+];
+
 const REDIRECT_MAP = {
   "/": "/es",
   "/es/legal": "/es/legal/terms",
@@ -228,7 +234,7 @@ async function serveRangeAwareVideo(request, env) {
   });
 }
 
-export default {
+const worker = {
   async fetch(request, env) {
     const url = new URL(request.url);
     const normalizedPath = url.pathname.replace(/\/+$/, "") || "/";
@@ -304,4 +310,19 @@ export default {
 
     return assetResponse;
   },
+
+  async scheduled(_controller, _env, ctx) {
+    ctx.waitUntil(
+      Promise.allSettled(
+        KEEP_ALIVE_ENDPOINTS.map((endpoint) =>
+          fetch(endpoint, {
+            method: "GET",
+            headers: { "User-Agent": "CELAEST-Edge-KeepAlive/1.0" },
+          }).then((res) => res.body?.cancel()),
+        ),
+      ),
+    );
+  },
 };
+
+export default worker;

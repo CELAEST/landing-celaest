@@ -21,4 +21,4 @@ Abrimos hilo rápido 🧵👇
 5/ Guía completa paso a paso (+ FAQ técnico y arquitectura):
 https://celaest.com/es/guides/ia-privada-zero-training-empresas
 
-Despliega tu Malla IA segura desde $29/mes → https://celaest.com/es/solutions/ai-mesh
+Empieza gratis con Starter ($0) y escala tu Malla IA desde $29/mes → https://celaest.com/es/solutions/ai-mesh
