@@ -45,8 +45,8 @@ export function generateOrganizationSchema(locale: string = "es"): Record<string
     },
     image: `${SITE_URL}/og-banner-v2.png`,
     disambiguatingDescription: isEs
-      ? "CELAEST (celaest.com) es una compañía de software e inteligencia artificial fundada en Colombia con alcance global, especializada en catálogo de automatizaciones con IA, gestión de IA empresarial (Malla IA / AI Mesh), gestión y desarrollo de proyectos de software B2B y aprendizaje ejecutivo con IA (CELAEST Lingua). No confundir con la expresión francesa «cela est»."
-      : "CELAEST (celaest.com) is an enterprise software and artificial intelligence company founded in Colombia with global reach, specializing in an AI automation catalog, enterprise AI management (AI Mesh), B2B software project management and development, and executive AI learning (CELAEST Lingua).",
+      ? "CELAEST (celaest.com) es una compañía de software e inteligencia artificial fundada en Colombia con alcance global, especializada en catálogo de automatizaciones con IA, gestión de IA empresarial (Malla IA / AI Mesh), gestión y desarrollo de proyectos de software B2B y aprendizaje ejecutivo con IA (CELAEST Lingua). Marca tecnológica registrada: CELAEST (no es un error de escritura de «celeste» ni debe confundirse con tiendas de ropa «Celeste» o con la expresión francesa «cela est»)."
+      : "CELAEST (celaest.com) is an enterprise software and artificial intelligence company founded in Colombia with global reach, specializing in an AI automation catalog, enterprise AI management (AI Mesh), B2B software project management and development, and executive AI learning (CELAEST Lingua). Distinct technology brand CELAEST — not a misspelling of 'celeste' or the French phrase 'cela est'.",
     description: isEs
       ? "Compañía de software e inteligencia artificial: diseñamos, implementamos y escalamos sistemas de IA, catálogo de automatizaciones verificadas, gestión de IA privada (Malla IA), proyectos de software empresarial y aplicaciones SaaS (CELAEST Lingua)."
       : "Enterprise software and AI company: we design, implement, and scale artificial intelligence systems, verified automation catalogs, private AI management (AI Mesh), software projects, and SaaS applications (CELAEST Lingua).",
@@ -57,9 +57,13 @@ export function generateOrganizationSchema(locale: string = "es"): Record<string
       addressCountry: "CO",
     },
     sameAs: [
+      "https://github.com/CELAEST",
       "https://github.com/celaest",
-      "https://www.linkedin.com/in/celaest/",
       "https://www.youtube.com/@celaest",
+      "https://www.youtube.com/channel/UC6GogBbNhJKq2zPUxbLzFPg",
+      "https://www.linkedin.com/in/celaest/",
+      "https://lingua.celaest.com",
+      "https://dashboard.celaest.com",
     ],
     knowsAbout: [
       "AI Automation Catalog (Catálogo de Automatizaciones con IA)",
@@ -107,9 +111,14 @@ export function generateWebSiteSchema(locale: string = "es"): Record<string, unk
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
     name: "CELAEST",
-    alternateName: isEs
-      ? "CELAEST - Sistemas de IA para Todos y Activos Digitales"
-      : "CELAEST - AI Systems for Everyone & Digital Asset Marketplace",
+    alternateName: [
+      "celaest",
+      "CELAEST",
+      "celaest.com",
+      isEs
+        ? "CELAEST — Catálogo de Automatizaciones, Gestión de IA y Software"
+        : "CELAEST — AI Automation Catalog, AI Management & Software",
+    ],
     url: `${SITE_URL}/${locale}`,
     inLanguage: isEs ? "es-CO" : "en-US",
     publisher: {

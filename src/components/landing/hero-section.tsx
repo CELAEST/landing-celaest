@@ -15,7 +15,7 @@ export function HeroSection() {
   const t = useTranslations("hero.intent");
   const cinemaCopy = t.raw("cinema") as HeroCinemaCopy;
   const heroRef = useRef<HTMLElement | null>(null);
-  const titleRef = useRef<HTMLHeadingElement | null>(null);
+  const titleRef = useRef<HTMLElement | null>(null);
   const letterRects = useRef<Array<{ el: HTMLElement; x: number; y: number }>>([]);
   const frame = useRef(0);
   const pointer = useRef({ x: -9999, y: -9999 });

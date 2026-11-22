@@ -1,6 +1,6 @@
 # CELAEST — Live SEO / AEO / GEO Scorecard
 
-- **Última ejecución:** `2026-11-22T01:01:24.832Z`
+- **Última ejecución:** `2026-11-22T16:40:24.990Z`
 - **Estado Técnico Global:** **PASS (100% Técnico)**
 - **URLs en Sitemap:** `34` (`32` páginas HTML auditadas)
 - **Títulos duplicados:** `0` · **Descripciones duplicadas:** `0`

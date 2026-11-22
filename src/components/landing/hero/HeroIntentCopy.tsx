@@ -16,7 +16,7 @@ function Letters({ text }: { text: string }) {
 }
 
 interface HeroIntentCopyProps {
-  titleRef: React.RefObject<HTMLHeadingElement | null>;
+  titleRef: React.RefObject<HTMLElement | null>;
   kickerLine1: string;
   kickerLine2: string;
   titleSmall: string;
@@ -54,8 +54,13 @@ export function HeroIntentCopy({
         <i />
       </div>
 
-      <h1 className="intent-title" ref={titleRef} aria-label={titleAria}>
-        <span className="sr-only">{titleAria} — </span>
+      <h1 className="sr-only">{titleAria}</h1>
+
+      <div
+        className="intent-title"
+        ref={titleRef as React.RefObject<HTMLDivElement | null>}
+        aria-hidden="true"
+      >
         <span className="intent-title-small">
           <Letters text={titleSmall} />
         </span>{" "}
@@ -70,7 +75,7 @@ export function HeroIntentCopy({
             <Letters text={titleResult} />
           </strong>
         </span>
-      </h1>
+      </div>
 
       <p className="intent-description">{description}</p>
 
