@@ -1,6 +1,6 @@
 # CELAEST — Live SEO / AEO / GEO Scorecard
 
-- **Última ejecución:** `2026-11-21T23:32:35.550Z`
+- **Última ejecución:** `2026-11-22T00:39:59.629Z`
 - **Estado Técnico Global:** **PASS (100% Técnico)**
 - **URLs en Sitemap:** `34` (`32` páginas HTML auditadas)
 - **Títulos duplicados:** `0` · **Descripciones duplicadas:** `0`
@@ -19,6 +19,7 @@
 - **Lingua (`lingua.celaest.com`):** HTTP `200` · Desc `144` chars · `VideoObject`: ✅
 - **Dashboard (`dashboard.celaest.com`):** HTTP `200` · Canonical OK · Sin Vercel 402: ✅
 - **Streaming iPhone/Safari (`206 Partial Content`):** ✅ 3/3 dominios
+- **Security Headers (HSTS/XFO/nosniff/Referrer):** ✅ 3/3 dominios A+
 - **CORS `celaest-core` (`lingua.celaest.com`):** ✅ 204 OK
 - **Marketplace Lingua:** `CELAEST Lingua — Inglés con IA` — "Inglés profesional y técnico con IA: voz en tiempo real, fonética IPA y entrevistas 24/7."
 

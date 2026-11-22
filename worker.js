@@ -234,6 +234,20 @@ async function serveRangeAwareVideo(request, env) {
   });
 }
 
+function withSecurityHeaders(response) {
+  const headers = new Headers(response.headers);
+  headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
+  headers.set("X-Content-Type-Options", "nosniff");
+  headers.set("X-Frame-Options", "SAMEORIGIN");
+  headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  headers.set("Permissions-Policy", "camera=(), geolocation=(), microphone=()");
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
 const worker = {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -284,31 +298,37 @@ const worker = {
       const basePrefix = rscMatch[1].replace(/\$/g, "%24");
       const segmentPath = rscMatch[2].replace(/\./g, "/").replace(/\$/g, "%24");
       rewrittenUrl.pathname = `${basePrefix}/${segmentPath}.txt`;
-      return env.ASSETS.fetch(new Request(rewrittenUrl.toString(), request));
+      return withSecurityHeaders(
+        await env.ASSETS.fetch(new Request(rewrittenUrl.toString(), request)),
+      );
     }
 
     if (url.pathname.includes("$")) {
       const rewrittenUrl = new URL(request.url);
       rewrittenUrl.pathname = url.pathname.replace(/\$/g, "%24");
-      return env.ASSETS.fetch(new Request(rewrittenUrl.toString(), request));
+      return withSecurityHeaders(
+        await env.ASSETS.fetch(new Request(rewrittenUrl.toString(), request)),
+      );
     }
 
     if (url.pathname.startsWith("/videos/")) {
-      return serveRangeAwareVideo(request, env);
+      return withSecurityHeaders(await serveRangeAwareVideo(request, env));
     }
 
     const assetResponse = await env.ASSETS.fetch(request);
     if (assetResponse.status === 404) {
       const headers = new Headers(assetResponse.headers);
       headers.set("X-Robots-Tag", "noindex, nofollow");
-      return new Response(assetResponse.body, {
-        status: 404,
-        statusText: assetResponse.statusText,
-        headers,
-      });
+      return withSecurityHeaders(
+        new Response(assetResponse.body, {
+          status: 404,
+          statusText: assetResponse.statusText,
+          headers,
+        }),
+      );
     }
 
-    return assetResponse;
+    return withSecurityHeaders(assetResponse);
   },
 
   async scheduled(_controller, _env, ctx) {

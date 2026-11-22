@@ -237,6 +237,24 @@ async function checkSubdomainsAndMedia() {
   const mktJson = await mktRes.json();
   const linguaCard = (mktJson?.data?.products || []).find((p) => p.slug === "lingua");
 
+  const landingEsRes = await fetch(`${SITE_URL}/es`);
+
+  const securityTargets = [
+    ["celaest.com/es", landingEsRes],
+    ["dashboard.celaest.com/", dashHtmlRes],
+    ["lingua.celaest.com/", linguaHtmlRes],
+  ];
+  const requiredSecHeaders = [
+    "strict-transport-security",
+    "x-content-type-options",
+    "x-frame-options",
+    "referrer-policy",
+  ];
+  const securityHeaders = securityTargets.map(([label, res]) => {
+    const missing = requiredSecHeaders.filter((h) => !res.headers.get(h));
+    return { label, missing, ok: missing.length === 0 };
+  });
+
   return {
     lingua: {
       status: linguaHtmlRes.status,
@@ -258,6 +276,7 @@ async function checkSubdomainsAndMedia() {
         extractCanonical(dashHtml) === "https://dashboard.celaest.com" &&
         !dashHtml.includes("grainy-gradients.vercel.app"),
     },
+    securityHeaders,
     videoRanges,
     coreCorsOk:
       coreCorsRes.status === 204 &&
@@ -337,6 +356,7 @@ function renderMarkdownReport({
     `- **Lingua (\`lingua.celaest.com\`):** HTTP \`${ecosystem.lingua.status}\` · Desc \`${ecosystem.lingua.descLen}\` chars · \`VideoObject\`: ${ecosystem.lingua.hasVideoObject ? "✅" : "❌"}`,
     `- **Dashboard (\`dashboard.celaest.com\`):** HTTP \`${ecosystem.dashboard.status}\` · Canonical OK · Sin Vercel 402: ${!ecosystem.dashboard.hasBrokenVercelNoise ? "✅" : "❌"}`,
     `- **Streaming iPhone/Safari (\`206 Partial Content\`):** ${ecosystem.videoRanges.every((v) => v.ok) ? "✅ 3/3 dominios" : "❌ Revisar"}`,
+    `- **Security Headers (HSTS/XFO/nosniff/Referrer):** ${ecosystem.securityHeaders.every((s) => s.ok) ? "✅ 3/3 dominios A+" : "❌ Revisar"}`,
     `- **CORS \`celaest-core\` (\`lingua.celaest.com\`):** ${ecosystem.coreCorsOk ? "✅ 204 OK" : "❌ Revisar"}`,
     `- **Marketplace Lingua:** \`${ecosystem.marketplaceLinguaName}\` — "${ecosystem.marketplaceLinguaShortDesc}"`,
     "",
@@ -393,6 +413,9 @@ async function main() {
   if (!hygiene.notFoundCheck.ok) failures.push("404 response missing X-Robots-Tag: noindex");
   if (!ecosystem.lingua.ok) failures.push("lingua.celaest.com SEO check failed");
   if (!ecosystem.dashboard.ok) failures.push("dashboard.celaest.com hygiene check failed");
+  for (const s of ecosystem.securityHeaders) {
+    if (!s.ok) failures.push(`Security headers missing on ${s.label}: ${s.missing.join(", ")}`);
+  }
   for (const v of ecosystem.videoRanges) {
     if (!v.ok) failures.push(`Video Range 206 failed for ${v.url} (status=${v.status})`);
   }
