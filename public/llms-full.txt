@@ -69,7 +69,7 @@
 - **Infrastructure**: Multi-region cloud deployment (Cloudflare WAF/Edge, Vercel, AWS) with 99.99% uptime architecture, automated backups, and instant failover.
 - **Zero-Training Guarantee**: Customer prompts, source code, and corporate documents processed through AI Mesh are strictly confidential and never used to train or fine-tune public AI models.
 - **Content Moderation**: Strict prohibition of sexually explicit, adult (NSFW), or unlawful content across AI Mesh.
-- **Regulatory Compliance**: Operated from the Republic of Colombia with global reach, compliant with Colombian Statutory Law 1581 of 2012 (Habeas Data), Law 527 of 1999 (Electronic Commerce), Law 1480 of 2011, EU GDPR, and California CCPA. PCI-DSS Level 1 payment processing via Stripe.
+- **Regulatory Compliance**: Operated from the Republic of Colombia with global reach, compliant with Colombian Statutory Law 1581 of 2012 (Habeas Data), Law 527 of 1999 (Electronic Commerce), Law 1480 of 2011, EU GDPR, and California CCPA. PCI-DSS Level 1 payment processing via Creem (international Merchant of Record) and Mercado Pago (Colombia/LATAM).
 
 ---
 

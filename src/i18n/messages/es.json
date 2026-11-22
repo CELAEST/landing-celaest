@@ -603,7 +603,7 @@
           "summary": "Procesamiento seguro PCI-DSS, pasarelas globales y transferencias directas en Colombia. Las suscripciones se renuevan automáticamente.",
           "paragraphs": [
             "Las suscripciones se renuevan de forma automática al finalizar cada ciclo (mensual o anual) utilizando el método de pago registrado, hasta que el Usuario la cancele desde su panel. La cancelación oportuna antes de la fecha de corte es responsabilidad exclusiva del Cliente.",
-            "Las transacciones internacionales y locales con tarjeta de crédito, débito o medios alternativos son procesadas a través de Creem (Merchant of Record internacional), Stripe y Mercado Pago —pasarelas y procesadores de pago tokenizados certificados PCI-DSS Nivel 1—, o mediante transferencias electrónicas bancarias en Colombia cuando estén habilitadas. CELAEST en ningún momento almacena números completos de tarjeta de crédito o códigos de seguridad CVV en sus servidores."
+            "Las transacciones internacionales y locales con tarjeta de crédito, débito o medios alternativos son procesadas a través de Creem (Merchant of Record internacional) y Mercado Pago (Colombia y LATAM) —pasarelas y procesadores de pago tokenizados certificados PCI-DSS Nivel 1—, o mediante transferencias electrónicas bancarias en Colombia cuando estén habilitadas. CELAEST en ningún momento almacena números completos de tarjeta de crédito o códigos de seguridad CVV en sus servidores."
           ]
         },
         {
@@ -750,7 +750,7 @@
             "Vercel, Inc. (Alojamiento Edge de aplicaciones web y entrega CDN distribuida).",
             "Anthropic PBC / OpenAI LLC / Google Vertex AI (Inferencia IA comercial B2B bajo acuerdos de No-Entrenamiento).",
             "Entornos de Sandbox Aislados (Ejecución y validación efímera de código fuente sin persistencia de datos).",
-            "Pasarelas de Pago y Merchant of Record Certificados PCI-DSS Nivel 1 (Creem, Stripe y Mercado Pago)."
+            "Pasarelas de Pago y Merchant of Record Certificados PCI-DSS Nivel 1: Creem (Merchant of Record internacional) y Mercado Pago (Colombia y LATAM)."
           ]
         },
         {
@@ -979,9 +979,9 @@
           "id": "tiempos",
           "number": "07",
           "title": "Procesamiento y Tiempos de Acreditación Bancaria",
-          "summary": "Devoluciones ejecutadas a través de Creem, Stripe, Mercado Pago o transferencias bancarias en Colombia en plazos estándar.",
+          "summary": "Devoluciones ejecutadas a través de Creem (Merchant of Record internacional), Mercado Pago (Colombia y LATAM) o transferencias bancarias en Colombia en plazos estándar.",
           "paragraphs": [
-            "La devolución, cuando proceda legalmente según la sección 02, se ejecuta a través de la pasarela o procesador de pago original (Creem, Stripe o Mercado Pago) directamente al mismo medio de pago utilizado en la compra.",
+            "La devolución, cuando proceda legalmente según la sección 02, se ejecuta a través de la pasarela o procesador de pago original —Creem (Merchant of Record internacional) o Mercado Pago (Colombia y LATAM)— directamente al mismo medio de pago utilizado en la compra.",
             "Para pagos liquidados mediante transferencias electrónicas bancarias en Colombia, la devolución se tramitará mediante transferencia electrónica a la cuenta bancaria de origen previa validación de titularidad."
           ],
           "points": [

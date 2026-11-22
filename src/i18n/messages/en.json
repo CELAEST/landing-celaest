@@ -603,7 +603,7 @@
           "summary": "PCI-DSS certified payment processing, global gateways, and direct Colombian rails. Subscriptions renew automatically.",
           "paragraphs": [
             "Subscriptions renew automatically at the conclusion of each billing cycle (monthly or annual) using the saved payment method, unless cancelled by Customer prior to the scheduled renewal date. Timely cancellation is Customer's sole duty.",
-            "International and local credit card, debit card, and digital payment transactions are processed securely through Creem (international Merchant of Record), Stripe, and Mercado Pago —PCI-DSS Level 1 certified tokenized payment processors—, or via direct electronic bank transfers in Colombia where available. CELAEST never stores complete credit card numbers or CVV verification codes on its servers."
+            "International and local credit card, debit card, and digital payment transactions are processed securely through Creem (international Merchant of Record) and Mercado Pago (Colombia & LATAM) —PCI-DSS Level 1 certified tokenized payment processors—, or via direct electronic bank transfers in Colombia where available. CELAEST never stores complete credit card numbers or CVV verification codes on its servers."
           ]
         },
         {
@@ -750,7 +750,7 @@
             "Vercel, Inc. (Edge serverless hosting and global CDN distribution).",
             "Anthropic PBC / OpenAI LLC / Google Vertex AI (B2B commercial AI inference under non-training agreements).",
             "Isolated Sandbox Environments (Ephemeral code execution and script validation without data persistence).",
-            "PCI-DSS Level 1 Payment Processors and Merchant of Record Partners (Creem, Stripe, and Mercado Pago)."
+            "PCI-DSS Level 1 Payment Processors and Merchant of Record Partners: Creem (international Merchant of Record) and Mercado Pago (Colombia & LATAM)."
           ]
         },
         {
@@ -979,9 +979,9 @@
           "id": "tiempos",
           "number": "07",
           "title": "Processing and Financial Settlement Timelines",
-          "summary": "Refunds executed via Creem, Stripe, Mercado Pago, or local bank transfers in Colombia within standard business timeframes.",
+          "summary": "Refunds executed via Creem (international Merchant of Record), Mercado Pago (Colombia & LATAM), or local bank transfers in Colombia within standard business timeframes.",
           "paragraphs": [
-            "When legally warranted under Section 02, refunds are executed through the original payment processor or Merchant of Record (Creem, Stripe, or Mercado Pago) directly back to the original payment instrument.",
+            "When legally warranted under Section 02, refunds are executed through the original payment processor or Merchant of Record —Creem (international Merchant of Record) or Mercado Pago (Colombia & LATAM)— directly back to the original payment instrument.",
             "For transactions completed via direct electronic bank transfers in Colombia, refunds are processed via electronic transfer to the origin bank account following identity verification."
           ],
           "points": [
