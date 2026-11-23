@@ -224,7 +224,7 @@ async function checkSubdomainsAndMedia() {
     });
   }
 
-  const coreCorsRes = await fetch("https://celaest-core.onrender.com/api/v1/ai/chat/simple", {
+  const coreCorsRes = await fetch("https://celaest-core-c4o7.onrender.com/api/v1/ai/chat/simple", {
     method: "OPTIONS",
     headers: {
       Origin: "https://lingua.celaest.com",

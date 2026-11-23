@@ -82,8 +82,8 @@ describe("Worker HTTP 206 Range Support for /videos/*", () => {
     const calledUrls = fetchSpy.mock.calls.map(([input]) => String(input));
     expect(calledUrls).toEqual([
       "https://celaest-back.onrender.com/health",
-      "https://celaest-english-back.onrender.com/health",
-      "https://celaest-core.onrender.com/health",
+      "https://celaest-english-back-8xpa.onrender.com/health",
+      "https://celaest-core-c4o7.onrender.com/health",
     ]);
 
     fetchSpy.mockRestore();

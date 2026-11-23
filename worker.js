@@ -2,8 +2,8 @@ import { handleContactPost, handleNewsletterPost } from "./src/lib/email/contact
 
 const KEEP_ALIVE_ENDPOINTS = [
   "https://celaest-back.onrender.com/health",
-  "https://celaest-english-back.onrender.com/health",
-  "https://celaest-core.onrender.com/health",
+  "https://celaest-english-back-8xpa.onrender.com/health",
+  "https://celaest-core-c4o7.onrender.com/health",
 ];
 
 const REDIRECT_MAP = {
