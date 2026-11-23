@@ -3,35 +3,105 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const DEFAULT_DURATION_SEC = 46;
+const VIDEO_SOURCES = [
+  "/videos/celaest-ecosistema-pitch.mp4",
+  "/videos/celaest-ecosistema-pitch.webm",
+] as const;
 
 /**
  * Coordinates desktop in-hero editorial cinema playback and mobile fullscreen
- * theater overlay using a single gesture-safe <video> element.
+ * theater overlay with automatic codec failover (H.264 -> VP9 WebM) and mute fallback.
  */
 export function useHeroCinema(heroRef: React.RefObject<HTMLElement | null>) {
   const [isOpen, setIsOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isBuffering, setIsBuffering] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(DEFAULT_DURATION_SEC);
+  const [sourceIndex, setSourceIndex] = useState(0);
 
+  const cinemaRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
+  const stallTimerRef = useRef<number | null>(null);
+  const sourceIndexRef = useRef(0);
+
+  const clearStallWatchdog = useCallback(() => {
+    if (stallTimerRef.current !== null) {
+      window.clearTimeout(stallTimerRef.current);
+      stallTimerRef.current = null;
+    }
+  }, []);
+
+  useEffect(() => {
+    sourceIndexRef.current = sourceIndex;
+  }, [sourceIndex]);
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 767px)");
     const sync = () => setIsMobile(mq.matches);
     sync();
     mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
-  }, []);
+    return () => {
+      mq.removeEventListener("change", sync);
+      clearStallWatchdog();
+    };
+  }, [clearStallWatchdog]);
+
+  const attemptPlay = useCallback(
+    (video: HTMLVideoElement) => {
+      // Remove inert synchronously before play() so Chromium preserves click activation cleanly
+      cinemaRef.current?.removeAttribute("inert");
+      setIsBuffering(video.readyState < 3);
+
+      clearStallWatchdog();
+      const startTime = video.currentTime;
+      stallTimerRef.current = window.setTimeout(() => {
+        const el = videoRef.current;
+        if (!el || el.paused || el.ended) return;
+        const stalledAtStart = el.currentTime <= startTime + 0.02;
+        if (stalledAtStart && sourceIndexRef.current < VIDEO_SOURCES.length - 1) {
+          const nextIdx = sourceIndexRef.current + 1;
+          sourceIndexRef.current = nextIdx;
+          setSourceIndex(nextIdx);
+          el.src = VIDEO_SOURCES[nextIdx];
+          el.load();
+          void el.play().catch(() => {
+            setIsPlaying(false);
+            setIsBuffering(false);
+          });
+        }
+      }, 1600);
+
+      void video.play().catch((err: unknown) => {
+        // Retry muted if OS/browser blocks unmuted playback (NotAllowedError / audio lock)
+        if (!video.muted && err instanceof DOMException && err.name === "NotAllowedError") {
+          video.muted = true;
+          setIsMuted(true);
+          void video.play().catch(() => {
+            clearStallWatchdog();
+            setIsPlaying(false);
+            setIsBuffering(false);
+          });
+          return;
+        }
+        clearStallWatchdog();
+        setIsPlaying(false);
+        setIsBuffering(false);
+      });
+    },
+    [clearStallWatchdog],
+  );
 
   const pauseVideo = useCallback(() => {
+    clearStallWatchdog();
     const video = videoRef.current;
     if (video && !video.paused) video.pause();
     setIsPlaying(false);
-  }, []);
+    setIsBuffering(false);
+  }, [clearStallWatchdog]);
 
   const closeCinema = useCallback(
     (restoreFocus = true) => {
@@ -44,29 +114,34 @@ export function useHeroCinema(heroRef: React.RefObject<HTMLElement | null>) {
     [pauseVideo],
   );
 
+  const prefetchCinema = useCallback(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.preload !== "auto") {
+      video.preload = "auto";
+    }
+  }, []);
+
   const openCinema = useCallback(() => {
     setIsOpen(true);
     const video = videoRef.current;
     if (!video) return;
+    if (video.preload !== "auto") video.preload = "auto";
     if (video.ended) video.currentTime = 0;
     video.muted = isMuted;
-    setIsPlaying(true);
-    void video.play().catch(() => {
-      setIsPlaying(false);
-    });
-  }, [isMuted]);
+    attemptPlay(video);
+  }, [attemptPlay, isMuted]);
 
   const togglePlay = useCallback(() => {
     const video = videoRef.current;
     if (!video) return;
     if (video.paused || video.ended) {
       if (video.ended) video.currentTime = 0;
-      setIsPlaying(true);
-      void video.play().catch(() => setIsPlaying(false));
+      attemptPlay(video);
     } else {
       pauseVideo();
     }
-  }, [pauseVideo]);
+  }, [attemptPlay, pauseVideo]);
 
   const toggleMute = useCallback(() => {
     const video = videoRef.current;
@@ -106,11 +181,15 @@ export function useHeroCinema(heroRef: React.RefObject<HTMLElement | null>) {
   const handleTimeUpdate = useCallback(() => {
     const video = videoRef.current;
     if (!video) return;
+    if (video.currentTime > 0.02) {
+      clearStallWatchdog();
+      setIsBuffering(false);
+    }
     setCurrentTime(video.currentTime);
     if (Number.isFinite(video.duration) && video.duration > 0) {
       setDuration(video.duration);
     }
-  }, []);
+  }, [clearStallWatchdog]);
 
   const handleLoadedMetadata = useCallback(() => {
     const video = videoRef.current;
@@ -118,6 +197,25 @@ export function useHeroCinema(heroRef: React.RefObject<HTMLElement | null>) {
       setDuration(video.duration);
     }
   }, []);
+
+  const handleVideoError = useCallback(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (sourceIndexRef.current < VIDEO_SOURCES.length - 1) {
+      const nextIdx = sourceIndexRef.current + 1;
+      sourceIndexRef.current = nextIdx;
+      setSourceIndex(nextIdx);
+      video.src = VIDEO_SOURCES[nextIdx];
+      video.load();
+      if (isOpen) {
+        attemptPlay(video);
+      }
+      return;
+    }
+    clearStallWatchdog();
+    setIsPlaying(false);
+    setIsBuffering(false);
+  }, [attemptPlay, clearStallWatchdog, isOpen]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -149,11 +247,11 @@ export function useHeroCinema(heroRef: React.RefObject<HTMLElement | null>) {
     const desktopQuery = window.matchMedia("(min-width: 768px)");
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (desktopQuery.matches && entry && entry.intersectionRatio < 0.25) {
+        if (desktopQuery.matches && entry && !entry.isIntersecting) {
           pauseVideo();
         }
       },
-      { threshold: [0, 0.25, 0.5] },
+      { threshold: 0.02 },
     );
     observer.observe(heroRef.current);
     return () => observer.disconnect();
@@ -162,12 +260,16 @@ export function useHeroCinema(heroRef: React.RefObject<HTMLElement | null>) {
   return {
     isOpen,
     isPlaying,
+    isBuffering,
     isMuted,
     isMobile,
     currentTime,
     duration,
+    videoSrc: VIDEO_SOURCES[sourceIndex],
+    cinemaRef,
     videoRef,
     triggerRef,
+    prefetchCinema,
     openCinema,
     closeCinema,
     togglePlay,
@@ -176,6 +278,8 @@ export function useHeroCinema(heroRef: React.RefObject<HTMLElement | null>) {
     requestFullscreen,
     handleTimeUpdate,
     handleLoadedMetadata,
+    handleVideoError,
     setIsPlaying,
+    setIsBuffering,
   };
 }

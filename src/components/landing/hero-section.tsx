@@ -23,12 +23,16 @@ export function HeroSection() {
   const {
     isOpen: isCinemaOpen,
     isPlaying,
+    isBuffering,
     isMuted,
     isMobile,
     currentTime,
     duration,
+    videoSrc,
+    cinemaRef,
     videoRef,
     triggerRef: ctaRef,
+    prefetchCinema,
     openCinema,
     closeCinema,
     togglePlay,
@@ -37,7 +41,9 @@ export function HeroSection() {
     requestFullscreen,
     handleTimeUpdate,
     handleLoadedMetadata,
+    handleVideoError,
     setIsPlaying,
+    setIsBuffering,
   } = useHeroCinema(heroRef);
 
   const {
@@ -147,15 +153,19 @@ export function HeroSection() {
           ctaAria={t("ctaAria")}
           ctaRef={ctaRef}
           onCtaClick={openCinema}
+          onCtaPrefetch={prefetchCinema}
         />
 
         <HeroCinemaStage
           isOpen={isCinemaOpen}
           isPlaying={isPlaying}
+          isBuffering={isBuffering}
           isMuted={isMuted}
           isMobile={isMobile}
           currentTime={currentTime}
           duration={duration}
+          videoSrc={videoSrc}
+          cinemaRef={cinemaRef}
           videoRef={videoRef}
           copy={cinemaCopy}
           onClose={closeCinema}
@@ -166,6 +176,8 @@ export function HeroSection() {
           onTimeUpdate={handleTimeUpdate}
           onLoadedMetadata={handleLoadedMetadata}
           onPlayStateChange={setIsPlaying}
+          onBufferingChange={setIsBuffering}
+          onVideoError={handleVideoError}
         />
 
         <span className="intent-art-index" aria-hidden="true">

@@ -19,10 +19,13 @@ export interface HeroCinemaCopy {
 interface HeroCinemaStageProps {
   isOpen: boolean;
   isPlaying: boolean;
+  isBuffering: boolean;
   isMuted: boolean;
   isMobile: boolean;
   currentTime: number;
   duration: number;
+  videoSrc: string;
+  cinemaRef: React.RefObject<HTMLDivElement | null>;
   videoRef: React.RefObject<HTMLVideoElement | null>;
   copy: HeroCinemaCopy;
   onClose: (restoreFocus?: boolean) => void;
@@ -33,6 +36,8 @@ interface HeroCinemaStageProps {
   onTimeUpdate: () => void;
   onLoadedMetadata: () => void;
   onPlayStateChange: (playing: boolean) => void;
+  onBufferingChange: (buffering: boolean) => void;
+  onVideoError: () => void;
 }
 
 function formatClock(sec: number): string {
@@ -50,10 +55,13 @@ function formatClock(sec: number): string {
 export function HeroCinemaStage({
   isOpen,
   isPlaying,
+  isBuffering,
   isMuted,
   isMobile,
   currentTime,
   duration,
+  videoSrc,
+  cinemaRef,
   videoRef,
   copy,
   onClose,
@@ -64,6 +72,8 @@ export function HeroCinemaStage({
   onTimeUpdate,
   onLoadedMetadata,
   onPlayStateChange,
+  onBufferingChange,
+  onVideoError,
 }: HeroCinemaStageProps) {
   const progress = duration > 0 ? Math.min(100, (currentTime / duration) * 100) : 0;
 
@@ -79,6 +89,7 @@ export function HeroCinemaStage({
 
   return (
     <div
+      ref={cinemaRef}
       className={`intent-cinema ${isOpen ? "is-open" : ""}`}
       role="region"
       aria-label={copy.regionAria}
@@ -99,22 +110,43 @@ export function HeroCinemaStage({
       </button>
 
       <div className="intent-cinema-stage" onClick={handleBackdropClick}>
-        <video
-          ref={videoRef}
-          className="intent-cinema-video"
-          src="/videos/celaest-ecosistema-pitch.mp4"
-          poster="/videos/celaest-ecosistema-pitch-poster.webp"
-          preload="none"
-          controls={isMobile}
-          playsInline
-          onClick={!isMobile ? onTogglePlay : undefined}
-          onDoubleClick={!isMobile ? onFullscreen : undefined}
-          onPlay={() => onPlayStateChange(true)}
-          onPause={() => onPlayStateChange(false)}
-          onEnded={() => onPlayStateChange(false)}
-          onTimeUpdate={onTimeUpdate}
-          onLoadedMetadata={onLoadedMetadata}
-        />
+        <div className="intent-cinema-frame">
+          <video
+            ref={videoRef}
+            className="intent-cinema-video"
+            src={videoSrc}
+            poster="/videos/celaest-ecosistema-pitch-poster.webp"
+            preload="metadata"
+            controls={isMobile}
+            playsInline
+            onClick={!isMobile ? onTogglePlay : undefined}
+            onDoubleClick={!isMobile ? onFullscreen : undefined}
+            onPlay={() => onPlayStateChange(true)}
+            onPlaying={() => {
+              onPlayStateChange(true);
+              onBufferingChange(false);
+            }}
+            onCanPlay={() => onBufferingChange(false)}
+            onWaiting={() => onBufferingChange(true)}
+            onStalled={() => onBufferingChange(true)}
+            onPause={() => {
+              onPlayStateChange(false);
+              onBufferingChange(false);
+            }}
+            onEnded={() => {
+              onPlayStateChange(false);
+              onBufferingChange(false);
+            }}
+            onError={onVideoError}
+            onTimeUpdate={onTimeUpdate}
+            onLoadedMetadata={onLoadedMetadata}
+          />
+          {isOpen && isBuffering && (
+            <div className="intent-cinema-loader" aria-hidden="true">
+              <span className="intent-cinema-spinner" />
+            </div>
+          )}
+        </div>
 
         <div className="intent-cinema-hud">
           <div

@@ -29,6 +29,7 @@ interface HeroIntentCopyProps {
   ctaAria: string;
   ctaRef: React.RefObject<HTMLButtonElement | null>;
   onCtaClick: () => void;
+  onCtaPrefetch?: () => void;
 }
 
 export function HeroIntentCopy({
@@ -45,6 +46,7 @@ export function HeroIntentCopy({
   ctaAria,
   ctaRef,
   onCtaClick,
+  onCtaPrefetch,
 }: HeroIntentCopyProps) {
   return (
     <div className="intent-copy">
@@ -84,6 +86,8 @@ export function HeroIntentCopy({
         type="button"
         className="intent-cta"
         onClick={onCtaClick}
+        onPointerEnter={onCtaPrefetch}
+        onFocus={onCtaPrefetch}
         aria-label={ctaAria}
       >
         <span className="intent-cta-arrow">
